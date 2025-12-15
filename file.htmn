@@ -1,0 +1,859 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zuronix AI | Advanced AI Solutions for Government & Enterprise</title>
+    <meta name="description" content="Zuronix delivers cutting-edge AI and machine learning solutions for government agencies and enterprise clients. Transform your challenges into intelligent systems.">
+    <meta name="keywords" content="AI solutions, machine learning, government AI, enterprise AI, data analytics, process automation">
+    <meta name="author" content="Zuronix AI Solutions">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #60a5fa;
+            --secondary: #10b981;
+            --accent: #8b5cf6;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            filter: drop-shadow(0 4px 6px rgba(37, 99, 235, 0.2));
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <img src="https://zuronixai-k66w8dya.manus.space/images/zuronix-logo-icon.png" 
+                         alt="Zuronix AI Logo" 
+                         class="logo-img">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">Zuro<span class="text-blue-600">nix</span></h1>
+                        <p class="text-xs text-gray-500 font-medium">Digital Solutions</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition-colors">Home</a>
+                    <a href="#services" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition-colors">Services</a>
+                    <a href="#why-us" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition-colors">Why Us</a>
+                    <a href="#solutions" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition-colors">Solutions</a>
+                    <a href="#technology" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition-colors">Technology</a>
+                    <a href="#contact" class="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-2 rounded-lg font-medium hover:shadow-lg transition-all hover:-translate-y-1">Get Started</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuButton" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="text-gray-700 font-medium hover:text-blue-600 py-2">Home</a>
+                    <a href="#services" class="text-gray-700 font-medium hover:text-blue-600 py-2">Services</a>
+                    <a href="#why-us" class="text-gray-700 font-medium hover:text-blue-600 py-2">Why Us</a>
+                    <a href="#solutions" class="text-gray-700 font-medium hover:text-blue-600 py-2">Solutions</a>
+                    <a href="#technology" class="text-gray-700 font-medium hover:text-blue-600 py-2">Technology</a>
+                    <a href="#contact" class="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-3 rounded-lg font-medium text-center">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 right-0 w-1/2 h-full">
+                <div class="w-full h-full" style="background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0 0h100v100H0z" fill="none"/%3E%3Cpath d="M20 20h60v60H20z" stroke="%232563eb" stroke-width="2" fill="none"/%3E%3C/svg%3E');"></div>
+            </div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <!-- Badge -->
+                <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 py-2 rounded-full mb-6 animate-on-scroll">
+                    <i class="fas fa-rocket"></i>
+                    <span class="font-medium">Advanced AI Solutions</span>
+                </div>
+                
+                <!-- Main Heading -->
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-on-scroll">
+                    Transform Complex Challenges Into <span class="gradient-text">Intelligent Systems</span>
+                </h1>
+                
+                <!-- Description -->
+                <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-3xl animate-on-scroll">
+                    Zuronix delivers cutting-edge artificial intelligence and machine learning solutions designed specifically for government agencies and enterprise clients. We transform complex challenges into intelligent systems that drive measurable results and innovation.
+                </p>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 mb-16 animate-on-scroll">
+                    <a href="#contact" class="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex items-center justify-center space-x-2">
+                        <span>Get Started</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#services" class="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition-all duration-300 flex items-center justify-center space-x-2">
+                        <span>Our Services</span>
+                        <i class="fas fa-chart-line"></i>
+                    </a>
+                </div>
+                
+                <!-- Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 animate-on-scroll">
+                    <div class="text-center">
+                        <div class="stat-number font-bold mb-2" data-count="50">0</div>
+                        <p class="text-gray-600 font-medium">Projects Delivered</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="stat-number font-bold mb-2" data-count="98">0</div>
+                        <p class="text-gray-600 font-medium">Client Satisfaction</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="stat-number font-bold mb-2" data-count="100">0</div>
+                        <p class="text-gray-600 font-medium">Compliance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Core Services</h2>
+                <p class="text-lg text-gray-600">
+                    Comprehensive AI and machine learning solutions tailored to meet the unique needs of government and enterprise organizations.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-gradient-to-br from-white to-blue-50 rounded-2xl p-8 card-hover animate-on-scroll border border-blue-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">AI Development</h3>
+                    <p class="text-gray-600">
+                        Custom artificial intelligence systems built from the ground up to solve your most complex challenges with precision and reliability.
+                    </p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-gradient-to-br from-white to-green-50 rounded-2xl p-8 card-hover animate-on-scroll border border-green-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-600 to-green-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-bar text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Data Analytics</h3>
+                    <p class="text-gray-600">
+                        Transform raw data into actionable insights with advanced analytics and machine learning models that drive informed decision-making.
+                    </p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-gradient-to-br from-white to-purple-50 rounded-2xl p-8 card-hover animate-on-scroll border border-purple-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-600 to-purple-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-robot text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Process Automation</h3>
+                    <p class="text-gray-600">
+                        Automate repetitive tasks and complex workflows using intelligent automation to increase efficiency and reduce human error.
+                    </p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-gradient-to-br from-white to-yellow-50 rounded-2xl p-8 card-hover animate-on-scroll border border-yellow-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-yellow-600 to-yellow-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-handshake text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Consulting & Strategy</h3>
+                    <p class="text-gray-600">
+                        Expert guidance on AI adoption, digital transformation, and technology strategy tailored to your organization's goals.
+                    </p>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="bg-gradient-to-br from-white to-red-50 rounded-2xl p-8 card-hover animate-on-scroll border border-red-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-red-600 to-red-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Security & Compliance</h3>
+                    <p class="text-gray-600">
+                        Enterprise-grade security and compliance built into every solution, meeting government standards and regulatory requirements.
+                    </p>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="bg-gradient-to-br from-white to-indigo-50 rounded-2xl p-8 card-hover animate-on-scroll border border-indigo-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-indigo-600 to-indigo-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-headset text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Ongoing Support</h3>
+                    <p class="text-gray-600">
+                        Continuous monitoring, maintenance, and updates ensure your AI systems remain at peak performance and security.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us" class="py-20 gradient-bg">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Why Choose Zuronix?</h2>
+                <p class="text-lg text-gray-600">
+                    Zuronix is built on a foundation of expertise, innovation, and a deep commitment to our clients' success.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="bg-white rounded-2xl p-8 card-hover animate-on-scroll text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-university text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Government-Ready</h3>
+                    <p class="text-gray-600">
+                        Solutions meet all federal and state compliance requirements and security standards.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 card-hover animate-on-scroll text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-green-600 to-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-microchip text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Cutting-Edge Tech</h3>
+                    <p class="text-gray-600">
+                        Latest AI and machine learning technologies for future-proof solutions.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 card-hover animate-on-scroll text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-purple-600 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Expert Team</h3>
+                    <p class="text-gray-600">
+                        Engineers and data scientists with extensive experience in AI and enterprise systems.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 card-hover animate-on-scroll text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-red-600 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-trophy text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Proven Track Record</h3>
+                    <p class="text-gray-600">
+                        Successfully delivered 50+ projects for government and enterprise clients.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 animate-on-scroll">
+                <div class="bg-white/80 backdrop-blur-sm rounded-xl p-6 text-center border border-blue-100">
+                    <div class="text-4xl font-bold text-blue-600 mb-2">50+</div>
+                    <div class="text-gray-700 font-medium">Successful Projects</div>
+                </div>
+                
+                <div class="bg-white/80 backdrop-blur-sm rounded-xl p-6 text-center border border-green-100">
+                    <div class="text-4xl font-bold text-green-600 mb-2">15+</div>
+                    <div class="text-gray-700 font-medium">Government Clients</div>
+                </div>
+                
+                <div class="bg-white/80 backdrop-blur-sm rounded-xl p-6 text-center border border-purple-100">
+                    <div class="text-4xl font-bold text-purple-600 mb-2">98%</div>
+                    <div class="text-gray-700 font-medium">Client Satisfaction</div>
+                </div>
+                
+                <div class="bg-white/80 backdrop-blur-sm rounded-xl p-6 text-center border border-red-100">
+                    <div class="text-4xl font-bold text-red-600 mb-2">24/7</div>
+                    <div class="text-gray-700 font-medium">Technical Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Solutions for Every Sector</h2>
+                <p class="text-lg text-gray-600">
+                    Tailored AI solutions designed for the specific needs of government agencies and enterprise clients.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Government Solutions -->
+                <div class="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 card-hover animate-on-scroll border border-blue-200">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-flag-usa text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Government Solutions</h3>
+                    </div>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Regulatory compliance and security frameworks</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Data integration and legacy system modernization</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Predictive analytics for policy and planning</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Citizen engagement and service optimization</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-8">
+                        <a href="#contact" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center">
+                            Learn more about Government Solutions
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Enterprise Solutions -->
+                <div class="bg-gradient-to-br from-purple-50 to-white rounded-2xl p-8 card-hover animate-on-scroll border border-purple-200">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-r from-purple-600 to-purple-500 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-building text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Enterprise Solutions</h3>
+                    </div>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Process automation and workflow optimization</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Customer intelligence and personalization</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Risk assessment and fraud detection</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Supply chain and operational intelligence</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-8">
+                        <a href="#contact" class="text-purple-600 font-semibold hover:text-purple-800 flex items-center">
+                            Learn more about Enterprise Solutions
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="py-20 gradient-bg">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Cutting-Edge AI Technology</h2>
+                <p class="text-lg text-gray-600">
+                    We leverage the latest advances in artificial intelligence, machine learning, and data science.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-2xl p-8 card-hover animate-on-scroll text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-network-wired text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Advanced ML</h3>
+                    <p class="text-gray-600">
+                        Deep learning, neural networks, and advanced algorithms that learn and adapt to your data.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 card-hover animate-on-scroll text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-green-600 to-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-language text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">NLP</h3>
+                    <p class="text-gray-600">
+                        Understanding and processing human language for better insights and automation.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 card-hover animate-on-scroll text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-purple-600 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-eye text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Computer Vision</h3>
+                    <p class="text-gray-600">
+                        Image and video analysis for pattern recognition and automated decision-making.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 card-hover animate-on-scroll text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-red-600 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Predictive Analytics</h3>
+                    <p class="text-gray-600">
+                        Forecast trends and outcomes with statistical models and machine learning.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Transform Your Organization?</h2>
+                <p class="text-lg text-gray-600">
+                    Let's discuss how Zuronix can help you leverage AI to achieve your goals.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div class="animate-on-scroll">
+                    <h3 class="text-2xl font-bold mb-6">Get in Touch</h3>
+                    <p class="text-gray-600 mb-8">
+                        Contact us today to schedule a free consultation. Our specialized team is ready to help you achieve your digital transformation goals.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Address</h4>
+                                <p class="text-gray-600">4400 NE 77th Ave suite 331, Vancouver, WA 98662</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-gradient-to-r from-green-600 to-green-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-clock text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Business Hours</h4>
+                                <p class="text-gray-600 mb-1">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                                <p class="text-gray-600 mb-1">Saturday: 10:00 AM - 4:00 PM</p>
+                                <p class="text-gray-600">Sunday: Closed</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-gradient-to-r from-purple-600 to-purple-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Phone</h4>
+                                <p class="text-gray-600">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-gradient-to-r from-red-600 to-red-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Email</h4>
+                                <p class="text-gray-600">contact@zuronixai.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 animate-on-scroll border border-blue-100">
+                    <h3 class="text-2xl font-bold mb-6">Schedule a Consultation</h3>
+                    
+                    <form id="contactForm">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="name">Full Name *</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="email">Email Address *</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-medium mb-2" for="company">Company / Organization</label>
+                            <input type="text" id="company" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-medium mb-2" for="service">Service Interested In</label>
+                            <select id="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="">Select a service</option>
+                                <option value="ai">AI Development</option>
+                                <option value="analytics">Data Analytics</option>
+                                <option value="automation">Process Automation</option>
+                                <option value="consulting">Consulting & Strategy</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <label class="block text-gray-700 font-medium mb-2" for="message">Message *</label>
+                            <textarea id="message" required rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold py-4 rounded-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-2">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center mb-6">
+                        <img src="https://zuronixai-k66w8dya.manus.space/images/zuronix-logo-icon.png" 
+                             alt="Zuronix AI Logo" 
+                             class="logo-img mr-3">
+                        <div>
+                            <h2 class="text-2xl font-bold">Zuronix<span class="text-blue-400">AI</span></h2>
+                            <p class="text-gray-400 text-sm">Advanced AI Solutions</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Transforming complex challenges into intelligent systems with cutting-edge AI and machine learning solutions.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#why-us" class="text-gray-400 hover:text-white transition-colors">Why Choose Us</a></li>
+                        <li><a href="#solutions" class="text-gray-400 hover:text-white transition-colors">Solutions</a></li>
+                        <li><a href="#technology" class="text-gray-400 hover:text-white transition-colors">Technology</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Our Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">AI Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Data Analytics</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Process Automation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Consulting & Strategy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Security & Compliance</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Ongoing Support</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Contact Info</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">4400 NE 77th Ave suite 331, Vancouver, WA 98662</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">contact@zuronixai.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-400">&copy; <span id="currentYear"></span> Zuronix AI Solutions. All rights reserved.</p>
+                <div class="mt-4 text-gray-500 text-sm">
+                    <a href="#" class="hover:text-gray-300 mx-3">Privacy Policy</a> | 
+                    <a href="#" class="hover:text-gray-300 mx-3">Terms of Service</a> | 
+                    <a href="#" class="hover:text-gray-300 mx-3">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Wait for DOM to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (mobileMenu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    } else {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    }
+                });
+            }
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('nav');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-md', 'py-3');
+                    navbar.classList.remove('py-4');
+                } else {
+                    navbar.classList.remove('shadow-md', 'py-3');
+                    navbar.classList.add('py-4');
+                }
+            });
+            
+            // Animate counters
+            function animateCounter(element) {
+                const target = parseInt(element.getAttribute('data-count'));
+                const duration = 1500;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        element.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        element.textContent = target;
+                    }
+                };
+                
+                updateCounter();
+            }
+            
+            // Scroll animations
+            function handleScrollAnimations() {
+                const elements = document.querySelectorAll('.animate-on-scroll');
+                
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                        
+                        // Animate counters if they're visible
+                        const counterElements = element.querySelectorAll('.stat-number[data-count]');
+                        counterElements.forEach(counter => {
+                            if (counter.textContent === '0') {
+                                animateCounter(counter);
+                            }
+                        });
+                    }
+                });
+            }
+            
+            // Initial check for animations
+            handleScrollAnimations();
+            window.addEventListener('scroll', handleScrollAnimations);
+            
+            // Contact form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Simple validation
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const message = document.getElementById('message').value.trim();
+                    
+                    if (!name || !email || !message) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    
+                    // Show loading state
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    const originalText = submitButton.innerHTML;
+                    
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+                    submitButton.disabled = true;
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        alert('Thank you for your message! We will contact you soon.');
+                        contactForm.reset();
+                        submitButton.innerHTML = originalText;
+                        submitButton.disabled = false;
+                    }, 1500);
+                });
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (href === '#') return;
+                    
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        e.preventDefault();
+                        
+                        // Close mobile menu if open
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                            const icon = mobileMenuButton.querySelector('i');
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                        
+                        // Calculate scroll position
+                        const navbarHeight = document.querySelector('nav').offsetHeight;
+                        const targetPosition = targetElement.offsetTop - navbarHeight;
+                        
+                        // Smooth scroll
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

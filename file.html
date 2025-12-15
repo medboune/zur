@@ -789,38 +789,64 @@
             handleScrollAnimations();
             window.addEventListener('scroll', handleScrollAnimations);
             
-            // Contact form submission
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    // Simple validation
-                    const name = document.getElementById('name').value.trim();
-                    const email = document.getElementById('email').value.trim();
-                    const message = document.getElementById('message').value.trim();
-                    
-                    if (!name || !email || !message) {
-                        alert('Please fill in all required fields.');
-                        return;
-                    }
-                    
-                    // Show loading state
-                    const submitButton = contactForm.querySelector('button[type="submit"]');
-                    const originalText = submitButton.innerHTML;
-                    
-                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
-                    submitButton.disabled = true;
-                    
-                    // Simulate API call
-                    setTimeout(() => {
-                        alert('Thank you for your message! We will contact you soon.');
-                        contactForm.reset();
-                        submitButton.innerHTML = originalText;
-                        submitButton.disabled = false;
-                    }, 1500);
-                });
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // جمع القيم
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const company = document.getElementById('company').value.trim();
+        const service = document.getElementById('service').value;
+        const message = document.getElementById('message').value.trim();
+
+        // تحقق من الحقول المطلوبة
+        if (!name || !email || !message) {
+            alert('Please fill in all required fields.');
+            return;
+        }
+
+        // حالة التحميل
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitButton.innerHTML;
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+        submitButton.disabled = true;
+
+        // إرسال POST إلى Formspree
+        fetch('https://formspree.io/f/xeoywlbd', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                company: company,
+                service: service,
+                message: message
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Thank you for your message! We will contact you soon.');
+                contactForm.reset();
+            } else {
+                alert('Oops! There was a problem sending your message.');
             }
+        })
+        .catch(error => {
+            console.error(error);
+            alert('Error sending message. Please try again later.');
+        })
+        .finally(() => {
+            submitButton.innerHTML = originalText;
+            submitButton.disabled = false;
+        });
+    });
+}
             
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {

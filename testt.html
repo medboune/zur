@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zuronix — Secure Cloud & Cyber Defense</title>
+    <meta name="description" content="Zuronix helps organizations improve their cybersecurity posture through security assessments, cloud security services, compliance readiness, and managed security solutions.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#07111F">
+    <link rel="canonical" href="https://zuronix.com">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#07111F',
+                        surface: '#0F172A',
+                        'surface-alt': '#162032',
+                        edge: '#1E293B',
+                        'edge-light': '#334155',
+                        brand: { DEFAULT: '#2563EB', light: '#3B82F6', dark: '#1D4ED8' },
+                        accent: { DEFAULT: '#06B6D4', light: '#22D3EE' },
+                        txt: { DEFAULT: '#F8FAFC', sec: '#94A3B8', muted: '#64748B' },
+                        success: '#10B981',
+                    },
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <style>
+        /* ===== Base ===== */
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: #07111F; color: #F8FAFC; overflow-x: hidden; }
+
+        /* ===== Scrollbar ===== */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #07111F; }
+        ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+        /* ===== Skip Nav ===== */
+        .skip-nav { position: absolute; top: -100%; left: 16px; z-index: 9999; padding: 8px 16px; background: #2563EB; color: #fff; border-radius: 0 0 8px 8px; font-weight: 600; transition: top 0.2s; }
+        .skip-nav:focus { top: 0; }
+
+        /* ===== Header ===== */
+        #header { transition: background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease; border-bottom: 1px solid transparent; }
+        #header.scrolled { background-color: rgba(7, 17, 31, 0.88); backdrop-filter: blur(20px) saturate(1.4); -webkit-backdrop-filter: blur(20px) saturate(1.4); border-bottom-color: #1E293B; }
+
+        /* ===== Hamburger ===== */
+        .hamburger span { display: block; width: 22px; height: 2px; background: #F8FAFC; border-radius: 2px; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease; }
+        .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ===== Mobile Menu ===== */
+        .mobile-menu { transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+        .mobile-menu.open { transform: translateX(0); }
+        .mobile-overlay { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .mobile-overlay.open { opacity: 1; pointer-events: auto; }
+
+        /* ===== Hero Animations ===== */
+        @keyframes drift1 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(40px, -30px) scale(1.05); } }
+        @keyframes drift2 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-30px, 40px) scale(1.08); } }
+        @keyframes drift3 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(20px, 20px); } }
+        .hero-orb-1 { animation: drift1 12s ease-in-out infinite; }
+        .hero-orb-2 { animation: drift2 15s ease-in-out infinite; }
+        .hero-orb-3 { animation: drift3 10s ease-in-out infinite; }
+
+        @keyframes scroll-hint { 0%, 100% { opacity: 0.4; transform: translateY(0); } 50% { opacity: 1; transform: translateY(6px); } }
+        .scroll-indicator { animation: scroll-hint 2s ease-in-out infinite; }
+
+        /* ===== Fade In on Scroll ===== */
+        .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* ===== Service Cards ===== */
+        .service-card { transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; }
+        .service-card:hover { border-color: #334155; transform: translateY(-4px); box-shadow: 0 8px 40px -12px rgba(37, 99, 235, 0.15); }
+        .service-card:hover .card-icon { background-color: #2563EB; }
+        .card-icon { transition: background-color 0.3s ease; }
+
+        /* ===== Industry Cards ===== */
+        .industry-card { transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; }
+        .industry-card:hover { border-color: #06B6D4; transform: translateY(-3px); box-shadow: 0 8px 40px -12px rgba(6, 182, 212, 0.12); }
+        .industry-card:hover .ind-bar { width: 100%; }
+        .ind-bar { width: 40px; transition: width 0.5s cubic-bezier(0.16,1,0.3,1); }
+
+        /* ===== Feature Cards ===== */
+        .feature-card { transition: border-color 0.3s ease, background-color 0.3s ease; }
+        .feature-card:hover { border-color: #334155; background-color: #162032; }
+
+        /* ===== Framework Badge ===== */
+        .framework-badge { transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease; }
+        .framework-badge:hover { border-color: #2563EB; background-color: rgba(37, 99, 235, 0.08); transform: translateY(-2px); }
+
+        /* ===== CTA Button ===== */
+        .btn-primary { position: relative; overflow: hidden; transition: all 0.3s ease; }
+        .btn-primary::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, #3B82F6, #2563EB); opacity: 0; transition: opacity 0.3s ease; }
+        .btn-primary:hover::before { opacity: 1; }
+        .btn-primary:hover { box-shadow: 0 0 30px rgba(37, 99, 235, 0.3); transform: translateY(-1px); }
+        .btn-primary span { position: relative; z-index: 1; }
+
+        .btn-secondary { transition: all 0.3s ease; }
+        .btn-secondary:hover { border-color: #334155; background-color: rgba(255,255,255,0.04); transform: translateY(-1px); }
+
+        /* ===== Form Inputs ===== */
+        .form-input { transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        .form-input:focus { border-color: #2563EB; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); outline: none; }
+        .form-input.error { border-color: #EF4444; }
+        .form-input.error:focus { box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15); }
+        .error-msg { color: #EF4444; font-size: 0.75rem; margin-top: 4px; display: none; }
+        .error-msg.show { display: block; }
+
+        /* ===== Nav Link Active ===== */
+        .nav-link { position: relative; transition: color 0.2s ease; }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #2563EB; border-radius: 1px; transition: width 0.3s cubic-bezier(0.16,1,0.3,1); }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link:hover, .nav-link.active { color: #F8FAFC; }
+
+        /* ===== Back to Top ===== */
+        .back-to-top { opacity: 0; pointer-events: none; transform: translateY(10px); transition: all 0.3s ease; }
+        .back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        .back-to-top:hover { background-color: #2563EB; transform: translateY(-2px); }
+
+        /* ===== Footer Link ===== */
+        .footer-link { transition: color 0.2s ease; }
+        .footer-link:hover { color: #F8FAFC; }
+
+        /* ===== Reduced Motion ===== */
+        @media (prefers-reduced-motion: reduce) {
+            .fade-up { opacity: 1; transform: none; transition: none; }
+            .hero-orb-1, .hero-orb-2, .hero-orb-3 { animation: none; }
+            .scroll-indicator { animation: none; opacity: 0.6; }
+            .service-card, .industry-card, .feature-card, .framework-badge, .btn-primary, .btn-secondary { transition: none; }
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+    <!-- Skip Navigation -->
+    <a href="#main-content" class="skip-nav">Skip to main content</a>
+
+    <!-- ============================================================ -->
+    <!-- HEADER -->
+    <!-- ============================================================ -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-[72px]">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2.5 group" aria-label="Zuronix Home">
+                    <svg width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="shrink-0">
+                        <path d="M18 2L32 9V20C32 27.5 25.5 33.5 18 35C10.5 33.5 4 27.5 4 20V9L18 2Z" stroke="#2563EB" stroke-width="2" stroke-linejoin="round" class="transition-colors duration-300 group-hover:stroke-[#3B82F6]"/>
+                        <path d="M12 18L16 22L24 14" stroke="#06B6D4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div class="hidden sm:block">
+                        <span class="text-txt font-bold text-[15px] tracking-tight">Zuronix</span>
+                        <span class="hidden lg:block text-txt-muted text-[10px] font-medium tracking-widest uppercase leading-none mt-0.5">Secure Cloud & Cyber Defense</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center gap-8" aria-label="Main navigation">
+                    <a href="#hero" class="nav-link text-txt-sec text-sm font-medium active">Home</a>
+                    <a href="#services" class="nav-link text-txt-sec text-sm font-medium">Services</a>
+                    <a href="#industries" class="nav-link text-txt-sec text-sm font-medium">Industries</a>
+                    <a href="#about" class="nav-link text-txt-sec text-sm font-medium">About</a>
+                    <a href="#contact" class="nav-link text-txt-sec text-sm font-medium">Contact</a>
+                </nav>
+
+                <!-- CTA + Hamburger -->
+                <div class="flex items-center gap-4">
+                    <a href="#contact" class="hidden sm:inline-flex btn-primary bg-brand text-white text-sm font-semibold px-5 py-2.5 rounded-lg items-center gap-2">
+                        <span>Schedule a Consultation</span>
+                    </a>
+                    <button id="hamburger-btn" class="hamburger lg:hidden flex flex-col gap-[5px] p-2 -mr-2" aria-label="Toggle menu" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Overlay -->
+    <div id="mobile-overlay" class="mobile-overlay fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm" aria-hidden="true"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 bottom-0 z-[70] w-[280px] bg-surface border-l border-edge" role="dialog" aria-label="Mobile navigation">
+        <div class="flex items-center justify-between px-5 h-16 border-b border-edge">
+            <span class="text-txt font-bold text-[15px]">Menu</span>
+            <button id="mobile-close" class="p-2 -mr-2 text-txt-sec hover:text-txt transition-colors" aria-label="Close menu">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col px-5 py-6 gap-1" aria-label="Mobile navigation">
+            <a href="#hero" class="mobile-nav-link text-txt-sec text-[15px] font-medium py-3 px-3 rounded-lg hover:bg-surface-alt hover:text-txt transition-all">Home</a>
+            <a href="#services" class="mobile-nav-link text-txt-sec text-[15px] font-medium py-3 px-3 rounded-lg hover:bg-surface-alt hover:text-txt transition-all">Services</a>
+            <a href="#industries" class="mobile-nav-link text-txt-sec text-[15px] font-medium py-3 px-3 rounded-lg hover:bg-surface-alt hover:text-txt transition-all">Industries</a>
+            <a href="#about" class="mobile-nav-link text-txt-sec text-[15px] font-medium py-3 px-3 rounded-lg hover:bg-surface-alt hover:text-txt transition-all">About</a>
+            <a href="#contact" class="mobile-nav-link text-txt-sec text-[15px] font-medium py-3 px-3 rounded-lg hover:bg-surface-alt hover:text-txt transition-all">Contact</a>
+        </nav>
+        <div class="px-5 mt-4">
+            <a href="#contact" class="mobile-nav-link btn-primary bg-brand text-white text-sm font-semibold px-5 py-3 rounded-lg flex items-center justify-center gap-2 w-full">
+                <span>Schedule a Consultation</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MAIN CONTENT -->
+    <!-- ============================================================ -->
+    <main id="main-content">
+
+        <!-- ======================================================== -->
+        <!-- HERO SECTION -->
+        <!-- ======================================================== -->
+        <section id="hero" class="relative min-h-screen flex items-center pt-16 lg:pt-0 overflow-hidden">
+            <!-- Background Layers -->
+            <div class="absolute inset-0" aria-hidden="true">
+                <!-- Grid Pattern -->
+                <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="hero-grid" width="80" height="80" patternUnits="userSpaceOnUse">
+                            <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#1E293B" stroke-width="0.4"/>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#hero-grid)"/>
+                </svg>
+
+                <!-- Gradient Orbs -->
+                <div class="hero-orb-1 absolute top-[10%] left-[15%] w-[500px] h-[500px] rounded-full bg-brand/[0.07] blur-[120px]"></div>
+                <div class="hero-orb-2 absolute bottom-[10%] right-[10%] w-[450px] h-[450px] rounded-full bg-accent/[0.06] blur-[110px]"></div>
+                <div class="hero-orb-3 absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-brand/[0.04] blur-[80px]"></div>
+
+                <!-- Network Nodes -->
+                <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                    <!-- Connection Lines -->
+                    <g stroke="#2563EB" stroke-width="0.6" opacity="0.12">
+                        <line x1="12%" y1="18%" x2="28%" y2="32%"/>
+                        <line x1="28%" y1="32%" x2="22%" y2="55%"/>
+                        <line x1="22%" y1="55%" x2="38%" y2="68%"/>
+                        <line x1="28%" y1="32%" x2="45%" y2="22%"/>
+                        <line x1="45%" y1="22%" x2="62%" y2="35%"/>
+                        <line x1="62%" y1="35%" x2="78%" y2="25%"/>
+                        <line x1="62%" y1="35%" x2="55%" y2="58%"/>
+                        <line x1="55%" y1="58%" x2="72%" y2="72%"/>
+                        <line x1="72%" y1="72%" x2="88%" y2="62%"/>
+                        <line x1="38%" y1="68%" x2="55%" y2="58%"/>
+                        <line x1="78%" y1="25%" x2="88%" y2="42%"/>
+                        <line x1="88%" y1="42%" x2="88%" y2="62%"/>
+                        <line x1="12%" y1="18%" x2="8%" y2="42%"/>
+                        <line x1="8%" y1="42%" x2="22%" y2="55%"/>
+                        <line x1="45%" y1="22%" x2="38%" y2="8%"/>
+                        <line x1="62%" y1="35%" x2="68%" y2="15%"/>
+                    </g>
+                    <g stroke="#06B6D4" stroke-width="0.4" opacity="0.08">
+                        <line x1="38%" y1="8%" x2="68%" y2="15%"/>
+                        <line x1="8%" y1="42%" x2="38%" y2="68%"/>
+                        <line x1="72%" y1="72%" x2="55%" y2="85%"/>
+                    </g>
+                    <!-- Nodes -->
+                    <circle cx="12%" cy="18%" r="3" fill="#2563EB" opacity="0.5"><animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" repeatCount="indefinite"/></circle>
+                    <circle cx="28%" cy="32%" r="4" fill="#2563EB" opacity="0.6"><animate attributeName="opacity" values="0.4;0.8;0.4" dur="4s" repeatCount="indefinite"/></circle>
+                    <circle cx="22%" cy="55%" r="2.5" fill="#06B6D4" opacity="0.4"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="3.5s" repeatCount="indefinite"/></circle>
+                    <circle cx="38%" cy="68%" r="3" fill="#2563EB" opacity="0.5"><animate attributeName="opacity" values="0.3;0.7;0.3" dur="5s" repeatCount="indefinite"/></circle>
+                    <circle cx="45%" cy="22%" r="3.5" fill="#06B6D4" opacity="0.5"><animate attributeName="opacity" values="0.3;0.7;0.3" dur="3.2s" repeatCount="indefinite"/></circle>
+                    <circle cx="62%" cy="35%" r="4.5" fill="#2563EB" opacity="0.6"><animate attributeName="opacity" values="0.4;0.8;0.4" dur="4.5s" repeatCount="indefinite"/></circle>
+                    <circle cx="78%" cy="25%" r="3" fill="#06B6D4" opacity="0.4"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="3.8s" repeatCount="indefinite"/></circle>
+                    <circle cx="55%" cy="58%" r="3" fill="#2563EB" opacity="0.5"><animate attributeName="opacity" values="0.3;0.7;0.3" dur="4.2s" repeatCount="indefinite"/></circle>
+                    <circle cx="72%" cy="72%" r="3.5" fill="#06B6D4" opacity="0.5"><animate attributeName="opacity" values="0.3;0.7;0.3" dur="3.6s" repeatCount="indefinite"/></circle>
+                    <circle cx="88%" cy="62%" r="2.5" fill="#2563EB" opacity="0.4"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="4.8s" repeatCount="indefinite"/></circle>
+                    <circle cx="88%" cy="42%" r="2" fill="#06B6D4" opacity="0.3"><animate attributeName="opacity" values="0.15;0.5;0.15" dur="3.3s" repeatCount="indefinite"/></circle>
+                    <circle cx="8%" cy="42%" r="2" fill="#2563EB" opacity="0.3"><animate attributeName="opacity" values="0.15;0.5;0.15" dur="5.2s" repeatCount="indefinite"/></circle>
+                    <circle cx="38%" cy="8%" r="2.5" fill="#06B6D4" opacity="0.35"><animate attributeName="opacity" values="0.2;0.55;0.2" dur="3.9s" repeatCount="indefinite"/></circle>
+                    <circle cx="68%" cy="15%" r="2" fill="#2563EB" opacity="0.3"><animate attributeName="opacity" values="0.15;0.5;0.15" dur="4.4s" repeatCount="indefinite"/></circle>
+                    <circle cx="55%" cy="85%" r="2" fill="#06B6D4" opacity="0.25"><animate attributeName="opacity" values="0.1;0.4;0.1" dur="3.7s" repeatCount="indefinite"/></circle>
+                </svg>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 w-full py-20 lg:py-0">
+                <div class="max-w-3xl">
+                    <div class="fade-up inline-flex items-center gap-2 bg-brand/[0.08] border border-brand/20 rounded-full px-4 py-1.5 mb-8">
+                        <span class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></span>
+                        <span class="text-brand-light text-xs font-semibold tracking-wide uppercase">Cybersecurity & Cloud Defense</span>
+                    </div>
+
+                    <h1 class="fade-up text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-extrabold leading-[1.1] tracking-tight text-txt mb-6" style="transition-delay:0.1s">
+                        Strengthen Your Security<br>
+                        <span class="bg-gradient-to-r from-brand-light via-brand to-accent bg-clip-text text-transparent">Against Modern Threats</span>
+                    </h1>
+
+                    <p class="fade-up text-lg sm:text-xl text-txt-sec leading-relaxed max-w-2xl mb-10" style="transition-delay:0.2s">
+                        Zuronix helps organizations improve their cybersecurity posture through security assessments, cloud security services, compliance readiness, and managed security solutions.
+                    </p>
+
+                    <div class="fade-up flex flex-col sm:flex-row gap-4" style="transition-delay:0.3s">
+                        <a href="#contact" class="btn-primary bg-brand text-white text-sm font-semibold px-7 py-3.5 rounded-lg inline-flex items-center justify-center gap-2.5">
+                            <span>Schedule a Consultation</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 relative z-10"></i>
+                        </a>
+                        <a href="#contact" class="btn-secondary border border-edge text-txt-sec text-sm font-semibold px-7 py-3.5 rounded-lg inline-flex items-center justify-center gap-2.5">
+                            Contact Zuronix
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator" aria-hidden="true">
+                <i data-lucide="chevron-down" class="w-5 h-5 text-txt-muted"></i>
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- SERVICES SECTION -->
+        <!-- ======================================================== -->
+        <section id="services" class="relative py-24 lg:py-32 bg-surface">
+            <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <p class="fade-up text-brand font-semibold text-xs tracking-widest uppercase mb-4">What We Do</p>
+                    <h2 class="fade-up text-3xl sm:text-4xl font-extrabold tracking-tight text-txt mb-5" style="transition-delay:0.1s">Security Services Built for Enterprise Needs</h2>
+                    <p class="fade-up text-txt-sec text-base leading-relaxed" style="transition-delay:0.15s">Comprehensive cybersecurity services designed to address real-world threats and compliance requirements.</p>
+                </div>
+                <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- Rendered by JS from SERVICES_DATA -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- INDUSTRIES SECTION -->
+        <!-- ======================================================== -->
+        <section id="industries" class="relative py-24 lg:py-32 bg-navy">
+            <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <p class="fade-up text-accent font-semibold text-xs tracking-widest uppercase mb-4">Industries</p>
+                    <h2 class="fade-up text-3xl sm:text-4xl font-extrabold tracking-tight text-txt mb-5" style="transition-delay:0.1s">Security Solutions by Sector</h2>
+                    <p class="fade-up text-txt-sec text-base leading-relaxed" style="transition-delay:0.15s">Tailored cybersecurity approaches that align with industry-specific regulations and operational requirements.</p>
+                </div>
+                <div id="industries-grid" class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <!-- Rendered by JS from INDUSTRIES_DATA -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- TRUST / FRAMEWORKS SECTION -->
+        <!-- ======================================================== -->
+        <section id="trust" class="relative py-24 lg:py-32 bg-surface">
+            <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <p class="fade-up text-brand font-semibold text-xs tracking-widest uppercase mb-4">Security Framework Alignment</p>
+                    <h2 class="fade-up text-3xl sm:text-4xl font-extrabold tracking-tight text-txt mb-5" style="transition-delay:0.1s">Built Around Recognized Standards</h2>
+                    <p class="fade-up text-txt-sec text-base leading-relaxed" style="transition-delay:0.15s">Zuronix services are designed to support alignment with leading security frameworks and regulatory requirements.</p>
+                </div>
+                <div id="frameworks-grid" class="flex flex-wrap justify-center gap-4 sm:gap-5">
+                    <!-- Rendered by JS from FRAMEWORKS_DATA -->
+                </div>
+                <p class="fade-up text-center text-txt-muted text-xs mt-10" style="transition-delay:0.1s">Framework alignment indicates service design methodology. Zuronix does not claim certification unless explicitly stated.</p>
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- WHY ZURONIX SECTION -->
+        <!-- ======================================================== -->
+        <section id="why-zuronix" class="relative py-24 lg:py-32 bg-navy">
+            <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-16 items-start">
+                    <div>
+                        <p class="fade-up text-accent font-semibold text-xs tracking-widest uppercase mb-4">Why Zuronix</p>
+                        <h2 class="fade-up text-3xl sm:text-4xl font-extrabold tracking-tight text-txt mb-6" style="transition-delay:0.1s">A Practical Approach to Cybersecurity</h2>
+                        <p class="fade-up text-txt-sec text-base leading-relaxed mb-8" style="transition-delay:0.15s">Zuronix is built by experienced cybersecurity professionals who understand that effective security requires more than tools — it requires clear strategy, actionable findings, and ongoing commitment.</p>
+                        <a href="#contact" class="fade-up btn-primary bg-brand text-white text-sm font-semibold px-6 py-3 rounded-lg inline-flex items-center gap-2" style="transition-delay:0.2s">
+                            <span>Get Started</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 relative z-10"></i>
+                        </a>
+                    </div>
+                    <div id="features-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Rendered by JS from WHY_DATA -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- ABOUT SECTION -->
+        <!-- ======================================================== -->
+        <section id="about" class="relative py-24 lg:py-32 bg-surface">
+            <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-3 gap-10 lg:gap-8">
+                    <!-- Mission -->
+                    <div class="fade-up bg-navy border border-edge rounded-2xl p-8">
+                        <div class="w-10 h-10 rounded-lg bg-brand/10 flex items-center justify-center mb-5">
+                            <i data-lucide="target" class="w-5 h-5 text-brand"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-txt mb-3">Mission</h3>
+                        <p class="text-txt-sec text-sm leading-relaxed">To help organizations build stronger cybersecurity foundations through practical assessments, clear guidance, and ongoing support — without unnecessary complexity.</p>
+                    </div>
+                    <!-- Vision -->
+                    <div class="fade-up bg-navy border border-edge rounded-2xl p-8" style="transition-delay:0.1s">
+                        <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+                            <i data-lucide="eye" class="w-5 h-5 text-accent"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-txt mb-3">Vision</h3>
+                        <p class="text-txt-sec text-sm leading-relaxed">A landscape where organizations of every size have access to enterprise-grade security expertise — enabling them to operate confidently in an increasingly hostile digital environment.</p>
+                    </div>
+                    <!-- Philosophy -->
+                    <div class="fade-up bg-navy border border-edge rounded-2xl p-8" style="transition-delay:0.2s">
+                        <div class="w-10 h-10 rounded-lg bg-success/10 flex items-center justify-center mb-5">
+                            <i data-lucide="compass" class="w-5 h-5 text-success"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-txt mb-3">Philosophy</h3>
+                        <p class="text-txt-sec text-sm leading-relaxed">Security should be understandable, actionable, and aligned with business objectives. We prioritize clear communication, honest assessments, and solutions that fit each organization's actual risk profile.</p>
+                    </div>
+                </div>
+
+                <div class="fade-up mt-12 bg-navy border border-edge rounded-2xl p-8 lg:p-10">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-txt mb-4">Built by Security Professionals</h3>
+                            <p class="text-txt-sec text-sm leading-relaxed mb-4">Zuronix was founded by professionals with deep experience in enterprise security, cloud environments, compliance, and risk management. The company operates from Vancouver, Washington, serving organizations across the United States.</p>
+                            <p class="text-txt-sec text-sm leading-relaxed">Every engagement is led by practitioners who understand both the technical and strategic dimensions of cybersecurity — from vulnerability identification to executive-level risk communication.</p>
+                        </div>
+                        <div class="flex flex-col gap-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-brand/10 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i data-lucide="shield-check" class="w-4 h-4 text-brand"></i>
+                                </div>
+                                <div>
+                                    <p class="text-txt text-sm font-semibold">Enterprise Security Experience</p>
+                                    <p class="text-txt-muted text-xs mt-0.5">Deep background in protecting complex environments</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i data-lucide="cloud" class="w-4 h-4 text-accent"></i>
+                                </div>
+                                <div>
+                                    <p class="text-txt text-sm font-semibold">Cloud-Native Expertise</p>
+                                    <p class="text-txt-muted text-xs mt-0.5">AWS, Azure, and multi-cloud security specialization</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-success/10 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i data-lucide="file-check" class="w-4 h-4 text-success"></i>
+                                </div>
+                                <div>
+                                    <p class="text-txt text-sm font-semibold">Compliance & Risk Focus</p>
+                                    <p class="text-txt-muted text-xs mt-0.5">Regulatory alignment and risk management practice</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- CONTACT SECTION -->
+        <!-- ======================================================== -->
+        <section id="contact" class="relative py-24 lg:py-32 bg-navy">
+            <!-- Subtle accent glow -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand/[0.04] blur-[120px] rounded-full" aria-hidden="true"></div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-5 gap-12 lg:gap-16">
+                    <!-- Contact Info -->
+                    <div class="lg:col-span-2">
+                        <p class="fade-up text-brand font-semibold text-xs tracking-widest uppercase mb-4">Get in Touch</p>
+                        <h2 class="fade-up text-3xl sm:text-4xl font-extrabold tracking-tight text-txt mb-5" style="transition-delay:0.1s">Let's Discuss Your Security Needs</h2>
+                        <p class="fade-up text-txt-sec text-base leading-relaxed mb-10" style="transition-delay:0.15s">Whether you need a security assessment, compliance preparation, or ongoing security support, we're here to help.</p>
+
+                        <div class="fade-up space-y-6" style="transition-delay:0.2s">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-surface border border-edge flex items-center justify-center shrink-0">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-brand"></i>
+                                </div>
+                                <div>
+                                    <p class="text-txt text-sm font-semibold mb-0.5">Location</p>
+                                    <p class="text-txt-sec text-sm">Vancouver, WA 98662<br>United States</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-surface border border-edge flex items-center justify-center shrink-0">
+                                    <i data-lucide="phone" class="w-4 h-4 text-brand"></i>
+                                </div>
+                                <div>
+                                    <p class="text-txt text-sm font-semibold mb-0.5">Phone</p>
+                                    <a href="tel:+13608220923" class="text-txt-sec text-sm hover:text-txt transition-colors">+1 360 822 0923</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-surface border border-edge flex items-center justify-center shrink-0">
+                                    <i data-lucide="mail" class="w-4 h-4 text-brand"></i>
+                                </div>
+                                <div>
+                                    <p class="text-txt text-sm font-semibold mb-0.5">Email</p>
+                                    <a href="mailto:info@zuronix.com" class="text-txt-sec text-sm hover:text-txt transition-colors">info@zuronix.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="lg:col-span-3">
+                        <div id="contact-form-wrapper" class="fade-up bg-surface border border-edge rounded-2xl p-6 sm:p-8" style="transition-delay:0.15s">
+                            <form id="contact-form" novalidate>
+                                <div class="grid sm:grid-cols-2 gap-5 mb-5">
+                                    <div>
+                                        <label for="form-name" class="block text-txt text-sm font-medium mb-2">Name <span class="text-red-400">*</span></label>
+                                        <input type="text" id="form-name" name="name" required minlength="2" placeholder="Your full name" class="form-input w-full bg-navy border border-edge rounded-lg px-4 py-3 text-txt text-sm placeholder:text-txt-muted focus:ring-0">
+                                        <p class="error-msg" id="err-name">Please enter your name (at least 2 characters).</p>
+                                    </div>
+                                    <div>
+                                        <label for="form-company" class="block text-txt text-sm font-medium mb-2">Company <span class="text-red-400">*</span></label>
+                                        <input type="text" id="form-company" name="company" required placeholder="Organization name" class="form-input w-full bg-navy border border-edge rounded-lg px-4 py-3 text-txt text-sm placeholder:text-txt-muted focus:ring-0">
+                                        <p class="error-msg" id="err-company">Please enter your company name.</p>
+                                    </div>
+                                </div>
+                                <div class="grid sm:grid-cols-2 gap-5 mb-5">
+                                    <div>
+                                        <label for="form-email" class="block text-txt text-sm font-medium mb-2">Email <span class="text-red-400">*</span></label>
+                                        <input type="email" id="form-email" name="email" required placeholder="you@company.com" class="form-input w-full bg-navy border border-edge rounded-lg px-4 py-3 text-txt text-sm placeholder:text-txt-muted focus:ring-0">
+                                        <p class="error-msg" id="err-email">Please enter a valid email address.</p>
+                                    </div>
+                                    <div>
+                                        <label for="form-phone" class="block text-txt text-sm font-medium mb-2">Phone</label>
+                                        <input type="tel" id="form-phone" name="phone" placeholder="+1 (555) 000-0000" class="form-input w-full bg-navy border border-edge rounded-lg px-4 py-3 text-txt text-sm placeholder:text-txt-muted focus:ring-0">
+                                        <p class="error-msg" id="err-phone">Please enter a valid phone number.</p>
+                                    </div>
+                                </div>
+                                <div class="mb-6">
+                                    <label for="form-message" class="block text-txt text-sm font-medium mb-2">Message <span class="text-red-400">*</span></label>
+                                    <textarea id="form-message" name="message" required minlength="10" rows="5" placeholder="Describe your security needs or questions..." class="form-input w-full bg-navy border border-edge rounded-lg px-4 py-3 text-txt text-sm placeholder:text-txt-muted focus:ring-0 resize-none"></textarea>
+                                    <p class="error-msg" id="err-message">Please enter a message (at least 10 characters).</p>
+                                </div>
+                                <button type="submit" id="submit-btn" class="btn-primary bg-brand text-white text-sm font-semibold px-8 py-3.5 rounded-lg w-full sm:w-auto flex items-center justify-center gap-2.5">
+                                    <span>Send Message</span>
+                                    <i data-lucide="send" class="w-4 h-4 relative z-10"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Success State -->
+                        <div id="contact-success" class="fade-up bg-surface border border-success/30 rounded-2xl p-8 sm:p-10 text-center hidden">
+                            <div class="w-14 h-14 rounded-full bg-success/10 flex items-center justify-center mx-auto mb-5">
+                                <i data-lucide="check-circle-2" class="w-7 h-7 text-success"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-txt mb-3">Message Sent Successfully</h3>
+                            <p class="text-txt-sec text-sm leading-relaxed mb-6 max-w-md mx-auto">Thank you for reaching out. A member of our team will review your inquiry and respond within one business day.</p>
+                            <p class="text-txt-muted text-xs mb-6">For urgent matters, please call us directly at <a href="tel:+13608220923" class="text-brand hover:text-brand-light transition-colors">+1 360 822 0923</a>.</p>
+                            <button id="reset-form-btn" class="text-brand text-sm font-semibold hover:text-brand-light transition-colors">Send another message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="bg-surface border-t border-edge">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10 lg:gap-8">
+                <!-- Brand Column -->
+                <div class="col-span-2 md:col-span-4 lg:col-span-2">
+                    <a href="#" class="flex items-center gap-2.5 mb-5" aria-label="Zuronix Home">
+                        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M18 2L32 9V20C32 27.5 25.5 33.5 18 35C10.5 33.5 4 27.5 4 20V9L18 2Z" stroke="#2563EB" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M12 18L16 22L24 14" stroke="#06B6D4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="text-txt font-bold text-sm">Zuronix</span>
+                    </a>
+                    <p class="text-txt-sec text-sm leading-relaxed max-w-xs mb-6">Helping organizations improve their cybersecurity posture through assessments, cloud security, compliance readiness, and managed security solutions.</p>
+                    <div class="flex items-center gap-3">
+                        <a href="#" class="w-9 h-9 rounded-lg bg-navy border border-edge flex items-center justify-center text-txt-muted hover:text-txt hover:border-edge-light transition-all" aria-label="LinkedIn">
+                            <i data-lucide="linkedin" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-navy border border-edge flex items-center justify-center text-txt-muted hover:text-txt hover:border-edge-light transition-all" aria-label="Twitter / X">
+                            <i data-lucide="twitter" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-navy border border-edge flex items-center justify-center text-txt-muted hover:text-txt hover:border-edge-light transition-all" aria-label="GitHub">
+                            <i data-lucide="github" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div>
+                    <h4 class="text-txt text-xs font-bold tracking-widest uppercase mb-5">Navigation</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#hero" class="footer-link text-txt-sec text-sm">Home</a></li>
+                        <li><a href="#services" class="footer-link text-txt-sec text-sm">Services</a></li>
+                        <li><a href="#industries" class="footer-link text-txt-sec text-sm">Industries</a></li>
+                        <li><a href="#about" class="footer-link text-txt-sec text-sm">About</a></li>
+                        <li><a href="#contact" class="footer-link text-txt-sec text-sm">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="text-txt text-xs font-bold tracking-widest uppercase mb-5">Services</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#services" class="footer-link text-txt-sec text-sm">Vulnerability Audit</a></li>
+                        <li><a href="#services" class="footer-link text-txt-sec text-sm">Cloud Hardening</a></li>
+                        <li><a href="#services" class="footer-link text-txt-sec text-sm">M365 Hardening</a></li>
+                        <li><a href="#services" class="footer-link text-txt-sec text-sm">Managed Security</a></li>
+                        <li><a href="#services" class="footer-link text-txt-sec text-sm">vCISO Strategy</a></li>
+                        <li><a href="#services" class="footer-link text-txt-sec text-sm">Compliance Readiness</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-txt text-xs font-bold tracking-widest uppercase mb-5">Contact</h4>
+                    <ul class="space-y-3">
+                        <li class="text-txt-sec text-sm">Vancouver, WA 98662</li>
+                        <li><a href="tel:+13608220923" class="footer-link text-txt-sec text-sm">+1 360 822 0923</a></li>
+                        <li><a href="mailto:info@zuronix.com" class="footer-link text-txt-sec text-sm">info@zuronix.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-edge">
+            <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <p class="text-txt-muted text-xs">&copy; <span id="footer-year"></span> Zuronix Secure Cloud & Cyber Defense. All rights reserved.</p>
+                <div class="flex items-center gap-5">
+                    <a href="#" class="text-txt-muted text-xs hover:text-txt-sec transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-txt-muted text-xs hover:text-txt-sec transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="back-to-top" class="back-to-top fixed bottom-6 right-6 z-40 w-10 h-10 rounded-lg bg-surface border border-edge flex items-center justify-center text-txt-sec hover:text-txt" aria-label="Back to top">
+        <i data-lucide="arrow-up" class="w-4 h-4"></i>
+    </button>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================================================ -->
+    <script>
+    // ================================================================
+    // DATA LAYER
+    // In production, these would be separate files:
+    //   /data/services.json
+    //   /data/industries.json
+    //   /data/company.json
+    // ================================================================
+
+    const SERVICES_DATA = [
+        {
+            id: 'vulnerability-audit',
+            icon: 'shield-search',
+            title: 'Rapid Vulnerability Audit',
+            description: 'Security assessment identifying vulnerabilities across network and cloud environments with clear findings and remediation guidance.',
+            features: ['Vulnerability Assessment', 'Risk Prioritization', 'CVSS Reporting', 'Remediation Recommendations'],
+            cta: 'Request Security Assessment'
+        },
+        {
+            id: 'cloud-hardening',
+            icon: 'cloud-cog',
+            title: 'Cloud Security Hardening',
+            description: 'Systematic improvement of cloud infrastructure security posture across AWS and Azure environments.',
+            features: ['AWS & Azure Security', 'CIS Benchmark Alignment', 'Configuration Review', 'Identity Security Improvements'],
+            cta: 'Request Cloud Assessment'
+        },
+        {
+            id: 'm365-hardening',
+            icon: 'lock-keyhole',
+            title: 'Microsoft 365 Hardening',
+            description: 'Strengthening Microsoft 365 tenant security through identity protection, access controls, and data loss prevention.',
+            features: ['Multi-Factor Authentication', 'Conditional Access Policies', 'Data Protection Policies', 'Identity Security Controls'],
+            cta: 'Request M365 Assessment'
+        },
+        {
+            id: 'mssp',
+            icon: 'monitor-eye',
+            title: 'Managed Security (MSSP)',
+            description: 'Ongoing security monitoring and operational support to maintain continuous visibility into your security posture.',
+            features: ['Security Monitoring', 'Threat Detection', 'Endpoint Security Support', 'Security Operations Assistance'],
+            cta: 'Discuss Managed Security'
+        },
+        {
+            id: 'vciso',
+            icon: 'compass',
+            title: 'vCISO Strategy',
+            description: 'Executive-level security leadership and strategic guidance for organizations building or maturing security programs.',
+            features: ['Security Roadmap Development', 'Risk Management Framework', 'Compliance Planning', 'Executive Reporting'],
+            cta: 'Discuss vCISO Services'
+        },
+        {
+            id: 'compliance',
+            icon: 'file-check-2',
+            title: 'SOC 2 / HIPAA Readiness',
+            description: 'Structured preparation for SOC 2 and HIPAA compliance, including gap analysis, policy development, and audit preparation.',
+            features: ['Gap Assessment', 'Policy Development', 'Compliance Preparation', 'Audit Readiness Support'],
+            cta: 'Discuss Compliance Needs'
+        }
+    ];
+
+    const INDUSTRIES_DATA = [
+        {
+            id: 'government',
+            icon: 'landmark',
+            title: 'Government & Public Sector',
+            description: 'Security solutions aligned with federal and state compliance requirements, including defense supply chain standards.',
+            features: ['NIST 800-171 Alignment', 'CMMC Preparation', 'FedRAMP Readiness Support', 'Audit Preparation'],
+            accent: 'brand'
+        },
+        {
+            id: 'healthcare',
+            icon: 'heart-pulse',
+            title: 'Healthcare & Life Sciences',
+            description: 'Protecting patient data and clinical systems while meeting healthcare-specific regulatory requirements.',
+            features: ['HIPAA Compliance', 'HITRUST Alignment', 'PHI Protection Controls', 'Security Process Development'],
+            accent: 'accent'
+        },
+        {
+            id: 'private-sector',
+            icon: 'building-2',
+            title: 'Private Sector & SaaS',
+            description: 'Scalable security programs designed for growth-stage companies and established enterprises operating in the cloud.',
+            features: ['SOC 2 Readiness', 'Cloud Security Architecture', 'DevSecOps Integration', 'Scalable Security Programs'],
+            accent: 'success'
+        }
+    ];
+
+    const FRAMEWORKS_DATA = [
+        { name: 'ISO 27001', description: 'Information Security Management' },
+        { name: 'SOC 2', description: 'Service Organization Controls' },
+        { name: 'HIPAA', description: 'Health Insurance Portability & Accountability' },
+        { name: 'NIST', description: 'National Institute of Standards & Technology' },
+        { name: 'CIS', description: 'Center for Internet Security' },
+        { name: 'CMMC', description: 'Cybersecurity Maturity Model Certification' }
+    ];
+
+    const WHY_DATA = [
+        {
+            icon: 'users',
+            title: 'Experienced Professionals',
+            description: 'Built by cybersecurity practitioners with enterprise security, cloud, and compliance backgrounds.'
+        },
+        {
+            icon: 'wrench',
+            title: 'Practical Improvements',
+            description: 'Actionable findings and realistic remediation guidance — not theoretical reports.'
+        },
+        {
+            icon: 'clipboard-check',
+            title: 'Audit-Ready Documentation',
+            description: 'Clear documentation that supports compliance audits and internal review processes.'
+        },
+        {
+            icon: 'trending-up',
+            title: 'Scalable Solutions',
+            description: 'Security approaches designed to grow with your organization and evolving threat landscape.'
+        }
+    ];
+
+
+    // ================================================================
+    // RENDERING FUNCTIONS
+    // ================================================================
+
+    function renderServices() {
+        const grid = document.getElementById('services-grid');
+        if (!grid) return;
+
+        grid.innerHTML = SERVICES_DATA.map((service, i) => `
+            <article class="fade-up service-card bg-navy border border-edge rounded-2xl p-7 flex flex-col" style="transition-delay:${i * 0.08}s" aria-labelledby="svc-${service.id}">
+                <div class="card-icon w-11 h-11 rounded-xl bg-brand/10 flex items-center justify-center mb-5">
+                    <i data-lucide="${service.icon}" class="w-5 h-5 text-brand-light"></i>
+                </div>
+                <h3 id="svc-${service.id}" class="text-txt text-base font-bold mb-2.5">${service.title}</h3>
+                <p class="text-txt-sec text-sm leading-relaxed mb-5 flex-grow">${service.description}</p>
+                <ul class="space-y-2 mb-6" role="list">
+                    ${service.features.map(f => `
+                        <li class="flex items-start gap-2.5 text-sm">
+                            <i data-lucide="check" class="w-3.5 h-3.5 text-success shrink-0 mt-0.5"></i>
+                            <span class="text-txt-sec">${f}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+                <a href="#contact" class="text-brand text-sm font-semibold hover:text-brand-light transition-colors inline-flex items-center gap-1.5 group">
+                    ${service.cta}
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"></i>
+                </a>
+            </article>
+        `).join('');
+    }
+
+    function renderIndustries() {
+        const grid = document.getElementById('industries-grid');
+        if (!grid) return;
+
+        const accentMap = { brand: '#2563EB', accent: '#06B6D4', success: '#10B981' };
+        const bgMap = { brand: 'bg-brand/10', accent: 'bg-accent/10', success: 'bg-success/10' };
+        const textMap = { brand: 'text-brand-light', accent: 'text-accent-light', success: 'text-success' };
+
+        grid.innerHTML = INDUSTRIES_DATA.map((ind, i) => `
+            <article class="fade-up industry-card bg-surface border border-edge rounded-2xl p-7 flex flex-col" style="transition-delay:${i * 0.1}s" aria-labelledby="ind-${ind.id}">
+                <div class="ind-bar h-0.5 rounded-full mb-6" style="background:${accentMap[ind.accent]}"></div>
+                <div class="w-11 h-11 rounded-xl ${bgMap[ind.accent]} flex items-center justify-center mb-5">
+                    <i data-lucide="${ind.icon}" class="w-5 h-5 ${textMap[ind.accent]}"></i>
+                </div>
+                <h3 id="ind-${ind.id}" class="text-txt text-lg font-bold mb-2.5">${ind.title}</h3>
+                <p class="text-txt-sec text-sm leading-relaxed mb-5 flex-grow">${ind.description}</p>
+                <ul class="space-y-2" role="list">
+                    ${ind.features.map(f => `
+                        <li class="flex items-start gap-2.5 text-sm">
+                            <i data-lucide="check" class="w-3.5 h-3.5 ${textMap[ind.accent]} shrink-0 mt-0.5" style="opacity:0.7"></i>
+                            <span class="text-txt-sec">${f}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+            </article>
+        `).join('');
+    }
+
+    function renderFrameworks() {
+        const grid = document.getElementById('frameworks-grid');
+        if (!grid) return;
+
+        grid.innerHTML = FRAMEWORKS_DATA.map((fw, i) => `
+            <div class="fade-up framework-badge bg-navy border border-edge rounded-xl px-6 py-5 text-center min-w-[150px]" style="transition-delay:${i * 0.07}s">
+                <p class="text-txt text-sm font-bold mb-1">${fw.name}</p>
+                <p class="text-txt-muted text-xs leading-snug">${fw.description}</p>
+            </div>
+        `).join('');
+    }
+
+    function renderWhyZuronix() {
+        const grid = document.getElementById('features-grid');
+        if (!grid) return;
+
+        grid.innerHTML = WHY_DATA.map((item, i) => `
+            <div class="fade-up feature-card bg-surface border border-edge rounded-xl p-6" style="transition-delay:${0.2 + i * 0.08}s">
+                <div class="w-9 h-9 rounded-lg bg-brand/10 flex items-center justify-center mb-4">
+                    <i data-lucide="${item.icon}" class="w-4 h-4 text-brand-light"></i>
+                </div>
+                <h3 class="text-txt text-sm font-bold mb-2">${item.title}</h3>
+                <p class="text-txt-sec text-xs leading-relaxed">${item.description}</p>
+            </div>
+        `).join('');
+    }
+
+
+    // ================================================================
+    // INTERACTION HANDLERS
+    // ================================================================
+
+    // --- Header Scroll Effect ---
+    function initHeaderScroll() {
+        const header = document.getElementById('header');
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    header.classList.toggle('scrolled', window.scrollY > 50);
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+    }
+
+    // --- Active Nav Link ---
+    function initActiveNav() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const scrollY = window.scrollY + 120;
+                    sections.forEach(section => {
+                        const top = section.offsetTop;
+                        const height = section.offsetHeight;
+                        const id = section.getAttribute('id');
+
+                        if (scrollY >= top && scrollY < top + height) {
+                            navLinks.forEach(link => {
+                                link.classList.remove('active');
+                                if (link.getAttribute('href') === '#' + id) {
+                                    link.classList.add('active');
+                                }
+                            });
+                        }
+                    });
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+    }
+
+    // --- Mobile Menu ---
+    function initMobileMenu() {
+        const btn = document.getElementById('hamburger-btn');
+        const menu = document.getElementById('mobile-menu');
+        const overlay = document.getElementById('mobile-overlay');
+        const closeBtn = document.getElementById('mobile-close');
+        const mobileLinks = menu.querySelectorAll('a');
+
+        function openMenu() {
+            btn.classList.add('active');
+            btn.setAttribute('aria-expanded', 'true');
+            menu.classList.add('open');
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            btn.classList.remove('active');
+            btn.setAttribute('aria-expanded', 'false');
+            menu.classList.remove('open');
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        btn.addEventListener('click', () => {
+            const isOpen = menu.classList.contains('open');
+            isOpen ? closeMenu() : openMenu();
+        });
+
+        overlay.addEventListener('click', closeMenu);
+        closeBtn.addEventListener('click', closeMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+        });
+    }
+
+    // --- Fade-In Observer ---
+    function initFadeObserver() {
+        const elements = document.querySelectorAll('.fade-up');
+        if (!elements.length) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        elements.forEach(el => observer.observe(el));
+    }
+
+    // --- Back to Top ---
+    function initBackToTop() {
+        const btn = document.getElementById('back-to-top');
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    btn.classList.toggle('show', window.scrollY > 600);
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+
+        btn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // --- Contact Form Validation ---
+    function initContactForm() {
+        const form = document.getElementById('contact-form');
+        const wrapper = document.getElementById('contact-form-wrapper');
+        const success = document.getElementById('contact-success');
+        const resetBtn = document.getElementById('reset-form-btn');
+        const submitBtn = document.getElementById('submit-btn');
+
+        const fields = {
+            name: { el: document.getElementById('form-name'), err: document.getElementById('err-name'), validate: v => v.trim().length >= 2 },
+            company: { el: document.getElementById('form-company'), err: document.getElementById('err-company'), validate: v => v.trim().length >= 1 },
+            email: { el: document.getElementById('form-email'), err: document.getElementById('err-email'), validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+            phone: { el: document.getElementById('form-phone'), err: document.getElementById('err-phone'), validate: v => v.trim() === '' || /^[\d\s\+\-\(\)]{7,20}$/.test(v.trim()) },
+            message: { el: document.getElementById('form-message'), err: document.getElementById('err-message'), validate: v => v.trim().length >= 10 }
+        };
+
+        // Clear error on input
+        Object.values(fields).forEach(f => {
+            f.el.addEventListener('input', () => {
+                f.el.classList.remove('error');
+                f.err.classList.remove('show');
+            });
+        });
+
+        function validateForm() {
+            let valid = true;
+            Object.values(fields).forEach(f => {
+                if (!f.validate(f.el.value)) {
+                    f.el.classList.add('error');
+                    f.err.classList.add('show');
+                    valid = false;
+                } else {
+                    f.el.classList.remove('error');
+                    f.err.classList.remove('show');
+                }
+            });
+            return valid;
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!validateForm()) return;
+
+            // Simulate submission
+            submitBtn.disabled = true;
+            submitBtn.querySelector('span').textContent = 'Sending...';
+
+            setTimeout(() => {
+                wrapper.classList.add('hidden');
+                success.classList.remove('hidden');
+                success.classList.add('visible');
+                lucide.createIcons();
+
+                submitBtn.disabled = false;
+                submitBtn.querySelector('span').textContent = 'Send Message';
+            }, 1200);
+        });
+
+        resetBtn.addEventListener('click', () => {
+            form.reset();
+            Object.values(fields).forEach(f => {
+                f.el.classList.remove('error');
+                f.err.classList.remove('show');
+            });
+            success.classList.add('hidden');
+            success.classList.remove('visible');
+            wrapper.classList.remove('hidden');
+        });
+    }
+
+    // --- Footer Year ---
+    function initFooterYear() {
+        const el = document.getElementById('footer-year');
+        if (el) el.textContent = new Date().getFullYear();
+    }
+
+
+    // ================================================================
+    // INITIALIZATION
+    // ================================================================
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Render dynamic content from data layer
+        renderServices();
+        renderIndustries();
+        renderFrameworks();
+        renderWhyZuronix();
+
+        // Initialize Lucide icons (must run after dynamic content renders)
+        lucide.createIcons();
+
+        // Initialize interactions
+        initHeaderScroll();
+        initActiveNav();
+        initMobileMenu();
+        initFadeObserver();
+        initBackToTop();
+        initContactForm();
+        initFooterYear();
+    });
+    </script>
+</body>
+</html>

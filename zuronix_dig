@@ -1,0 +1,878 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zuronix | Digital Solutions</title>
+    <meta name="description" content="Modern technology solutions for complex infrastructure challenges. Specializing in secure, scalable systems.">
+    <meta name="keywords" content="technology solutions, secure systems, scalable infrastructure, digital transformation">
+    <meta name="author" content="Zuronix">
+    <link rel="shortcut icon" href="https://zuronixai-k66w8dya.manus.space/images/zuronix-logo-icon.png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #60a5fa;
+            --secondary: #059669;
+            --accent: #7c3aed;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #2563eb 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #2563eb 0%, #059669 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            filter: drop-shadow(0 4px 6px rgba(37, 99, 235, 0.2));
+        }
+        
+        .technology-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <img src="https://zuronixai-k66w8dya.manus.space/images/zuronix-logo-icon.png" 
+                         alt="Zuronix Logo" 
+                         class="logo-img">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">Zuronix</h1>
+                        <p class="text-xs text-gray-500 font-medium">Digital Solutions</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition-colors">Home</a>
+                    <a href="#services" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition-colors">Services</a>
+                    <a href="#solutions" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition-colors">Solutions</a>
+                    <a href="#technology" class="nav-link text-gray-700 font-medium hover:text-blue-600 transition-colors">Technology</a>
+                    <a href="#contact" class="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-2 rounded-lg font-medium hover:shadow-lg transition-all hover:-translate-y-1">Get Started</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuButton" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="text-gray-700 font-medium hover:text-blue-600 py-2">Home</a>
+                    <a href="#services" class="text-gray-700 font-medium hover:text-blue-600 py-2">Services</a>
+                    <a href="#solutions" class="text-gray-700 font-medium hover:text-blue-600 py-2">Solutions</a>
+                    <a href="#technology" class="text-gray-700 font-medium hover:text-blue-600 py-2">Technology</a>
+                    <a href="#contact" class="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-3 rounded-lg font-medium text-center">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 right-0 w-1/2 h-full">
+                <div class="w-full h-full" style="background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0 0h100v100H0z" fill="none"/%3E%3Cpath d="M20 20h60v60H20z" stroke="%232563eb" stroke-width="2" fill="none"/%3E%3C/svg%3E');"></div>
+            </div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <!-- Badge -->
+                <div class="inline-flex items-center space-x-2 bg-gradient-to-r text-white from-blue-600 to-green-500 px-4 py-2 rounded-full mb-6 animate-on-scroll">
+                    <i class="fas fa-bolt"></i>
+                    <span class="font-medium">Rapid Deployment Solutions</span>
+                </div>
+                
+                <!-- Main Heading -->
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-on-scroll">
+                    Infrastructure Solutions <span class="gradient-text">for Complex Systems</span>
+                </h1>
+                
+                <!-- Description -->
+                <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-3xl animate-on-scroll">
+                    We deliver secure, scalable technology solutions for critical infrastructure, operational efficiency, and modern connectivity challenges.
+                </p>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 mb-16 animate-on-scroll">
+                    <a href="#contact" class="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex items-center justify-center space-x-2">
+                        <span>Start Your Project</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#services" class="border-2 border-green-600 text-green-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-green-50 transition-all duration-300 flex items-center justify-center space-x-2">
+                        <span>Our Services</span>
+                        <i class="fas fa-cogs"></i>
+                    </a>
+                </div>
+                
+                <!-- Value Propositions -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 animate-on-scroll">
+                    <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-shield-alt text-white"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Secure & Compliant</h3>
+                        <p class="text-gray-600 text-sm">Built with security and compliance as core principles</p>
+                    </div>
+                    <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-600 to-green-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-rocket text-white"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Fast Implementation</h3>
+                        <p class="text-gray-600 text-sm">Solutions deployed in weeks, not months</p>
+                    </div>
+                    <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-600 to-purple-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-expand-arrows-alt text-white"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Scalable Architecture</h3>
+                        <p class="text-gray-600 text-sm">Designed to grow with your operational needs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Core Capabilities</h2>
+                <p class="text-lg text-gray-600">
+                    Specialized solutions for infrastructure modernization and operational efficiency.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-gradient-to-br from-white to-blue-50 rounded-2xl p-8 card-hover animate-on-scroll border border-blue-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-satellite-dish text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">IoT Infrastructure</h3>
+                    <p class="text-gray-600">
+                        Smart sensors, monitoring systems, and IoT networks for facility management and operational oversight.
+                    </p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-gradient-to-br from-white to-green-50 rounded-2xl p-8 card-hover animate-on-scroll border border-green-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-600 to-green-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-cloud-upload-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Secure Cloud Systems</h3>
+                    <p class="text-gray-600">
+                        Enterprise-grade cloud solutions with compliance-ready architectures and data protection.
+                    </p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-gradient-to-br from-white to-purple-50 rounded-2xl p-8 card-hover animate-on-scroll border border-purple-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-600 to-purple-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-robot text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Process Automation</h3>
+                    <p class="text-gray-600">
+                        Workflow automation and RPA solutions that streamline complex operational procedures.
+                    </p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-gradient-to-br from-white to-yellow-50 rounded-2xl p-8 card-hover animate-on-scroll border border-yellow-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-yellow-600 to-yellow-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-file-medical-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Secure Communications</h3>
+                    <p class="text-gray-600">
+                        Protected messaging, document exchange, and communication platforms with compliance features.
+                    </p>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="bg-gradient-to-br from-white to-red-50 rounded-2xl p-8 card-hover animate-on-scroll border border-red-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-red-600 to-red-500 rounded-xl flex items-center justify-center mb-6">
+                        <!-- <i class="fas fa-chart-network text-white text-2xl"></i> -->
+                        <i class="fa-solid fa-network-wired text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Infrastructure Monitoring</h3>
+                    <p class="text-gray-600">
+                        Real-time monitoring and analytics for critical infrastructure and operational systems.
+                    </p>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="bg-gradient-to-br from-white to-indigo-50 rounded-2xl p-8 card-hover animate-on-scroll border border-indigo-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-indigo-600 to-indigo-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-tachometer-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Operational Dashboards</h3>
+                    <p class="text-gray-600">
+                        Custom dashboards and analytics platforms for data-driven decision making and oversight.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-20 gradient-bg">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Targeted Solutions</h2>
+                <p class="text-lg text-gray-600">
+                    Addressing specific infrastructure and operational challenges with tailored technology.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Solution 1 -->
+                <div class="bg-white rounded-2xl p-8 card-hover animate-on-scroll">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-building text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Facility Management</h3>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Smart building systems and energy management</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Infrastructure monitoring and predictive maintenance</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Access control and security integration</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Solution 2 -->
+                <div class="bg-white rounded-2xl p-8 card-hover animate-on-scroll">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-r from-green-600 to-green-500 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-heartbeat text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Health & Safety Systems</h3>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Remote monitoring and emergency response systems</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Compliant data management and secure communications</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Environmental monitoring and safety compliance</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Solution 3 -->
+                <div class="bg-white rounded-2xl p-8 card-hover animate-on-scroll">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-r from-purple-600 to-purple-500 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-broadcast-tower text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Connectivity Infrastructure</h3>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Network optimization and connectivity solutions</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Distributed system architecture and management</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">IoT network deployment and maintenance</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Solution 4 -->
+                <div class="bg-white rounded-2xl p-8 card-hover animate-on-scroll">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-r from-red-600 to-red-500 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-cogs text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Operational Efficiency</h3>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Workflow automation and process optimization</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Resource management and allocation systems</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Data integration and operational dashboards</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Technology Stack</h2>
+                <p class="text-lg text-gray-600">
+                    Modern technologies for robust, scalable infrastructure solutions.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-16">
+                <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center card-hover animate-on-scroll">
+                    <div class="technology-icon bg-blue-100 text-blue-600">
+                        <i class="fab fa-aws text-2xl"></i>
+                    </div>
+                    <span class="font-medium">AWS</span>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center card-hover animate-on-scroll">
+                    <div class="technology-icon bg-blue-100 text-blue-600">
+                        <i class="fab fa-microsoft text-2xl"></i>
+                    </div>
+                    <span class="font-medium">Azure</span>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6 text-center flex flex-col items-center justify-center card-hover animate-on-scroll">
+                    <div class="technology-icon bg-red-100 text-red-600">
+                        <i class="fab fa-google text-2xl"></i>
+                    </div>
+                    <span class="font-medium">Google Cloud</span>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center card-hover animate-on-scroll">
+                    <div class="technology-icon bg-blue-100 text-blue-600">
+                        <i class="fab fa-docker text-2xl"></i>
+                    </div>
+                    <span class="font-medium">Docker</span>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center card-hover animate-on-scroll">
+                    <div class="technology-icon bg-blue-100 text-blue-600">
+                        <!-- <i class="fab fa-kubernetes text-2xl"></i> -->
+                        <img
+                          src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-original.svg"
+                          class="w-8 h-8 invert"
+                          alt="Kubernetes">
+                    </div>
+                    <span class="font-medium">Kubernetes</span>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center card-hover animate-on-scroll">
+                    <div class="technology-icon bg-green-100 text-green-600">
+                        <i class="fab fa-node-js text-2xl"></i>
+                    </div>
+                    <span class="font-medium">Node.js</span>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center card-hover animate-on-scroll">
+                    <div class="technology-icon bg-yellow-100 text-yellow-600">
+                        <i class="fab fa-react text-2xl"></i>
+                    </div>
+                    <span class="font-medium">React</span>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center card-hover animate-on-scroll">
+                    <div class="technology-icon bg-green-100 text-green-600">
+                        <i class="fab fa-python text-2xl"></i>
+                    </div>
+                    <span class="font-medium">Python</span>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center card-hover animate-on-scroll">
+                    <div class="technology-icon bg-gray-100 text-gray-600">
+                        <i class="fas fa-database text-2xl"></i>
+                    </div>
+                    <span class="font-medium">PostgreSQL</span>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center card-hover animate-on-scroll">
+                    <div class="technology-icon bg-green-100 text-green-600">
+                        <i class="fab fa-jenkins text-2xl"></i>
+                    </div>
+                    <span class="font-medium">Jenkins</span>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center card-hover animate-on-scroll">
+                    <div class="technology-icon bg-orange-100 text-orange-600">
+                        <i class="fab fa-git-alt text-2xl"></i>
+                    </div>
+                    <span class="font-medium">Git</span>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center card-hover animate-on-scroll">
+                    <div class="technology-icon bg-blue-100 text-blue-600">
+                        <i class="fab fa-linux text-2xl"></i>
+                    </div>
+                    <span class="font-medium">Linux</span>
+                </div>
+            </div>
+            
+            <!-- Technology Features -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 card-hover animate-on-scroll border border-blue-100 text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-cloud text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Cloud Infrastructure</h3>
+                    <p class="text-gray-600">
+                        Secure, scalable cloud solutions with multi-region redundancy and compliance features.
+                    </p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-green-50 to-white rounded-2xl p-8 card-hover animate-on-scroll border border-green-100 text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-green-600 to-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-microchip text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">IoT & Sensors</h3>
+                    <p class="text-gray-600">
+                        Wireless sensor networks and IoT platforms for real-time monitoring and data collection.
+                    </p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-purple-50 to-white rounded-2xl p-8 card-hover animate-on-scroll border border-purple-100 text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-purple-600 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Security & Compliance</h3>
+                    <p class="text-gray-600">
+                        End-to-end encryption, access controls, and compliance-ready architecture.
+                    </p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-red-50 to-white rounded-2xl p-8 card-hover animate-on-scroll border border-red-100 text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-red-600 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-tachometer-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Monitoring & Analytics</h3>
+                    <p class="text-gray-600">
+                        Real-time dashboards, predictive analytics, and operational intelligence.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Start Your Infrastructure Project</h2>
+                <p class="text-lg text-gray-600">
+                    Let's discuss how we can help solve your complex infrastructure challenges.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div class="animate-on-scroll">
+                    <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                    <p class="text-gray-600 mb-8">
+                        Get in touch to schedule a consultation. We specialize in rapid deployment of secure, scalable infrastructure solutions.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Location</h4>
+                                <p class="text-gray-600">Vancouver, WA 98662</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-gradient-to-r from-green-600 to-green-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Phone</h4>
+                                <p class="text-gray-600">+1 360 822 0923</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-gradient-to-r from-purple-600 to-purple-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Email</h4>
+                                <p class="text-gray-600">info@zuronix.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 animate-on-scroll border border-blue-100">
+                    <h3 class="text-2xl font-bold mb-6">Project Inquiry</h3>
+                    
+                    <form id="contactForm" action="https://formspree.io/f/xeoywlbd" method="POST">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="name">Name *</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="email">Email *</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-medium mb-2" for="organization">Organization</label>
+                            <input type="text" id="organization" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-medium mb-2" for="service">Area of Interest</label>
+                            <select id="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="">Select an area</option>
+                                <option value="iot">IoT Infrastructure</option>
+                                <option value="cloud">Cloud Systems</option>
+                                <option value="automation">Process Automation</option>
+                                <option value="monitoring">Infrastructure Monitoring</option>
+                                <option value="communications">Secure Communications</option>
+                                <option value="dashboards">Operational Dashboards</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <label class="block text-gray-700 font-medium mb-2" for="message">Project Details *</label>
+                            <textarea id="message" required rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Describe your infrastructure challenge or project requirements..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold py-4 rounded-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-2">
+                            <span>Submit Inquiry</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center mb-6">
+                        <img src="https://zuronixai-k66w8dya.manus.space/images/zuronix-logo-icon.png" 
+                             alt="Zuronix Logo" 
+                             class="logo-img mr-3">
+                        <div>
+                            <h2 class="text-2xl font-bold">Zuronix</h2>
+                            <p class="text-gray-400 text-sm">Digital Solutions</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Infrastructure technology solutions for complex operational challenges.
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Navigation</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#solutions" class="text-gray-400 hover:text-white transition-colors">Solutions</a></li>
+                        <li><a href="#technology" class="text-gray-400 hover:text-white transition-colors">Technology</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">IoT Infrastructure</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Cloud Systems</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Process Automation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Secure Communications</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Contact</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Vancouver, WA 98662</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">+1 360 822 0923</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">info@zuronix.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-400">&copy; <span id="currentYear"></span> Zuronix Digital Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Wait for DOM to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (mobileMenu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    } else {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    }
+                });
+            }
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('nav');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-md', 'py-3');
+                    navbar.classList.remove('py-4');
+                } else {
+                    navbar.classList.remove('shadow-md', 'py-3');
+                    navbar.classList.add('py-4');
+                }
+            });
+            
+            // Scroll animations
+            function handleScrollAnimations() {
+                const elements = document.querySelectorAll('.animate-on-scroll');
+                
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Initial check for animations
+            handleScrollAnimations();
+            window.addEventListener('scroll', handleScrollAnimations);
+            
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form values
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const organization = document.getElementById('organization').value.trim();
+                    const service = document.getElementById('service').value;
+                    const message = document.getElementById('message').value.trim();
+
+                    // Validate required fields
+                    if (!name || !email || !message) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+
+                    // Loading state
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    const originalText = submitButton.innerHTML;
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+                    submitButton.disabled = true;
+
+                    // Send POST to Formspree
+                    fetch('https://formspree.io/f/xeoywlbd', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name: name,
+                            email: email,
+                            organization: organization,
+                            service: service,
+                            message: message
+                        })
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            alert('Thank you for your inquiry! We will contact you soon.');
+                            contactForm.reset();
+                        } else {
+                            alert('There was a problem sending your message.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        alert('Error sending message. Please try again later.');
+                    })
+                    .finally(() => {
+                        submitButton.innerHTML = originalText;
+                        submitButton.disabled = false;
+                    });
+                });
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (href === '#') return;
+                    
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        e.preventDefault();
+                        
+                        // Close mobile menu if open
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                            const icon = mobileMenuButton.querySelector('i');
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                        
+                        // Calculate scroll position
+                        const navbarHeight = document.querySelector('nav').offsetHeight;
+                        const targetPosition = targetElement.offsetTop - navbarHeight;
+                        
+                        // Smooth scroll
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

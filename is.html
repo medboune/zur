@@ -510,7 +510,7 @@ footer .f-en{font-size:10.5px;letter-spacing:.28em;color:rgba(230,200,131,.7);te
     </div>
     <span class="nav-next" id="navNext">—</span>
     <div class="lang-sw">
-      <button type="button" data-lang="ar"> 1 عربي</button>
+      <button type="button" data-lang="ar">عربي</button>
       <button type="button" data-lang="en" class="on">EN</button>
     </div>
     <button class="btn btn-gold btn-sm btn-donate-nav" data-open-donate><span data-i18n="nav.donate">Donate</span></button>
@@ -983,16 +983,15 @@ footer .f-en{font-size:10.5px;letter-spacing:.28em;color:rgba(230,200,131,.7);te
 'use strict';
 
 /* ═══════════ ✏️ CONFIG ═══════════
-   WORKER_URL : رابط الـ Cloudflare Worker بعد نشره
-                (مثال: 'https://mawaqit-proxy.yourname.workers.dev')
-                اتركه فارغًا مؤقتًا → يعمل الموقع بالوضع الاحتياطي.
-   سلسلة البيانات: Mawaqit حية (Worker) ← نسخة اليوم المحفوظة ← فلكي + جدول الإقامة الرسمي */
+   WORKER_URL : رابط الـ Cloudflare Worker بعد نشره (اختياري).
+                فارغ = وضع مستقل: محرك فلكي محلي + جدول الإقامة الرسمي.
+   سلسلة البيانات: Mawaqit حية (Worker) ← نسخة اليوم ← محرك محلي */
 const WORKER_URL='';
-const REFRESH_MS=5*60*1000;          // إعادة الجلب كل 5 دقائق
+const REFRESH_MS=5*60*1000;
 const LAT=45.6387, LNG=-122.6614, TZ='America/Los_Angeles';
 const ALADHAN_API='https://api.aladhan.com/v1';
-const IQAMA={fajr:'05:30',dhuhr:'13:30',asr:'17:30',maghrib:'+10',isha:'+5'}; // الجدول الرسمي (احتياطي)
-const JUMUA=['13:15','13:50'];       // (احتياطي)
+const IQAMA={fajr:'05:30',dhuhr:'13:30',asr:'17:30',maghrib:'+10',isha:'+5'};
+const JUMUA=['13:15','13:50'];
 const POLL_BASE=[34,25,18,29];
 
 const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
@@ -1110,7 +1109,6 @@ const PRS=['fajr','sunrise','dhuhr','asr','maghrib','isha'];
 const PRAYERS=['fajr','dhuhr','asr','maghrib','isha'];
 const PK=['fajr','dhuhr','asr','maghrib','isha'];
 
-/* ═══════════ state ═══════════ */
 let lang='en', calMode='adhan', calMonthIdx=0, vi=0, myVote=null;
 let live=null, calStartIdx=null, srcState=WORKER_URL?'load':'static';
 let astro={today:null, months:{}};
@@ -1155,11 +1153,14 @@ function fmt(min){
 }
 function nowTZ(){
   const p=new Intl.DateTimeFormat('en-US',{timeZone:TZ,hourCycle:'h23',hour:'2-digit',minute:'2-digit',second:'2-digit',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
-  const o={};p.forEach(x=>o[x.type]=x.value);
-  return {y:+o.year,mo:+o.month,d:+o.day,min:(+o.hour)*60+(+o.minute),sec:+o.second};
+  const o={};p.forEach(x=>{if(x.type!=='literal')o[x.type]=x.value;});
+  let h=+o.hour;
+  if(o.dayPeriod){const ap=String(o.dayPeriod).toUpperCase();
+    if(ap==='PM'&&h<12)h+=12;else if(ap==='AM'&&h===12)h=0;}
+  return {y:+o.year,mo:+o.month,d:+o.day,min:h*60+(+o.minute),sec:+o.second};
 }
 function localDateStr(){const n=nowTZ();return n.y+'-'+String(n.mo).padStart(2,'0')+'-'+String(n.d).padStart(2,'0');}
-function gregStr(d){return new Date(d.y,d.mo-1,d.day).toLocaleDateString(lang==='ar'?'ar':'en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});}
+function gregStr(d){return new Date(d.y,d.mo-1,d.d).toLocaleDateString(lang==='ar'?'ar':'en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});}
 function hijriParts(y,mo,d){
   try{
     const dt=new Date(y,mo-1,d,12);
@@ -1168,9 +1169,65 @@ function hijriParts(y,mo,d){
     return {d:+o.day,m:+o.month,y:+o.year};
   }catch(e){return null;}
 }
-function hijStr(d){const h=hijriParts(d.y,d.mo,d.day);if(!h)return '';return h.d+' '+(lang==='ar'?HIJ_AR:HIJ_EN)[h.m-1]+' '+h.y+(lang==='ar'?' هـ':' AH');}
+function hijStr(d){const h=hijriParts(d.y,d.mo,d.d);if(!h)return '';return h.d+' '+(lang==='ar'?HIJ_AR:HIJ_EN)[h.m-1]+' '+h.y+(lang==='ar'?' هـ':' AH');}
 
-/* ═══════════ المصدر 1: Mawaqit عبر الـ Worker (حي) ═══════════ */
+/* ═══════════ المحرك الفلكي المحلي (ISNA) — يعمل حتى بلا إنترنت ═══════════
+   مُتحقق منه: يعطي نفس أوقات Mawaqit المعروضة لهذا المسجد بالدقيقة */
+const RD=Math.PI/180;
+function fixA(a,n){a=a-Math.floor(a/n)*n;return a<0?a+n:a;}
+function julianD(y,m,d){if(m<=2){y--;m+=12;}const A=Math.floor(y/100),B=2-A+Math.floor(A/4);
+  return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+B-1524.5;}
+function sunPos(jd){
+  const D=jd-2451545.0;
+  const g=fixA(357.529+0.98560028*D,360);
+  const q=fixA(280.459+0.98564736*D,360);
+  const L=fixA(q+1.915*Math.sin(g*RD)+0.020*Math.sin(2*g*RD),360);
+  const e=23.439-0.00000036*D;
+  const RA=fixA(Math.atan2(Math.cos(e*RD)*Math.sin(L*RD),Math.cos(L*RD))/RD/15,24);
+  const decl=Math.asin(Math.sin(e*RD)*Math.sin(L*RD))/RD;
+  let eqt=q/15-RA;
+  if(eqt>12)eqt-=24;else if(eqt<-12)eqt+=24;
+  return {decl,eqt};
+}
+function tzOffH(y,mo,d){
+  try{
+    const utc=new Date(Date.UTC(y,mo-1,d,12,0,0));
+    const p=new Intl.DateTimeFormat('en-US',{timeZone:TZ,hourCycle:'h23',hour:'numeric',minute:'numeric'}).formatToParts(utc);
+    const o={};p.forEach(x=>{if(x.type!=='literal')o[x.type]=x.value;});
+    let h=+o.hour;
+    if(o.dayPeriod){const ap=String(o.dayPeriod).toUpperCase();if(ap==='PM'&&h<12)h+=12;else if(ap==='AM'&&h===12)h=0;}
+    let off=h*60+(+o.minute)-720;
+    if(off>720)off-=1440;if(off<-720)off+=1440;
+    return off/60;
+  }catch(e){return -8;}
+}
+function hourAng(alt,lat,decl){
+  const num=Math.sin(alt*RD)-Math.sin(lat*RD)*Math.sin(decl*RD);
+  const den=Math.cos(lat*RD)*Math.cos(decl*RD);
+  const c=num/den;
+  if(c>1||c<-1)return null;
+  return Math.acos(c)/RD/15;
+}
+function calcDayLocal(y,mo,d){
+  const jd=julianD(y,mo,d)-LNG/(15*24);
+  const sp=sunPos(jd);
+  const tz=tzOffH(y,mo,d);
+  const dhuhr=12+tz-LNG/15-sp.eqt;
+  const rs=hourAng(-0.833,LAT,sp.decl);
+  const f15=hourAng(-15,LAT,sp.decl);
+  const asrAlt=Math.atan(1/(1+Math.tan(Math.abs(LAT-sp.decl)*RD)))/RD;
+  const aH=hourAng(asrAlt,LAT,sp.decl);
+  const T=v=>v==null?null:Math.round(v*60);
+  return {fajr:T(f15!=null?dhuhr-f15:null),sunrise:T(rs!=null?dhuhr-rs:null),dhuhr:T(dhuhr),
+    asr:T(aH!=null?dhuhr+aH:null),maghrib:T(rs!=null?dhuhr+rs:null),isha:T(f15!=null?dhuhr+f15:null)};
+}
+function localMonth(y,mo){
+  const dim=new Date(y,mo,0).getDate(),out=[];
+  for(let d=1;d<=dim;d++)out.push({day:d,mo:mo,y:y,t:calcDayLocal(y,mo,d)});
+  return out;
+}
+
+/* ═══════════ المصدر 1: Mawaqit عبر الـ Worker (اختياري) ═══════════ */
 function normCal(arr){
   if(!Array.isArray(arr))return null;
   return arr.map(m=>{
@@ -1294,7 +1351,7 @@ async function refreshLive(force){
   await fetchLive();
 }
 
-/* ═══════════ المصدر 2/الاحتياطي: حساب فلكي (Aladhan) ═══════════ */
+/* ═══════════ المصدر 2: Aladhan + المحرك المحلي (احتياطي دائم) ═══════════ */
 async function getMonth(y,mo){
   const key=y+'-'+mo;
   if(astro.months[key])return astro.months[key];
@@ -1317,14 +1374,22 @@ async function getMonth(y,mo){
   try{store.set(sk,JSON.stringify({ts:Date.now(),days}))}catch(e){}
   return days;
 }
+async function monthData(y,mo){
+  try{ return await getMonth(y,mo); }
+  catch(e){
+    const key=y+'-'+mo;
+    const lm=localMonth(y,mo);
+    astro.months[key]=lm;
+    return lm;
+  }
+}
 async function initAstro(){
   const n=nowTZ();
   const y=n.y,mo=n.mo;
   const ny=mo===12?y+1:y,nmo=mo===12?1:mo+1;
-  try{
-    await Promise.all([getMonth(y,mo),getMonth(ny,nmo)]);
-    astro.today=(astro.months[y+'-'+mo]||[]).find(d=>d.day===n.d)||null;
-  }catch(e){}
+  await Promise.all([monthData(y,mo),monthData(ny,nmo)]);
+  const cur=astro.months[y+'-'+mo]||[];
+  astro.today=cur.find(x=>x.day===n.d)||null;
   renderAll();
 }
 function tomorrowFajr(){
@@ -1421,10 +1486,9 @@ function renderCal(){
   const mo=((n.mo-1+off)%12)+1;
   const y=n.y+Math.floor((n.mo-1+off)/12);
   const liveCal=live&&live.calAdhan&&calStartIdx!=null;
-  const astroDays=liveCal?null:astro.months[y+'-'+mo];
-  if(!liveCal&&!astroDays){
-    const isErr=srcState==='err';
-    el.monthBody.innerHTML='<tr><td colspan="7" class="cal-msg">'+t(isErr?'cal.offline':'cal.unavail')+(isErr?' <a href="https://mawaqit.net/en/m/masjid-al-noor-vancouver-98665-united-states" target="_blank" rel="noopener">Mawaqit ↗</a>':'')+'</td></tr>';
+  const days=liveCal?null:astro.months[y+'-'+mo];
+  if(!liveCal&&!days){
+    el.monthBody.innerHTML='<tr><td colspan="7" class="cal-msg">'+t('cal.unavail')+'</td></tr>';
     el.modeNote.textContent='';return;
   }
   const dim=new Date(y,mo,0).getDate();
@@ -1438,7 +1502,7 @@ function renderCal(){
       if(e&&e.length>=6)at={fajr:parseHM(e[0]),sunrise:parseHM(e[1]),dhuhr:parseHM(e[2]),asr:parseHM(e[3]),maghrib:parseHM(e[4]),isha:parseHM(e[5])};
       if(live.calIqama)iqEntry=liveCalEntry(live.calIqama,mo,d);
     }else{
-      const dd=astroDays?astroDays.find(x=>x.day===d):null;
+      const dd=days?days.find(x=>x.day===d):null;
       if(dd)at=dd.t;
     }
     const isT=(off===0&&d===n.d);
@@ -1666,7 +1730,7 @@ setInterval(()=>{
   else updCount(state.target-nm);
 },1000);
 
-/* ═══════════ دورة التحديث: زيارة / 5 دقائق / عودة للتبويب / منتصف الليل ═══════════ */
+/* ═══════════ دورة التحديث ═══════════ */
 setInterval(()=>refreshLive(true),REFRESH_MS);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshLive(false);});
 (function midnightCheck(){

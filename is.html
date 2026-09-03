@@ -10,7 +10,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 
-<!-- ضبط اللغة/الاتجاه قبل الرسم (الإنجليزية هي الافتراضية) -->
 <script>
 (function(){try{var l=localStorage.getItem('issw_lang');if(l!=='ar'&&l!=='en')l='en';
 document.documentElement.lang=l;document.documentElement.dir=(l==='ar')?'rtl':'ltr';}catch(e){}})();
@@ -48,7 +47,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 section[id]{scroll-margin-top:86px}
 
-/* ===== توحيد الأيقونات: مقاس افتراضي آمن لكل أيقونة بلا قاعدة ===== */
 svg.ico{width:20px;height:20px}
 .ico{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none;display:inline-block}
 .ico-f{fill:currentColor;stroke:none}
@@ -96,7 +94,6 @@ svg.ico{width:20px;height:20px}
 .reveal.in{opacity:1;transform:none}
 #progress{position:fixed;top:0;inset-inline-start:0;height:2.5px;width:0;background:var(--gold2);z-index:90}
 
-/* ===== التنقل ===== */
 nav{position:fixed;inset-inline:0;top:0;z-index:60;transition:.35s;color:#f3ead2}
 .nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:76px;display:flex;align-items:center;gap:16px}
 .brand{display:flex;align-items:center;gap:12px;margin-inline-end:auto}
@@ -132,7 +129,6 @@ html[dir=rtl] .m-menu a::after{transform:rotate(225deg)}
 .m-menu a.m-donate{justify-content:center;font-weight:800;color:var(--goldL);background:rgba(230,200,131,.08);margin:10px 20px 16px;border-radius:12px;border:1px solid rgba(230,200,131,.2)}
 .m-menu a.m-donate::after{display:none}
 
-/* ===== الهيرو ===== */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:150px 0 280px;color:#f3ead2;
   background:linear-gradient(180deg,#0b2820 0%,#0e332a 52%,#123b30 100%);overflow:hidden}
 .sky{position:absolute;inset:0;z-index:0}
@@ -179,14 +175,12 @@ html[dir=rtl] .m-menu a::after{transform:rotate(225deg)}
 .hc-count i{font-family:var(--f-head);font-size:22px;color:rgba(230,200,131,.45);transform:translateY(-7px)}
 .hc-note{font-size:12.5px;color:rgba(243,234,210,.75);border-top:1px dashed rgba(230,200,131,.25);padding-top:13px;margin-top:10px;min-height:46px}
 
-/* ===== شريط الأرقام ===== */
 .stats-band{background:var(--deep) var(--texGold);color:#f4ecd6;padding:48px 0;border-block:1px solid rgba(230,200,131,.22)}
 .stat{text-align:center}
 .stat b{font-family:var(--f-head);font-size:clamp(2rem,4vw,2.9rem);color:var(--goldL);line-height:1.15;display:block;font-variant-numeric:tabular-nums}
 .stat span{font-size:13px;color:rgba(244,236,214,.75);display:block;margin-top:4px}
 .stat i{display:block;width:34px;height:1px;background:rgba(230,200,131,.4);margin:12px auto 0}
 
-/* ===== الأوقات ===== */
 .times-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:34px;align-items:start}
 .mihrab{position:relative;background:var(--cream);border:1px solid var(--goldline);border-radius:280px 280px 22px 22px;padding:52px 30px 28px}
 .mihrab::before{content:'';position:absolute;inset:12px;border:1px dashed rgba(169,130,47,.28);border-radius:270px 270px 14px 14px;pointer-events:none}
@@ -237,7 +231,6 @@ html[dir=rtl] .m-menu a::after{transform:rotate(225deg)}
 .side-note{background:var(--goldsoft);border-inline-start:3px solid var(--gold);border-radius:14px;padding:18px 20px;font-size:13px;color:var(--ink);line-height:1.9}
 .side-note a.mini{display:inline-block;margin-top:6px}
 
-/* ===== التقويم ===== */
 .tabs{display:inline-flex;background:var(--cream);border:1px solid var(--goldline);border-radius:999px;padding:4px}
 .tabs-wrap{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
 .tab{padding:9px 22px;border-radius:999px;font-weight:700;font-size:14px;color:var(--ink2);transition:.25s}
@@ -260,7 +253,6 @@ html[dir=ltr] tbody tr.today td:first-child{box-shadow:inset 3px 0 0 var(--gold)
 .cal-msg{text-align:center;padding:34px 10px;color:var(--ink2);font-size:13.5px}
 .cal-msg a{color:var(--gold);font-weight:700}
 
-/* ===== الفعاليات ===== */
 .timeline{position:relative;max-width:880px;margin:0 auto;padding-inline-start:30px}
 .timeline::before{content:'';position:absolute;inset-inline-start:8px;top:10px;bottom:10px;width:1px;background:var(--goldline)}
 .t-item{position:relative;display:grid;grid-template-columns:60px 130px 1fr auto;gap:22px;align-items:center;padding:24px 0;border-bottom:1px dashed var(--line)}
@@ -279,7 +271,6 @@ html[dir=ltr] tbody tr.today td:first-child{box-shadow:inset 3px 0 0 var(--gold)
 .t-meta a:hover{opacity:.75}
 .t-tag{font-size:11.5px;font-weight:700;color:var(--ink2);border:1px solid var(--line);padding:5px 13px;border-radius:999px;white-space:nowrap}
 
-/* ===== المدرسة ===== */
 .school-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:40px;align-items:stretch}
 .school-p{font-size:15.5px;color:var(--ink2);max-width:640px}
 .school-feats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0}
@@ -298,7 +289,6 @@ html[dir=ltr] tbody tr.today td:first-child{box-shadow:inset 3px 0 0 var(--gold)
 .quote-arch .ico{margin:0 auto 16px}
 .quote-arch .btn{margin:22px auto 0}
 
-/* ===== المجلس ===== */
 .board-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:22px}
 .board-card{position:relative;text-align:center;background:var(--cream);border:1px solid var(--line);border-radius:110px 110px 18px 18px;padding:34px 16px 22px;overflow:hidden;transition:.35s}
 .board-card:hover{border-color:var(--goldline);box-shadow:0 18px 34px -22px rgba(18,54,43,.4)}
@@ -309,7 +299,6 @@ html[dir=ltr] tbody tr.today td:first-child{box-shadow:inset 3px 0 0 var(--gold)
 .board-card .mail{font-size:11.5px;color:var(--ink2)}
 .board-note{text-align:center;font-size:13px;color:var(--ink2);margin-top:26px}
 
-/* ===== المجتمع ===== */
 .comm-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:stretch}
 .panel{background:var(--cream);border:1px solid var(--goldline);border-radius:20px;padding:30px}
 .panel h3{font-family:var(--f-head);font-size:23px;margin-bottom:6px}
@@ -341,7 +330,6 @@ html[dir=ltr] tbody tr.today td:first-child{box-shadow:inset 3px 0 0 var(--gold)
 .poll-foot{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;color:var(--ink2);margin-top:16px;flex-wrap:wrap}
 .poll-foot b{color:var(--gold)}
 
-/* ===== التبرع ===== */
 .donate{background:var(--deep) var(--texGold);color:#f4ecd6;padding:100px 0;border-block:1px solid rgba(230,200,131,.25);text-align:center}
 .donate .d-verse{font-family:var(--f-head);font-size:clamp(21px,3vw,30px);line-height:1.9;color:var(--goldL);max-width:820px;margin:0 auto}
 .donate .d-src{display:block;font-size:13px;color:rgba(230,200,131,.7);margin:12px 0 30px}
@@ -351,7 +339,6 @@ html[dir=ltr] tbody tr.today td:first-child{box-shadow:inset 3px 0 0 var(--gold)
 .d-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .d-foot{margin-top:26px;font-size:12.5px;color:rgba(230,200,131,.65)}
 
-/* ===== تواصل ===== */
 .contact-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:44px;align-items:start}
 .form-card{background:var(--cream);border:1px solid var(--goldline);border-radius:20px;padding:34px}
 .form-card h3{font-family:var(--f-head);font-size:24px;margin-bottom:6px}
@@ -368,7 +355,6 @@ html[dir=ltr] tbody tr.today td:first-child{box-shadow:inset 3px 0 0 var(--gold)
 .map-arch{max-width:920px;margin:60px auto 0;border:1px solid var(--goldline);border-radius:300px 300px 18px 18px;padding:10px;background:var(--cream)}
 .map-arch iframe{width:100%;height:410px;border:0;display:block;border-radius:290px 290px 10px 10px;filter:saturate(.8)}
 
-/* ===== الفوتر ===== */
 footer{background:var(--deep2) var(--texGold);color:rgba(244,236,214,.85);padding:70px 0 34px;text-align:center}
 footer .f-brand .ico{width:40px;height:40px;stroke-width:1.2;color:var(--goldL)}
 footer h4{font-family:var(--f-head);font-size:25px;color:#f4ecd6}
@@ -378,7 +364,6 @@ footer .f-en{font-size:10.5px;letter-spacing:.28em;color:rgba(230,200,131,.7);te
 .f-dhikr{font-family:var(--f-head);color:var(--goldL);font-size:17px;margin:14px 0 22px}
 .f-bar{border-top:1px solid rgba(230,200,131,.18);padding-top:22px;font-size:12px;color:rgba(244,236,214,.55)}
 
-/* ===== عناصر ثابتة ===== */
 .to-top{position:fixed;bottom:22px;inset-inline-end:22px;z-index:70;width:46px;height:46px;border-radius:50%;background:var(--deep2);color:var(--goldL);border:1px solid rgba(230,200,131,.35);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.3s}
 .to-top.show{opacity:1;pointer-events:auto}
 .to-top:hover{background:var(--gold2);color:#2a1f08}
@@ -525,7 +510,7 @@ footer .f-en{font-size:10.5px;letter-spacing:.28em;color:rgba(230,200,131,.7);te
     </div>
     <span class="nav-next" id="navNext">—</span>
     <div class="lang-sw">
-      <button type="button" data-lang="ar">عربي</button>
+      <button type="button" data-lang="ar"> 1 عربي</button>
       <button type="button" data-lang="en" class="on">EN</button>
     </div>
     <button class="btn btn-gold btn-sm btn-donate-nav" data-open-donate><span data-i18n="nav.donate">Donate</span></button>
@@ -566,7 +551,6 @@ footer .f-en{font-size:10.5px;letter-spacing:.28em;color:rgba(230,200,131,.7);te
       <div class="rot" id="rot"><p id="rotVerse">“And establish prayer for My remembrance.”</p><span id="rotSrc">Quran · Taha 14</span></div>
       <div class="hero-cta">
         <a href="#times" class="btn btn-gold"><span data-i18n="hero.ctaTimes">Today's Prayer Times</span> <svg class="ico arr"><use href="#i-arrow"/></svg></a>
-        <!-- ✏️ ضع رابط مجموعة واتساب الخاصة بالمسجد هنا -->
         <a class="btn btn-wa" href="https://chat.whatsapp.com/ISSW-Community" target="_blank" rel="noopener"><svg class="ico ico-f"><use href="#i-wa"/></svg><span data-i18n="cm.waBtn">Join the WhatsApp Group</span></a>
         <a href="https://www.google.com/maps/dir/?api=1&destination=Masjid+Al-Noor+Vancouver+WA" target="_blank" rel="noopener" class="btn btn-ghost" data-i18n="hero.ctaDir">Get Directions</a>
       </div>
@@ -641,7 +625,7 @@ footer .f-en{font-size:10.5px;letter-spacing:.28em;color:rgba(230,200,131,.7);te
       <span class="kicker" data-i18n="times.kicker">Prayer Times</span>
       <h2 data-i18n="times.title">Today's Prayer Times</h2>
       <div class="orn"><i></i><b></b><i></i></div>
-      <p class="sec-sub" data-i18n="times.sub">Masjid Al-Noor — Vancouver, WA · live from Mawaqit</p>
+      <p class="sec-sub" data-i18n="times.sub">Masjid Al-Noor — Vancouver, WA</p>
     </div>
     <div class="times-grid">
       <div class="mihrab reveal">
@@ -688,7 +672,7 @@ footer .f-en{font-size:10.5px;letter-spacing:.28em;color:rgba(230,200,131,.7);te
           <p class="sc-note" data-i18n="times.jumuaNote">Khutbah in Arabic &amp; English · doors open early</p>
         </div>
         <div class="side-note reveal" style="--d:.3s">
-          <span data-i18n="times.method">Adhan times update automatically every day from our official Mawaqit page. Iqama follows the masjid's published schedule.</span><br>
+          <span data-i18n="times.method">Adhan &amp; iqama times follow the masjid's official Mawaqit page and refresh automatically throughout the day.</span><br>
           <a class="mini" href="https://mawaqit.net/en/m/masjid-al-noor-vancouver-98665-united-states" target="_blank" rel="noopener" data-i18n="times.check">View our page on Mawaqit ↗</a>
         </div>
       </aside>
@@ -834,7 +818,6 @@ footer .f-en{font-size:10.5px;letter-spacing:.28em;color:rgba(230,200,131,.7);te
       <div class="orn"><i></i><b></b><i></i></div>
       <p class="sec-sub" data-i18n="board.sub">Elected by ISSW members every two years</p>
     </div>
-    <!-- ✏️ عدّل الأسماء والبريد حسب المجلس الفعلي -->
     <div class="board-grid">
       <div class="board-card reveal"><svg class="wm"><use href="#i-star8"/></svg>
         <div class="b-ava">AF</div><h3 data-i18n="board.n1">Ahmed Farouk</h3>
@@ -942,7 +925,6 @@ footer .f-en{font-size:10.5px;letter-spacing:.28em;color:rgba(230,200,131,.7);te
       </div>
       <div class="reveal" style="--d:.15s">
         <div class="c-item"><svg class="ico"><use href="#i-pin"/></svg><div><b data-i18n="ct.addr">Address</b><span data-i18n="ct.addrV">Vancouver, Washington · see the map below</span></div></div>
-        <!-- ✏️ رقم الهاتف والبريد -->
         <div class="c-item"><svg class="ico"><use href="#i-phone"/></svg><div><b data-i18n="ct.phone">Phone</b><span dir="ltr">(360) 555-0123</span></div></div>
         <div class="c-item"><svg class="ico"><use href="#i-mail"/></svg><div><b data-i18n="ct.mail">Email</b><span dir="ltr">info@issw.org</span></div></div>
         <div class="c-item"><svg class="ico"><use href="#i-clock"/></svg><div><b data-i18n="ct.hours">Office Hours</b><span data-i18n="ct.hoursV">Mon–Fri · 10 AM – 5 PM</span></div></div>
@@ -981,7 +963,6 @@ footer .f-en{font-size:10.5px;letter-spacing:.28em;color:rgba(230,200,131,.7);te
     <div class="d-way">
       <span class="pr-ico"><svg class="ico"><use href="#i-give"/></svg></span>
       <div><b data-i18n="dm.w1">Online</b><span data-i18n="dm.w1d">One-time or monthly, on our secure page</span></div>
-      <!-- ✏️ ضع رابط صفحة التبرع الفعلية هنا بدل data-soon -->
       <a class="btn btn-gold btn-sm" href="#" data-soon><span data-i18n="dm.giveNow">Give Now</span></a>
     </div>
     <div class="d-way">
@@ -1002,15 +983,20 @@ footer .f-en{font-size:10.5px;letter-spacing:.28em;color:rgba(230,200,131,.7);te
 'use strict';
 
 /* ═══════════ ✏️ CONFIG ═══════════
-   MOSQUE_URL : صفحة المسجد على Mawaqit (المصدر الوحيد للأوقات — لا حساب فلكي إطلاقًا)
-   IQAMA      : جدول إقامة المسجد الرسمي كما هو منشور على صفحة Mawaqit (احتياطي عند تعذر الاتصال)
-                ('05:30' = وقت ثابت · '+10' = بعد الأذان بعشر دقائق)
-   JUMUA      : مواعيد خطبتي الجمعة الرسمية على Mawaqit */
-const MOSQUE_URL='https://mawaqit.net/en/m/masjid-al-noor-vancouver-98665-united-states';
-const TZ='America/Los_Angeles';
-const IQAMA={fajr:'05:30', dhuhr:'13:30', asr:'17:30', maghrib:'+10', isha:'+5'};
-const JUMUA=['13:15','13:50'];
+   WORKER_URL : رابط الـ Cloudflare Worker بعد نشره
+                (مثال: 'https://mawaqit-proxy.yourname.workers.dev')
+                اتركه فارغًا مؤقتًا → يعمل الموقع بالوضع الاحتياطي.
+   سلسلة البيانات: Mawaqit حية (Worker) ← نسخة اليوم المحفوظة ← فلكي + جدول الإقامة الرسمي */
+const WORKER_URL='';
+const REFRESH_MS=5*60*1000;          // إعادة الجلب كل 5 دقائق
+const LAT=45.6387, LNG=-122.6614, TZ='America/Los_Angeles';
+const ALADHAN_API='https://api.aladhan.com/v1';
+const IQAMA={fajr:'05:30',dhuhr:'13:30',asr:'17:30',maghrib:'+10',isha:'+5'}; // الجدول الرسمي (احتياطي)
+const JUMUA=['13:15','13:50'];       // (احتياطي)
 const POLL_BASE=[34,25,18,29];
+
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
 
 /* ═══════════ i18n ═══════════ */
 const I18N={
@@ -1023,10 +1009,13 @@ en:{
 'cm.waBtn':'Join the WhatsApp Group',
 't.adhan':'Adhan','t.iqama':'Iqama','t.h':'hrs','t.m':'min','t.s':'sec',
 'stats.families':'Registered families','stats.students':'School students','stats.years':'Years of service','stats.jumua':'Friday worshippers',
-'times.kicker':'Prayer Times','times.title':"Today's Prayer Times",'times.sub':'Masjid Al-Noor — Vancouver, WA · live from Mawaqit','times.adhan':'Adhan & Iqama','times.copy':'Copy times','times.src':'Source:','times.method':"Adhan times update automatically every day from our official Mawaqit page. Iqama follows the masjid's published schedule.",'times.check':'View our page on Mawaqit ↗','times.sun':'The Sun Today','t.sunrise':'Sunrise','t.sunset':'Sunset','t.dayLen':'Day length','times.jumua':'Friday Prayer','times.j1':"First Jumu'ah",'times.j2':"Second Jumu'ah",'times.jumuaNote':'Khutbah in Arabic & English · doors open early',
-'src.live':'Mawaqit','src.loading':'Mawaqit…','src.cached':'Mawaqit · cached','src.offline':'Mawaqit · offline',
+'times.kicker':'Prayer Times','times.title':"Today's Prayer Times",'times.sub':'Masjid Al-Noor — Vancouver, WA','times.adhan':'Adhan & Iqama','times.copy':'Copy times','times.src':'Source:','times.method':"Adhan & iqama times follow the masjid's official Mawaqit page and refresh automatically throughout the day.",'times.check':'View our page on Mawaqit ↗','times.sun':'The Sun Today','t.sunrise':'Sunrise','t.sunset':'Sunset','t.dayLen':'Day length','times.jumua':'Friday Prayer','times.j1':"First Jumu'ah",'times.j2':"Second Jumu'ah",'times.jumuaNote':'Khutbah in Arabic & English · doors open early',
+'src.live':'Mawaqit · Live','src.loading':'Mawaqit…','src.cached':'Mawaqit','src.static':'Mawaqit','src.offline':'Mawaqit · offline',
 'note.fri':"Jumu'ah Mubarak! Two prayers — see Friday times",'note.day':'Doors open before every prayer · everyone is welcome',
-'cal.kicker':'Monthly Timetable','cal.title':"This Month's Prayer Schedule",'cal.sub':'Daily times with the matching Hijri date','cal.date':'Date','cal.noteA':"Adhan times · live from Mawaqit · iqama follows the masjid's official schedule",'cal.noteI':"Iqama times as published on Mawaqit · sunrise shown for reference",'cal.unavail':'Loading timetable from Mawaqit…','cal.offline':'Timetable unavailable right now — check our page on Mawaqit',
+'cal.kicker':'Monthly Timetable','cal.title':"This Month's Prayer Schedule",'cal.sub':'Daily times with the matching Hijri date','cal.date':'Date',
+'cal.noteA':"Adhan times for Vancouver WA · Iqama follows the masjid's official schedule",'cal.noteLA':'Adhan & Iqama — synced live from our Mawaqit page',
+'cal.noteI':"Iqama — the masjid's official schedule",'cal.noteLI':'Iqama — synced live from our Mawaqit page',
+'cal.unavail':'Loading timetable…','cal.offline':'Timetable unavailable right now — check our page on Mawaqit',
 'p.fajr':'Fajr','p.sunrise':'Sunrise','p.dhuhr':'Dhuhr','p.asr':'Asr','p.maghrib':'Maghrib','p.isha':'Isha',
 'ev.kicker':'Programs & Events','ev.title':'Life at the Masjid','ev.sub':'Something for every age — join us',
 'ev1.t':'Thursday Community Iftar','ev1.d':'A community gathering with dinner every Thursday after Maghrib — bring your family and neighbors.','ev1.d1':'Thu','ev1.d2':'after Maghrib','ev1.loc':'Main Hall','ev1.g':'Weekly',
@@ -1067,10 +1056,13 @@ ar:{
 'cm.waBtn':'انضم إلى المجموعة',
 't.adhan':'الأذان','t.iqama':'الإقامة','t.h':'ساعة','t.m':'دقيقة','t.s':'ثانية',
 'stats.families':'عائلة مسجلة','stats.students':'طالب في المدرسة','stats.years':'سنوات من العطاء','stats.jumua':'مصلٍّ في الجمعة',
-'times.kicker':'أوقات الصلاة','times.title':'أوقات الصلاة اليوم','times.sub':'مسجد النور — فانكوفر، واشنطن · مباشرة من Mawaqit','times.adhan':'الأذان والإقامة','times.copy':'نسخ الأوقات','times.src':'المصدر:','times.method':'تُجلب أوقات الأذان مباشرة كل يوم من صفحة المسجد الرسمية على Mawaqit دون أي حساب أو تقدير، وتتبع الإقامة الجدول الرسمي المعتمد في المسجد.','times.check':'عرض صفحة المسجد على Mawaqit ↗','times.sun':'الشمس اليوم','t.sunrise':'الشروق','t.sunset':'الغروب','t.dayLen':'طول النهار','times.jumua':'صلاة الجمعة','times.j1':'الجمعة الأولى','times.j2':'الجمعة الثانية','times.jumuaNote':'الخطبة بالعربية والإنجليزية · تُفتح الأبواب مبكرًا',
-'src.live':'Mawaqit','src.loading':'Mawaqit…','src.cached':'Mawaqit · محفوظ','src.offline':'Mawaqit · غير متصل',
+'times.kicker':'أوقات الصلاة','times.title':'أوقات الصلاة اليوم','times.sub':'مسجد النور — فانكوفر، واشنطن','times.adhan':'الأذان والإقامة','times.copy':'نسخ الأوقات','times.src':'المصدر:','times.method':'أوقات الأذان والإقامة وفق صفحة المسجد الرسمية على Mawaqit وتُحدَّث تلقائيًا طوال اليوم.','times.check':'عرض صفحة المسجد على Mawaqit ↗','times.sun':'الشمس اليوم','t.sunrise':'الشروق','t.sunset':'الغروب','t.dayLen':'طول النهار','times.jumua':'صلاة الجمعة','times.j1':'الجمعة الأولى','times.j2':'الجمعة الثانية','times.jumuaNote':'الخطبة بالعربية والإنجليزية · تُفتح الأبواب مبكرًا',
+'src.live':'Mawaqit · مباشر','src.loading':'Mawaqit…','src.cached':'Mawaqit','src.static':'Mawaqit','src.offline':'Mawaqit · غير متصل',
 'note.fri':'جمعة مباركة! خطبتان — انظر قسم صلاة الجمعة','note.day':'تُفتح الأبواب قبل كل صلاة — الجميع مرحب بهم',
-'cal.kicker':'التقويم الشهري','cal.title':'جدول الصلاة للشهر','cal.sub':'أوقات كل أيام الشهر مع التواريخ الهجرية','cal.date':'التاريخ','cal.noteA':'أوقات الأذان · مباشرة من Mawaqit · الإقامة حسب الجدول الرسمي للمسجد','cal.noteI':'أوقات الإقامة كما هي منشورة على Mawaqit · الشروق للعلم','cal.unavail':'يتم تحميل الجدول من Mawaqit…','cal.offline':'الجدول غير متاح حاليًا — راجع صفحتنا على Mawaqit',
+'cal.kicker':'التقويم الشهري','cal.title':'جدول الصلاة للشهر','cal.sub':'أوقات كل أيام الشهر مع التواريخ الهجرية','cal.date':'التاريخ',
+'cal.noteA':'أوقات الأذان لفانكوفر واشنطن · الإقامة حسب الجدول الرسمي للمسجد','cal.noteLA':'الأذان والإقامة — متزامنة مباشرة من صفحتنا على Mawaqit',
+'cal.noteI':'الإقامة — الجدول الرسمي للمسجد','cal.noteLI':'الإقامة — متزامنة مباشرة من صفحتنا على Mawaqit',
+'cal.unavail':'جارٍ تحميل الجدول…','cal.offline':'الجدول غير متاح حاليًا — راجع صفحتنا على Mawaqit',
 'p.fajr':'الفجر','p.sunrise':'الشروق','p.dhuhr':'الظهر','p.asr':'العصر','p.maghrib':'المغرب','p.isha':'العشاء',
 'ev.kicker':'البرامج والفعاليات','ev.title':'حياة في بيت الله','ev.sub':'برامج لكل الأعمار — شاركنا',
 'ev1.t':'إفطار وتجمع الخميس','ev1.d':'تجمع مجتمعي مع عشاء كل خميس بعد المغرب — أحضر عائلتك وجيرانك.','ev1.d1':'الخميس','ev1.d2':'بعد المغرب','ev1.loc':'القاعة الرئيسية','ev1.g':'أسبوعي',
@@ -1118,16 +1110,13 @@ const PRS=['fajr','sunrise','dhuhr','asr','maghrib','isha'];
 const PRAYERS=['fajr','dhuhr','asr','maghrib','isha'];
 const PK=['fajr','dhuhr','asr','maghrib','isha'];
 
-/* ═══════════ state & elements ═══════════ */
+/* ═══════════ state ═══════════ */
 let lang='en', calMode='adhan', calMonthIdx=0, vi=0, myVote=null;
-let cd=null, liveIq=null, jumuaArr=null, calStart=null, dataState='loading';
+let live=null, calStartIdx=null, srcState=WORKER_URL?'load':'static';
+let astro={today:null, months:{}};
 let state={key:null,target:null,prev:0};
 let renderedSig='';
-const monthList=[{off:0},{off:1}];
 const C=2*Math.PI*52;
-
-const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
-const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
 
 const el={
   progress:$('#progress'),nav:$('#nav'),btnMenu:$('#btnMenu'),mMenu:$('#mMenu'),navNext:$('#navNext'),
@@ -1181,231 +1170,212 @@ function hijriParts(y,mo,d){
 }
 function hijStr(d){const h=hijriParts(d.y,d.mo,d.day);if(!h)return '';return h.d+' '+(lang==='ar'?HIJ_AR:HIJ_EN)[h.m-1]+' '+h.y+(lang==='ar'?' هـ':' AH');}
 
-/* ═══════════ Mawaqit: جلب مباشر من صفحة المسجد ═══════════
-   الطريقة: نفس آلية عمل تطبيقات Mawaqit المعروفة — جلب HTML صفحة المسجد
-   واستخراج كائن confData المضمّن فيها (الأذان والإقامة والتقويم السنوي).
-   ملاحظة تقنية: mawaqit.net لا يسمح بالاستدعاء المباشر من المتصفح (CORS)
-   لذا يمر الطلب عبر وسيط قراءة عام؛ البيانات نفسها هي بيانات Mawaqit
-   حرفيًا بلا أي تعديل أو حساب. تُحفظ نسخة محليًا لليوم الحالي. */
-const PROXIES=[
-  u=>'https://api.allorigins.win/raw?url='+encodeURIComponent(u),
-  u=>'https://api.codetabs.com/v1/proxy?quest='+encodeURIComponent(u),
-  u=>'https://corsproxy.io/?url='+encodeURIComponent(u)
-];
-function extractConfData(html){
-  if(!html)return null;
-  const re=/confData\s*=\s*\{/;
-  const m=re.exec(html);
-  if(!m)return null;
-  const start=m.index+m[0].length-1; // at '{'
-  let depth=0,i=start,inStr=false,esc=false;
-  for(;i<html.length;i++){
-    const c=html[i];
-    if(esc){esc=false;continue;}
-    if(c==='\\'){if(inStr)esc=true;continue;}
-    if(c==='"'){inStr=!inStr;continue;}
-    if(inStr)continue;
-    if(c==='{')depth++;
-    else if(c==='}'){depth--;if(depth===0)break;}
-  }
-  if(depth!==0)return null;
-  try{const o=JSON.parse(html.slice(start,i+1));return (o&&(o.times||o.calendar))?o:null;}
-  catch(e){return null;}
-}
-function withTimeout(ms){const c=new AbortController();setTimeout(()=>{try{c.abort()}catch(e){}},ms);return c.signal;}
-async function tryProxy(makeUrl){
-  try{
-    const r=await fetch(makeUrl(MOSQUE_URL),{signal:withTimeout(9000),cache:'no-store'});
-    if(!r.ok)return null;
-    const html=await r.text();
-    return extractConfData(html);
-  }catch(e){return null;}
-}
-async function fetchMawaqit(){
-  return new Promise((resolve,reject)=>{
-    let pending=PROXIES.length,done=false;
-    const fail=()=>{if(!done&&--pending===0){done=true;reject(new Error('all failed'));}};
-    PROXIES.forEach(p=>{
-      tryProxy(p).then(d=>{
-        if(done)return;
-        if(d){done=true;resolve(d);}
-        else fail();
-      }).catch(fail);
-    });
-  });
-}
-const CACHE_KEY='issw_mawaqit_v1';
-function saveCache(data){
-  try{localStorage.setItem(CACHE_KEY,JSON.stringify({ts:Date.now(),date:localDateStr(),cd:data}));}catch(e){}
-}
-function loadCache(){
-  try{
-    const raw=localStorage.getItem(CACHE_KEY);
-    if(!raw)return null;
-    const o=JSON.parse(raw);
-    if(!o||!o.cd)return null;
-    const fresh=(o.date===localDateStr())&&(Date.now()-o.ts<43200000);
-    return {cd:o.cd,fresh:!!fresh,ts:o.ts};
-  }catch(e){return null;}
-}
-
-/* ═══════════ Mawaqit: تحويل البيانات ═══════════ */
-function extractIq(data){
-  if(!data)return null;
-  const a=data.iqamaTimes||data.iqamas||null;
-  if(Array.isArray(a)&&a.length>=5)return a.slice(0,5);
-  return null;
-}
-function extractJumua(data){
-  if(!data)return null;
-  const j1=data.jumua,j2=data.jumua2;
-  if(typeof j1==='string'&&typeof j2==='string')return [j1,j2];
-  if(Array.isArray(data.jumua)&&data.jumua.length>=2)return [String(data.jumua[0]),String(data.jumua[1])];
-  return null;
-}
-function monthToMap(monthObj){
-  const m={};
-  if(!monthObj||typeof monthObj!=='object')return m;
-  Object.keys(monthObj).forEach(k=>{
-    const day=parseInt(k,10);
-    if(!isNaN(day)&&Array.isArray(monthObj[k]))m[day]=monthObj[k];
-  });
-  return m;
-}
-function calIndexFor(mo){
-  if(!calStart)return mo-1;
-  return ((mo-calStart)+12)%12;
-}
-function calEntry(mo,day,which){
-  if(!cd)return null;
-  const arr=which==='iqama'?cd.iqamaCalendar:cd.calendar;
+/* ═══════════ المصدر 1: Mawaqit عبر الـ Worker (حي) ═══════════ */
+function normCal(arr){
   if(!Array.isArray(arr))return null;
-  const idx=calIndexFor(mo);
-  if(idx<0||idx>=arr.length)return null;
-  const mm=monthToMap(arr[idx]);
-  return mm[day]||null;
+  return arr.map(m=>{
+    const o={};
+    if(m&&typeof m==='object')Object.keys(m).forEach(k=>{
+      const d=parseInt(k,10);if(!isNaN(d))o[d]=m[k];
+    });
+    return o;
+  });
 }
-function todayFromCd(){
-  if(!cd||!Array.isArray(cd.times)||cd.times.length<5)return null;
-  return {
-    fajr:parseHM(cd.times[0]),
-    dhuhr:parseHM(cd.times[1]),
-    asr:parseHM(cd.times[2]),
-    maghrib:parseHM(cd.times[3]),
-    isha:parseHM(cd.times[4]),
-    sunrise:cd.shuruq!=null?parseHM(cd.shuruq):null
+function normLive(p){
+  if(!p||!p.ok||!Array.isArray(p.times)||p.times.length<5)return null;
+  const L={fetchedAt:p.fetchedAt||null,hasIq:false};
+  L.t={
+    fajr:parseHM(p.times[0]),dhuhr:parseHM(p.times[1]),asr:parseHM(p.times[2]),
+    maghrib:parseHM(p.times[3]),isha:parseHM(p.times[4]),
+    sunrise:p.shuruq!=null?parseHM(p.shuruq):null
   };
+  L.iq={fajr:'',dhuhr:'',asr:'',maghrib:'',isha:''};
+  if(Array.isArray(p.iqamaTimes)&&p.iqamaTimes.length>=5){
+    PK.forEach((k,i)=>{const v=p.iqamaTimes[i];if(v!=null)L.iq[k]=String(v);});
+    L.hasIq=PK.some(k=>L.iq[k]!=='');
+  }
+  L.jumua=[parseHM(p.jumua),parseHM(p.jumua2)];
+  L.calAdhan=normCal(p.calendar);
+  L.calIqama=normCal(p.iqamaCalendar);
+  L.date=localDateStr();
+  return L;
 }
-function detectCalMap(){
-  calStart=null;
-  if(!cd||!Array.isArray(cd.calendar))return;
+function detectCalStart(){
+  calStartIdx=null;
+  if(!live||!live.calAdhan||live.t.fajr==null)return;
   const n=nowTZ();
-  const target=todayFromCd();
-  if(!target)return;
-  for(let i=0;i<cd.calendar.length&&i<12;i++){
-    const mm=monthToMap(cd.calendar[i]);
-    const e=mm[n.d];
-    if(!e||!Array.isArray(e)||e.length<5)continue;
-    const c={fajr:parseHM(e[0]),dhuhr:parseHM(e[2]),asr:parseHM(e[3]),maghrib:parseHM(e[4]),isha:parseHM(e[5])};
+  const idxMap=[0,2,3,4,5];
+  for(let i=0;i<live.calAdhan.length&&i<12;i++){
+    const e=live.calAdhan[i][n.d];
+    if(!e||e.length<6)continue;
     let match=0;
-    PK.forEach(k=>{if(c[k]!=null&&target[k]!=null&&Math.abs(c[k]-target[k])<=2)match++;});
-    if(match>=4){
-      calStart=((n.mo-i-1)+12)%12+1; // الشهر الذي يبدأ عنده التقويم (1..12)
-      return;
-    }
+    PK.forEach((k,j)=>{
+      const v=parseHM(e[idxMap[j]]);
+      if(v!=null&&live.t[k]!=null&&Math.abs(v-live.t[k])<=2)match++;
+    });
+    if(match>=4){calStartIdx=i;return;}
   }
 }
-function tomorrowFajr(){
-  if(!cd||!Array.isArray(cd.calendar))return null;
+function liveCalEntry(cal,mo,day){
+  if(!cal||calStartIdx==null)return null;
   const n=nowTZ();
-  let ty=n.y,tm=n.mo,td=n.d+1;
-  const dim=new Date(ty,tm,0).getDate();
-  if(td>dim){td=1;tm++;if(tm>12){tm=1;ty++;}}
-  const e=calEntry(tm,td,'adhan');
-  return e?parseHM(e[0]):null;
+  const off=((mo-n.mo)+12)%12;
+  const idx=(calStartIdx+off)%cal.length;
+  const m=cal[idx];
+  return m?m[day]:null;
 }
-function iqamaMin(k,adhanMin){
-  const idx=PK.indexOf(k);
+function deriveTodayIqama(){
+  if(!live||live.hasIq||!live.calIqama||calStartIdx==null)return;
+  const n=nowTZ();
+  const e=liveCalEntry(live.calIqama,n.mo,n.d);
+  if(e&&e.length>=5){
+    PK.forEach((k,i)=>{if(e[i]!=null&&e[i]!=='')live.iq[k]=String(e[i]);});
+    live.hasIq=PK.some(k=>live.iq[k]!=='');
+  }
+}
+function todayT(){return live?live.t:(astro.today?astro.today.t:null);}
+function iqToday(k,adhanMin){
+  const raw=(live&&live.iq[k])||IQAMA[k]||null;
+  if(raw==null||raw==='')return null;
+  if(isOffset(raw))return adhanMin!=null?adhanMin+parseInt(raw,10):null;
+  return parseHM(raw);
+}
+function iqDay(k,adhanMin,entry){
   let raw=null;
-  if(liveIq&&idx>=0&&liveIq[idx]!=null&&liveIq[idx]!=='')raw=liveIq[idx];
+  const i=PK.indexOf(k);
+  if(entry&&Array.isArray(entry)&&entry[i]!=null&&entry[i]!=='')raw=String(entry[i]);
   if(raw==null)raw=IQAMA[k];
   if(raw==null||raw==='')return null;
   if(isOffset(raw))return adhanMin!=null?adhanMin+parseInt(raw,10):null;
   return parseHM(raw);
 }
-function dayIqamaMin(k,iqEntry,adhanMin){
-  const idx=PK.indexOf(k);
-  let raw=null;
-  if(iqEntry&&Array.isArray(iqEntry)&&idx<iqEntry.length&&iqEntry[idx]!=null&&iqEntry[idx]!=='')raw=iqEntry[idx];
-  if(raw==null){
-    const lr=liveIq&&idx<liveIq.length?liveIq[idx]:null;
-    raw=(lr!=null&&lr!=='')?lr:IQAMA[k];
-  }
-  if(raw==null||raw==='')return null;
-  if(isOffset(raw))return adhanMin!=null?adhanMin+parseInt(raw,10):null;
-  return parseHM(raw);
+function jumuaList(){
+  const a=(live&&live.jumua[0]!=null)?live.jumua[0]:parseHM(JUMUA[0]);
+  const b=(live&&live.jumua[1]!=null)?live.jumua[1]:parseHM(JUMUA[1]);
+  return [a,b];
 }
 
-/* ═══════════ apply data & render ═══════════ */
-function applyData(data,mode){
-  if(data){
-    cd=data;
-    liveIq=extractIq(data);
-    jumuaArr=extractJumua(data);
-    detectCalMap();
-    dataState=mode; // 'live' | 'cached'
-  }else{
-    cd=null;liveIq=null;jumuaArr=null;calStart=null;
-    dataState=mode; // 'loading' | 'offline'
+const LIVE_KEY='issw_live_v1';
+function saveLiveCache(p){try{localStorage.setItem(LIVE_KEY,JSON.stringify({ts:Date.now(),date:localDateStr(),p}))}catch(e){}}
+function loadLiveCache(){
+  try{
+    const raw=localStorage.getItem(LIVE_KEY);if(!raw)return null;
+    const o=JSON.parse(raw);
+    if(!o||!o.p||o.date!==localDateStr())return null;
+    return normLive(o.p);
+  }catch(e){return null;}
+}
+async function fetchLive(){
+  if(!WORKER_URL)return;
+  try{
+    const r=await fetch(WORKER_URL,{cache:'no-store'});
+    if(!r.ok)throw new Error('http '+r.status);
+    const p=await r.json();
+    if(!p||!p.ok)throw new Error('bad payload');
+    const L=normLive(p);
+    if(!L||L.t.fajr==null)throw new Error('bad times');
+    live=L;detectCalStart();deriveTodayIqama();
+    srcState='live';
+    saveLiveCache(p);
+    renderAll();
+  }catch(e){
+    if(!live){
+      const c=loadLiveCache();
+      if(c){live=c;detectCalStart();deriveTodayIqama();srcState='cached';renderAll();}
+      else{srcState='err';renderPill();}
+    }
   }
+}
+let lastFetch=0;
+async function refreshLive(force){
+  if(!WORKER_URL)return;
+  if(!force&&Date.now()-lastFetch<REFRESH_MS-5000)return;
+  lastFetch=Date.now();
+  await fetchLive();
+}
+
+/* ═══════════ المصدر 2/الاحتياطي: حساب فلكي (Aladhan) ═══════════ */
+async function getMonth(y,mo){
+  const key=y+'-'+mo;
+  if(astro.months[key])return astro.months[key];
+  const sk='issw_cal_'+key;
+  try{
+    const raw=store.get(sk);
+    if(raw){const o=JSON.parse(raw);if(o&&o.days&&Date.now()-o.ts<43200000){astro.months[key]=o.days;return o.days;}}
+  }catch(e){}
+  const r=await fetch(ALADHAN_API+'/calendar?latitude='+LAT+'&longitude='+LNG+'&method=2&month='+mo+'&year='+y);
+  if(!r.ok)throw new Error('cal');
+  const j=await r.json();
+  if(!j||!j.data||!j.data.length)throw new Error('cal');
+  const days=j.data.map(d=>{
+    const p=d.date.gregorian.date.split('-').map(Number);
+    const gy=p[2],gm=p[1],gd=p[0];
+    return {day:gd,mo:gm,y:gy,
+      t:{fajr:parseHM(d.timings.Fajr),sunrise:parseHM(d.timings.Sunrise),dhuhr:parseHM(d.timings.Dhuhr),asr:parseHM(d.timings.Asr),maghrib:parseHM(d.timings.Maghrib),isha:parseHM(d.timings.Isha)}};
+  });
+  astro.months[key]=days;
+  try{store.set(sk,JSON.stringify({ts:Date.now(),days}))}catch(e){}
+  return days;
+}
+async function initAstro(){
+  const n=nowTZ();
+  const y=n.y,mo=n.mo;
+  const ny=mo===12?y+1:y,nmo=mo===12?1:mo+1;
+  try{
+    await Promise.all([getMonth(y,mo),getMonth(ny,nmo)]);
+    astro.today=(astro.months[y+'-'+mo]||[]).find(d=>d.day===n.d)||null;
+  }catch(e){}
   renderAll();
 }
+function tomorrowFajr(){
+  if(live&&live.calAdhan&&calStartIdx!=null){
+    const n=nowTZ();let ty=n.y,tm=n.mo,td=n.d+1;
+    const dim=new Date(ty,tm,0).getDate();
+    if(td>dim){td=1;tm++;if(tm>12){tm=1;ty++;}}
+    const e=liveCalEntry(live.calAdhan,tm,td);
+    if(e&&e.length)return parseHM(e[0]);
+  }
+  const n=nowTZ();
+  const cur=astro.months[n.y+'-'+n.mo];
+  if(cur){const d=cur.find(x=>x.day===n.d+1);if(d)return d.t.fajr;}
+  const nm=n.mo===12?1:n.mo+1, ny=n.mo===12?n.y+1:n.y;
+  const nxt=astro.months[ny+'-'+nm];
+  return nxt&&nxt[0]?nxt[0].t.fajr:null;
+}
+
+/* ═══════════ render ═══════════ */
 function dataSignature(){
-  if(!cd)return 'none';
-  return JSON.stringify([cd.times,cd.shuruq,liveIq,jumuaArr]);
+  const ls=live?JSON.stringify([live.t,live.iq,live.jumua,calStartIdx]):'no';
+  const as=astro.today?JSON.stringify(astro.today.t):'no';
+  return [ls,as,lang,calMode,calMonthIdx,srcState].join('|');
 }
 function renderAll(){
-  const sig=dataSignature()+lang+calMode+calMonthIdx+dataState;
+  const sig=dataSignature();
   if(sig===renderedSig)return;
   renderedSig=sig;
-  renderPill();
-  heroDates();
-  renderRows();
-  renderSun();
-  renderJumua();
-  renderCal();
-  renderPoll();
-  renderVerse();
-  renderEventTimes();
-  calcNext();
+  renderPill();heroDates();renderRows();renderSun();renderJumua();renderCal();renderPoll();renderVerse();renderEventTimes();calcNext();
 }
 function renderPill(){
   const p=el.srcPill;
   p.classList.remove('ok','load','err');
-  if(dataState==='live'||dataState==='cached'){
-    p.classList.add('ok');
-    el.srcPillTxt.textContent=t(dataState==='live'?'src.live':'src.cached');
-  }else if(dataState==='offline'){
-    p.classList.add('err');
-    el.srcPillTxt.textContent=t('src.offline');
-  }else{
-    p.classList.add('load');
-    el.srcPillTxt.textContent=t('src.loading');
-  }
+  if(srcState==='live'||srcState==='cached'){p.classList.add('ok');el.srcPillTxt.textContent=t(srcState==='live'?'src.live':'src.cached');}
+  else if(srcState==='err'){p.classList.add('err');el.srcPillTxt.textContent=t('src.offline');}
+  else if(srcState==='load'){p.classList.add('load');el.srcPillTxt.textContent=t('src.loading');}
+  else{el.srcPillTxt.textContent=t('src.static');}
+  p.title=(live&&live.fetchedAt)?new Date(live.fetchedAt).toLocaleString():'';
 }
 function heroDates(){
   const n=nowTZ();
   el.heroHijri.textContent=hijStr(n)||'—';
   el.heroGreg.textContent=gregStr(n);
-  const tm=todayFromCd();
-  el.panelDate.textContent=tm?(gregStr(n)+' · '+(hijStr(n)||'')):gregStr(n);
+  el.panelDate.textContent=gregStr(n)+(todayT()?' · '+hijStr(n):'');
 }
 function renderRows(){
-  const tm=todayFromCd();
+  const tm=todayT();
   el.prayerRows.innerHTML=PRS.map(k=>{
     const info=k==='sunrise';
     const a=tm?tm[k]:null;
-    const iq=info?null:iqamaMin(k,a);
+    const iq=info?null:iqToday(k,a);
     const nx=!info&&k===state.key;
     return '<div class="prayer-row'+(info?' info':'')+(nx?' next':'')+'">'
       +'<span class="pr-ico"><svg class="ico"><use href="#i-'+k+'"/></svg></span>'
@@ -1417,11 +1387,8 @@ function renderRows(){
   }).join('');
 }
 function renderSun(){
-  const tm=todayFromCd();
-  if(!tm||tm.sunrise==null||tm.maghrib==null){
-    el.sunriseT.textContent='—';el.sunsetT.textContent='—';el.dayLen.textContent='—';
-    el.sunDot.style.display='none';el.moonDot.style.display='none';return;
-  }
+  const tm=todayT();
+  if(!tm||tm.sunrise==null||tm.maghrib==null){el.sunriseT.textContent='—';el.sunsetT.textContent='—';el.dayLen.textContent='—';el.sunDot.style.display='none';el.moonDot.style.display='none';return;}
   el.sunriseT.textContent=fmt(tm.sunrise);
   el.sunsetT.textContent=fmt(tm.maghrib);
   const dl=tm.maghrib-tm.sunrise;
@@ -1431,19 +1398,13 @@ function renderSun(){
     dot.setAttribute('cx',(130+100*Math.cos(a)).toFixed(1));
     dot.setAttribute('cy',(110-100*Math.sin(a)).toFixed(1));
     dot.style.display='';};
-  if(nm>=tm.sunrise&&nm<=tm.maghrib){
-    el.moonDot.style.display='none';
-    setDot(el.sunDot,(nm-tm.sunrise)/(tm.maghrib-tm.sunrise));
-  }else{
-    el.sunDot.style.display='none';
-    const span=tm.sunrise+1440-tm.maghrib;
-    setDot(el.moonDot,(((nm-tm.maghrib)+1440)%1440)/span);
-  }
+  if(nm>=tm.sunrise&&nm<=tm.maghrib){el.moonDot.style.display='none';setDot(el.sunDot,(nm-tm.sunrise)/(tm.maghrib-tm.sunrise));}
+  else{el.sunDot.style.display='none';const span=tm.sunrise+1440-tm.maghrib;setDot(el.moonDot,(((nm-tm.maghrib)+1440)%1440)/span);}
 }
 function renderJumua(){
-  const j=jumuaArr||JUMUA;
-  el.jumua1.textContent=fmt(parseHM(j[0]));
-  el.jumua2.textContent=fmt(parseHM(j[1]));
+  const j=jumuaList();
+  el.jumua1.textContent=fmt(j[0]);
+  el.jumua2.textContent=fmt(j[1]);
 }
 function renderCal(){
   const n=nowTZ();
@@ -1456,45 +1417,44 @@ function renderCal(){
   });
   el.modeTabs.forEach(b=>b.classList.toggle('on',b.dataset.mode===calMode));
 
-  if(!cd||!Array.isArray(cd.calendar)){
-    const msg=dataState==='offline'
-      ?'<tr><td colspan="7" class="cal-msg">'+t('cal.offline')+' <a href="'+MOSQUE_URL+'" target="_blank" rel="noopener">Mawaqit ↗</a></td></tr>'
-      :'<tr><td colspan="7" class="cal-msg">'+t('cal.unavail')+'</td></tr>';
-    el.monthBody.innerHTML=msg;
-    el.modeNote.textContent='';
-    return;
-  }
   const off=calMonthIdx;
   const mo=((n.mo-1+off)%12)+1;
   const y=n.y+Math.floor((n.mo-1+off)/12);
+  const liveCal=live&&live.calAdhan&&calStartIdx!=null;
+  const astroDays=liveCal?null:astro.months[y+'-'+mo];
+  if(!liveCal&&!astroDays){
+    const isErr=srcState==='err';
+    el.monthBody.innerHTML='<tr><td colspan="7" class="cal-msg">'+t(isErr?'cal.offline':'cal.unavail')+(isErr?' <a href="https://mawaqit.net/en/m/masjid-al-noor-vancouver-98665-united-states" target="_blank" rel="noopener">Mawaqit ↗</a>':'')+'</td></tr>';
+    el.modeNote.textContent='';return;
+  }
   const dim=new Date(y,mo,0).getDate();
   const WD=lang==='ar'?WD_AR:WD_EN;
   const HM=lang==='ar'?HIJ_AR:HIJ_EN;
   let html='';
   for(let d=1;d<=dim;d++){
-    const adh=calEntry(mo,d,'adhan');
-    const iq=calEntry(mo,d,'iqama');
+    let at=null, iqEntry=null;
+    if(liveCal){
+      const e=liveCalEntry(live.calAdhan,mo,d);
+      if(e&&e.length>=6)at={fajr:parseHM(e[0]),sunrise:parseHM(e[1]),dhuhr:parseHM(e[2]),asr:parseHM(e[3]),maghrib:parseHM(e[4]),isha:parseHM(e[5])};
+      if(live.calIqama)iqEntry=liveCalEntry(live.calIqama,mo,d);
+    }else{
+      const dd=astroDays?astroDays.find(x=>x.day===d):null;
+      if(dd)at=dd.t;
+    }
     const isT=(off===0&&d===n.d);
     const h=hijriParts(y,mo,d);
     let cells='';
     PRS.forEach(k=>{
       let v;
-      if(calMode==='adhan'){
-        v=adh?(k==='sunrise'?parseHM(adh[1]):parseHM(adh[PK.indexOf(k)+ (k==='sunrise'?1:0)])):null;
-      }else{
-        if(k==='sunrise')v=adh?parseHM(adh[1]):null;
-        else{
-          const a=adh?parseHM(adh[PK.indexOf(k)+(k==='sunrise'?1:0)]):null;
-          v=iq?dayIqamaMin(k,iq,a):(adh?dayIqamaMin(k,null,a):null);
-        }
-      }
+      if(calMode==='adhan')v=at?at[k]:null;
+      else v=(k==='sunrise')?(at?at.sunrise:null):(at?iqDay(k,at[k],iqEntry):null);
       cells+='<td>'+fmt(v)+'</td>';
     });
     html+='<tr'+(isT?' class="today"':'')+'><td class="td-date"><b>'+WD[new Date(y,mo-1,d).getDay()]+' · '+d+'</b>'
       +(h?'<i>'+h.d+' '+HM[h.m-1]+' '+h.y+'</i>':'')+'</td>'+cells+'</tr>';
   }
   el.monthBody.innerHTML=html;
-  el.modeNote.textContent=t(calMode==='adhan'?'cal.noteA':'cal.noteI');
+  el.modeNote.textContent=t(calMode==='adhan'?(liveCal?'cal.noteLA':'cal.noteA'):(liveCal?'cal.noteLI':'cal.noteI'));
 }
 function renderPoll(){
   const total=POLL_BASE.reduce((a,b)=>a+b,0)+(myVote!=null?1:0);
@@ -1513,8 +1473,8 @@ function renderVerse(){
   el.rotSrc.textContent=lang==='ar'?v.as:v.es;
 }
 function renderEventTimes(){
-  const tm=todayFromCd();
-  const m=tm&&tm.maghrib!=null?iqamaMin('maghrib',tm.maghrib):null;
+  const tm=todayT();
+  const m=tm&&tm.maghrib!=null?iqToday('maghrib',tm.maghrib):null;
   el.evThuTime.textContent=t('ev1.d2')+(m!=null?' · '+fmt(m):'');
 }
 function updCount(remMin){
@@ -1531,7 +1491,7 @@ function updCount(remMin){
 }
 function calcNext(){
   const n=nowTZ(),nm=n.min+n.sec/60;
-  const tm=todayFromCd();
+  const tm=todayT();
   let key=null,target=null,prev=0;
   if(tm){
     let last=0;
@@ -1543,7 +1503,6 @@ function calcNext(){
     if(!key){
       const tf=tomorrowFajr();
       key='fajr';
-      // فجر الغد من تقويم Mawaqit؛ وإن تعذر نستخدم فجر اليوم +24h (فرق دقيقة تقريبًا حتى التحديث اليومي)
       target=tf!=null?tf+1440:(tm.fajr!=null?tm.fajr+1440:null);
       prev=last;
     }else prev=last;
@@ -1552,7 +1511,7 @@ function calcNext(){
   if(key&&target!=null){
     el.nextName.textContent=t('p.'+key);
     el.nextTime.textContent=fmt(target);
-    el.nextIq.textContent=fmt(iqamaMin(key,key==='fajr'?(target-1440):target));
+    el.nextIq.textContent=fmt(iqToday(key,key==='fajr'?(target-1440):target));
     el.navNext.textContent=t('p.'+key)+' · '+fmt(target);
     const wd=new Date(n.y,n.mo-1,n.d).getDay();
     el.nextNote.textContent=t(wd===5?'note.fri':'note.day');
@@ -1571,9 +1530,7 @@ function setLang(l,save){
   if(save!==false)store.set('issw_lang',l);
   document.documentElement.lang=l;
   document.documentElement.dir=(l==='ar')?'rtl':'ltr';
-  document.title=(l==='ar')
-    ?'مسجد النور — ISSW | أوقات الصلاة · فانكوفر، واشنطن'
-    :'Masjid Al-Noor — ISSW | Prayer Times · Vancouver, WA';
+  document.title=(l==='ar')?'مسجد النور — ISSW | أوقات الصلاة · فانكوفر، واشنطن':'Masjid Al-Noor — ISSW | Prayer Times · Vancouver, WA';
   $$('[data-i18n]').forEach(e=>{const v=I18N[l][e.dataset.i18n];if(v!==undefined)e.textContent=v;});
   $$('[data-i18n-ph]').forEach(e=>{const v=I18N[l][e.dataset.i18nPh];if(v!==undefined)e.placeholder=v;});
   $$('[data-i18n-title]').forEach(e=>{const v=I18N[l][e.dataset.i18nTitle];if(v!==undefined)e.title=v;});
@@ -1601,31 +1558,29 @@ function copyText(txt){
 el.copyBtn.addEventListener('click',()=>{
   const n=nowTZ();
   let txt=(lang==='ar'?'مسجد النور — أوقات الصلاة':'Masjid Al-Noor — Prayer Times')+'\n'+gregStr(n)+'\n';
-  const tm=todayFromCd();
+  const tm=todayT();
   if(tm){
     PRS.forEach(k=>{
       txt+=t('p.'+k)+': '+fmt(tm[k]);
-      if(k!=='sunrise'){const iq=iqamaMin(k,tm[k]);if(iq!=null)txt+='  ·  '+t('t.iqama')+': '+fmt(iq);}
+      if(k!=='sunrise'){const iq=iqToday(k,tm[k]);if(iq!=null)txt+='  ·  '+t('t.iqama')+': '+fmt(iq);}
       txt+='\n';
     });
-    const j=jumuaArr||JUMUA;
-    txt+=t('times.jumua')+': '+fmt(parseHM(j[0]))+' · '+fmt(parseHM(j[1]))+'\n';
+    const j=jumuaList();
+    txt+=t('times.jumua')+': '+fmt(j[0])+' · '+fmt(j[1])+'\n';
   }
   txt+=(lang==='ar'?'المصدر: ':'Source: ')+'Mawaqit';
   copyText(txt);
 });
 el.copyZelle.addEventListener('click',()=>copyText('give@issw.org'));
 
-/* ═══════════ UI behaviours ═══════════ */
+/* ═══════════ UI ═══════════ */
  $$('[data-open-donate]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();openModal();}));
 function openModal(){el.modal.classList.add('open');el.modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
 function closeModal(){el.modal.classList.remove('open');el.modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}
 el.modal.addEventListener('click',e=>{if(e.target===el.modal||e.target.closest('[data-close]'))closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-
  $$('[data-soon]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();toast(t('toast.soon'));}));
  $$('button[data-lang]').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
-
 el.btnMenu.addEventListener('click',()=>{
   const open=el.mMenu.classList.toggle('open');
   el.btnMenu.setAttribute('aria-expanded',open?'true':'false');
@@ -1636,23 +1591,18 @@ el.btnMenu.addEventListener('click',()=>{
 window.addEventListener('resize',()=>{
   if(innerWidth>1020){el.mMenu.classList.remove('open');el.btnMenu.setAttribute('aria-expanded','false');}
 });
-
 el.monthTabs.forEach((b,i)=>b.addEventListener('click',()=>{if(calMonthIdx!==i){calMonthIdx=i;renderedSig='';renderAll();}}));
 el.modeTabs.forEach(b=>b.addEventListener('click',()=>{const m=b.dataset.mode;if(calMode!==m){calMode=m;renderedSig='';renderAll();}}));
-
 el.pollOpts.forEach((b,i)=>b.addEventListener('click',()=>{
   myVote=i;store.set('issw_poll',String(i));renderPoll();toast(t('toast.voted'));
 }));
-
 el.form.addEventListener('submit',e=>{
   e.preventDefault();
   if(!el.form.checkValidity()){el.form.reportValidity();return;}
   el.form.reset();toast(t('toast.sent'));
 });
-
 el.toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
-/* scroll: progress / nav / spy / to-top */
 const spySecs=['home','times','calendar','events','school','board','community','contact'].map(id=>document.getElementById(id)).filter(Boolean);
 function spy(){
   const y=window.scrollY+130;let cur='home';
@@ -1669,12 +1619,10 @@ function onScroll(){
 }
 window.addEventListener('scroll',onScroll,{passive:true});
 
-/* reveal + counters */
 const rObs=new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting){e.target.classList.add('in');rObs.unobserve(e.target);}
 }),{threshold:.12});
  $$('.reveal').forEach(x=>rObs.observe(x));
-
 const cObs=new IntersectionObserver(es=>es.forEach(e=>{
   if(!e.isIntersecting)return;
   cObs.unobserve(e.target);
@@ -1687,7 +1635,6 @@ const cObs=new IntersectionObserver(es=>es.forEach(e=>{
 }),{threshold:.4});
  $$('.stat b[data-count]').forEach(x=>cObs.observe(x));
 
-/* sky: stars + shooting star */
 for(let i=0;i<70;i++){
   const s=document.createElement('i');
   s.style.left=(Math.random()*100).toFixed(2)+'%';
@@ -1708,57 +1655,43 @@ for(let i=0;i<70;i++){
     shootStar();
   },6000+Math.random()*6000);
 })();
-
-/* verse rotator */
 setInterval(()=>{
   el.rot.style.opacity='0';
   setTimeout(()=>{vi=(vi+1)%VERSES.length;renderVerse();el.rot.style.opacity='1';},500);
 },8000);
-
-/* countdown tick — يعيد الحساب مع بيانات Mawaqit الحية */
 setInterval(()=>{
   const n=nowTZ(),nm=n.min+n.sec/60;
   if(state.target==null){updCount(0);return;}
-  if(state.target-nm<=0){calcNext();}
+  if(state.target-nm<=0)calcNext();
   else updCount(state.target-nm);
 },1000);
 
-/* تحديث يومي عند منتصف الليل بتوقيت المسجد */
+/* ═══════════ دورة التحديث: زيارة / 5 دقائق / عودة للتبويب / منتصف الليل ═══════════ */
+setInterval(()=>refreshLive(true),REFRESH_MS);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshLive(false);});
 (function midnightCheck(){
   let last=localDateStr();
   setInterval(()=>{
     const cur=localDateStr();
-    if(cur!==last){last=cur;refresh();}
-  },60000);
+    if(cur!==last){
+      last=cur;
+      live=null;calStartIdx=null;astro.today=null;
+      srcState=WORKER_URL?'load':'static';
+      initAstro();
+      refreshLive(true);
+    }
+  },30000);
 })();
 
-/* ═══════════ init: Mawaqit مباشرة + تخزين محلي ═══════════ */
-async function refresh(){
-  try{
-    const data=await fetchMawaqit();
-    saveCache(data);
-    applyData(data,'live');
-  }catch(e){
-    if(!cd)applyData(null,'offline');
-  }
-}
-async function init(){
-  el.year.textContent=new Date().getFullYear();
-  el.ringFg.style.strokeDasharray=C;
-  el.ringFg.style.strokeDashoffset=C;
-  setLang(store.get('issw_lang')==='ar'?'ar':'en',false);
-
-  const cached=loadCache();
-  if(cached&&cached.cd){
-    applyData(cached.cd,cached.fresh?'live':'cached');
-  }else{
-    applyData(null,'loading');
-  }
-  if(!cached||Date.now()-cached.ts>300000){
-    refresh();
-  }
-}
-init();
+/* ═══════════ start ═══════════ */
+el.year.textContent=new Date().getFullYear();
+el.ringFg.style.strokeDasharray=C;
+el.ringFg.style.strokeDashoffset=C;
+setLang(store.get('issw_lang')==='ar'?'ar':'en',false);
+const cachedLive=loadLiveCache();
+if(cachedLive){live=cachedLive;detectCalStart();deriveTodayIqama();srcState='cached';}
+initAstro();
+refreshLive(true);
 onScroll();
 })();
 </script>

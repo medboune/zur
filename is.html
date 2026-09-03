@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masjid Al-Noor — ISSW | Prayer Times · Vancouver, WA</title>
+<meta name="description" content="Masjid Al-Noor — Islamic Society of Southwest Washington (ISSW) in Vancouver, WA: live Adhan & Iqamah times from Mawaqit, Al-Noor Academy, Board of Directors, membership and voting.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  corePlugins: { preflight: false, container: false },
+  theme: { extend: {
+    colors: { deep:'#12362b', deep2:'#0d2a21', deep3:'#08211a', gold:'#a9822f', gold2:'#c9a45a', goldL:'#e6c883', paper:'#f5efe2', cream:'#fdfaf3', ink:'#16342a' },
+    fontFamily: { amiri:['Amiri','serif'], taj:['Tajawal','sans-serif'] }
+  } }
+};
+</script>
+
+<style>
+:root{
+  --paper:#f5efe2; --paper2:#ece3cf; --cream:#fdfaf3;
+  --ink:#16342a; --ink2:#54685d;
+  --deep:#12362b; --deep2:#0d2a21; --deep3:#08211a;
+  --gold:#a9822f; --gold2:#c9a45a; --goldL:#e6c883;
+  --goldsoft:rgba(169,130,47,.12);
+  --line:rgba(22,52,42,.13); --goldline:rgba(169,130,47,.32);
+  --f-head:'Amiri',serif; --f-body:'Tajawal',sans-serif;
+  --tex:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84'%3E%3Cg fill='none' stroke='%2316342a' stroke-opacity='.05'%3E%3Crect x='27' y='27' width='30' height='30'/%3E%3Crect x='27' y='27' width='30' height='30' transform='rotate(45 42 42)'/%3E%3C/g%3E%3C/svg%3E");
+  --texGold:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84'%3E%3Cg fill='none' stroke='%23c9a45a' stroke-opacity='.08'%3E%3Crect x='27' y='27' width='30' height='30'/%3E%3Crect x='27' y='27' width='30' height='30' transform='rotate(45 42 42)'/%3E%3C/g%3E%3C/svg%3E");
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-body);color:var(--ink);background:var(--paper) var(--tex);line-height:1.75;overflow-x:hidden}
+img,svg{vertical-align:middle}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* ===== توحيد الأيقونات: مقاسات ثابتة ومحاذاة موحدة ===== */
+.ico{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none;display:inline-block}
+.ico-f{fill:currentColor;stroke:none}
+svg.ico{flex:none}
+.btn .ico{width:17px;height:17px}
+.icon-btn{width:42px;height:42px;flex:none}
+.icon-btn .ico{width:18px;height:18px}
+.pr-ico{width:44px;height:44px;flex:none}
+.pr-ico .ico{width:20px;height:20px}
+.feat .pr-ico{width:44px;height:44px}
+.feat .pr-ico .ico{width:20px;height:20px}
+.benefit .ico{width:20px;height:20px;margin-top:3px}
+.chip .ico{width:16px;height:16px}
+.t-meta .ico{width:15px;height:15px}
+.soc .ico{width:20px;height:20px}
+.sc-head .ico{width:20px;height:20px}
+.c-item>.ico{width:20px;height:20px;margin-top:3px}
+.poll-head>.ico{width:22px;height:22px}
+.quote-arch>.ico{width:30px;height:30px}
+.rights .ico{width:20px;height:20px;margin-top:3px}
+.t-ico .ico{width:20px;height:20px}
+.wa-big .ico{width:30px;height:30px}
+.m-btn .ico{width:19px;height:19px}
+.modal-x .ico{width:15px;height:15px}
+.to-top .ico{width:18px;height:18px}
+
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 28px;border-radius:999px;font-weight:700;font-size:15px;transition:.25s;border:1px solid transparent}
+.btn-gold{background:var(--gold2);color:#2a1f08}
+.btn-gold:hover{background:var(--gold);color:#fff;transform:translateY(-2px);box-shadow:0 10px 22px -10px rgba(169,130,47,.55)}
+.btn-ghost{border-color:rgba(230,200,131,.5);color:var(--goldL)}
+.btn-ghost:hover{background:rgba(230,200,131,.12)}
+.btn-wa{background:#25d366;color:#06301c;font-weight:800}
+.btn-wa:hover{background:#1fb857;color:#fff;transform:translateY(-2px);box-shadow:0 10px 22px -10px rgba(37,211,102,.6)}
+.btn-sm{padding:9px 20px;font-size:13.5px}
+.icon-btn{border-radius:50%;border:1px solid var(--goldline);display:inline-flex;align-items:center;justify-content:center;color:var(--gold);transition:.25s}
+.icon-btn:hover{background:var(--gold);color:#fff}
+
+.section{padding:96px 0}
+.sec-head{text-align:center;max-width:660px;margin:0 auto 56px}
+.kicker{display:inline-flex;align-items:center;gap:12px;color:var(--gold);font-weight:700;font-size:13.5px}
+.kicker::before{content:'';width:28px;height:1px;background:var(--goldline)}
+.kicker::after{content:'';width:28px;height:1px;background:var(--goldline)}
+.sec-head h2{font-family:var(--f-head);font-size:clamp(1.9rem,3.4vw,2.6rem);color:var(--ink);margin-top:10px}
+.orn{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px}
+.orn i{width:56px;height:1px;background:var(--goldline)}
+.orn b{width:9px;height:9px;border:1px solid var(--gold);transform:rotate(45deg)}
+.sec-sub{color:var(--ink2);font-size:15px;margin-top:14px}
+.alt{background:var(--paper2)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease var(--d,0s),transform .8s ease var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+.tiltable{transition:box-shadow .35s,border-color .35s;will-change:transform}
+#progress{position:fixed;top:0;inset-inline-start:0;height:2.5px;width:0;background:var(--gold2);z-index:90}
+
+/* ===== التنقل ===== */
+nav{position:fixed;inset-inline:0;top:0;z-index:60;transition:.35s;color:#f3ead2}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:76px;display:flex;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;margin-inline-end:auto}
+.brand .ico{width:34px;height:34px;stroke-width:1.3;color:var(--goldL);transition:.35s}
+.brand b{font-family:var(--f-head);font-size:21px;line-height:1.15;display:block}
+.brand small{font-size:10px;letter-spacing:.22em;color:rgba(230,200,131,.85);display:block;transition:.35s}
+.nav-links{display:flex;gap:22px;font-size:13.5px;font-weight:600}
+.nav-links a{position:relative;padding:6px 0;opacity:.85;transition:.25s}
+.nav-links a:hover{opacity:1;color:var(--goldL)}
+.nav-links a.on{opacity:1;color:var(--goldL)}
+.nav-links a.on::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:18px;height:2px;background:var(--goldL)}
+.nav-next{font-size:12.5px;color:rgba(230,200,131,.9);border:1px solid rgba(230,200,131,.3);padding:7px 14px;border-radius:999px;white-space:nowrap;font-variant-numeric:tabular-nums}
+nav.scrolled{background:rgba(245,239,226,.94);backdrop-filter:blur(10px);color:var(--ink);box-shadow:0 1px 0 var(--line)}
+nav.scrolled .brand .ico{color:var(--gold)}
+nav.scrolled .brand small{color:var(--ink2)}
+nav.scrolled .nav-links a:hover,nav.scrolled .nav-links a.on{color:var(--gold)}
+nav.scrolled .nav-links a.on::after{background:var(--gold)}
+nav.scrolled .nav-next{color:var(--gold);border-color:var(--goldline)}
+.lang-sw{display:inline-flex;border:1px solid rgba(230,200,131,.4);border-radius:999px;padding:3px;gap:2px}
+.lang-sw button{padding:5px 13px;border-radius:999px;font-size:12px;font-weight:800;opacity:.65;transition:.25s}
+.lang-sw button.on{background:var(--gold2);color:#2a1f08;opacity:1}
+.m-btn{display:none;width:38px;height:38px;border-radius:10px;align-items:center;justify-content:center;flex:none}
+.m-menu{position:fixed;inset-inline:0;top:76px;background:var(--deep2);color:var(--goldL);max-height:0;overflow:hidden;transition:max-height .4s ease;border-bottom:1px solid rgba(230,200,131,.25)}
+.m-menu.open{max-height:560px}
+.m-menu a{display:block;padding:14px 30px;font-weight:600;border-top:1px solid rgba(230,200,131,.1)}
+.m-menu a:hover{background:rgba(230,200,131,.08)}
+.m-menu .m-lang{display:flex;gap:10px;padding:14px 30px;border-top:1px solid rgba(230,200,131,.1);align-items:center}
+.m-lang span{font-size:12px;opacity:.7}
+
+/* ===== الهيرو ===== */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:150px 0 280px;color:#f3ead2;
+  background:linear-gradient(180deg,#0b2820 0%,#0e332a 52%,#123b30 100%);overflow:hidden}
+.sky{position:absolute;inset:0;z-index:0}
+.sky i{position:absolute;width:2px;height:2px;border-radius:50%;background:#e8d9a8;animation:tw var(--d,3s) ease-in-out infinite alternate}
+@keyframes tw{from{opacity:.15;transform:scale(.8)}to{opacity:.95;transform:scale(1.15)}}
+.moon{position:absolute;top:11%;left:7%;width:74px;opacity:.9}
+.spark{position:absolute;top:16%;left:14%;width:22px;color:var(--goldL);opacity:.8;animation:tw 4s ease-in-out infinite alternate}
+.shoot{position:absolute;width:150px;height:1.5px;background:linear-gradient(-90deg,rgba(244,232,196,.95),transparent);transform:rotate(22deg);opacity:0;pointer-events:none}
+.shoot.go{animation:shoot 1.15s ease-out}
+@keyframes shoot{0%{opacity:0;transform:rotate(22deg) translateX(0)}12%{opacity:.9}100%{opacity:0;transform:rotate(22deg) translateX(-420px)}}
+.mosque{position:absolute;bottom:-2px;left:0;width:100%;height:clamp(170px,24vw,300px);z-index:1;pointer-events:none}
+.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1.25fr .85fr;gap:56px;align-items:center;width:100%}
+.basmala{font-family:var(--f-head);font-size:18px;color:var(--goldL);display:inline-flex;align-items:center;gap:16px}
+.basmala::before,.basmala::after{content:'';width:44px;height:1px;background:rgba(230,200,131,.4)}
+.hero h1{font-family:var(--f-head);font-weight:700;font-size:clamp(2.2rem,4.4vw,3.4rem);line-height:1.35;margin:18px 0 8px}
+.hero h1 span{display:block;color:var(--goldL);font-size:.62em;margin-top:8px}
+.hero-en{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:rgba(230,200,131,.75)}
+.hero-dates{display:inline-flex;align-items:center;gap:14px;margin:26px 0 20px;border:1px solid rgba(230,200,131,.35);border-radius:999px;padding:9px 22px;font-size:14px;color:var(--goldL)}
+.hero-dates b{width:6px;height:6px;background:var(--goldL);transform:rotate(45deg)}
+.rot{max-width:480px;min-height:88px;transition:opacity .5s}
+.rot p{font-family:var(--f-head);font-style:italic;font-size:19.5px;line-height:1.9;color:rgba(243,234,210,.92)}
+.rot span{font-size:12.5px;color:rgba(230,200,131,.75)}
+.hero-cta{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap}
+
+.hero-card{justify-self:center;width:min(340px,100%);text-align:center;padding:34px 26px 26px;position:relative;
+  background:rgba(9,31,24,.55);backdrop-filter:blur(8px);border:1px solid rgba(230,200,131,.3);
+  border-radius:160px 160px 20px 20px;outline:1px solid rgba(230,200,131,.14);outline-offset:-9px}
+.hc-top{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:rgba(230,200,131,.85);letter-spacing:.06em}
+.hc-live{display:inline-flex;align-items:center;gap:7px}
+.hc-live i{width:7px;height:7px;border-radius:50%;background:var(--goldL);animation:pulseDot 2s infinite}
+@keyframes pulseDot{0%{box-shadow:0 0 0 0 rgba(230,200,131,.45)}70%{box-shadow:0 0 0 9px rgba(230,200,131,0)}100%{box-shadow:0 0 0 0 rgba(230,200,131,0)}}
+.hc-name h2{font-family:var(--f-head);font-size:42px;color:#f8f1dd;line-height:1.2;margin-top:12px}
+.hc-name>span{font-size:17px;color:var(--goldL);font-weight:700;font-variant-numeric:tabular-nums}
+.hc-iq{display:inline-flex;align-items:center;gap:9px;margin-top:10px;font-size:12.5px;color:rgba(243,234,210,.85);border:1px dashed rgba(230,200,131,.4);border-radius:999px;padding:5px 15px}
+.hc-iq b{color:var(--goldL);font-variant-numeric:tabular-nums;font-size:13.5px}
+.hc-ring{position:relative;width:218px;height:218px;margin:14px auto 8px}
+.hc-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:rgba(230,200,131,.16);stroke-width:4}
+.ring-fg{fill:none;stroke:var(--gold2);stroke-width:4;stroke-linecap:round}
+.hc-count{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:5px}
+.hc-count>div{display:flex;flex-direction:column;align-items:center;gap:3px}
+.hc-count b{font-family:var(--f-body);font-weight:800;font-size:29px;line-height:1;color:var(--goldL);font-variant-numeric:tabular-nums;letter-spacing:.5px}
+.hc-count span{font-size:10px;color:rgba(230,200,131,.6)}
+.hc-count i{font-family:var(--f-head);font-size:22px;color:rgba(230,200,131,.45);transform:translateY(-7px)}
+.hc-note{font-size:12.5px;color:rgba(243,234,210,.75);border-top:1px dashed rgba(230,200,131,.25);padding-top:13px;margin-top:10px;min-height:46px}
+.flash{animation:flash .7s ease}
+@keyframes flash{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:none}}
+
+/* ===== شريط الأرقام ===== */
+.stats-band{background:var(--deep) var(--texGold);color:#f4ecd6;padding:48px 0;border-block:1px solid rgba(230,200,131,.22)}
+.stat{text-align:center}
+.stat b{font-family:var(--f-head);font-size:clamp(2rem,4vw,2.9rem);color:var(--goldL);line-height:1.15;display:block;font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:rgba(244,236,214,.75);display:block;margin-top:4px}
+.stat i{display:block;width:34px;height:1px;background:rgba(230,200,131,.4);margin:12px auto 0}
+
+/* ===== الأوقات ===== */
+.times-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:34px;align-items:start}
+.mihrab{position:relative;background:var(--cream);border:1px solid var(--goldline);border-radius:280px 280px 22px 22px;padding:52px 30px 28px}
+.mihrab::before{content:'';position:absolute;inset:12px;border:1px dashed rgba(169,130,47,.28);border-radius:270px 270px 14px 14px;pointer-events:none}
+.pp-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px;padding:0 8px;flex-wrap:wrap}
+.pp-date{font-size:12.5px;color:var(--gold);font-weight:700;display:block;line-height:1.8;font-variant-numeric:tabular-nums}
+.pp-head h3{font-family:var(--f-head);font-size:28px;line-height:1.2}
+.src-pill{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;border-radius:999px;padding:5px 13px;border:1px solid var(--goldline);color:var(--gold);white-space:nowrap}
+.src-pill i{width:7px;height:7px;border-radius:50%;background:var(--gold);flex:none}
+.src-pill.ok i{background:#2e9e5b;box-shadow:0 0 0 3px rgba(46,158,91,.18)}
+.src-pill.load i{background:#9aa79f;animation:pulseDot 1.4s infinite}
+.pr-cols-head{display:flex;gap:14px;align-items:center;padding:0 14px 8px;border-bottom:1px dashed var(--goldline);margin-bottom:4px}
+.pr-cols-head .sp-ico{width:44px;flex:none}
+.pr-cols-head .pr-name{flex:1}
+.pr-cols-head .pr-times span{font-size:11.5px;font-weight:800;color:var(--gold);letter-spacing:.03em}
+.prayer-row{display:flex;align-items:center;gap:14px;padding:11px 14px;border-radius:14px;border:1px solid transparent;transition:.25s}
+.prayer-row+.prayer-row{margin-top:3px}
+.prayer-row:hover{background:rgba(18,54,43,.045)}
+.prayer-row.next{background:var(--goldsoft);border-color:rgba(169,130,47,.35)}
+.pr-ico{border:1px solid var(--goldline);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold)}
+.prayer-row.next .pr-ico{background:var(--gold);border-color:var(--gold);color:#fff}
+.pr-name{flex:1;min-width:0}
+.pr-name b{font-family:var(--f-head);font-size:22px;display:block;line-height:1.25}
+.pr-name i{font-style:normal;font-size:10px;letter-spacing:.18em;color:var(--ink2);text-transform:uppercase}
+.pr-times{width:172px;flex:none;display:grid;grid-template-columns:1fr 1fr;gap:6px;text-align:center;align-items:center}
+.pr-time,.pr-iq{font-family:var(--f-head);font-weight:700;font-size:20px;line-height:1.35;direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.pr-iq{color:var(--gold)}
+.prayer-row.info .pr-time,.prayer-row.info .pr-iq{font-size:16px;color:var(--ink2)}
+.prayer-row.info .pr-iq{color:var(--ink2);opacity:.75}
+.prayer-row.info{opacity:.9}
+.pp-foot{margin-top:18px;padding:13px 8px 0;border-top:1px dashed var(--goldline);font-size:12.5px;color:var(--ink2)}
+.times-side{display:flex;flex-direction:column;gap:18px}
+.side-card{background:var(--cream);border:1px solid var(--goldline);border-radius:18px;padding:24px}
+.sc-head{display:flex;align-items:center;gap:11px;font-weight:800;font-size:16px;margin-bottom:10px}
+.mini{font-size:12.5px;color:var(--gold);font-weight:700;border-bottom:1px dashed var(--goldline)}
+.sun-arc{width:100%;height:auto;margin:4px 0 8px}
+.sc-row{display:flex;justify-content:space-between;gap:10px;text-align:center}
+.sc-row span{display:block;font-size:11.5px;color:var(--ink2)}
+.sc-row b{font-family:var(--f-head);font-size:19px;font-variant-numeric:tabular-nums}
+.fj-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px dashed var(--goldline);font-size:14.5px}
+.fj-row:last-child{border-bottom:none}
+.fj-row b{font-family:var(--f-head);font-size:19px;direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.side-note{background:var(--goldsoft);border-inline-start:3px solid var(--gold);border-radius:14px;padding:18px 20px;font-size:13px;color:var(--ink);line-height:1.9}
+
+/* ===== التقويم ===== */
+.tabs{display:inline-flex;background:var(--cream);border:1px solid var(--goldline);border-radius:999px;padding:4px}
+.tabs-wrap{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+.tab{padding:9px 22px;border-radius:999px;font-weight:700;font-size:14px;color:var(--ink2);transition:.25s}
+.tab.on{background:var(--deep);color:var(--goldL)}
+.table-wrap{max-height:540px;overflow:auto;border:1px solid var(--goldline);border-radius:18px;background:var(--cream)}
+table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:680px}
+thead th{position:sticky;top:0;background:var(--deep);color:var(--goldL);font-size:12.5px;padding:14px 10px;font-weight:700;z-index:2}
+thead th:first-child{border-start-start-radius:16px}
+thead th:last-child{border-start-end-radius:16px}
+tbody td{padding:11px 10px;text-align:center;border-bottom:1px solid var(--line);white-space:nowrap;direction:ltr;font-variant-numeric:tabular-nums}
+tbody td.td-date{direction:inherit}
+tbody tr:hover{background:rgba(18,54,43,.04)}
+tbody tr.today{background:var(--goldsoft)}
+html[dir=rtl] tbody tr.today td:first-child{box-shadow:inset -3px 0 0 var(--gold)}
+html[dir=ltr] tbody tr.today td:first-child{box-shadow:inset 3px 0 0 var(--gold)}
+.td-date{text-align:start!important}
+.td-date b{font-family:var(--f-head);font-size:16.5px;display:block;line-height:1.3;direction:inherit}
+.td-date i{font-style:normal;font-size:11px;color:var(--gold);direction:rtl;display:inline-block}
+html[dir=ltr] .td-date i{direction:ltr}
+.table-note{text-align:center;font-size:12.5px;color:var(--ink2);margin-top:16px}
+
+/* ===== الفعاليات ===== */
+.timeline{position:relative;max-width:880px;margin:0 auto;padding-inline-start:30px}
+.timeline::before{content:'';position:absolute;inset-inline-start:8px;top:10px;bottom:10px;width:1px;background:var(--goldline)}
+.t-item{position:relative;display:grid;grid-template-columns:60px 130px 1fr auto;gap:22px;align-items:center;padding:24px 0;border-bottom:1px dashed var(--line)}
+.t-item:last-child{border-bottom:none}
+.t-item::before{content:'';position:absolute;inset-inline-start:-27px;top:50%;width:9px;height:9px;background:var(--paper);border:1.5px solid var(--gold);transform:translateY(-50%) rotate(45deg)}
+.t-ico{width:46px;height:46px;transform:rotate(45deg);border:1px solid var(--goldline);border-radius:9px;display:flex;align-items:center;justify-content:center;background:var(--cream);transition:.3s}
+.t-item:hover .t-ico{background:var(--gold);border-color:var(--gold)}
+.t-ico .ico{transform:rotate(-45deg);color:var(--gold);transition:.3s}
+.t-item:hover .t-ico .ico{color:#fff}
+.t-date b{font-family:var(--f-head);font-size:19px;display:block;line-height:1.3}
+.t-date span{font-size:12.5px;color:var(--gold);font-weight:700;font-variant-numeric:tabular-nums}
+.t-body h3{font-family:var(--f-head);font-size:21px}
+.t-body p{font-size:14px;color:var(--ink2);margin:4px 0 8px;max-width:520px}
+.t-meta{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--gold);font-weight:700}
+.t-tag{font-size:11.5px;font-weight:700;color:var(--ink2);border:1px solid var(--line);padding:5px 13px;border-radius:999px;white-space:nowrap}
+
+/* ===== المدرسة ===== */
+.school-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:40px;align-items:stretch}
+.school-feats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0}
+.feat{display:flex;gap:14px;align-items:center;background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:18px 16px;transition:.3s}
+.feat:hover{border-color:var(--goldline);transform:translateY(-3px);box-shadow:0 14px 26px -18px rgba(18,54,43,.35)}
+.feat .pr-ico{flex-shrink:0}
+.feat b{display:block;font-size:15px;line-height:1.35}
+.feat span{font-size:12.5px;color:var(--ink2);line-height:1.6;display:block;margin-top:2px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--goldsoft);border:1px dashed var(--goldline);color:var(--gold);font-weight:700;font-size:13px;padding:8px 15px;border-radius:999px}
+.quote-arch{background:var(--deep) var(--texGold);color:var(--goldL);border-radius:200px 200px 18px 18px;padding:64px 34px 40px;text-align:center;border:1px solid rgba(230,200,131,.3);display:flex;flex-direction:column;justify-content:center}
+.quote-arch p{font-family:var(--f-head);font-size:22px;line-height:2;color:#f4ecd6}
+.quote-arch span{font-size:12.5px;color:rgba(230,200,131,.8)}
+.quote-arch .ico{margin:0 auto 16px}
+.quote-arch .btn{margin:22px auto 0}
+
+/* ===== المجلس ===== */
+.board-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:22px}
+.board-card{position:relative;text-align:center;background:var(--cream);border:1px solid var(--line);border-radius:110px 110px 18px 18px;padding:34px 16px 22px;overflow:hidden;transition:.35s}
+.board-card:hover{border-color:var(--goldline);box-shadow:0 18px 34px -22px rgba(18,54,43,.4)}
+.board-card .wm{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:120px;height:120px;color:var(--gold);opacity:.06;pointer-events:none}
+.b-ava{width:82px;height:82px;margin:0 auto 14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--f-head);font-size:25px;font-weight:700;color:var(--gold);border:1px solid var(--goldline);background:var(--goldsoft);position:relative}
+.board-card h3{font-family:var(--f-head);font-size:19px;line-height:1.4}
+.board-card .role{display:inline-block;font-size:12px;font-weight:800;color:var(--gold);background:var(--goldsoft);border-radius:999px;padding:4px 14px;margin:8px 0 12px}
+.board-card .mail{font-size:11.5px;color:var(--ink2)}
+
+/* ===== المجتمع ===== */
+.comm-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+.panel{background:var(--cream);border:1px solid var(--goldline);border-radius:20px;padding:30px}
+.panel h3{font-family:var(--f-head);font-size:23px;margin-bottom:6px}
+.panel>p.d{font-size:13.5px;color:var(--ink2);margin-bottom:18px}
+.benefit{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+.benefit:last-of-type{border-bottom:none}
+.rights{margin-top:16px;display:flex;gap:12px;align-items:flex-start;background:var(--goldsoft);border:1px dashed var(--goldline);border-radius:14px;padding:14px 16px;font-size:13px}
+.wa-card{background:var(--deep2) var(--texGold);color:#eef4ee;border-radius:20px;padding:30px;border:1px solid rgba(37,211,102,.35);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.wa-big{width:62px;height:62px;flex:none;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:16px;box-shadow:0 0 0 8px rgba(37,211,102,.12)}
+.wa-card h3{font-family:var(--f-head);font-size:23px;color:#fff}
+.wa-card p{font-size:13.5px;color:rgba(238,244,238,.75);max-width:340px;margin:8px auto 20px}
+.soc-row{display:flex;gap:12px;justify-content:center;margin-top:22px}
+.soc{width:44px;height:44px;flex:none;border-radius:50%;border:1px solid rgba(238,244,238,.25);display:inline-flex;align-items:center;justify-content:center;color:rgba(238,244,238,.85);transition:.25s}
+.soc:hover{background:var(--gold2);border-color:var(--gold2);color:#2a1f08;transform:translateY(-3px)}
+.poll-card{margin-top:34px;background:var(--cream);border:1px solid var(--goldline);border-radius:20px;padding:30px}
+.poll-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.poll-head h3{font-family:var(--f-head);font-size:22px;flex:1}
+.poll-opts{display:grid;gap:12px;margin-top:18px}
+.poll-opt{position:relative;border:1px solid var(--line);border-radius:14px;padding:13px 18px;cursor:pointer;overflow:hidden;transition:border-color .3s;text-align:start;font-weight:600;font-size:15px;width:100%;display:block}
+.poll-opt:hover{border-color:var(--gold)}
+.poll-opt .fill{position:absolute;inset-block:0;inset-inline-start:0;width:0;background:var(--goldsoft);border-inline-end:2px solid var(--gold2);transition:width 1.1s cubic-bezier(.2,.7,.3,1)}
+.poll-opt .row{position:relative;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.poll-opt .pct{font-family:var(--f-head);font-weight:700;color:var(--gold);direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.poll-opt.chosen{border-color:var(--gold)}
+.poll-opt.chosen .row b::after{content:' ✓';color:var(--gold)}
+.poll-foot{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;color:var(--ink2);margin-top:16px;flex-wrap:wrap}
+.poll-foot b{color:var(--gold)}
+
+/* ===== التبرع ===== */
+.donate{background:var(--deep) var(--texGold);color:#f4ecd6;padding:100px 0;border-block:1px solid rgba(230,200,131,.25);text-align:center}
+.donate .d-verse{font-family:var(--f-head);font-size:clamp(21px,3vw,30px);line-height:1.9;color:var(--goldL);max-width:820px;margin:0 auto}
+.donate .d-src{display:block;font-size:13px;color:rgba(230,200,131,.7);margin:12px 0 30px}
+.donate h2{font-family:var(--f-head);font-size:clamp(1.8rem,3vw,2.4rem)}
+.donate p.d-desc{max-width:600px;margin:14px auto 34px;color:rgba(244,236,214,.8);font-size:15px}
+.d-orn{width:9px;height:9px;border:1px solid var(--goldL);transform:rotate(45deg);margin:0 auto 26px}
+.d-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.d-foot{margin-top:26px;font-size:12.5px;color:rgba(230,200,131,.65)}
+
+/* ===== تواصل ===== */
+.contact-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:44px;align-items:start}
+.form-card{background:var(--cream);border:1px solid var(--goldline);border-radius:20px;padding:34px}
+.form-card h3{font-family:var(--f-head);font-size:24px;margin-bottom:6px}
+.form-card>p{font-size:13.5px;color:var(--ink2);margin-bottom:22px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.field label{font-size:13px;font-weight:700}
+.field input,.field textarea{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:13px 16px;font:inherit;font-size:14.5px;color:var(--ink);transition:.2s;resize:vertical}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--goldsoft)}
+.c-item{display:flex;gap:16px;align-items:flex-start;padding:16px 4px;border-bottom:1px dashed var(--line)}
+.c-item:last-of-type{border-bottom:none}
+.c-item b{display:block;font-size:15px}
+.c-item span{font-size:13.5px;color:var(--ink2)}
+.map-arch{max-width:920px;margin:60px auto 0;border:1px solid var(--goldline);border-radius:300px 300px 18px 18px;padding:10px;background:var(--cream)}
+.map-arch iframe{width:100%;height:410px;border:0;display:block;border-radius:290px 290px 10px 10px;filter:saturate(.8)}
+
+/* ===== الفوتر ===== */
+footer{background:var(--deep2) var(--texGold);color:rgba(244,236,214,.85);padding:70px 0 34px;text-align:center}
+footer .f-brand .ico{width:40px;height:40px;stroke-width:1.2;color:var(--goldL)}
+footer h4{font-family:var(--f-head);font-size:25px;color:#f4ecd6}
+footer .f-en{font-size:10.5px;letter-spacing:.28em;color:rgba(230,200,131,.7);text-transform:uppercase}
+.f-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin:26px 0 10px;font-size:13.5px;font-weight:600}
+.f-links a:hover{color:var(--goldL)}
+.f-dhikr{font-family:var(--f-head);color:var(--goldL);font-size:17px;margin:14px 0 22px}
+.f-bar{border-top:1px solid rgba(230,200,131,.18);padding-top:22px;font-size:12px;color:rgba(244,236,214,.55)}
+
+/* ===== عناصر ثابتة ===== */
+.to-top{position:fixed;bottom:22px;inset-inline-end:22px;z-index:70;width:46px;height:46px;border-radius:50%;background:var(--deep2);color:var(--goldL);border:1px solid rgba(230,200,131,.35);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.3s}
+.to-top.show{opacity:1;pointer-events:auto}
+.to-top:hover{background:var(--gold2);color:#2a1f08}
+.toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,18px);z-index:100;background:var(--deep2);color:var(--goldL);border:1px solid rgba(230,200,131,.35);border-radius:999px;padding:12px 22px;display:flex;align-items:center;gap:11px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:.35s;box-shadow:0 14px 34px -12px rgba(8,25,19,.6)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast .ico{width:18px;height:18px;color:var(--gold2)}
+.modal{position:fixed;inset:0;z-index:95;display:grid;place-items:center;background:rgba(7,26,20,.6);backdrop-filter:blur(5px);opacity:0;pointer-events:none;transition:.3s;padding:20px}
+.modal.open{opacity:1;pointer-events:auto}
+.modal-card{position:relative;background:var(--cream);border:1px solid var(--goldline);border-radius:26px 26px 18px 18px;max-width:520px;width:100%;max-height:88vh;overflow:auto;padding:40px 34px 30px;transform:translateY(18px);transition:.35s}
+.modal.open .modal-card{transform:none}
+.modal-x{position:absolute;top:16px;inset-inline-start:16px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink2);transition:.25s}
+.modal-x:hover{background:var(--goldsoft);color:var(--ink)}
+.m-kicker{color:var(--gold);font-weight:700;font-size:13px}
+.modal-card h3{font-family:var(--f-head);font-size:25px;margin:4px 0 20px}
+.d-way{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:14px;padding:15px 18px;margin-bottom:12px}
+.d-way>div{flex:1}
+.d-way b{display:block;font-size:15px}
+.d-way span{font-size:12.5px;color:var(--ink2)}
+.d-way code{font-family:var(--f-body);font-weight:700;color:var(--gold);font-size:14px;direction:ltr;unicode-bidi:embed}
+.d-note{font-size:12.5px;color:var(--ink2);margin-top:18px;line-height:1.9;border-top:1px dashed var(--goldline);padding-top:14px}
+
+@media (max-width:1020px){
+  .nav-links,.nav-next{display:none}
+  .m-btn{display:inline-flex}
+  .btn-donate-nav{display:none}
+  .nav-inner{height:68px;gap:10px}
+  .lang-sw{padding:2px;flex:none}
+  .lang-sw button{padding:6px 12px;font-size:11.5px}
+  .hero-content{grid-template-columns:1fr;gap:44px;justify-items:center;text-align:center}
+  .hero-text{display:flex;flex-direction:column;align-items:center}
+  .rot{margin-inline:auto}
+  .times-grid,.school-grid,.comm-grid,.contact-grid{grid-template-columns:1fr}
+}
+@media (max-width:680px){
+  .section{padding:70px 0}
+  .hero{padding:130px 0 210px}
+  .nav-inner{height:62px;padding:0 16px}
+  .brand .ico{width:28px;height:28px}
+  .brand b{font-size:17px}
+  .brand small{font-size:9px}
+  .lang-sw button{padding:5px 10px;font-size:10.5px}
+  .m-btn{width:34px;height:34px}
+  .m-btn .ico{width:17px;height:17px}
+  .m-menu{top:62px}
+  .mihrab{border-radius:120px 120px 18px 18px;padding:56px 16px 22px}
+  .mihrab::before{border-radius:114px 114px 10px 10px}
+  .pp-head{gap:10px}
+  .pp-head>div{min-width:0}
+  .pp-date{font-size:11px}
+  .pp-head h3{font-size:21px}
+  .src-pill{font-size:10px;padding:4px 10px;gap:6px;white-space:normal}
+  .pr-cols-head{padding:0 6px 8px}
+  .pr-cols-head .pr-times span{font-size:10px}
+  .pr-name b{overflow-wrap:anywhere}
+  .modal-x{width:32px;height:32px;top:12px}
+  .modal-x .ico{width:14px;height:14px}
+  .modal-card{padding:34px 22px 24px}
+  .feat{padding:14px;gap:12px}
+  .hc-name h2{font-size:36px}
+  .pr-name b{font-size:18px}
+  .pr-times{width:118px;gap:4px}
+  .pr-time,.pr-iq{font-size:14.5px}
+  .prayer-row.info .pr-time,.prayer-row.info .pr-iq{font-size:13px}
+  .pr-cols-head .sp-ico{width:34px}
+  .pr-ico{width:34px;height:34px}
+  .pr-ico .ico{width:16px;height:16px}
+  .prayer-row{gap:10px;padding:10px 10px}
+  .t-item{grid-template-columns:52px 1fr;grid-template-rows:auto auto}
+  .t-date{grid-column:2}
+  .t-body{grid-column:1/-1}
+  .t-tag{grid-column:2;justify-self:start}
+  .f-row{grid-template-columns:1fr}
+  .school-feats{grid-template-columns:1fr}
+  .map-arch{border-radius:130px 130px 14px 14px}
+  .map-arch iframe{height:320px;border-radius:124px 124px 8px 8px}
+  .moon{width:52px;top:8%}
+}
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="i-star8" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="1.5"/><rect x="5" y="5" width="14" height="14" rx="1.5" transform="rotate(45 12 12)"/><circle cx="12" cy="12" r="1.8"/></symbol>
+  <symbol id="i-fajr" viewBox="0 0 24 24"><path d="M3 18h18M7.5 18a4.5 4.5 0 0 1 9 0M12 9.5V6.2M5.8 12l-2.2-2.2M18.2 12l2.2-2.2M4.5 21.5h15"/></symbol>
+  <symbol id="i-sunrise" viewBox="0 0 24 24"><path d="M3 18h18M7.5 18a4.5 4.5 0 0 1 9 0M12 8.5v-5M9.3 5.8 12 3.2l2.7 2.6M4.5 21.5h15"/></symbol>
+  <symbol id="i-dhuhr" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.8M12 18.7v2.8M2.5 12h2.8M18.7 12h2.8M5.3 5.3l2 2M16.7 16.7l2 2M18.7 5.3l-2 2M7.3 16.7l-2 2"/></symbol>
+  <symbol id="i-asr" viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.6"/><path d="M3 14.5h18M7 19.5h10"/></symbol>
+  <symbol id="i-maghrib" viewBox="0 0 24 24"><path d="M3 18h18M7.5 18a4.5 4.5 0 0 1 9 0M12 3.5v4.6M9.3 5.6 12 8.3l2.7-2.7M4.5 21.5h15"/></symbol>
+  <symbol id="i-isha" viewBox="0 0 24 24"><path d="M12 3a6.4 6.4 0 0 0 9 9 9 9 0 1 1-9-9z"/></symbol>
+  <symbol id="i-mosque" viewBox="0 0 24 24"><path d="M12 3.2c1.9 1.8 2.9 3.3 2.9 4.8H9.1c0-1.5 1-3 2.9-4.8z"/><path d="M8.5 21v-9.5h7V21M5.5 21V9.5h13V21M3 21h18M10.5 21v-3.2a1.5 1.5 0 0 1 3 0V21"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.2C10 4.5 7.2 4.2 4 4.2v13.6c3.2 0 6 .3 8 2 2-1.7 4.8-2 8-2V4.2c-3.2 0-6 .3-8 2zM12 6.2v13.6"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c.5-3.4 2.8-5.2 5.5-5.2s5 1.8 5.5 5.2"/><circle cx="17" cy="9" r="2.4"/><path d="M16.5 14.8c2.3.3 3.8 1.9 4.1 4.4"/></symbol>
+  <symbol id="i-child" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.2"/><path d="M12 7.5V13M7 9.8l5-1.6 5 1.6M12 13l-3.2 7.2M12 13l3.2 7.2"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2.5 9.5 12 5l9.5 4.5L12 14z"/><path d="M6.5 11.8v4.2c0 1.3 2.5 2.7 5.5 2.7s5.5-1.4 5.5-2.7v-4.2M21.2 10v5.2"/></symbol>
+  <symbol id="i-vote" viewBox="0 0 24 24"><path d="M6 3h12v11H6z"/><path d="m9 8 2 2 4-4.5M8 21h8M12 17.5V21"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.5-6.5-10a6.5 6.5 0 0 1 13 0c0 4.5-6.5 10-6.5 10z"/><circle cx="12" cy="11" r="2.3"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l1.5 4.5L8.2 10a12.5 12.5 0 0 0 5.8 5.8l1.5-2.3L20 15v4a1.6 1.6 0 0 1-1.7 1.6A16.6 16.6 0 0 1 3.4 5.7 1.6 1.6 0 0 1 5 4z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m4.5 7.5 7.5 5.7 7.5-5.7"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m4.5 12.5 5 5 10-11"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-give" viewBox="0 0 24 24"><path d="M20.8 8.6a4.7 4.7 0 0 0-8.8-2.4 4.7 4.7 0 0 0-8.8 2.4c0 5 8.8 10.5 8.8 10.5s8.8-5.5 8.8-10.5z"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3.5 13.9 10l6.6 2-6.6 2L12 20.5 10.1 14l-6.6-2 6.6-2z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2a9.9 9.9 0 0 0-8.5 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.2 14.8l-.4-.2-3 .8.8-2.9-.2-.4A8 8 0 0 1 12 4z"/><path d="M9.4 7.7c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.8c.1.2 1.9 3 4.6 4.1 2.3.9 2.7.7 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3l-1.7-.8c-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.6-.2-1.5-.6-2.3-1.4-.7-.6-1.1-1.3-1.2-1.5-.1-.3 0-.4.1-.5l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5L9.4 7.7z"/></symbol>
+  <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8.5V7a1.5 1.5 0 0 1 1.5-1.5H17V2.8h-2.6A4.4 4.4 0 0 0 10 7.2v1.3H7.5V12H10v9h4v-9h2.6l.4-3.5H14z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></symbol>
+</svg>
+
+<div id="progress"></div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#home" class="brand">
+      <svg class="ico"><use href="#i-star8"/></svg>
+      <span><b id="brandName">مسجد النور</b><small id="brandSub">ISSW · VANCOUVER WA</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="#home" class="on" data-i18n="nav.home">الرئيسية</a>
+      <a href="#times" data-i18n="nav.times">الأوقات</a>
+      <a href="#calendar" data-i18n="nav.calendar">التقويم</a>
+      <a href="#events" data-i18n="nav.events">الفعاليات</a>
+      <a href="#school" data-i18n="nav.school">المدرسة</a>
+      <a href="#board" data-i18n="nav.board">المجلس</a>
+      <a href="#community" data-i18n="nav.community">المجتمع</a>
+      <a href="#contact" data-i18n="nav.contact">تواصل</a>
+    </div>
+    <span class="nav-next" id="navNext">—</span>
+    <div class="lang-sw" id="langSw">
+      <button type="button" data-lang="ar">عربي</button>
+      <button type="button" data-lang="en" class="on">EN</button>
+    </div>
+    <button class="btn btn-gold btn-sm btn-donate-nav" data-open-donate data-i18n="nav.donate">تبرّع</button>
+    <button class="m-btn" id="btnMenu" aria-label="menu" aria-expanded="false"><svg class="ico"><use href="#i-menu"/></svg></button>
+  </div>
+  <div class="m-menu" id="mMenu">
+    <div class="m-lang"><span data-i18n="nav.lang">اللغة</span>
+      <div class="lang-sw" style="border-color:rgba(230,200,131,.3)">
+        <button type="button" data-lang="ar">عربي</button>
+        <button type="button" data-lang="en" class="on">EN</button>
+      </div>
+    </div>
+    <a href="#home" data-i18n="nav.home">الرئيسية</a>
+    <a href="#times" data-i18n="nav.times">الأوقات</a>
+    <a href="#calendar" data-i18n="nav.calendar">التقويم</a>
+    <a href="#events" data-i18n="nav.events">الفعاليات</a>
+    <a href="#school" data-i18n="nav.school">المدرسة</a>
+    <a href="#board" data-i18n="nav.board">المجلس</a>
+    <a href="#community" data-i18n="nav.community">المجتمع</a>
+    <a href="#donate" data-i18n="nav.donate">تبرّع</a>
+    <a href="#contact" data-i18n="nav.contact">تواصل معنا</a>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="sky" id="sky">
+    <svg class="moon" viewBox="0 0 100 100"><defs><mask id="mcut"><rect width="100" height="100" fill="#fff"/><circle cx="68" cy="40" r="30" fill="#000"/></mask></defs><circle cx="46" cy="50" r="33" fill="#e6c883" mask="url(#mcut)"/></svg>
+    <svg class="spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 14 10l8 2-8 2-2 8-2-8-8-2 8-2z"/></svg>
+    <div class="shoot" id="shoot"></div>
+  </div>
+
+  <div class="wrap hero-content">
+    <div class="hero-text">
+      <span class="basmala">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+      <h1 id="heroH1">مسجد النور<span>الجمعية الإسلامية لجنوب غرب واشنطن</span></h1>
+      <p class="hero-en">Masjid Al-Noor · Islamic Society of Southwest Washington · Vancouver, WA</p>
+      <div class="hero-dates"><span id="heroHijri">—</span><b></b><span id="heroGreg">—</span></div>
+      <div class="rot" id="rot"><p id="rotVerse">«وَأَقِمِ الصَّلَاةَ لِذِكْرِي»</p><span id="rotSrc">سورة طه — 14</span></div>
+      <div class="hero-cta">
+        <a href="#times" class="btn btn-gold"><span data-i18n="hero.ctaTimes">أوقات الصلاة اليوم</span> <svg class="ico"><use href="#i-arrow"/></svg></a>
+        <!-- زر واتساب ثابت داخل الصفحة -->
+        <a class="btn btn-wa" href="https://chat.whatsapp.com/ISSW-Community" target="_blank" rel="noopener"><svg class="ico ico-f"><use href="#i-wa"/></svg><span data-i18n="cm.waBtn">انضم إلى المجموعة</span></a>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Masjid+Al-Noor+Vancouver+WA" target="_blank" rel="noopener" class="btn btn-ghost" data-i18n="hero.ctaDir">الاتجاهات إلى المسجد</a>
+      </div>
+    </div>
+
+    <div class="hero-card reveal" style="--d:.15s">
+      <div class="hc-top"><span data-i18n="hero.next">الصلاة القادمة</span><span class="hc-live"><i></i><span data-i18n="hero.live">مباشر</span></span></div>
+      <div class="hc-name">
+        <h2 id="nextName">—</h2>
+        <span id="nextTime">—</span>
+        <div class="hc-iq"><span data-i18n="t.iqama">الإقامة</span><b id="nextIq">—</b></div>
+      </div>
+      <div class="hc-ring">
+        <svg viewBox="0 0 120 120"><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" id="ringFg" cx="60" cy="60" r="52"/></svg>
+        <div class="hc-count">
+          <div><b id="cdH">00</b><span data-i18n="t.h">ساعة</span></div><i>:</i>
+          <div><b id="cdM">00</b><span data-i18n="t.m">دقيقة</span></div><i>:</i>
+          <div><b id="cdS">00</b><span data-i18n="t.s">ثانية</span></div>
+        </div>
+      </div>
+      <p class="hc-note" id="nextNote">—</p>
+    </div>
+  </div>
+
+  <svg class="mosque" viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <g fill="#07211a">
+      <rect x="0" y="288" width="1440" height="12"/>
+      <rect x="140" y="140" width="44" height="148"/><rect x="130" y="128" width="64" height="12"/>
+      <rect x="150" y="104" width="24" height="24"/><path d="M144 104 162 68 180 104Z"/>
+      <rect x="160.5" y="54" width="3" height="14"/><circle cx="162" cy="50" r="4"/>
+      <rect x="210" y="250" width="210" height="38"/>
+      <rect x="420" y="232" width="140" height="56"/>
+      <path d="M420 232 C420 176 462 156 490 156 C518 156 560 176 560 232Z"/>
+      <rect x="488.5" y="138" width="3" height="18"/><circle cx="490" cy="134" r="3"/>
+      <rect x="560" y="210" width="320" height="78"/>
+      <path d="M556 210 C556 128 632 98 720 98 C808 98 884 128 884 210Z"/>
+      <rect x="708" y="76" width="24" height="24"/><rect x="718.5" y="50" width="3" height="28"/><circle cx="720" cy="46" r="4.5"/>
+      <rect x="880" y="232" width="140" height="56"/>
+      <path d="M880 232 C880 176 922 156 950 156 C978 156 1020 176 1020 232Z"/>
+      <rect x="948.5" y="138" width="3" height="18"/><circle cx="950" cy="134" r="3"/>
+      <rect x="1020" y="250" width="236" height="38"/>
+      <rect x="1256" y="140" width="44" height="148"/><rect x="1246" y="128" width="64" height="12"/>
+      <rect x="1266" y="104" width="24" height="24"/><path d="M1260 104 1278 68 1296 104Z"/>
+      <rect x="1276.5" y="54" width="3" height="14"/><circle cx="1278" cy="50" r="4"/>
+    </g>
+    <g fill="#e5c47c" opacity=".92">
+      <path d="M611 282V227a9 9 0 0 1 18 0v55Z"/><path d="M661 282V227a9 9 0 0 1 18 0v55Z"/>
+      <path d="M704 288V228a16 16 0 0 1 32 0v60Z"/>
+      <path d="M761 282V227a9 9 0 0 1 18 0v55Z"/><path d="M811 282V227a9 9 0 0 1 18 0v55Z"/>
+      <path d="M454 280V246a6 6 0 0 1 12 0v34Z"/><path d="M484 280V246a6 6 0 0 1 12 0v34Z"/><path d="M514 280V246a6 6 0 0 1 12 0v34Z"/>
+      <path d="M909 280V246a6 6 0 0 1 12 0v34Z"/><path d="M944 280V246a6 6 0 0 1 12 0v34Z"/><path d="M979 280V246a6 6 0 0 1 12 0v34Z"/>
+      <path d="M243 284V265a7 7 0 0 1 14 0v19Z"/><path d="M373 284V265a7 7 0 0 1 14 0v19Z"/>
+      <path d="M1078 284V265a7 7 0 0 1 14 0v19Z"/><path d="M1183 284V265a7 7 0 0 1 14 0v19Z"/>
+      <path d="M157 200v-12a5 5 0 0 1 10 0v12Z"/><path d="M157 240v-12a5 5 0 0 1 10 0v12Z"/>
+      <path d="M1273 200v-12a5 5 0 0 1 10 0v12Z"/><path d="M1273 240v-12a5 5 0 0 1 10 0v12Z"/>
+    </g>
+  </svg>
+</header>
+
+<div class="stats-band" id="statsBand">
+  <div class="wrap grid grid-cols-2 md:grid-cols-4 gap-6">
+    <div class="stat reveal"><b data-count="320" data-suffix="+">0</b><span data-i18n="stats.families">عائلة مسجلة</span><i></i></div>
+    <div class="stat reveal" style="--d:.08s"><b data-count="120" data-suffix="+">0</b><span data-i18n="stats.students">طالب في المدرسة</span><i></i></div>
+    <div class="stat reveal" style="--d:.16s"><b data-count="16" data-suffix="+">0</b><span data-i18n="stats.years">سنوات من العطاء</span><i></i></div>
+    <div class="stat reveal" style="--d:.24s"><b data-count="450" data-suffix="+">0</b><span data-i18n="stats.jumua">مصلٍّ في الجمعة</span><i></i></div>
+  </div>
+</div>
+
+<section class="section" id="times">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker" data-i18n="times.kicker">أوقات الصلاة · Prayer Times</span>
+      <h2 data-i18n="times.title">أوقات الصلاة اليوم</h2>
+      <div class="orn"><i></i><b></b><i></i></div>
+      <p class="sec-sub" data-i18n="times.sub">مسجد النور — فانكوفر، واشنطن · مباشرة من شبكة Mawaqit</p>
+    </div>
+    <div class="times-grid">
+      <div class="mihrab reveal">
+        <div class="pp-head">
+          <div><span class="pp-date" id="panelDate">—</span><h3 data-i18n="times.adhan">مواعيد الأذان</h3></div>
+          <div class="flex items-center gap-2 flex-wrap justify-end">
+            <span class="src-pill load" id="srcPill"><i></i><span id="srcPillTxt">…</span></span>
+            <button class="icon-btn" id="copyBtn" data-i18n-aria="times.copy" data-i18n-title="times.copy" title="نسخ"><svg class="ico"><use href="#i-copy"/></svg></button>
+          </div>
+        </div>
+        <div class="pr-cols-head">
+          <span class="sp-ico"></span>
+          <div class="pr-name"></div>
+          <div class="pr-times"><span data-i18n="t.adhan">الأذان</span><span data-i18n="t.iqama">الإقامة</span></div>
+        </div>
+        <div id="prayerRows"></div>
+        <div class="pp-foot" data-i18n="times.foot">Iqamah times shown are the official times published by the Masjid on Mawaqit.</div>
+      </div>
+      <aside class="times-side">
+        <div class="side-card reveal" style="--d:.1s">
+          <div class="sc-head"><svg class="ico"><use href="#i-dhuhr"/></svg><span data-i18n="times.sun">الشمس اليوم</span></div>
+          <svg class="sun-arc" viewBox="0 0 260 120">
+            <path d="M30 110 A100 100 0 0 1 230 110" fill="none" stroke="rgba(169,130,47,.35)" stroke-width="1.4" stroke-dasharray="3 6" stroke-linecap="round"/>
+            <line x1="14" y1="110" x2="246" y2="110" stroke="rgba(22,52,42,.25)" stroke-width="1.2"/>
+            <circle id="sunDot" r="8" fill="#c9a45a"/>
+            <circle id="moonDot" r="6" fill="#12362b" style="display:none" cx="85" cy="24"/>
+          </svg>
+          <div class="sc-row">
+            <div><span data-i18n="t.sunrise">الشروق</span><b id="sunriseT">—</b></div>
+            <div><span data-i18n="t.sunset">الغروب</span><b id="sunsetT">—</b></div>
+            <div><span data-i18n="t.dayLen">طول النهار</span><b id="dayLen">—</b></div>
+          </div>
+        </div>
+        <div class="side-card reveal" style="--d:.2s">
+          <div class="sc-head"><svg class="ico"><use href="#i-mosque"/></svg><span data-i18n="times.jumua">صلاة الجمعة</span></div>
+          <div id="jumuaRows"></div>
+        </div>
+        <div class="side-note reveal" style="--d:.3s">
+          <span data-i18n="times.method">Adhan and Iqamah times are pulled directly from the Masjid's official page on the Mawaqit network.</span><br>
+          <a class="mini" href="https://mawaqit.net/en/m/masjid-al-noor-vancouver-98665-united-states" target="_blank" rel="noopener" data-i18n="times.check">عرض صفحة المسجد على Mawaqit ←</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="calendar">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker" data-i18n="cal.kicker">التقويم الشهري · Monthly Schedule</span>
+      <h2 data-i18n="cal.title">جدول الصلاة للشهر</h2>
+      <div class="orn"><i></i><b></b><i></i></div>
+      <p class="sec-sub" data-i18n="cal.sub">أوقات كل أيام الشهر مع التواريخ الهجرية الموافقة</p>
+    </div>
+    <div class="tabs-wrap reveal">
+      <div class="tabs" id="monthTabs">
+        <button class="tab on" type="button">—</button>
+        <button class="tab" type="button">—</button>
+      </div>
+      <div class="tabs" id="modeTabs">
+        <button class="tab on" type="button" data-mode="adhan" data-i18n="t.adhan">الأذان</button>
+        <button class="tab" type="button" data-mode="iqama" data-i18n="t.iqama">الإقامة</button>
+      </div>
+    </div>
+    <div class="table-wrap reveal" style="--d:.1s">
+      <table>
+        <thead><tr>
+          <th style="text-align:start;padding-inline-start:20px" data-i18n="cal.date">التاريخ</th>
+          <th data-i18n="p.fajr">الفجر</th><th data-i18n="p.sunrise">الشروق</th><th data-i18n="p.dhuhr">الظهر</th>
+          <th data-i18n="p.asr">العصر</th><th data-i18n="p.maghrib">المغرب</th><th data-i18n="p.isha">العشاء</th>
+        </tr></thead>
+        <tbody id="monthBody"></tbody>
+      </table>
+    </div>
+    <p class="table-note" id="modeNote"></p>
+  </div>
+</section>
+
+<section class="section" id="events">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker" data-i18n="ev.kicker">الفعاليات · Upcoming Events</span>
+      <h2 data-i18n="ev.title">الفعاليات القادمة</h2>
+      <div class="orn"><i></i><b></b><i></i></div>
+      <p class="sec-sub" data-i18n="ev.sub">نشاطات المسجد والمجتمع في الأيام القادمة — أهلًا بكم جميعًا</p>
+    </div>
+    <div class="timeline" id="eventsList"></div>
+  </div>
+</section>
+
+<section class="section alt" id="school">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker" data-i18n="sch.kicker">المدرسة الإسلامية · Al-Noor Academy</span>
+      <h2 data-i18n="sch.title">مدرسة النور لأبنائنا الصغار</h2>
+      <div class="orn"><i></i><b></b><i></i></div>
+      <p class="sec-sub" data-i18n="sch.sub">برنامج نهاية الأسبوع يبني جيلًا يحفظ القرآن ويعرف دينه ويحب مسجده</p>
+    </div>
+    <div class="school-grid">
+      <div class="reveal">
+        <p style="font-size:15px;color:var(--ink2)" data-i18n="sch.intro">تستقبل مدرسة النور أبناء المجتمع من عمر 5 إلى 14 سنة في برنامج تعليمي متكامل أيام نهاية الأسبوع، بإشراف معلمين مؤهلين، ضمن بيئة إيمانية آمنة ومحبّبة.</p>
+        <div class="school-feats">
+          <div class="feat tiltable" data-tilt><span class="pr-ico"><svg class="ico"><use href="#i-book"/></svg></span><div><b data-i18n="sch.f1">قرآن وتجويد</b><span data-i18n="sch.f1d">حفظ ومراجعة مع أحكام التجويد بالتلقين المباشر.</span></div></div>
+          <div class="feat tiltable" data-tilt><span class="pr-ico"><svg class="ico"><use href="#i-star8"/></svg></span><div><b data-i18n="sch.f2">عقيدة وعبادات</b><span data-i18n="sch.f2d">الأساسيات من التوحيد والأذكار وفقه الطهارة والصلاة.</span></div></div>
+          <div class="feat tiltable" data-tilt><span class="pr-ico"><svg class="ico"><use href="#i-child"/></svg></span><div><b data-i18n="sch.f3">سيرة وأخلاق</b><span data-i18n="sch.f3d">قصص النبي ﷺ وصحابته، وتهذيب السلوك بأسلوب محبب.</span></div></div>
+          <div class="feat tiltable" data-tilt><span class="pr-ico"><svg class="ico"><use href="#i-users"/></svg></span><div><b data-i18n="sch.f4">لغة عربية</b><span data-i18n="sch.f4d">قراءة وكتابة ومحادثة مبسطة تربط الطفل بلسان القرآن.</span></div></div>
+        </div>
+        <div class="chips">
+          <span class="chip"><svg class="ico"><use href="#i-child"/></svg><span data-i18n="sch.age">الأعمار: 5 – 14 سنة</span></span>
+          <span class="chip"><svg class="ico"><use href="#i-clock"/></svg><span data-i18n="sch.time">السبت والأحد · 10 صباحًا – 2 ظهرًا</span></span>
+          <span class="chip"><svg class="ico"><use href="#i-cap"/></svg><span data-i18n="sch.fee">الاشتراك: $50 شهريًا للطفل</span></span>
+        </div>
+      </div>
+      <aside class="quote-arch reveal tiltable" style="--d:.15s" data-tilt>
+        <svg class="ico"><use href="#i-star8"/></svg>
+        <p data-i18n="sch.quote">«خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ»</p>
+        <span data-i18n="sch.quoteSrc">رواه البخاري</span>
+        <button class="btn btn-gold" id="enrollBtn"><svg class="ico"><use href="#i-cap"/></svg><span data-i18n="sch.cta">سجّل طفلك الآن</span></button>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="board">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker" data-i18n="bd.kicker">مجلس الإدارة · Board of Directors</span>
+      <h2 data-i18n="bd.title">تعرّف على مجلس الإدارة الحالي</h2>
+      <div class="orn"><i></i><b></b><i></i></div>
+      <p class="sec-sub" data-i18n="bd.sub">مجلس منتخب من أعضاء الجمعية في الجمعية العمومية السنوية، في خدمة المجتمع</p>
+    </div>
+    <div class="board-grid" id="boardGrid"></div>
+    <p class="table-note" style="margin-top:26px" data-i18n="bd.note">للتواصل مع المجلس بكل ما يخدم شأن المسجد: board@issw.org</p>
+  </div>
+</section>
+
+<section class="section alt" id="community">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker" data-i18n="cm.kicker">المجتمع والعضوية · Community</span>
+      <h2 data-i18n="cm.title">كن عضوًا… وكن صوتًا</h2>
+      <div class="orn"><i></i><b></b><i></i></div>
+      <p class="sec-sub" data-i18n="cm.sub">انضم إلى الجمعية، شارك في القرار، وكن جزءًا من عمارة بيت الله</p>
+    </div>
+    <div class="comm-grid">
+      <div class="panel reveal">
+        <h3 data-i18n="cm.mTitle">طلب عضوية الجمعية</h3>
+        <p class="d" data-i18n="cm.mDesc">العضوية سنوية وتمنحك حقًا كاملًا في شؤون الجمعية.</p>
+        <div class="benefit"><svg class="ico"><use href="#i-vote"/></svg><span data-i18n="cm.b1">حق التصويت في انتخابات مجلس الإدارة والجمعية العمومية.</span></div>
+        <div class="benefit"><svg class="ico"><use href="#i-check"/></svg><span data-i18n="cm.b2">أولوية المقاعد والخصومات في مدرسة النور للأبناء.</span></div>
+        <div class="benefit"><svg class="ico"><use href="#i-users"/></svg><span data-i18n="cm.b3">المشاركة في الفعاليات واللقاءات العائلية والدورات.</span></div>
+        <div class="benefit"><svg class="ico"><use href="#i-give"/></svg><span data-i18n="cm.b4">الأحقية برعاية لجنة الخدمات الاجتماعية عند الحاجة.</span></div>
+        <form id="memberForm" class="mt-5">
+          <div class="f-row">
+            <div class="field"><label data-i18n="cm.fN">الاسم الكريم</label><input type="text" required data-i18n-ph="cm.phN" placeholder="اسمك الكامل"></div>
+            <div class="field"><label data-i18n="cm.fE">البريد الإلكتروني</label><input type="email" required placeholder="email@example.com"></div>
+          </div>
+          <div class="field"><label data-i18n="cm.fP">رقم الهاتف</label><input type="tel" required placeholder="(360) 000-0000" style="direction:ltr;text-align:start"></div>
+          <button type="submit" class="btn btn-gold w-full justify-center"><svg class="ico"><use href="#i-vote"/></svg><span data-i18n="cm.mSubmit">أرسل طلب العضوية</span></button>
+        </form>
+        <div class="rights"><svg class="ico"><use href="#i-vote"/></svg><span data-i18n="cm.rights">للأعضاء المنتسبين حق التصويت في كل قرارات الجمعية، وعلى رأسها انتخاب مجلس الإدارة في الجمعية العمومية السنوية.</span></div>
+      </div>
+      <div class="flex flex-col gap-6">
+        <div class="wa-card reveal tiltable" style="--d:.1s" data-tilt>
+          <div class="wa-big"><svg class="ico ico-f"><use href="#i-wa"/></svg></div>
+          <h3 data-i18n="cm.waTitle">مجموعة الواتساب الرسمية</h3>
+          <p data-i18n="cm.waDesc">تبقى على اطلاع بأوقات الإقامة والفعاليات والدروس والتنبيهات العاجلة — انضم الآن.</p>
+          <!-- DEMO: استبدل الرابط برابط المجموعة الحقيقي -->
+          <a class="btn btn-wa" href="https://chat.whatsapp.com/ISSW-Community" target="_blank" rel="noopener"><svg class="ico ico-f"><use href="#i-wa"/></svg><span data-i18n="cm.waBtn">انضم إلى المجموعة</span></a>
+          <div class="soc-row">
+            <!-- DEMO: روابط تجريبية — استبدلها بحسابات المسجد -->
+            <a class="soc" href="https://www.facebook.com/ISSW.Vancouver" target="_blank" rel="noopener" aria-label="Facebook"><svg class="ico ico-f"><use href="#i-fb"/></svg></a>
+            <a class="soc" href="https://www.instagram.com/issw.vancouver" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ico"><use href="#i-ig"/></svg></a>
+            <a class="soc" href="mailto:info@issw.org" aria-label="Email"><svg class="ico"><use href="#i-mail"/></svg></a>
+          </div>
+        </div>
+        <div class="panel reveal" style="--d:.2s">
+          <h3 data-i18n="cm.svTitle">خدمات المجتمع</h3>
+          <div class="benefit"><svg class="ico"><use href="#i-star8"/></svg><span data-i18n="cm.s1">عقد القرآن الكريم وإدارة حفلات الزواج</span></div>
+          <div class="benefit"><svg class="ico"><use href="#i-star8"/></svg><span data-i18n="cm.s3">استشارات أسرية وشرعية بالموعد</span></div>
+          <div class="benefit"><svg class="ico"><use href="#i-star8"/></svg><span data-i18n="cm.s4">إشهاد من أسلم جديد وتعليم أساسيات الإسلام</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="poll-card reveal" id="pollCard">
+      <div class="poll-head"><svg class="ico"><use href="#i-vote"/></svg><h3 data-i18n="poll.title">صوّت الآن: مشروع العام القادم</h3><span class="chip"><svg class="ico"><use href="#i-users"/></svg><span id="pollTotal">—</span></span></div>
+      <p class="d mt-2" style="font-size:14px;color:var(--ink2)" data-i18n="poll.q">أي مشروع تودّ أن تعطيه الأولوية في ميزانية العام القادم؟ صوتك مهم، وسيُعلن النتيجة في الجمعية العمومية.</p>
+      <div class="poll-opts" id="pollOpts"></div>
+      <div class="poll-foot"><span id="pollVoted"></span><span data-i18n="poll.one">صوت واحد لكل عضو — يُحفظ صوتك على جهازك</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="donate" id="donate">
+  <div class="wrap reveal">
+    <p class="d-verse">«مَّن ذَا الَّذِي يُقْرِضُ اللَّهَ قَرْضًا حَسَنًا فَيُضَاعِفَهُ لَهُ وَلَهُ أَجْرٌ كَرِيمٌ»</p>
+    <span class="d-src">سورة الحديد — 11</span>
+    <div class="d-orn"></div>
+    <h2 data-i18n="dn.title">ساهم في عمارة بيت الله</h2>
+    <p class="d-desc" data-i18n="dn.desc">تبرعاتكم تغطي مصاريف المسجد والمدرسة وبرامج المجتمع — وجعلها الله في ميزان حسناتكم.</p>
+    <div class="d-actions">
+      <button class="btn btn-gold" data-open-donate><svg class="ico"><use href="#i-give"/></svg><span data-i18n="dn.btn">تبرّع الآن</span></button>
+      <a href="#contact" class="btn btn-ghost" data-i18n="dn.admin">تواصل مع الإدارة</a>
+    </div>
+    <p class="d-foot" data-i18n="dn.foot">تُقبل التبرعات أيضًا في الصناديق المخصصة عند مدخل المسجد</p>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker" data-i18n="ct.kicker">تواصل · Contact Us</span>
+      <h2 data-i18n="ct.title">تواصل معنا</h2>
+      <div class="orn"><i></i><b></b><i></i></div>
+      <p class="sec-sub" data-i18n="ct.sub">يسعدنا خدمتكم والإجابة عن استفساراتكم</p>
+    </div>
+    <div class="contact-grid">
+      <div class="form-card reveal">
+        <h3 data-i18n="ct.formT">أرسل لنا رسالة</h3>
+        <p data-i18n="ct.formD">اكتب رسالتك أو استفسارك وسيتواصل معك فريق الإدارة قريبًا.</p>
+        <form id="contactForm">
+          <div class="f-row">
+            <div class="field"><label data-i18n="cm.fN">الاسم الكريم</label><input type="text" required data-i18n-ph="cm.phN" placeholder="اسمك الكامل"></div>
+            <div class="field"><label data-i18n="cm.fE">البريد الإلكتروني</label><input type="email" required placeholder="email@example.com"></div>
+          </div>
+          <div class="field"><label data-i18n="ct.fM">رسالتك</label><textarea rows="5" required data-i18n-ph="ct.phM" placeholder="اكتب رسالتك هنا..."></textarea></div>
+          <button type="submit" class="btn btn-gold"><span data-i18n="ct.send">إرسال الرسالة</span> <svg class="ico"><use href="#i-arrow"/></svg></button>
+        </form>
+      </div>
+      <div class="reveal" style="--d:.15s">
+        <!-- DEMO: بيانات نموذجية — حدّثها ببيانات المسجد الرسمية -->
+        <div class="c-item"><svg class="ico"><use href="#i-pin"/></svg><div><b data-i18n="ct.lAddr">العنوان</b><span>1605 NE 129th St, Vancouver, WA 98665</span><br><a class="mini" href="https://www.google.com/maps/dir/?api=1&destination=Masjid+Al-Noor+Vancouver+WA" target="_blank" rel="noopener" data-i18n="ct.dir">احصل على الاتجاهات ←</a></div></div>
+        <div class="c-item"><svg class="ico"><use href="#i-phone"/></svg><div><b data-i18n="ct.lPhone">الهاتف</b><span style="direction:ltr;unicode-bidi:embed">(360) 555-0192</span></div></div>
+        <div class="c-item"><svg class="ico"><use href="#i-mail"/></svg><div><b data-i18n="ct.lMail">البريد الإلكتروني</b><span style="direction:ltr;unicode-bidi:embed">info@issw.org</span></div></div>
+        <div class="c-item"><svg class="ico"><use href="#i-clock"/></svg><div><b data-i18n="ct.lHours">أوقات الافتتاح</b><span data-i18n="ct.hours">المسجد مفتوح للصلوات الخمس جماعة يوميًا، والمكتب من السبت إلى الخميس 11 ص – 3 م</span></div></div>
+        <div class="flex gap-3 mt-5 flex-wrap">
+          <a class="icon-btn" href="https://www.facebook.com/ISSW.Vancouver" target="_blank" rel="noopener" aria-label="Facebook"><svg class="ico ico-f"><use href="#i-fb"/></svg></a>
+          <a class="icon-btn" href="https://www.instagram.com/issw.vancouver" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ico"><use href="#i-ig"/></svg></a>
+          <a class="icon-btn" href="https://chat.whatsapp.com/ISSW-Community" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="ico ico-f"><use href="#i-wa"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="map-arch reveal" style="--d:.1s">
+      <iframe id="mapFrame" title="Map" loading="lazy" src="https://maps.google.com/maps?q=Masjid%20Al-Noor%2C%20Vancouver%2C%20WA%2098665&z=14&output=embed"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-brand"><svg class="ico"><use href="#i-star8"/></svg></div>
+    <h4 id="fNameAr">الجمعية الإسلامية لجنوب غرب واشنطن — مسجد النور</h4>
+    <span class="f-en">Islamic Society of Southwest Washington — ISSW · Masjid Al-Noor</span>
+    <div class="f-links">
+      <a href="#times" data-i18n="nav.times">الأوقات</a><a href="#calendar" data-i18n="nav.calendar">التقويم</a>
+      <a href="#events" data-i18n="nav.events">الفعاليات</a><a href="#school" data-i18n="nav.school">المدرسة</a>
+      <a href="#board" data-i18n="nav.board">المجلس</a><a href="#community" data-i18n="nav.community">المجتمع</a>
+      <a href="#donate" data-i18n="nav.donate">تبرّع</a><a href="#contact" data-i18n="nav.contact">تواصل</a>
+    </div>
+    <p class="f-dhikr">سبحان الله وبحمده، سبحان الله العظيم</p>
+    <div class="f-bar">© <span id="fYear"></span> <span data-i18n="ft.rights">الجمعية الإسلامية لجنوب غرب واشنطن — فانكوفر، ولاية واشنطن · جميع الحقوق محفوظة</span></div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="top"><svg class="ico"><use href="#i-up"/></svg></button>
+<div class="toast" id="toast"><svg class="ico"><use href="#i-check"/></svg><span></span></div>
+
+<div class="modal" id="donateModal" aria-hidden="true">
+  <div class="modal-card">
+    <button class="modal-x" data-close aria-label="close"><svg class="ico"><use href="#i-x"/></svg></button>
+    <span class="m-kicker" data-i18n="dn.mKicker">جزاكم الله خيرًا</span>
+    <h3 data-i18n="dn.mTitle">طرق التبرع لمسجد النور</h3>
+    <div class="d-way"><div><b data-i18n="dn.w1">تحويل Zelle</b><span data-i18n="dn.w1d">عبر بريد الجمعية الرسمي</span></div><code>info@issw.org</code><button class="icon-btn" data-copy="info@issw.org" aria-label="copy"><svg class="ico"><use href="#i-copy"/></svg></button></div>
+    <div class="d-way"><div><b data-i18n="dn.w2">تحويل بنكي مباشر</b><span data-i18n="dn.w2d">تُرسل بيانات الحساب عند الطلب</span></div><a class="mini" href="mailto:info@issw.org?subject=Bank%20transfer%20details" data-i18n="dn.w2a">طلب التفاصيل</a></div>
+    <div class="d-way"><div><b data-i18n="dn.w3">في المسجد</b><span data-i18n="dn.w3d">الصناديق المخصصة عند المدخل</span></div></div>
+    <p class="d-note" data-i18n="dn.mNote">تُوجَّه التبرعات لسداد مصاريف المسجد والمدرسة وخدمة المجتمع، وجعلها الله في ميزان حسناتكم.</p>
+  </div>
+</div>
+
+<div class="modal" id="enrollModal" aria-hidden="true">
+  <div class="modal-card">
+    <button class="modal-x" data-close aria-label="close"><svg class="ico"><use href="#i-x"/></svg></button>
+    <span class="m-kicker" data-i18n="sch.mKicker">مدرسة النور</span>
+    <h3 data-i18n="sch.mTitle">تسجيل طالب جديد</h3>
+    <form id="enrollForm">
+      <div class="f-row">
+        <div class="field"><label data-i18n="sch.mChild">اسم الطفل</label><input type="text" required data-i18n-ph="sch.phChild" placeholder="اسم الطفل"></div>
+        <div class="field"><label data-i18n="sch.mAge">العمر</label><input type="number" min="5" max="14" required placeholder="5-14"></div>
+      </div>
+      <div class="f-row">
+        <div class="field"><label data-i18n="sch.mParent">اسم وليّ الأمر</label><input type="text" required data-i18n-ph="sch.phParent" placeholder="اسم وليّ الأمر"></div>
+        <div class="field"><label data-i18n="cm.fP">رقم الهاتف</label><input type="tel" required placeholder="(360) 000-0000" style="direction:ltr;text-align:start"></div>
+      </div>
+      <button type="submit" class="btn btn-gold w-full justify-center"><svg class="ico"><use href="#i-check"/></svg><span data-i18n="sch.mSend">إرسال طلب التسجيل</span></button>
+      <p class="d-note" data-i18n="sch.mNote">سيتواصل معكم مشرف المدرسة لتأكيد المقعد وموعد الاختبار التهيئي.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* ==================== 0) أدوات ==================== */
+const $  = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const pad2 = n => String(n).padStart(2,'0');
+let LANG = 'en';
+/* الأرقام دائمًا إنجليزية (لاتينية) مهما كانت اللغة */
+const N = s => String(s);
+function intlLoc(o){
+  const ext = [];
+  if(o && o.ca) ext.push('ca-'+o.ca);
+  if(LANG==='ar') ext.push('nu-latn');
+  return ext.length ? (LANG==='ar'?'ar':'en')+'-u-'+ext.join('-') : (LANG==='ar'?'ar':'en');
+}
+function cap(s){ return s ? s.charAt(0).toUpperCase()+s.slice(1) : s; }
+function parseHM(v){
+  if(v==null) return null;
+  if(typeof v==='number') return isFinite(v)?v:null;
+  const m=String(v).match(/(\d{1,2})[:.](\d{2})/);
+  return m ? (+m[1])+(+m[2])/60 : null;
+}
+function validT(t){ return t && ['fajr','sunrise','dhuhr','asr','maghrib','isha'].every(k=>typeof t[k]==='number'&&isFinite(t[k])); }
+function validIq(t){ return t && ['fajr','dhuhr','asr','maghrib','isha'].some(k=>typeof t[k]==='number'&&isFinite(t[k])); }
+function fmtTime(t,suf){
+  if(suf===undefined) suf=true;
+  if(t==null||!isFinite(t)) return '—';
+  const total=Math.round(t*60);
+  const h=Math.floor(total/60)%24, m=((total%60)+60)%60;
+  const ap = h<12 ? (LANG==='ar'?'ص':'AM') : (LANG==='ar'?'م':'PM');
+  let h12=h%12; if(h12===0)h12=12;
+  return h12+':'+pad2(m)+(suf?' '+ap:'');
+}
+function safe(fn){ try{ fn(); }catch(e){ if(window.console) console.warn('init:',e); } }
+function toast(msg){
+  const t=$('#toast'); t.querySelector('span').textContent=msg;
+  t.classList.add('show');
+  clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),3000);
+}
+function copyText(txt,msg){
+  if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(()=>toast(msg)).catch(()=>toast(msg)); }
+  else toast(msg);
+}
+
+/* ==================== 1) الترجمة ==================== */
+const STR = {
+ar:{
+ 'doc.title':'مسجد النور — ISSW | أوقات الصلاة · فانكوفر، واشنطن',
+ 'brand':'مسجد النور','brandSub':'ISSW · فانكوفر واشنطن','fName':'الجمعية الإسلامية لجنوب غرب واشنطن — مسجد النور',
+ 'nav.home':'الرئيسية','nav.times':'الأوقات','nav.calendar':'التقويم','nav.events':'الفعاليات','nav.school':'المدرسة','nav.board':'المجلس','nav.community':'المجتمع','nav.contact':'تواصل','nav.donate':'تبرّع','nav.lang':'اللغة','nav.after':'بعد',
+ 'hero.h1':'مسجد النور<span>الجمعية الإسلامية لجنوب غرب واشنطن</span>',
+ 'hero.next':'الصلاة القادمة','hero.live':'مباشر','hero.tomorrow':'فجر الغد',
+ 'hero.iqamaOff':'الإقامة تُرفع بعد الأذان بـ {m} دقيقة','hero.liveNote':'الأوقات مباشرة من شبكة Mawaqit',
+ 'hero.ctaTimes':'أوقات الصلاة اليوم','hero.ctaDir':'الاتجاهات إلى المسجد',
+ 't.h':'ساعة','t.m':'دقيقة','t.s':'ثانية','t.sunrise':'الشروق','t.sunset':'الغروب','t.dayLen':'طول النهار','t.adhan':'الأذان','t.iqama':'الإقامة',
+ 'stats.families':'عائلة مسجلة','stats.students':'طالب في المدرسة','stats.years':'سنوات من العطاء','stats.jumua':'مصلٍّ في الجمعة',
+ 'p.fajr':'الفجر','p.sunrise':'الشروق','p.dhuhr':'الظهر','p.asr':'العصر','p.maghrib':'المغرب','p.isha':'العشاء',
+ 'times.kicker':'أوقات الصلاة · Prayer Times','times.title':'أوقات الصلاة اليوم','times.sub':'مسجد النور — فانكوفر، واشنطن · مباشرة من شبكة Mawaqit',
+ 'times.adhan':'مواعيد الأذان','times.copy':'نسخ أوقات اليوم','times.foot':'تُعرض أوقات الإقامة كما هي معتمدة ومنشورة من المسجد على Mawaqit.',
+ 'times.jumua':'صلاة الجمعة','times.kh1':'الخطبة الأولى','times.kh2':'الخطبة الثانية','times.sun':'الشمس اليوم',
+ 'times.method':'تُجلب مواقيت الأذان والإقامة مباشرة من صفحة المسجد الرسمية على شبكة Mawaqit.',
+ 'times.check':'عرض صفحة المسجد على Mawaqit ←',
+ 'src.live':'أوقات مباشرة · Mawaqit','src.calc':'أوقات تقريبية','src.load':'جارٍ الاتصال بـ Mawaqit…',
+ 'toast.copy':'تم نسخ أوقات اليوم، شاركها مع من تحب','toast.updated':'تم تحديث الأوقات من Mawaqit','toast.copy2':'تم النسخ بنجاح',
+ 'cal.kicker':'التقويم الشهري · Monthly Schedule','cal.title':'جدول الصلاة للشهر','cal.sub':'أوقات كل أيام الشهر مع التواريخ الهجرية الموافقة','cal.date':'التاريخ',
+ 'cal.note':'جميع الأوقات بالتوقيت المحلي لمدينة فانكوفر، مع تصحيح التوقيت الصيفي تلقائيًا.',
+ 'cal.iqNote':'تُعرض أوقات الإقامة الرسمية المعتمدة من Mawaqit عند توفرها.',
+ 'ev.kicker':'الفعاليات · Upcoming Events','ev.title':'الفعاليات القادمة','ev.sub':'نشاطات المسجد والمجتمع في الأيام القادمة — أهلًا بكم جميعًا',
+ 'ev.tagW':'أسبوعي','ev.tagM':'شهري',
+ 'ev.1.t':'صلاة الجمعة — خطبتان','ev.1.d':'الخطبة الأولى في تمام 12:30 م والثانية 1:30 م. يُستحسن الحضور مبكرًا للاطمئنان في المكان وترك الضجيج.','ev.1.m':'القاعة الرئيسية',
+ 'ev.2.t':'درس تفسير القرآن الكريم','ev.2.d':'درس أسبوعي في تفسير كتاب الله عز وجل ومعانيه، يقدّمه إمام المسجد بعد صلاة العشاء.','ev.2.m':'بعد صلاة العشاء',
+ 'ev.3.t':'مدرسة النور نهاية الأسبوع','ev.3.d':'برنامج تحفيظ القرآن وتعليم العقيدة والسيرة النبوية والعبادات لأبنائنا من عمر 5 إلى 14 سنة.','ev.3.m':'مبنى المدرسة · 10 ص – 2 م',
+ 'ev.4.t':'ليلة عائلة مجتمعية','ev.4.d':'عشاء يجمع عائلات المجتمع حول مائدة واحدة بعد صلاة المغرب، مع برنامج مختصر وممتع للأطفال.','ev.4.m':'قاعة المناسبات · بعد المغرب',
+ 'ev.5.t':'برنامج الناشئة والشباب','ev.5.d':'لقاءات تربوية وأنشطة رياضية تبني شخصية الشاب المسلم وتربطه بمسجده.','ev.5.m':'بعد صلاة العشاء',
+ 'sch.kicker':'المدرسة الإسلامية · Al-Noor Academy','sch.title':'مدرسة النور لأبنائنا الصغار','sch.sub':'برنامج نهاية الأسبوع يبني جيلًا يحفظ القرآن ويعرف دينه ويحب مسجده',
+ 'sch.intro':'تستقبل مدرسة النور أبناء المجتمع من عمر 5 إلى 14 سنة في برنامج تعليمي متكامل أيام نهاية الأسبوع، بإشراف معلمين مؤهلين، ضمن بيئة إيمانية آمنة ومحبّبة.',
+ 'sch.f1':'قرآن وتجويد','sch.f1d':'حفظ ومراجعة مع أحكام التجويد بالتلقين المباشر.',
+ 'sch.f2':'عقيدة وعبادات','sch.f2d':'الأساسيات من التوحيد والأذكار وفقه الطهارة والصلاة.',
+ 'sch.f3':'سيرة وأخلاق','sch.f3d':'قصص النبي ﷺ وصحابته، وتهذيب السلوك بأسلوب محبب.',
+ 'sch.f4':'لغة عربية','sch.f4d':'قراءة وكتابة ومحادثة مبسطة تربط الطفل بلسان القرآن.',
+ 'sch.age':'الأعمار: 5 – 14 سنة','sch.time':'السبت والأحد · 10 صباحًا – 2 ظهرًا','sch.fee':'الاشتراك: $50 شهريًا للطفل',
+ 'sch.quote':'«خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ»','sch.quoteSrc':'رواه البخاري','sch.cta':'سجّل طفلك الآن',
+ 'sch.mKicker':'مدرسة النور','sch.mTitle':'تسجيل طالب جديد','sch.mChild':'اسم الطفل','sch.phChild':'اسم الطفل','sch.mAge':'العمر','sch.mParent':'اسم وليّ الأمر','sch.phParent':'اسم وليّ الأمر','sch.mSend':'إرسال طلب التسجيل',
+ 'sch.mNote':'سيتواصل معكم مشرف المدرسة لتأكيد المقعد وموعد الاختبار التهيئي.','toast.enroll':'وصلنا طلب التسجيل، وسيتم التواصل معكم قريبًا',
+ 'bd.kicker':'مجلس الإدارة · Board of Directors','bd.title':'تعرّف على مجلس الإدارة الحالي','bd.sub':'مجلس منتخب من أعضاء الجمعية في الجمعية العمومية السنوية، في خدمة المجتمع','bd.note':'للتواصل مع المجلس بكل ما يخدم شأن المسجد: board@issw.org',
+ 'cm.kicker':'المجتمع والعضوية · Community','cm.title':'كن عضوًا… وكن صوتًا','cm.sub':'انضم إلى الجمعية، شارك في القرار، وكن جزءًا من عمارة بيت الله',
+ 'cm.mTitle':'طلب عضوية الجمعية','cm.mDesc':'العضوية سنوية وتمنحك حقًا كاملًا في شؤون الجمعية.',
+ 'cm.b1':'حق التصويت في انتخابات مجلس الإدارة والجمعية العمومية.','cm.b2':'أولوية المقاعد والخصومات في مدرسة النور للأبناء.',
+ 'cm.b3':'المشاركة في الفعاليات واللقاءات العائلية والدورات.','cm.b4':'الأحقية برعاية لجنة الخدمات الاجتماعية عند الحاجة.',
+ 'cm.fN':'الاسم الكريم','cm.phN':'اسمك الكامل','cm.fE':'البريد الإلكتروني','cm.fP':'رقم الهاتف','cm.mSubmit':'أرسل طلب العضوية',
+ 'cm.rights':'للأعضاء المنتسبين حق التصويت في كل قرارات الجمعية، وعلى رأسها انتخاب مجلس الإدارة في الجمعية العمومية السنوية.',
+ 'cm.waTitle':'مجموعة الواتساب الرسمية','cm.waDesc':'تبقى على اطلاع بأوقات الإقامة والفعاليات والدروس والتنبيهات العاجلة — انضم الآن.','cm.waBtn':'انضم إلى المجموعة',
+ 'cm.svTitle':'خدمات المجتمع','cm.s1':'عقد القرآن الكريم وإدارة حفلات الزواج','cm.s3':'استشارات أسرية وشرعية بالموعد','cm.s4':'إشهاد من أسلم جديد وتعليم أساسيات الإسلام',
+ 'toast.member':'وصلنا طلب عضويتك، سيتواصل معك المجلس قريبًا','toast.sent':'وصلتنا رسالتك الكريمة، شكرًا لتواصلك معنا',
+ 'poll.title':'صوّت الآن: مشروع العام القادم','poll.q':'أي مشروع تودّ أن تعطيه الأولوية في ميزانية العام القادم؟ صوتك مهم، وسيُعلن النتيجة في الجمعية العمومية.',
+ 'poll.one':'صوت واحد لكل عضو — يُحفظ صوتك على جهازك','poll.votes':'صوتًا','poll.yourVote':'صوتك','poll.thanks':'شكرًا! صوتك سُجّل بنجاح','poll.already':'لقد صوّت سابقًا، شكرًا لمشاركتك',
+ 'poll.park.t':'توسعة مواقف السيارات','poll.youth.t':'مركز الناشئة والشباب','poll.lib.t':'مكتبة وقاعة مطالعة للمدرسة',
+ 'dn.title':'ساهم في عمارة بيت الله','dn.desc':'تبرعاتكم تغطي مصاريف المسجد والمدرسة وبرامج المجتمع — وجعلها الله في ميزان حسناتكم.',
+ 'dn.btn':'تبرّع الآن','dn.admin':'تواصل مع الإدارة','dn.foot':'تُقبل التبرعات أيضًا في الصناديق المخصصة عند مدخل المسجد',
+ 'dn.mKicker':'جزاكم الله خيرًا','dn.mTitle':'طرق التبرع لمسجد النور',
+ 'dn.w1':'تحويل Zelle','dn.w1d':'عبر بريد الجمعية الرسمي','dn.w2':'تحويل بنكي مباشر','dn.w2d':'تُرسل بيانات الحساب عند الطلب','dn.w2a':'طلب التفاصيل','dn.w3':'في المسجد','dn.w3d':'الصناديق المخصصة عند المدخل',
+ 'dn.mNote':'تُوجَّه التبرعات لسداد مصاريف المسجد والمدرسة وخدمة المجتمع، وجعلها الله في ميزان حسناتكم.',
+ 'ct.kicker':'تواصل · Contact Us','ct.title':'تواصل معنا','ct.sub':'يسعدنا خدمتكم والإجابة عن استفساراتكم',
+ 'ct.formT':'أرسل لنا رسالة','ct.formD':'اكتب رسالتك أو استفسارك وسيتواصل معك فريق الإدارة قريبًا.',
+ 'ct.fM':'رسالتك','ct.phM':'اكتب رسالتك هنا...','ct.send':'إرسال الرسالة',
+ 'ct.lAddr':'العنوان','ct.lPhone':'الهاتف','ct.lMail':'البريد الإلكتروني','ct.lHours':'أوقات الافتتاح',
+ 'ct.hours':'المسجد مفتوح للصلوات الخمس جماعة يوميًا، والمكتب من السبت إلى الخميس 11 ص – 3 م','ct.dir':'احصل على الاتجاهات ←',
+ 'ft.rights':'الجمعية الإسلامية لجنوب غرب واشنطن — فانكوفر، ولاية واشنطن · جميع الحقوق محفوظة'
+},
+en:{
+ 'doc.title':'Masjid Al-Noor — ISSW | Prayer Times · Vancouver, WA',
+ 'brand':'Masjid Al-Noor','brandSub':'ISSW · VANCOUVER WA','fName':'Islamic Society of Southwest Washington — Masjid Al-Noor',
+ 'nav.home':'Home','nav.times':'Prayer Times','nav.calendar':'Calendar','nav.events':'Events','nav.school':'School','nav.board':'Board','nav.community':'Community','nav.contact':'Contact','nav.donate':'Donate','nav.lang':'Language','nav.after':'in',
+ 'hero.h1':'Masjid Al-Noor<span>Islamic Society of Southwest Washington</span>',
+ 'hero.next':'Next Prayer','hero.live':'Live','hero.tomorrow':"Tomorrow's Fajr",
+ 'hero.iqamaOff':'Iqamah is {m} minutes after Adhan','hero.liveNote':'Times are live from the Mawaqit network',
+ 'hero.ctaTimes':"Today's Prayer Times",'hero.ctaDir':'Directions to the Masjid',
+ 't.h':'hrs','t.m':'min','t.s':'sec','t.sunrise':'Sunrise','t.sunset':'Sunset','t.dayLen':'Day Length','t.adhan':'Adhan','t.iqama':'Iqamah',
+ 'stats.families':'Registered Families','stats.students':'School Students','stats.years':'Years of Service','stats.jumua':'Jumu\u2019ah Worshippers',
+ 'p.fajr':'Fajr','p.sunrise':'Sunrise','p.dhuhr':'Dhuhr','p.asr':'Asr','p.maghrib':'Maghrib','p.isha':'Isha',
+ 'times.kicker':'Prayer Times','times.title':"Today's Prayer Times",'times.sub':'Masjid Al-Noor — Vancouver, WA · Live from the Mawaqit network',
+ 'times.adhan':'Adhan Schedule','times.copy':"Copy today's times",'times.foot':'Iqamah times shown are the official times published by the Masjid on Mawaqit.',
+ 'times.jumua':'Jumu\u2019ah Prayer','times.kh1':'1st Khutbah','times.kh2':'2nd Khutbah','times.sun':'The Sun Today',
+ 'times.method':'Adhan and Iqamah times are pulled directly from the Masjid\u2019s official page on the Mawaqit network.',
+ 'times.check':'View the Masjid page on Mawaqit \u2192',
+ 'src.live':'Live · Mawaqit','src.calc':'Estimated','src.load':'Connecting to Mawaqit…',
+ 'toast.copy':"Copied today's times — share them with loved ones",'toast.updated':'Prayer times updated from Mawaqit','toast.copy2':'Copied successfully',
+ 'cal.kicker':'Monthly Schedule','cal.title':'Monthly Prayer Timetable','cal.sub':'Every day of the month with the matching Hijri dates','cal.date':'Date',
+ 'cal.note':'All times are local to Vancouver, WA with automatic daylight-saving correction.',
+ 'cal.iqNote':'Official Iqamah times published on Mawaqit are shown when available.',
+ 'ev.kicker':'Upcoming Events','ev.title':'Upcoming Events','ev.sub':'Masjid & community activities in the coming days — everyone is welcome',
+ 'ev.tagW':'Weekly','ev.tagM':'Monthly',
+ 'ev.1.t':'Jumu\u2019ah Prayer — Two Khutbahs','ev.1.d':'First khutbah at 12:30 PM and second at 1:30 PM. Please arrive early to find parking and settle quietly.','ev.1.m':'Main Hall',
+ 'ev.2.t':'Weekly Tafsir of the Qur\u2019an','ev.2.d':'A weekly journey through the meanings of the Book of Allah, delivered by the Imam after Isha prayer.','ev.2.m':'After Isha',
+ 'ev.3.t':'Al-Noor Weekend School','ev.3.d':'Qur\u2019an memorization, Islamic studies, and Seerah for our children ages 5\u201314.','ev.3.m':'School Building · 10 AM \u2013 2 PM',
+ 'ev.4.t':'Community Family Night','ev.4.d':'A shared dinner bringing community families together after Maghrib, with a short fun program for kids.','ev.4.m':'Event Hall · After Maghrib',
+ 'ev.5.t':'Youth & Teens Program','ev.5.d':'Educational halaqat and sports activities that build young Muslims\u2019 character and bond with their Masjid.','ev.5.m':'After Isha',
+ 'sch.kicker':'Islamic School · Al-Noor Academy','sch.title':'Al-Noor School for Our Little Ones','sch.sub':'A weekend program raising a generation that memorizes the Qur\u2019an, knows its faith, and loves its Masjid',
+ 'sch.intro':'Al-Noor School welcomes children ages 5\u201314 into a complete weekend curriculum led by qualified teachers in a safe, faith-filled and joyful environment.',
+ 'sch.f1':'Qur\u2019an & Tajweed','sch.f1d':'Memorization and revision with tajweed rules through direct coaching.',
+ 'sch.f2':'Aqeedah & Worship','sch.f2d':'Essentials of tawheed, adhkar, and the fiqh of purity and prayer.',
+ 'sch.f3':'Seerah & Manners','sch.f3d':'Stories of the Prophet \ufdfa and his companions, with character-building the fun way.',
+ 'sch.f4':'Arabic Language','sch.f4d':'Reading, writing and simple conversation connecting kids to the language of the Qur\u2019an.',
+ 'sch.age':'Ages: 5 \u2013 14','sch.time':'Sat & Sun · 10 AM \u2013 2 PM','sch.fee':'Tuition: $50 / month per child',
+ 'sch.quote':'\u201cThe best of you are those who learn the Qur\u2019an and teach it.\u201d','sch.quoteSrc':'Sahih al-Bukhari','sch.cta':'Enroll Your Child',
+ 'sch.mKicker':'Al-Noor Academy','sch.mTitle':'New Student Enrollment','sch.mChild':"Child's Name",'sch.phChild':"Child's name",'sch.mAge':'Age','sch.mParent':"Parent's Name",'sch.phParent':"Parent's name",'sch.mSend':'Submit Enrollment',
+ 'sch.mNote':'The school coordinator will contact you to confirm the seat and the orientation session.','toast.enroll':'Enrollment received — we will contact you soon',
+ 'bd.kicker':'Board of Directors','bd.title':'Meet the Current Board','bd.sub':'An elected board serving the community, voted in at the annual General Assembly','bd.note':'To reach the Board on anything that serves the Masjid: board@issw.org',
+ 'cm.kicker':'Community & Membership','cm.title':'Become a Member\u2026 Be a Voice','cm.sub':'Join the Society, take part in decisions, and share in building the House of Allah',
+ 'cm.mTitle':'Membership Application','cm.mDesc':'Annual membership with full rights in the Society\u2019s affairs.',
+ 'cm.b1':'Voting rights in Board elections and the General Assembly.','cm.b2':'Priority seats and discounts at Al-Noor School for your children.',
+ 'cm.b3':'Access to family events, gatherings and workshops.','cm.b4':'Eligibility for social-services committee support when needed.',
+ 'cm.fN':'Full Name','cm.phN':'Your full name','cm.fE':'Email Address','cm.fP':'Phone Number','cm.mSubmit':'Submit Membership Request',
+ 'cm.rights':'Members have the right to vote on all Society decisions \u2014 above all, electing the Board of Directors at the annual General Assembly.',
+ 'cm.waTitle':'Official WhatsApp Group','cm.waDesc':'Stay updated with iqamah times, events, halaqat and urgent announcements \u2014 join now.','cm.waBtn':'Join the Group',
+ 'cm.svTitle':'Community Services','cm.s1':'Marriage contracts (Nikah) & wedding hall','cm.s3':'Family & Sharia consultations by appointment','cm.s4':'Shahadah for new Muslims & foundations of Islam',
+ 'toast.member':'Membership request received — the Board will contact you soon','toast.sent':'Your message has been received — thank you for reaching out',
+ 'poll.title':'Vote Now: Project of the Year','poll.q':'Which project should get priority in next year\u2019s budget? Your vote matters \u2014 results are announced at the General Assembly.',
+ 'poll.one':'One vote per member — saved on your device','poll.votes':'votes','poll.yourVote':'Your vote','poll.thanks':'Thank you! Your vote has been recorded','poll.already':'You already voted — thank you for participating',
+ 'poll.park.t':'Parking lot expansion','poll.youth.t':'Youth & teens center','poll.lib.t':'School library & reading hall',
+ 'dn.title':'Help Build the House of Allah','dn.desc':'Your donations cover the Masjid, the school and community programs \u2014 may Allah reward you abundantly.',
+ 'dn.btn':'Donate Now','dn.admin':'Contact Administration','dn.foot':'Donations are also accepted at the designated boxes at the Masjid entrance',
+ 'dn.mKicker':'May Allah reward you','dn.mTitle':'Ways to Donate to Masjid Al-Noor',
+ 'dn.w1':'Zelle Transfer','dn.w1d':'Using the Society\u2019s official email','dn.w2':'Direct Bank Transfer','dn.w2d':'Account details sent upon request','dn.w2a':'Request details','dn.w3':'At the Masjid','dn.w3d':'Designated boxes at the entrance',
+ 'dn.mNote':'Donations fund the Masjid, the school and community services \u2014 may Allah place them in the scale of your good deeds.',
+ 'ct.kicker':'Contact Us','ct.title':'Get in Touch','ct.sub':'We are happy to serve you and answer your questions',
+ 'ct.formT':'Send Us a Message','ct.formD':'Write your message or question and the administration will get back to you soon.',
+ 'ct.fM':'Your Message','ct.phM':'Write your message here...','ct.send':'Send Message',
+ 'ct.lAddr':'Address','ct.lPhone':'Phone','ct.lMail':'Email','ct.lHours':'Opening Hours',
+ 'ct.hours':'Open daily for the five congregational prayers; office Sat\u2013Thu 11 AM \u2013 3 PM','ct.dir':'Get directions \u2192',
+ 'ft.rights':'Islamic Society of Southwest Washington — Vancouver, WA · All rights reserved'
+}};
+function T(k){ return (STR[LANG]&&STR[LANG][k]) || STR.ar[k] || k; }
+function applyI18n(){
+  $$('[data-i18n]').forEach(el=>{ el.textContent=T(el.dataset.i18n); });
+  $$('[data-i18n-ph]').forEach(el=>{ el.placeholder=T(el.dataset.i18nPh); });
+  $$('[data-i18n-aria]').forEach(el=>{ el.setAttribute('aria-label',T(el.dataset.i18nAria)); });
+  $$('[data-i18n-title]').forEach(el=>{ el.setAttribute('title',T(el.dataset.i18nTitle)); });
+  $('#heroH1').innerHTML=T('hero.h1');
+  $('#brandName').textContent=T('brand');
+  $('#brandSub').textContent=T('brandSub');
+  $('#fNameAr').textContent=T('fName');
+  document.title=T('doc.title');
+}
+
+/* ==================== 2) الإعدادات والبيانات ==================== */
+/* DEMO: الروابط والأرقام أدناه تجريبية — استبدلها ببيانات المسجد الحقيقية */
+const CFG = {
+  mawaqitSlug: 'masjid-al-noor-vancouver-98665-united-states',
+  mawaqitApiKey: '',   // ضع مفتاح API من Mawaqit لضمان السحب المباشر عبر واجهتهم الرسمية
+  iqamaOffsets: { fajr:25, dhuhr:20, asr:20, maghrib:20, isha:20, other:20 }
+};
+const PRAYERS = [
+  {k:'fajr',   en:'Fajr',    ico:'i-fajr'},
+  {k:'sunrise',en:'Sunrise', ico:'i-sunrise', info:true},
+  {k:'dhuhr',  en:'Dhuhr',   ico:'i-dhuhr'},
+  {k:'asr',    en:'Asr',     ico:'i-asr'},
+  {k:'maghrib',en:'Maghrib', ico:'i-maghrib'},
+  {k:'isha',   en:'Isha',    ico:'i-isha'}
+];
+const KS=['fajr','sunrise','dhuhr','asr','maghrib','isha'];
+const DEFAULT_KEYS=['fajr','shuruk','dhuhr','asr','maghrib','isha'];
+const VERSES = {
+ ar:[['إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا','سورة النساء — 103'],
+     ['أَحَبُّ الأَعْمَالِ إِلَى اللهِ الصَّلَاةُ عَلَى وَقْتِهَا','متفق عليه'],
+     ['أَقْرَبُ مَا يَكُونُ الْعَبْدُ مِنْ رَبِّهِ وَهُوَ سَاجِدٌ','رواه مسلم'],
+     ['بَشِّرِ الْمَشَّائِينَ فِي الظُّلَمِ إِلَى الْمَسَاجِدِ بِالنُّورِ التَّامِّ يَوْمَ الْقِيَامَةِ','رواه أبو داود'],
+     ['وَأَقِمِ الصَّلَاةَ لِذِكْرِي','سورة طه — 14']],
+ en:[['Indeed, prayer has been decreed upon the believers a decree of specified times','An-Nisa \u2014 103'],
+     ['The most beloved deeds to Allah are prayer at its proper time','Agreed upon'],
+     ['The closest a servant is to his Lord is while in prostration','Sahih Muslim'],
+     ['Give glad tidings to those who walk to the Masajid in darkness, of complete light on the Day of Resurrection','Abu Dawud'],
+     ['And establish prayer for My remembrance','Ta-Ha \u2014 14']]
+};
+/* DEMO: أسماء المجلس تجريبية — استبدلها بالمجلس الحقيقي */
+const BOARD = [
+ {init:'AH', name:{ar:'الأخ أحمد حسن',en:'Br. Ahmed Hassan'},  role:{ar:'الرئيس',en:'President'}},
+ {init:'OF', name:{ar:'الأخ عمر فاروق',en:'Br. Omar Farouq'},  role:{ar:'نائب الرئيس',en:'Vice President'}},
+ {init:'YA', name:{ar:'الأخ يوسف علي',en:'Br. Yousef Ali'},    role:{ar:'أمين الصندوق',en:'Treasurer'}},
+ {init:'SA', name:{ar:'الأخت سارة أحمد',en:'Sr. Sara Ahmed'},  role:{ar:'أمينة السر',en:'General Secretary'}},
+ {init:'KY', name:{ar:'الشيخ كريم يونس',en:'Imam Karim Younes'},role:{ar:'الإمام والشؤون الشرعية',en:'Imam & Religious Affairs'}},
+ {init:'LM', name:{ar:'الأخت ليلى محمد',en:'Sr. Layla Mohamed'},role:{ar:'العلاقات والمجتمع',en:'PR & Community'}}
+];
+const EVENTS = [
+ {dow:5,plus:0,ico:'i-mosque',tag:'ev.tagW',n:1},
+ {dow:4,plus:0,ico:'i-book',  tag:'ev.tagW',n:2},
+ {dow:6,plus:0,ico:'i-child', tag:'ev.tagW',n:3},
+ {dow:6,plus:7,ico:'i-give',  tag:'ev.tagM',n:4},
+ {dow:5,plus:0,ico:'i-users', tag:'ev.tagW',n:5}
+];
+const POLL = { opts:[{id:'park',seed:38},{id:'youth',seed:29},{id:'lib',seed:17}] };
+const TZ_FALLBACK='America/Los_Angeles';
+
+/* ==================== 3) الحساب الفلكي (احتياطي) ==================== */
+const LAT=45.65, LNG=-122.62, FAJRA=15, ISHAA=15;
+const D2R=Math.PI/180;
+const dsin=a=>Math.sin(a*D2R), dcos=a=>Math.cos(a*D2R), dtan=a=>Math.tan(a*D2R);
+const dacos=x=>Math.acos(Math.min(1,Math.max(-1,x)))/D2R;
+const datan2=(y,x)=>Math.atan2(y,x)/D2R;
+const fixA=a=>((a%360)+360)%360, fixH=h=>((h%24)+24)%24;
+function julian(y,m,d){ if(m<=2){y--;m+=12;} const A=Math.floor(y/100); return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+2-A+Math.floor(A/4)-1524.5; }
+function sunPos(jd){
+  const D=jd-2451545.0, g=fixA(357.529+0.98560028*D), q=fixA(280.459+0.98564736*D);
+  const L=fixA(q+1.915*dsin(g)+0.020*dsin(2*g)), e=23.439-0.00000036*D;
+  return {decl:Math.asin(Math.sin(e*D2R)*dsin(L))/D2R, eqt:q/15-fixH(datan2(dcos(e)*dsin(L),dcos(L))/15)};
+}
+function tzUS(d){ const y=d.getFullYear(); let s=new Date(y,2,1); s.setDate(1+(7-s.getDay())%7+7); let e=new Date(y,10,1); e.setDate(1+(7-e.getDay())%7); return (d>=s&&d<e)?-7:-8; }
+function computeTimes(date){
+  const y=date.getFullYear(),m=date.getMonth()+1,dd=date.getDate();
+  const jd=julian(y,m,dd)-LNG/(15*24);
+  const pos=t=>sunPos(jd+t/24), mid=t=>fixH(12-pos(t).eqt);
+  const ang=(a,t,ccw)=>{const dc=pos(t).decl; const Tm=dacos((-dsin(a)-dsin(dc)*dsin(LAT))/(dcos(dc)*dcos(LAT)))/15; return mid(t)+(ccw?-Tm:Tm);};
+  const asrT=t=>{const dc=pos(t).decl; return ang(-datan2(1,1+dtan(Math.abs(LAT-dc))),t,false);};
+  let f=5,sr=6,dh=12,as=13,mg=18,ish=18;
+  for(let i=0;i<3;i++){ f=ang(FAJRA,f,true); sr=ang(0.833,sr,true); dh=mid(dh); as=asrT(as); mg=ang(0.833,mg,false); ish=ang(ISHAA,ish,false); }
+  const adj=tzUS(date)-LNG/15;
+  return {fajr:f+adj,sunrise:sr+adj,dhuhr:dh+adj+2/60,asr:as+adj,maghrib:mg+adj+2/60,isha:ish+adj};
+}
+
+/* ==================== 4) المنطقة الزمنية ==================== */
+let TZ=TZ_FALLBACK, tzFmtCache={tz:null,fmt:null};
+function setTZ(tz){
+  if(!tz||typeof tz!=='string') return;
+  try{ new Intl.DateTimeFormat('en-GB',{timeZone:tz,hour12:false}); TZ=tz; tzFmtCache={tz:null,fmt:null}; }catch(e){}
+}
+function tzNow(){
+  try{
+    let f;
+    if(tzFmtCache.tz===TZ) f=tzFmtCache.fmt;
+    else { f=new Intl.DateTimeFormat('en-GB',{timeZone:TZ,hour12:false,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}); tzFmtCache={tz:TZ,fmt:f}; }
+    const p=f.formatToParts(new Date());
+    const g=t=>{const x=p.find(v=>v.type===t); return x?+x.value:0;};
+    const h=g('hour')%24;
+    return {y:g('year'),mo:g('month')-1,d:g('day'),sec:h*3600+g('minute')*60+g('second')};
+  }catch(e){
+    const n=new Date();
+    return {y:n.getFullYear(),mo:n.getMonth(),d:n.getDate(),sec:n.getHours()*3600+n.getMinutes()*60+n.getSeconds()};
+  }
+}
+function addDay(n,off){ const d=new Date(Date.UTC(n.y,n.mo,n.d+off)); return {y:d.getUTCFullYear(),mo:d.getUTCMonth(),d:d.getUTCDate()}; }
+
+/* ==================== 5) Mawaqit: الأذان + الإقامة ==================== */
+let DATA={type:'calc'}, tcache={};
+function normK(k){ k=String(k).toLowerCase(); return (k==='shuruk'||k==='shuruq')?'sunrise':k; }
+function parseDayEntry(entry,keys){
+  const t={};
+  if(Array.isArray(entry)){
+    if(entry.length<6) return null;
+    keys.forEach((k,i)=>{ t[normK(k)]=parseHM(entry[i]); });
+  } else if(entry&&typeof entry==='object'){
+    const map={}; Object.keys(entry).forEach(k=>{ map[normK(k)]=entry[k]; });
+    keys.forEach(k=>{ const nk=normK(k); t[nk]=parseHM(map[k]!==undefined?map[k]:map[nk]); });
+  } else if(typeof entry==='string'){
+    const parts=entry.split(','); if(parts.length<6) return null;
+    keys.forEach((k,i)=>{ t[normK(k)]=parseHM(parts[i]); });
+  } else return null;
+  return validT(t)?t:null;
+}
+function iqFromObj(o){
+  if(!o||typeof o!=='object') return null;
+  const map={}; Object.keys(o).forEach(k=>{ map[normK(k)]=o[k]; });
+  const t={sunrise:null}; let any=false;
+  ['fajr','dhuhr','asr','maghrib','isha'].forEach(k=>{
+    let v = map[k+'iqama']!==undefined?map[k+'iqama'] : (map['iqama'+k]!==undefined?map['iqama'+k]:undefined);
+    if(v==null && o.iqama && typeof o.iqama==='object') v=o.iqama[k];
+    if(v==null) return;
+    const p=parseHM(v); if(p!=null){ t[k]=p; any=true; }
+  });
+  return any?t:null;
+}
+function calEntry(cal,keys,mo,d){
+  const cands=[];
+  if(Array.isArray(cal)){ if(cal[mo])cands.push(cal[mo]); if(cal[mo+1])cands.push(cal[mo+1]); }
+  else { const a=cal[String(mo+1)], b=cal[String(mo)]; if(a)cands.push(a); if(b)cands.push(b); }
+  for(const arr of cands){
+    if(!arr) continue;
+    for(const idx of [d-1,d]){
+      const t=parseDayEntry(arr[idx],keys);
+      if(t) return t;
+    }
+  }
+  return null;
+}
+function coverageSet(cal,now){
+  const s=new Set(); if(!cal) return s;
+  const cnt = Array.isArray(cal) ? cal.filter(Boolean).length : Object.keys(cal).length;
+  if(cnt>=12){ for(let m=0;m<12;m++) s.add(now.y+'-'+m); }
+  else if(cnt>0){ s.add(now.y+'-'+now.mo); }
+  return s;
+}
+function mawaqitDay(M,y,mo,d){
+  const n=tzNow();
+  if(y===n.y&&mo===n.mo&&d===n.d) return M.today||null;
+  if(!M.cal||!M.covered||!M.covered.has(y+'-'+mo)) return null;
+  return calEntry(M.cal,M.calKeys||DEFAULT_KEYS,mo,d);
+}
+function mawaqitIqDay(M,y,mo,d){
+  const n=tzNow();
+  if(y===n.y&&mo===n.mo&&d===n.d&&M.todayIq) return M.todayIq;
+  if(M.iqCal&&M.coveredIq&&M.coveredIq.has(y+'-'+mo))
+    return calEntry(M.iqCal,M.iqKeys||M.calKeys||DEFAULT_KEYS,mo,d);
+  return null;
+}
+function getDayTimes(y,mo,d){
+  const key=y+'-'+mo+'-'+d;
+  if(tcache[key]) return tcache[key];
+  let t = DATA.type==='mawaqit' ? mawaqitDay(DATA,y,mo,d) : null;
+  if(!t) t=computeTimes(new Date(y,mo,d));
+  tcache[key]=t; return t;
+}
+function iqFromAdhan(t){
+  const o={sunrise:null};
+  PRAYERS.forEach(p=>{
+    if(p.info) return;
+    const off=CFG.iqamaOffsets[p.k];
+    o[p.k]=(off!=null&&t[p.k]!=null)?t[p.k]+off/60:null;
+  });
+  return o;
+}
+function getIqamah(y,mo,d){
+  const key='iq'+y+'-'+mo+'-'+d;
+  if(tcache[key]) return tcache[key];
+  let iq = DATA.type==='mawaqit' ? mawaqitIqDay(DATA,y,mo,d) : null;
+  if(!iq) iq=iqFromAdhan(getDayTimes(y,mo,d));
+  tcache[key]=iq; return iq;
+}
+function tryFetch(url,opts){
+  const ctl=new AbortController(); const to=setTimeout(()=>ctl.abort(),9000);
+  return fetch(url,Object.assign({},opts,{signal:ctl.signal}))
+    .then(r=>{ clearTimeout(to); return r.ok ? r.json() : null; })
+    .catch(()=>{ clearTimeout(to); return null; });
+}
+function parseMawaqit(d){
+  if(!d||typeof d!=='object') return null;
+  const M={};
+  M.tz=d.timezone||d.timeZone||null;
+  M.jumua=parseHM(d.jumua); M.jumua2=parseHM(d.jumua2);
+  let today=null;
+  const tsrc=d.times||d.today||null;
+  if(tsrc){
+    if(Array.isArray(tsrc)&&tsrc.length>=6){ today={}; DEFAULT_KEYS.forEach((k,i)=>today[normK(k)]=parseHM(tsrc[i])); }
+    else if(typeof tsrc==='object'&&!Array.isArray(tsrc)){
+      const map={}; Object.keys(tsrc).forEach(k=>{ map[normK(k)]=tsrc[k]; });
+      today={}; DEFAULT_KEYS.forEach(k=>{ const nk=normK(k); today[nk]=parseHM(map[k]!==undefined?map[k]:map[nk]); });
+    }
+    if(!validT(today)) today=null;
+  }
+  if(today) M.today=today;
+  let tiq=null;
+  if(d.today&&typeof d.today==='object'&&!Array.isArray(d.today)) tiq=iqFromObj(d.today);
+  if(!tiq&&d.iqama&&typeof d.iqama==='object') tiq=iqFromObj(d);
+  if(tiq&&validIq(tiq)) M.todayIq=tiq;
+  let cal=d.calendar||null, keys=d.calendarKeys||null;
+  if(!cal&&Array.isArray(d.monthlyTimes)) cal=d.monthlyTimes;
+  if(cal){ M.cal=cal; M.calKeys=(keys&&Array.isArray(keys))?keys:DEFAULT_KEYS; }
+  let iqcal=d.iqamaCalendar||d.iqamahCalendar||null;
+  if(!iqcal&&Array.isArray(d.iqamaMonthlyTimes)) iqcal=d.iqamaMonthlyTimes;
+  if(iqcal){ M.iqCal=iqcal; M.iqKeys=(d.iqamaCalendarKeys&&Array.isArray(d.iqamaCalendarKeys))?d.iqamaCalendarKeys:(M.calKeys||DEFAULT_KEYS); }
+  const n=tzNow();
+  M.covered=coverageSet(M.cal,n);
+  M.coveredIq=coverageSet(M.iqCal,n);
+  if(!M.today&&!M.cal) return null;
+  return M;
+}
+async function fetchMawaqit(){
+  const slug=CFG.mawaqitSlug;
+  const staticU='https://mawaqit.net/static/times/'+slug+'.json';
+  const apiU='https://mawaqit.net/api/2.0/mosque/'+slug+'/times?lang=en';
+  const proxy=u=>'https://api.allorigins.win/raw?url='+encodeURIComponent(u);
+  const tries=[];
+  if(CFG.mawaqitApiKey) tries.push({u:apiU,o:{headers:{'x-api-key':CFG.mawaqitApiKey},'cache':'no-store'}});
+  tries.push({u:staticU,o:{}});
+  tries.push({u:proxy(staticU),o:{}});
+  for(const t of tries){
+    const d=await tryFetch(t.u,t.o);
+    const M=parseMawaqit(d);
+    if(M) return M;
+  }
+  return null;
+}
+function setPill(state,txt){
+  const p=$('#srcPill');
+  p.className='src-pill '+(state==='ok'?'ok':state==='load'?'load':'');
+  $('#srcPillTxt').textContent=txt;
+}
+async function loadTimes(){
+  const M=await fetchMawaqit();
+  if(M){
+    DATA=Object.assign({type:'mawaqit'},M);
+    if(M.tz) setTZ(M.tz);
+    for(const k in tcache) delete tcache[k];
+    setPill('ok',T('src.live'));
+    renderMonth(); refreshTimesUI();
+    try{ tick(); }catch(e){}
+    toast(T('toast.updated'));
+  } else {
+    setPill('warn',T('src.calc'));
+  }
+}
+
+/* ==================== 6) العرض ==================== */
+function fmtFullDate(y,mo,d){
+  const dt=new Date(Date.UTC(y,mo,d,12));
+  const g=new Intl.DateTimeFormat(intlLoc(),{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(dt);
+  let h=''; try{ h=new Intl.DateTimeFormat(intlLoc({ca:'islamic-umalqura'}),{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(dt); }catch(e){}
+  return {g,h};
+}
+const rowMap={};
+function renderDayPanels(){
+  const box=$('#prayerRows'); box.innerHTML='';
+  PRAYERS.forEach(p=>{
+    const row=document.createElement('div');
+    row.className='prayer-row'+(p.info?' info':'');
+    row.dataset.k=p.k;
+    row.innerHTML='<span class="pr-ico"><svg class="ico"><use href="#'+p.ico+'"/></svg></span>'+
+      '<div class="pr-name"><b>'+T('p.'+p.k)+'</b><i>'+p.en.toUpperCase()+'</i></div>'+
+      '<div class="pr-times"><b class="pr-time" data-t="'+p.k+'">—</b><b class="pr-iq" data-t="'+p.k+'">—</b></div>';
+    box.appendChild(row); rowMap[p.k]=row;
+  });
+}
+function refreshTimesUI(){
+  const n=tzNow(), t=getDayTimes(n.y,n.mo,n.d), iq=getIqamah(n.y,n.mo,n.d);
+  PRAYERS.forEach(p=>{
+    const a=$('.pr-time[data-t="'+p.k+'"]'); if(a) a.textContent=fmtTime(t[p.k]);
+    const q=$('.pr-iq[data-t="'+p.k+'"]');  if(q) q.textContent=fmtTime(iq[p.k]);
+  });
+  const fd=fmtFullDate(n.y,n.mo,n.d);
+  $('#panelDate').textContent=fd.g+(fd.h?' · '+fd.h+(fd.h.indexOf('هـ')>-1||fd.h.indexOf('AH')>-1?'':' هـ'):'');
+  $('#sunriseT').textContent=fmtTime(t.sunrise);
+  $('#sunsetT').textContent=fmtTime(t.maghrib-2/60);
+  const len=t.maghrib-2/60-t.sunrise, lh=Math.floor(len), lm=Math.round((len-lh)*60);
+  $('#dayLen').textContent=lh+(LANG==='ar'?' س ':'h ')+lm+(LANG==='ar'?' د':'m');
+  const j1=DATA.jumua||12.5, j2=DATA.jumua2||13.5;
+  $('#jumuaRows').innerHTML=
+    '<div class="fj-row"><span>'+T('times.kh1')+'</span><b>'+fmtTime(j1)+'</b></div>'+
+    '<div class="fj-row"><span>'+T('times.kh2')+'</span><b>'+fmtTime(j2)+'</b></div>';
+  $('#heroHijri').textContent=fd.h?fd.h+(fd.h.indexOf('هـ')>-1||fd.h.indexOf('AH')>-1?'':' هـ'):'—';
+  $('#heroGreg').textContent=fd.g;
+}
+let monthOff=0, calMode='adhan';
+function renderMonth(){
+  const n=tzNow();
+  const labs=[0,1].map(o=>{
+    const dt=new Date(Date.UTC(n.y,n.mo+o,1,12));
+    return new Intl.DateTimeFormat(intlLoc(),{month:'long',year:'numeric',timeZone:'UTC'}).format(dt);
+  });
+  $$('#monthTabs .tab').forEach((b,i)=>{ b.classList.toggle('on',i===monthOff); b.textContent=labs[i]||'—'; });
+  $$('#modeTabs .tab').forEach(b=>b.classList.toggle('on',b.dataset.mode===calMode));
+  $('#modeNote').textContent = calMode==='iqama' ? T('cal.iqNote') : T('cal.note');
+  const y=n.y, mo=n.mo+monthOff;
+  const dim=new Date(Date.UTC(y,mo+1,0)).getUTCDate();
+  let html='';
+  for(let d=1;d<=dim;d++){
+    const day = calMode==='adhan' ? getDayTimes(y,mo,d) : getIqamah(y,mo,d);
+    const dt=new Date(Date.UTC(y,mo,d,12));
+    const wd=new Intl.DateTimeFormat(intlLoc(),{weekday:'short',timeZone:'UTC'}).format(dt);
+    let hij=''; try{ hij=new Intl.DateTimeFormat(intlLoc({ca:'islamic-umalqura'}),{day:'numeric',month:'long',timeZone:'UTC'}).format(dt); }catch(e){}
+    const isT=monthOff===0&&d===n.d;
+    html+='<tr class="'+(isT?'today':'')+'"><td class="td-date"><b>'+wd+' '+d+'</b><i>'+hij+'</i></td>';
+    KS.forEach(k=>{ html+='<td>'+((calMode==='iqama'&&k==='sunrise')?'—':fmtTime(day[k],false))+'</td>'; });
+    html+='</tr>';
+  }
+  $('#monthBody').innerHTML=html;
+}
+function nextWeekday(dow,plus){
+  const d=new Date(); d.setHours(0,0,0,0);
+  let diff=(dow-d.getDay()+7)%7; if(diff===0)diff=7;
+  d.setDate(d.getDate()+diff+(plus||0));
+  return d;
+}
+function renderEvents(){
+  const list=$('#eventsList'); list.innerHTML='';
+  const fD=new Intl.DateTimeFormat(intlLoc(),{weekday:'long'}), fDM=new Intl.DateTimeFormat(intlLoc(),{day:'numeric',month:'long'});
+  const items=EVENTS.map(e=>Object.assign({},e,{date:nextWeekday(e.dow,e.plus)})).sort((a,b)=>a.date-b.date).slice(0,5);
+  items.forEach((e,i)=>{
+    const el=document.createElement('div');
+    el.className='t-item reveal'; el.style.setProperty('--d',(i*.06)+'s');
+    el.innerHTML='<div class="t-ico"><svg class="ico"><use href="#'+e.ico+'"/></svg></div>'+
+      '<div class="t-date"><b>'+fD.format(e.date)+'</b><span>'+fDM.format(e.date)+'</span></div>'+
+      '<div class="t-body"><h3>'+T('ev.'+e.n+'.t')+'</h3><p>'+T('ev.'+e.n+'.d')+'</p>'+
+      '<span class="t-meta"><svg class="ico"><use href="#i-clock"/></svg>'+T('ev.'+e.n+'.m')+'</span></div>'+
+      '<span class="t-tag">'+T(e.tag)+'</span>';
+    list.appendChild(el);
+  });
+  watchReveals();
+}
+function renderBoard(){
+  const g=$('#boardGrid'); g.innerHTML='';
+  BOARD.forEach((m,i)=>{
+    const el=document.createElement('div');
+    el.className='board-card tiltable reveal'; el.setAttribute('data-tilt',''); el.style.setProperty('--d',(i*.05)+'s');
+    el.innerHTML='<svg class="ico wm"><use href="#i-star8"/></svg>'+
+      '<div class="b-ava">'+m.init+'</div><h3>'+(LANG==='ar'?m.name.ar:m.name.en)+'</h3>'+
+      '<span class="role">'+(LANG==='ar'?m.role.ar:m.role.en)+'</span>'+
+      '<span class="mail" style="direction:ltr;unicode-bidi:embed">board@issw.org</span>';
+    g.appendChild(el);
+  });
+  watchReveals();
+}
+
+/* ==================== 7) العدّاد التنازلي الحيّ ==================== */
+const RING=2*Math.PI*52;
+const EL={};
+['ringFg','cdH','cdM','cdS','nextName','nextTime','nextIq','nextNote','navNext','sunDot','moonDot'].forEach(id=>EL[id]=document.getElementById(id));
+let lastNextKey=null;
+function tick(){
+  const n=tzNow();
+  const Td=getDayTimes(n.y,n.mo,n.d);
+  const boundaries=['fajr','sunrise','dhuhr','asr','maghrib','isha'];
+  const seq=['fajr','dhuhr','asr','maghrib','isha'];
+  const sec=n.sec;
+  let ni=-1;
+  for(let i=0;i<seq.length;i++){ if(Td[seq[i]]!=null&&Td[seq[i]]*3600>sec){ ni=i; break; } }
+  let nextKey,nextT,nextDay=0,startT,np;
+  if(ni===-1){
+    const tm=addDay(n,1), T2=getDayTimes(tm.y,tm.mo,tm.d);
+    nextKey='fajr'; nextT=T2.fajr; nextDay=1; startT=Td.isha; np=tm;
+  } else {
+    nextKey=seq[ni]; nextT=Td[nextKey];
+    const bi=boundaries.indexOf(nextKey);
+    if(bi>0) startT=Td[boundaries[bi-1]];
+    else { const yd=addDay(n,-1); startT=getDayTimes(yd.y,yd.mo,yd.d).isha-24; }
+    np={y:n.y,mo:n.mo,d:n.d};
+  }
+  /* ١) العدّاد أولًا — دائمًا تنازلي كل ثانية */
+  const endSec=(nextT+nextDay*24)*3600, startSec=startT*3600;
+  const rem=Math.max(0,Math.round(endSec-sec));
+  const H=Math.floor(rem/3600), M=Math.floor(rem%3600/60), S=rem%60;
+  if(EL.cdH) EL.cdH.textContent=pad2(H);
+  if(EL.cdM) EL.cdM.textContent=pad2(M);
+  if(EL.cdS) EL.cdS.textContent=pad2(S);
+  if(EL.ringFg&&endSec>startSec){
+    const prog=Math.min(1,Math.max(0,(sec-startSec)/(endSec-startSec)));
+    EL.ringFg.style.strokeDasharray=RING;
+    EL.ringFg.style.strokeDashoffset=RING*(1-prog);
+  }
+  /* ٢) الاسم والأذان والإقامة */
+  const meta=PRAYERS.find(p=>p.k===nextKey);
+  if(EL.nextName) EL.nextName.textContent=T('p.'+nextKey);
+  if(EL.nextTime) EL.nextTime.textContent=fmtTime(nextT);
+  const iq=getIqamah(np.y,np.mo,np.d);
+  if(EL.nextIq) EL.nextIq.textContent=(iq&&iq[nextKey]!=null)?fmtTime(iq[nextKey]):'—';
+  const off=(iq&&iq[nextKey]!=null&&nextT!=null)?Math.round((iq[nextKey]-nextT)*60):(CFG.iqamaOffsets[nextKey]||CFG.iqamaOffsets.other);
+  if(EL.nextNote) EL.nextNote.textContent=(nextDay?T('hero.tomorrow')+' · ':'')+(off>0?T('hero.iqamaOff').replace('{m}',N(off)):T('hero.liveNote'));
+  if(EL.navNext) EL.navNext.textContent=T('p.'+nextKey)+' · '+T('nav.after')+' '+(H>0?H+':'+pad2(M):M+':'+pad2(S));
+  /* ٣) تمييز الصف */
+  if(rowMap[nextKey]&&lastNextKey!==nextKey){
+    Object.keys(rowMap).forEach(k=>rowMap[k].classList.remove('next','flash'));
+    rowMap[nextKey].classList.add('next','flash');
+    lastNextKey=nextKey;
+  }
+  /* ٤) مؤشر الشمس/القمر */
+  if(Td.sunrise!=null&&Td.maghrib!=null){
+    const p=(sec-Td.sunrise*3600)/((Td.maghrib-2/60)*3600-Td.sunrise*3600);
+    if(p>=0&&p<=1){
+      if(EL.sunDot){ EL.sunDot.style.display='';
+        const ang=Math.PI*(1-p);
+        EL.sunDot.setAttribute('cx',(130-100*Math.cos(ang)).toFixed(1));
+        EL.sunDot.setAttribute('cy',(110-100*Math.sin(ang)).toFixed(1));
+      }
+      if(EL.moonDot) EL.moonDot.style.display='none';
+    } else { if(EL.sunDot)EL.sunDot.style.display='none'; if(EL.moonDot)EL.moonDot.style.display=''; }
+  }
+}
+
+/* ==================== 8) الآيات الدوّارة ==================== */
+let vIdx=0;
+function setVerse(){
+  const arr=VERSES[LANG==='ar'?'ar':'en'];
+  const v=arr[vIdx%arr.length];
+  $('#rotVerse').textContent=(LANG==='ar'?'«':'\u201c')+v[0]+(LANG==='ar'?'»':'\u201d');
+  $('#rotSrc').textContent=v[1];
+}
+function startVerses(){
+  setInterval(()=>{
+    const box=$('#rot'); box.style.opacity=0;
+    setTimeout(()=>{ vIdx++; setVerse(); box.style.opacity=1; },500);
+  },9000);
+}
+
+/* ==================== 9) الاستفتاء ==================== */
+function pollSeed(){ const c={}; POLL.opts.forEach(o=>c[o.id]=o.seed); return {counts:c,voted:null}; }
+let pollState;
+try{ pollState=JSON.parse(localStorage.getItem('issw_poll'))||pollSeed(); }catch(e){ pollState=pollSeed(); }
+function savePoll(){ try{ localStorage.setItem('issw_poll',JSON.stringify(pollState)); }catch(e){} }
+function renderPoll(){
+  const box=$('#pollOpts'); box.innerHTML='';
+  const total=POLL.opts.reduce((a,o)=>a+(pollState.counts[o.id]||0),0)||1;
+  POLL.opts.forEach(o=>{
+    const c=pollState.counts[o.id]||0, pct=Math.round(c/total*100);
+    const b=document.createElement('button');
+    b.type='button'; b.className='poll-opt'+(pollState.voted===o.id?' chosen':'');
+    b.innerHTML='<span class="fill"></span><span class="row"><b>'+T('poll.'+o.id+'.t')+'</b><span class="pct">'+pct+'%</span></span>';
+    b.addEventListener('click',()=>{
+      if(pollState.voted){ toast(T('poll.already')); return; }
+      pollState.counts[o.id]=(pollState.counts[o.id]||0)+1;
+      pollState.voted=o.id; savePoll(); renderPoll(); toast(T('poll.thanks'));
+    });
+    box.appendChild(b);
+  });
+  $('#pollTotal').textContent=total+' '+T('poll.votes');
+  $('#pollVoted').innerHTML=pollState.voted?'<b>'+T('poll.yourVote')+':</b> '+T('poll.'+pollState.voted+'.t'):'';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    box.querySelectorAll('.fill').forEach((f,i)=>{
+      f.style.width=Math.round((pollState.counts[POLL.opts[i].id]||0)/total*100)+'%';
+    });
+  }));
+}
+
+/* ==================== 10) القائمة والتنقل ==================== */
+function initNav(){
+  const mMenu=$('#mMenu'), btn=$('#btnMenu');
+  btn.addEventListener('click',()=>{
+    const open=mMenu.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+  });
+  mMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ mMenu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }));
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') mMenu.classList.remove('open'); });
+
+  const nav=$('#nav');
+  window.addEventListener('scroll',()=>{
+    nav.classList.toggle('scrolled',window.scrollY>40);
+    $('#toTop').classList.toggle('show',window.scrollY>600);
+    const h=document.documentElement;
+    const p=h.scrollTop/(h.scrollHeight-h.clientHeight||1);
+    $('#progress').style.width=(p*100)+'%';
+  },{passive:true});
+  $('#toTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+  const spy=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting) $$('.nav-links a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));
+  }),{rootMargin:'-45% 0px -50% 0px'});
+  $$('header[id],section[id]').forEach(s=>spy.observe(s));
+}
+
+/* ==================== 11) اللغة ==================== */
+function setLang(l){
+  LANG=l;
+  try{ localStorage.setItem('isswLang',l); }catch(e){}
+  document.documentElement.lang=l;
+  document.documentElement.dir=(l==='ar'?'rtl':'ltr');
+  applyI18n();
+  $$('#langSw button, .m-lang button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
+  vIdx=0; setVerse();
+  renderDayPanels(); refreshTimesUI(); renderMonth(); renderEvents(); renderBoard(); renderPoll();
+  try{ tick(); }catch(e){}
+  setPill(DATA.type==='mawaqit'?'ok':'warn', DATA.type==='mawaqit'?T('src.live'):T('src.calc'));
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-lang]');
+  if(b) setLang(b.dataset.lang);
+});
+
+/* ==================== 12) جماليات ==================== */
+function initSky(){
+  const sky=$('#sky');
+  for(let i=0;i<80;i++){
+    const s=document.createElement('i');
+    s.style.left=(Math.random()*100)+'%';
+    s.style.top=(Math.random()*62)+'%';
+    s.style.setProperty('--d',(2+Math.random()*4).toFixed(1)+'s');
+    const sz=Math.random()<.15?3:2;
+    s.style.width=s.style.height=sz+'px';
+    sky.appendChild(s);
+  }
+  const shoot=$('#shoot');
+  (function loop(){
+    setTimeout(()=>{
+      shoot.classList.remove('go'); void shoot.offsetWidth;
+      shoot.style.top=(8+Math.random()*24)+'%';
+      shoot.style.left=(30+Math.random()*55)+'%';
+      shoot.classList.add('go'); loop();
+    },6000+Math.random()*8000);
+  })();
+}
+const revealIO=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); revealIO.unobserve(e.target);} }),{threshold:.1});
+function watchReveals(){ $$('.reveal:not(.in)').forEach(el=>revealIO.observe(el)); }
+function initTilt(){
+  if(!window.matchMedia||!matchMedia('(hover:hover)').matches) return;
+  document.addEventListener('mousemove',e=>{
+    const el=e.target.closest('[data-tilt]');
+    $$('.tilting').forEach(x=>{ if(x!==el){ x.style.transform=''; x.classList.remove('tilting'); } });
+    if(el){
+      const r=el.getBoundingClientRect();
+      const rx=((e.clientY-r.top)/r.height-.5)*-6, ry=((e.clientX-r.left)/r.width-.5)*6;
+      el.style.transform='perspective(750px) rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg)';
+      el.classList.add('tilting');
+    }
+  },{passive:true});
+}
+function animCount(el){
+  el.dataset.done='1';
+  const target=+el.dataset.count, suf=el.dataset.suffix||'', t0=performance.now(), dur=1400;
+  (function step(t){
+    const p=Math.min(1,(t-t0)/dur), v=Math.round(target*(1-Math.pow(1-p,3)));
+    el.textContent=v+suf;
+    if(p<1) requestAnimationFrame(step); else el.textContent=target+suf;
+  })(t0);
+}
+function initCounters(){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ animCount(e.target); io.unobserve(e.target);} }),{threshold:.5});
+  $$('[data-count]').forEach(el=>io.observe(el));
+}
+
+/* ==================== 13) التفاعلات ==================== */
+function initActions(){
+  $$('[data-copy]').forEach(b=>b.addEventListener('click',()=>copyText(b.dataset.copy,T('toast.copy2'))));
+  $('#copyBtn').addEventListener('click',()=>{
+    const n=tzNow(), t=getDayTimes(n.y,n.mo,n.d), iq=getIqamah(n.y,n.mo,n.d);
+    const lines=PRAYERS.map(p=>{
+      const q=(iq&&iq[p.k]!=null)?fmtTime(iq[p.k]):'—';
+      return T('p.'+p.k)+' ('+p.en+'): '+fmtTime(t[p.k])+' | '+T('t.iqama')+': '+q;
+    });
+    const txt='Masjid Al-Noor — ISSW, Vancouver WA\n'+$('#panelDate').textContent+'\n'+lines.join('\n');
+    copyText(txt,T('toast.copy'));
+  });
+  const dModal=$('#donateModal'), eModal=$('#enrollModal');
+  const open=m=>{ m.classList.add('open'); m.setAttribute('aria-hidden','false'); };
+  const close=m=>{ m.classList.remove('open'); m.setAttribute('aria-hidden','true'); };
+  $$('[data-open-donate]').forEach(b=>b.addEventListener('click',()=>open(dModal)));
+  $('#enrollBtn').addEventListener('click',()=>open(eModal));
+  $$('.modal').forEach(m=>{
+    m.querySelectorAll('[data-close]').forEach(x=>x.addEventListener('click',()=>close(m)));
+    m.addEventListener('click',e=>{ if(e.target===m) close(m); });
+  });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') $$('.modal.open').forEach(close); });
+  $('#contactForm').addEventListener('submit',e=>{ e.preventDefault(); e.target.reset(); toast(T('toast.sent')); });
+  $('#memberForm').addEventListener('submit',e=>{ e.preventDefault(); e.target.reset(); toast(T('toast.member')); });
+  $('#enrollForm').addEventListener('submit',e=>{ e.preventDefault(); close(eModal); e.target.reset(); toast(T('toast.enroll')); });
+  $('#monthTabs').addEventListener('click',e=>{
+    const b=e.target.closest('.tab'); if(!b) return;
+    monthOff=Array.from($$('#monthTabs .tab')).indexOf(b);
+    renderMonth();
+  });
+  $('#modeTabs').addEventListener('click',e=>{
+    const b=e.target.closest('.tab'); if(!b) return;
+    calMode=b.dataset.mode; renderMonth();
+  });
+}
+
+/* ==================== 14) الإقلاع ==================== */
+safe(initNav);
+safe(initSky);
+safe(initActions);
+safe(initTilt);
+safe(initCounters);
+safe(()=>{ renderDayPanels(); refreshTimesUI(); renderMonth(); renderEvents(); renderBoard(); renderPoll(); setVerse(); startVerses(); watchReveals(); });
+safe(()=>{
+  $('#fYear').textContent=new Date().getFullYear();
+  /* المؤقّت يُسجَّل أولًا ثم أول نبضة — فلا يتوقف العدّاد أبدًا ولو حدث خطأ عرض */
+  setInterval(()=>{ try{ tick(); }catch(e){} },250);
+  try{ tick(); }catch(e){}
+  setPill('load',T('src.load'));
+  loadTimes();
+});
+safe(()=>{
+  let saved=null; try{ saved=localStorage.getItem('isswLang'); }catch(e){}
+  setLang(saved||'en');
+});
+
+})();
+</script>
+</body>
+</html>

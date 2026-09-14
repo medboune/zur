@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+  ═══════════════════════════════════════════════════════════════
+  ZURONIX — FINAL BUILD
+  Color system (adopted proposal + 4 engineering corrections):
+    Dominance budget : bg 72% · surface 12% · text 8% · cyan 5%
+                       violet 2% · status 1%
+    Semantic language: CYAN→action/infra · VIOLET→AI/agents
+                       GREEN→live/ok · WHITE→trust · AMBER→official
+                       RED→errors only
+    Rules            : gradient-brand = text/decor ONLY
+                       buttons = vertical cyan gradient (AA 7.9:1+)
+                       violet raw = fills/borders, violet-soft = text
+  Modules : 0 CONFIG · 1 ICONS · 2 DATA · 3 HELPERS · 4 LIVE
+            5 PAGES · 6 CHROME · 7 ROUTER · 8 BEHAVIORS/BOOT
+  ═══════════════════════════════════════════════════════════════
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zuronix — Cybersecurity, Risk & AI Agent Security | 24/7 Monitoring</title>
+<meta name="description" content="Zuronix delivers enterprise-grade cybersecurity for government, healthcare, legal, and private-sector organizations: Microsoft 365, cloud, and AI agent security, compliance readiness (NIST, HIPAA, CMMC, SOC 2), and 24/7 monitored incident response.">
+<meta property="og:title" content="Zuronix — Enterprise Cybersecurity & AI Agent Security">
+<meta property="og:description" content="Reduce risk. Protect identity, cloud, and AI agents. Meet compliance requirements with evidence. One security partner, monitored 24/7.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#05070B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2318E0FF'/%3E%3Cstop offset='50%25' stop-color='%23367CFF'/%3E%3Cstop offset='100%25' stop-color='%237C5CFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M20 2 L34 10 L34 26 L20 38 L6 26 L6 10 Z' fill='url(%23g)'/%3E%3Cpath d='M13 14 L27 14 L13 26 L27 26' stroke='%2305070B' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%2322E68A'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2318E0FF'/%3E%3Cstop offset='50%25' stop-color='%23367CFF'/%3E%3Cstop offset='100%25' stop-color='%237C5CFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='40' height='40' fill='%2305070B'/%3E%3Cpath d='M20 4 L34 12 L34 26 L20 36 L6 26 L6 12 Z' fill='url(%23g)'/%3E%3Cpath d='M13 15 L27 15 L13 25 L27 25' stroke='%2305070B' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='20' cy='20' r='1.8' fill='%2322E68A'/%3E%3C/svg%3E">
+<meta property="og:image" content="https://zuronix.com/og.png">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://zuronix.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Zuronix","email":"info@zuronix.com","description":"Cybersecurity, risk, compliance, and AI agent security partner for government, healthcare, legal, and private-sector organizations. 24/7 monitored security operations, Microsoft 365 and cloud security, compliance readiness, and incident response.","areaServed":"US","knowsAbout":["Cybersecurity","Microsoft 365 Security","Identity and Access Management","AI Agent Security","NIST Cybersecurity Framework","HIPAA","CMMC","SOC 2","Incident Response"]}
+</script>
+<style>
+/* ═══ TOKENS — adopted system + corrections ═══ */
+:root{
+  /* Core surfaces (84% of canvas) */
+  --bg:#05070B; --surface:#0A1019; --surface-2:#0E1621;
+  --border:#1B2A3A; --border-2:#2A3F55;
+  /* Brand — CYAN: action/infrastructure · VIOLET: AI/agents */
+  --cyan:#18E0FF; --cyan-dark:#06B6D4; --cyan-soft:#9BE5FF;
+  --violet:#7C5CFF; --violet-soft:#A79BFF;
+  /* Typography */
+  --text:#F5F8FC; --text-muted:#94A3B8; --text-dim:#7D8AA3;
+  /* Status — GREEN live · AMBER official/attention · RED errors only */
+  --success:#22E68A; --gold:#FFB547; --danger:#FF4D67;
+  /* Effects */
+  --glow-cyan:0 0 40px rgba(24,224,255,.18);
+  --glow-violet:0 0 40px rgba(124,92,255,.15);
+  /* Gradients — brand: text/decor ONLY · action: buttons (AA-safe) */
+  --gradient-brand:linear-gradient(135deg,#18E0FF 0%,#367CFF 50%,#7C5CFF 100%);
+  --grad:linear-gradient(135deg,#18E0FF 0%,#367CFF 50%,#7C5CFF 100%);
+  --grad-action:linear-gradient(180deg,#18E0FF,#06B6D4);
+  --grad-violet:linear-gradient(180deg,#9D7BFF,#7C5CFF);
+  --r:8px; --r-sm:6px;
+  --font:'Manrope',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --disp:'Space Grotesk','Manrope',ui-sans-serif,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-muted);font-size:1rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(24,224,255,.3);color:#fff}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:6px}
+::-webkit-scrollbar-track{background:transparent}
+img,svg{display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;border-radius:4px}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--cyan);color:#041019;padding:8px 16px;border-radius:0 0 8px 0;z-index:200;font-weight:700}
+.skip-link:focus{left:0}
+.container{max-width:1280px;margin:0 auto;padding:0 24px}
+.icon{width:24px;height:24px;flex:none}
+.ic-s{width:15px;height:15px}
+.ic-m{width:20px;height:20px}
+h1,h2,h3,h4{color:var(--text);font-family:var(--disp);letter-spacing:-.02em;line-height:1.18;font-weight:700}
+a.card:hover,a.scn-card:hover{transform:translateY(-2px)}
+#main.page-in{animation:pageIn .4s cubic-bezier(.22,.61,.36,1) both}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px)}}
+.mono-label{font-family:var(--mono);font-size:.64rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan-soft)}
+
+/* ═══ AMBIENT ═══ */
+.bg-art{position:fixed;inset:0;z-index:-1;background:radial-gradient(900px 480px at 80% -10%,rgba(24,224,255,.06),transparent 60%),radial-gradient(900px 540px at 10% 110%,rgba(124,92,255,.05),transparent 60%),var(--bg);animation:bgdrift 30s ease-in-out infinite alternate}
+@keyframes bgdrift{to{background-position:30px 20px,-24px -16px,0 0}}
+.bg-art::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(148,163,184,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.04) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 95% 72% at 50% 0%,#000 0%,transparent 78%);mask-image:radial-gradient(ellipse 95% 72% at 50% 0%,#000 0%,transparent 78%)}
+
+/* ═══ CONTROLS ═══ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:inherit;font-weight:700;font-size:.92rem;padding:10px 20px;border-radius:var(--r-sm);border:1px solid transparent;cursor:pointer;transition:transform .15s,box-shadow .15s,filter .15s,border-color .15s,color .15s,background .15s;white-space:nowrap}
+.btn:active{transform:none}
+.btn-primary{background:var(--grad-action);color:#041019;box-shadow:0 0 24px rgba(24,224,255,.22),0 1px 3px rgba(1,4,9,.5)}
+.btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px);box-shadow:0 0 36px rgba(24,224,255,.34),0 3px 10px rgba(1,4,9,.5)}
+.btn-outline{background:var(--surface-2);color:var(--text);border-color:var(--border-2)}
+.btn-outline:hover{border-color:#415E80;background:#121C2A;transform:translateY(-1px)}
+.btn-ghostd{background:transparent;color:var(--text);border-color:var(--border-2)}
+.btn-ghostd:hover{border-color:#415E80;color:var(--cyan-soft)}
+.btn-sm{padding:5px 14px;font-size:.85rem;border-radius:var(--r-sm)}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.tlink{color:var(--cyan-soft);font-weight:700;font-size:.92rem;display:inline-flex;align-items:center;gap:6px;transition:gap .2s,color .2s}
+.tlink:hover{gap:10px;color:#C6F1FF}
+.tlink .icon{width:15px;height:15px}
+.chip{display:inline-flex;align-items:center;gap:7px;background:rgba(24,224,255,.08);color:var(--cyan-soft);border:1px solid rgba(24,224,255,.25);font-family:var(--mono);font-weight:500;font-size:.7rem;letter-spacing:.05em;padding:4px 12px;border-radius:999px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);flex:none}
+.seal{display:inline-flex;align-items:center;gap:8px;background:rgba(255,181,71,.07);border:1px solid rgba(255,181,71,.4);color:var(--gold);font-family:var(--mono);font-size:.64rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
+.seal .icon{width:13px;height:13px}
+.seal-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.term-live{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.64rem;font-weight:700;letter-spacing:.18em;color:var(--success)}
+.term-live .dot{background:var(--success);box-shadow:0 0 8px rgba(34,230,138,.8);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+
+/* ═══ SECTIONS ═══ */
+.section{padding:64px 0}
+.section--white{background:#070B12;border-block:1px solid #131F2E}
+.section--tint{background:linear-gradient(180deg,rgba(24,224,255,.045),rgba(124,92,255,.035))}
+.section--dark{background:#030508;border-block:1px solid #14202F}
+.eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.68rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan-soft)}
+.eyebrow::before{content:"";width:8px;height:8px;background:var(--grad);border-radius:2px;flex:none}
+.eyebrow--center{justify-content:center}
+.eyebrow--center::after{content:"";width:8px;height:8px;background:var(--grad);border-radius:2px;flex:none}
+.h2{font-size:clamp(1.6rem,2.9vw,2.15rem);margin:14px 0 12px}
+.sec-head{max-width:640px;margin-bottom:36px}
+.sec-head--center{margin-inline:auto;text-align:center}
+.sec-lede{font-size:1.02rem;color:var(--text-dim)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+
+/* ═══ CARDS (semantic: .v = AI → violet) ═══ */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;transition:transform .2s,border-color .2s;display:block;position:relative}
+.card::before,.entry-card::before,.scope-group::before,.scn-card::before,.b-cell::before,.tech::before{content:"";position:absolute;inset:0;border-radius:inherit;opacity:0;transition:opacity .3s;background:radial-gradient(400px circle at var(--mx,50%) var(--my,50%),rgba(24,224,255,.07),transparent 45%);pointer-events:none}
+.card:hover::before,.entry-card:hover::before,.scope-group:hover::before,.scn-card:hover::before,.b-cell:hover::before,.tech:hover::before{opacity:1}
+.card:hover{border-color:var(--border-2)}
+.card h3{font-size:1.02rem;margin:14px 0 7px}
+.card p{font-size:.9rem;color:var(--text-dim)}
+.tile{width:42px;height:42px;border-radius:var(--r-sm);background:rgba(24,224,255,.09);color:var(--cyan-soft);display:grid;place-items:center;transition:background .25s,color .25s}
+.tile .icon{width:20px;height:20px}
+.card:hover .tile,.b-cell:hover .tile{background:var(--grad-action);color:#041019}
+.card.v .tile,.b-cell.v .tile{background:rgba(124,92,255,.14);color:var(--violet-soft)}
+.card.v:hover .tile,.b-cell.v:hover .tile{background:var(--grad-violet);color:#0A0A16}
+.card.v:hover::before,.b-cell.v:hover::before{background:radial-gradient(400px circle at var(--mx,50%) var(--my,50%),rgba(124,92,255,.08),transparent 45%)}
+.card--featured{border-color:rgba(24,224,255,.4);background:linear-gradient(180deg,rgba(24,224,255,.06),var(--surface))}
+.kicker{font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan-soft)}
+
+/* ═══ HEADER ═══ */
+.site-header{position:fixed;inset:0 0 auto 0;z-index:100;background:#04060B;border-bottom:1px solid var(--border)}
+.header-inner{display:flex;align-items:center;gap:22px;height:62px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:700;font-size:1.15rem;color:var(--text);letter-spacing:-.02em}
+.brand-mark{width:32px;height:32px;filter:drop-shadow(0 0 8px rgba(24,224,255,.18))}
+.main-nav{display:flex;align-items:center;gap:2px;margin-left:auto}
+.nav-link{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;font-weight:600;font-size:.9rem;color:var(--text-muted);border-radius:var(--r-sm);background:none;border:none;font-family:inherit;cursor:pointer;position:relative;transition:color .15s,background .15s}
+.nav-link:hover{color:var(--text);background:rgba(148,163,184,.1)}
+.nav-link.active{color:var(--text)}
+.nav-link.active::after{content:"";position:absolute;left:10px;right:10px;bottom:2px;height:2px;border-radius:2px;background:var(--grad)}
+.ir-dot{width:6px;height:6px;border-radius:50%;background:var(--success)}
+.header-actions{display:flex;align-items:center;gap:10px}
+.nav-toggle{display:none;width:38px;height:38px;border:1px solid var(--border-2);border-radius:var(--r-sm);background:var(--surface);color:var(--text);cursor:pointer;place-items:center}
+.nav-dd{position:relative}
+.dd-panel{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);width:min(980px,94vw);background:var(--surface-2);border:1px solid var(--border-2);border-radius:var(--r);box-shadow:0 16px 40px rgba(1,4,9,.7);padding:20px;display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.dd-panel::before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
+.dd-panel[hidden]{display:none}
+.dd-g h4{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan-soft);margin-bottom:8px;padding-bottom:7px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.dd-g h4 .icon{width:13px;height:13px}
+.dd-g a{display:block;font-size:.84rem;font-weight:600;color:var(--text-muted);padding:4px 0}
+.dd-g a:hover{color:var(--cyan-soft)}
+.dd-foot{grid-column:1/-1;border-top:1px solid var(--border);padding-top:12px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.dd-foot span{font-size:.82rem;color:var(--text-dim)}
+.mobile-nav{position:fixed;inset:62px 0 0 0;z-index:99;background:var(--bg);overflow-y:auto;padding:24px 24px 60px;display:none}
+.mobile-nav.open{display:block}
+.m-group{margin-bottom:18px}
+.m-group h4{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan-soft);margin-bottom:7px}
+.m-group a{display:block;padding:7px 0;font-weight:600;color:var(--text);border-bottom:1px solid #131F2E}
+.m-pages{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.m-pages a{border:1px solid var(--border-2);padding:8px 14px;border-radius:var(--r-sm);font-weight:700;font-size:.88rem;color:var(--text)}
+body.locked{overflow:hidden}
+
+/* ═══ HERO + TERMINAL ═══ */
+.hero{padding:118px 0 64px}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(2.3rem,4.6vw,3.4rem);line-height:1.08;letter-spacing:-.03em;margin:16px 0 14px;color:var(--text)}
+.hero h1 em{font-style:normal;background:var(--grad);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:shimmer 6s linear infinite}
+@keyframes shimmer{to{background-position:-220% 0}}
+.gold-rule{display:block;width:52px;height:2px;background:var(--grad);border-radius:2px;margin:0 0 20px;position:relative;overflow:hidden}
+.gold-rule::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-120%);animation:sweep 3.6s ease-in-out infinite}
+@keyframes sweep{45%{transform:translateX(120%)}}
+.hero-lede{font-size:1.08rem;color:var(--text-muted);max-width:34rem;margin-bottom:26px}
+.hero-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px;font-size:.86rem;color:var(--text-dim);font-weight:600}
+.hero-meta .icon{width:15px;height:15px;color:var(--success)}
+.hero-meta b{color:var(--text)}
+.terminal{background:#04060B;border:1px solid var(--border-2);border-radius:var(--r);box-shadow:0 8px 28px rgba(1,4,9,.6),0 0 44px rgba(24,224,255,.12);overflow:hidden}
+.term-head{display:flex;align-items:center;gap:12px;padding:11px 16px;background:var(--surface-2);border-bottom:1px solid var(--border);font-family:var(--mono);font-size:.72rem;color:var(--text-dim)}
+.term-dots{display:flex;gap:6px}
+.term-dots i{width:10px;height:10px;border-radius:50%}
+.term-dots i:nth-child(1){background:var(--danger)}.term-dots i:nth-child(2){background:var(--gold)}.term-dots i:nth-child(3){background:var(--success)}
+.term-title{letter-spacing:.08em}
+.term-live{margin-left:auto}
+.term-body{padding:14px 16px;font-family:var(--mono);font-size:.78rem;line-height:1.8;height:290px;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(180deg,#000 84%,transparent 100%);mask-image:linear-gradient(180deg,#000 84%,transparent 100%)}
+.term-body::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.02) 0 1px,transparent 1px 3px);pointer-events:none}
+.term-line{white-space:pre-wrap;word-break:break-word}
+.t-dim{color:#5C6B82}.t-txt{color:#C9D5E4}.t-ok{color:var(--success)}.t-ai{color:var(--violet-soft)}.t-id{color:var(--cyan-soft)}.t-warn{color:var(--gold)}
+.cursor{display:inline-block;width:8px;height:14px;background:var(--success);margin-left:2px;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.term-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:12px 16px;background:var(--surface-2);border-top:1px solid var(--border)}
+.term-stats b{display:block;font-family:var(--mono);font-size:1.05rem;font-weight:700;color:var(--cyan)}
+.term-stats span{display:block;font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);margin-top:2px}
+
+/* ═══ TRUST BAND ═══ */
+.stats-band{padding:40px 0;border-block:1px solid #131F2E;background:linear-gradient(90deg,rgba(24,224,255,.05),rgba(124,92,255,.04))}
+.stats-head{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.stats-head p{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{padding:16px 18px;border-radius:var(--r-sm);background:var(--surface);border:1px solid var(--border);position:relative;overflow:hidden}
+.stat::after{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--grad)}
+.stat b{display:block;font-family:var(--mono);font-size:1.8rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;line-height:1.25}
+.stat span{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);margin-top:4px}
+
+/* ═══ BENTO ═══ */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.b-cell{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px;position:relative;transition:transform .2s,border-color .2s}
+.b-cell:hover{transform:translateY(-2px);border-color:var(--border-2)}
+.b-cell h3{font-size:1rem;margin:12px 0 6px}
+.b-cell p{font-size:.88rem;color:var(--text-dim)}
+.b-mesh{grid-column:span 2;grid-row:span 2;display:flex;flex-direction:column}
+.b-mesh-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.b-mesh-svg{flex:1;display:flex;align-items:center}
+.b-mesh-svg svg{width:100%;height:auto;max-height:320px}
+.b-mesh-foot{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.b-wide{grid-column:span 2}
+.b-cta{border-color:rgba(24,224,255,.4);background:linear-gradient(180deg,rgba(24,224,255,.08),rgba(124,92,255,.06))}
+.b-cta h3{margin:8px 0 6px}
+
+/* ═══ TECH GRID ═══ */
+.tech-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.tech{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 14px;display:flex;gap:12px;align-items:center;position:relative;transition:transform .2s,border-color .2s}
+.tech:hover{transform:translateY(-2px);border-color:var(--border-2)}
+.tech-mono{width:38px;height:38px;flex:none;border-radius:var(--r-sm);border:1px solid rgba(24,224,255,.35);background:rgba(24,224,255,.1);color:var(--cyan-soft);display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:.64rem;letter-spacing:.03em}
+.tech b{display:block;font-size:.86rem;color:var(--text);font-weight:700;line-height:1.3}
+.tech span{display:block;font-size:.72rem;color:var(--text-dim)}
+.tech-note{font-size:.78rem;color:var(--text-dim);margin-top:16px}
+
+.flow{stroke-dasharray:2 9;animation:dash 1.1s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-11}}
+.ring{animation:spin 110s linear infinite;transform-box:fill-box;transform-origin:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+.halo{transform-box:fill-box;transform-origin:center;animation:halo 2.6s ease-out infinite}
+@keyframes halo{0%{transform:scale(1);opacity:.5}70%{transform:scale(2.4);opacity:0}100%{transform:scale(2.4);opacity:0}}
+.node{filter:drop-shadow(0 6px 14px rgba(1,4,9,.6))}
+svg text{font-family:var(--font)}
+
+/* ═══ LISTS / STEPS / FLOW ═══ */
+.check-list li{display:flex;gap:10px;align-items:flex-start;padding:6px 0;font-weight:600;color:var(--text);font-size:.93rem}
+.check-list .icon{width:16px;height:16px;color:var(--success);margin-top:4px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.step{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px}
+.step-num{font-family:var(--mono);font-size:1.7rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;letter-spacing:-.02em}
+.step h3{margin:8px 0 6px;font-size:1rem}
+.step p{font-size:.88rem;color:var(--text-dim)}
+.gflow{display:flex;flex-direction:column;align-items:stretch;max-width:400px;margin:0 auto}
+.gnode{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:11px 18px;font-weight:700;color:var(--text)}
+.gnode .tile{width:34px;height:34px;border-radius:var(--r-sm);background:rgba(24,224,255,.12);color:var(--cyan-soft)}
+.gnode .tile .icon{width:17px;height:17px}
+.gnode--end{background:var(--grad);color:#041019;border:none}
+.gnode--end .tile{background:rgba(4,16,26,.16);color:#041019}
+.glink{width:2px;height:22px;background:linear-gradient(180deg,rgba(24,224,255,.8),rgba(124,92,255,.85));margin:0 auto;position:relative;border-radius:2px}
+.glink::after{content:"";position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top:6px solid var(--cyan)}
+
+/* ═══ SCENARIO / ENTRY ═══ */
+.scn-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid rgba(24,224,255,.55);border-radius:var(--r-sm);padding:20px;transition:transform .2s,border-color .2s;display:block;position:relative}
+.scn-card:hover{border-color:var(--border-2);border-left-color:var(--cyan)}
+.scn-card h3{font-size:1.05rem;margin-bottom:7px;line-height:1.45;font-weight:600;letter-spacing:-.01em}
+.scn-card p{font-size:.86rem;color:var(--text-dim);margin-bottom:12px}
+.scn-card .tlink{font-size:.84rem}
+.entry-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px;transition:transform .2s,border-color .2s;display:block;position:relative}
+.entry-card:hover{transform:translateY(-3px);border-color:rgba(24,224,255,.5)}
+.entry-card h3{font-size:1.22rem;margin:12px 0 5px}
+.entry-card .sub{font-family:var(--mono);font-size:.68rem;font-weight:700;color:var(--cyan-soft);text-transform:uppercase;letter-spacing:.12em}
+.entry-card p{font-size:.92rem;color:var(--text-dim);margin-bottom:14px}
+.ir-strip{margin-top:20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--surface);border:1px dashed var(--border-2);border-radius:var(--r-sm);padding:14px 20px}
+.ir-strip p{font-weight:700;color:var(--text);font-size:.93rem}
+.group-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px;transition:transform .2s,border-color .2s}
+.group-card:hover{transform:translateY(-2px);border-color:var(--border-2)}
+.group-card h3{font-size:.96rem;margin:10px 0 8px;display:flex;gap:9px;align-items:center}
+.group-card.v h3 .icon{color:var(--violet-soft)}
+.group-card a{display:block;font-size:.84rem;font-weight:600;color:var(--text-muted);padding:3px 0}
+.group-card a:hover{color:var(--cyan-soft)}
+.ind-chips{display:flex;flex-wrap:wrap;gap:10px}
+.ind-chips a{border:1px solid var(--border);background:var(--surface);border-radius:999px;padding:8px 16px;font-weight:700;font-size:.86rem;color:var(--text);transition:.2s}
+.ind-chips a:hover{border-color:var(--cyan);color:var(--cyan-soft);background:rgba(24,224,255,.07)}
+.note{background:rgba(24,224,255,.06);border:1px solid #1E2C40;border-left:3px solid var(--cyan);border-radius:var(--r-sm);padding:16px 20px;font-size:.9rem;color:#C3CCDA}
+.note b{color:var(--text)}
+.note li .icon{color:var(--success)}
+.del-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px}
+.del-panel h3{margin-bottom:8px;display:flex;gap:9px;align-items:center}
+.lifecycle{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:.78rem;font-weight:500}
+.lifecycle span{background:var(--surface);border:1px solid var(--border);padding:6px 13px;border-radius:999px;color:var(--text);font-family:var(--mono)}
+.lifecycle i{color:var(--cyan-soft);font-style:normal;font-weight:700}
+
+/* ═══ PAGE HERO ═══ */
+.page-hero{padding:112px 0 48px;background:radial-gradient(800px 360px at 85% -18%,rgba(24,224,255,.07),transparent 62%)}
+.page-hero h1{font-size:clamp(1.9rem,3.8vw,2.7rem);margin:14px 0 14px;max-width:22ch}
+.page-hero .lede{font-size:1.06rem;max-width:44rem;color:var(--text-muted)}
+.page-hero--dark{background:radial-gradient(900px 400px at 85% -20%,rgba(54,124,255,.14),transparent 60%),linear-gradient(180deg,rgba(24,224,255,.05) 0%,transparent 78%)}
+.crumb{font-size:.84rem;font-weight:600;color:var(--text-dim);display:inline-flex;gap:8px;align-items:center;margin-bottom:14px}
+.crumb:hover{color:var(--cyan-soft)}
+.two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
+.scope-group{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;position:relative}
+.scope-group h3{font-size:.96rem;margin-bottom:5px;display:flex;align-items:center;gap:9px}
+.fit-list li{padding:7px 0;border-bottom:1px solid #131F2E;font-weight:600;color:var(--text);font-size:.93rem;display:flex;gap:10px}
+.fit-list .icon{color:var(--cyan-soft);margin-top:4px}
+
+/* ═══ FORM ═══ */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field--full{grid-column:1/-1}
+.field label{font-weight:700;font-size:.86rem;color:var(--text)}
+.field label i{font-style:normal;color:var(--cyan-soft)}
+.field input,.field select,.field textarea{font-family:inherit;font-size:.94rem;font-weight:500;color:var(--text);background:var(--surface);border:1px solid var(--border-2);border-radius:var(--r-sm);padding:10px 14px;transition:border-color .15s,box-shadow .15s;width:100%}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(24,224,255,.16)}
+.field .err{color:var(--danger);font-size:.78rem;font-weight:700;display:none}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--danger)}
+.field.invalid .err{display:block}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+.form-note{font-size:.8rem;color:var(--text-dim);margin-top:12px}
+.success-card{background:rgba(34,230,138,.07);border:1px solid rgba(34,230,138,.3);border-radius:var(--r);padding:32px;text-align:center}
+.success-card .icon{width:44px;height:44px;color:var(--success);margin:0 auto 12px}
+.contact-aside{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);border-radius:var(--r);padding:28px}
+.contact-aside h3{color:var(--text);margin-bottom:12px}
+.contact-aside li{display:flex;gap:10px;padding:8px 0;font-size:.9rem;align-items:flex-start}
+.contact-aside .icon{color:var(--cyan-soft);margin-top:3px;width:16px;height:16px}
+
+/* ═══ FOOTER ═══ */
+.site-footer{background:#030508;position:relative;border-top:1px solid var(--border)}
+.site-footer::before{content:"";position:absolute;top:-1px;left:0;right:0;height:2px;background:var(--grad)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.1fr;gap:36px;padding:52px 0 40px;color:var(--text-dim)}
+.footer-brand .brand{color:var(--text);margin-bottom:14px}
+.footer-brand p{font-size:.88rem;max-width:30rem}
+.footer-tagline{font-family:var(--mono);font-weight:700;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;letter-spacing:.08em;font-size:.74rem;margin-top:14px;text-transform:uppercase}
+.footer-col h4{font-family:var(--mono);color:var(--text);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+.footer-col a{display:block;padding:4px 0;font-size:.88rem;font-weight:600}
+.footer-col a:hover{color:var(--cyan-soft)}
+.footer-bottom{border-top:1px solid #131F2E;padding:18px 0;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.8rem}
+.footer-bottom .links{display:flex;gap:18px}
+.footer-bottom a:hover{color:var(--cyan-soft)}
+
+/* ═══ MOTION ═══ */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s cubic-bezier(.22,.61,.36,1);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .flow,.ring,.halo,.bg-art,.term-live .dot,.cursor{animation:none}
+  .hero h1 em{animation:none}
+  .gold-rule::after{content:none}
+  #main.page-in{animation:none}
+  *{scroll-behavior:auto}
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width:1080px){
+  .main-nav{display:none}
+  .nav-toggle{display:grid}
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .hero{padding:96px 0 56px}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .b-mesh{grid-column:span 2;grid-row:span 1}
+  .b-mesh-svg svg{max-height:240px}
+  .b-wide{grid-column:span 2}
+  .tech-grid{grid-template-columns:repeat(4,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .two-col{grid-template-columns:1fr;gap:28px}
+}
+@media (max-width:900px){
+  .g3{grid-template-columns:repeat(2,1fr)}
+  .dd-panel{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .section{padding:48px 0}
+  .g2,.g3,.steps,.form-grid{grid-template-columns:1fr}
+  .hero{padding:86px 0 48px}
+  .btn{width:100%}
+  .btn-row .btn{width:100%}
+  .btn-sm,.header-actions .btn{width:auto}
+  .page-hero{padding:96px 0 40px}
+  .ir-strip{flex-direction:column;align-items:flex-start}
+  .footer-grid{grid-template-columns:1fr}
+  .dd-panel{grid-template-columns:1fr}
+  .bento{grid-template-columns:1fr}
+  .b-mesh,.b-wide{grid-column:auto}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .tech-grid{grid-template-columns:repeat(2,1fr)}
+  .term-body{height:240px}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<noscript><p style="padding:120px 24px;text-align:center;font-weight:700;color:#F5F8FC">Zuronix — this site uses JavaScript for navigation. Please enable JavaScript, or email info@zuronix.com.</p></noscript>
+
+<div class="bg-art" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="zg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#18E0FF"/><stop offset="0.5" stop-color="#367CFF"/><stop offset="1" stop-color="#7C5CFF"/></linearGradient>
+<linearGradient id="coreGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#18E0FF"/><stop offset="1" stop-color="#7C5CFF"/></linearGradient>
+<radialGradient id="zxGlow" cx="50%" cy="35%" r="65%"><stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.18"/><stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+</defs></svg>
+
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a class="brand" href="#/" aria-label="Zuronix — home">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 L34 10 L34 26 L20 38 L6 26 L6 10 Z" fill="url(#zg)"/><path d="M20 2 L34 10 L34 26 L20 38 L6 26 L6 10 Z" fill="url(#zxGlow)"/><path d="M20 5 L31.4 11.5 L31.4 24.5 L20 35 L8.6 24.5 L8.6 11.5 Z" fill="none" stroke="#05070B" stroke-width="0.6" opacity="0.25"/><path d="M13 14 L27 14 L13 26 L27 26" stroke="#05070B" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="20" r="1.5" fill="#22E68A"/></svg>
+      <span>Zuronix</span>
+    </a>
+    <nav class="main-nav" aria-label="Primary">
+      <div class="nav-dd">
+        <button class="nav-link" id="ddBtn" data-route="services" aria-expanded="false" aria-controls="ddPanel">Services
+          <svg class="ic-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dd-panel" id="ddPanel" hidden></div>
+      </div>
+      <a class="nav-link" data-route="incident-response" href="#/incident-response">Incident Response <span class="ir-dot" aria-hidden="true"></span></a>
+      <a class="nav-link" data-route="industries" href="#/industries">Industries</a>
+      <a class="nav-link" data-route="insights" href="#/insights">Insights</a>
+      <a class="nav-link" data-route="about" href="#/about">About</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-primary btn-sm" href="#/contact">Contact Us</a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav" id="mobileNav"></div>
+
+<main id="main" tabindex="-1"></main>
+
+<footer class="site-footer" id="siteFooter"></footer>
+
+<script>
+/* ═══ MODULE 0 · CONFIG ═══ */
+const SITE = { name: "Zuronix", email: "info@zuronix.com" };
+const RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ═══ MODULE 1 · ICON SYSTEM ═══ */
+const ICONS = {
+  shield:'<path d="M12 22s8-3.2 8-10V5.2L12 2 4 5.2V12c0 6.8 8 10 8 10z"/><path d="m9 11.6 2.1 2.1 4-4"/>',
+  key:'<circle cx="7.5" cy="15.5" r="4.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/>',
+  cloud:'<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/>',
+  db:'<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',
+  app:'<rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 8.5h18"/><path d="M7 6.3h.01"/>',
+  users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  landmark:'<path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9.5 21v-5h5v5"/>',
+  clipboard:'<rect x="7.5" y="2.5" width="9" height="4" rx="1.2"/><path d="M16.5 4.5H18a2 2 0 0 1 2 2V20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2h1.5"/><path d="m9.5 14 2 2 3.5-3.5"/>',
+  doc:'<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z"/><path d="M14 2v5.5h6"/><path d="M8.5 13h7M8.5 16.5h7"/>',
+  lifebuoy:'<circle cx="12" cy="12" r="9.5"/><circle cx="12" cy="12" r="4"/><path d="m5.2 5.2 3.9 3.9"/><path d="m14.9 14.9 3.9 3.9"/><path d="m14.9 9.1 3.9-3.9"/><path d="m5.2 18.8 3.9-3.9"/>',
+  sparkles:'<path d="M12 3.5 10.3 8.7a2 2 0 0 1-1.2 1.2L4 11.5l5.1 1.6a2 2 0 0 1 1.2 1.2l1.7 5.2 1.7-5.2a2 2 0 0 1 1.2-1.2l5.1-1.6-5.1-1.6a2 2 0 0 1-1.2-1.2z"/><path d="M5.5 3v3M4 4.5h3M18.5 17.5v3M17 19h3"/>',
+  server:'<rect x="3" y="3.5" width="18" height="7" rx="2"/><rect x="3" y="13.5" width="18" height="7" rx="2"/><path d="M7 7h.01M7 17h.01"/>',
+  mail:'<rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="m3 7 9 6.5L21 7"/>',
+  search:'<circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.9-4.9"/>',
+  eye:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
+  chart:'<path d="M4 20V10M10 20V4M16 20v-7M3.5 20h17"/>',
+  cap:'<path d="m22 9.5-10-5-10 5 10 5z"/><path d="M6 11.8V16c0 1.9 2.7 3.5 6 3.5s6-1.6 6-3.5v-4.2"/><path d="M22 9.5V15"/>',
+  share:'<circle cx="17.5" cy="5.5" r="2.7"/><circle cx="6" cy="12" r="2.7"/><circle cx="17.5" cy="18.5" r="2.7"/><path d="m8.4 10.7 6.7-3.9M8.4 13.3l6.7 3.9"/>',
+  compass:'<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>',
+  refresh:'<path d="M20.5 12a8.5 8.5 0 1 1-2.6-6.1"/><path d="M20.5 3.5V9H15"/>',
+  alert:'<path d="m21.7 18.4-7.9-14a2 2 0 0 0-3.5 0l-7.9 14A2 2 0 0 0 4.1 21h15.8a2 2 0 0 0 1.8-2.6z"/><path d="M12 9.5v4M12 17h.01"/>',
+  check:'<path d="m5 12.5 4.5 4.5L19 7"/>',
+  checkCircle:'<circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5.5"/>',
+  arrowR:'<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>',
+  arrowUR:'<path d="M7 17 17 7"/><path d="M8 7h9v9"/>',
+  phone:'<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2.1z"/>',
+  pin:'<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>',
+  lock:'<rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><path d="M12 14.5v2.5"/>',
+  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3"/>',
+  bot:'<rect x="5" y="8" width="14" height="11" rx="2.5"/><path d="M12 8V4.5"/><circle cx="12" cy="3.5" r="1.2"/><path d="M9.5 12.5h.01M14.5 12.5h.01"/><path d="M9.5 15.5h5"/>'
+};
+function ic(name, cls){
+  return '<svg class="icon'+(cls?' '+cls:'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICONS[name]+'</svg>';
+}
+
+/* ═══ MODULE 2 · DATA ═══ */
+const GROUPS = {
+  security:    {label:'Security',              icon:'shield',    desc:'Assess, harden, and monitor the environments your business runs on.'},
+  grc:         {label:'Risk & Governance',     icon:'landmark',  desc:'Strategy, leadership, policies, and risk management that make security a business capability.'},
+  compliance:  {label:'Compliance',            icon:'clipboard', desc:'Readiness support for the frameworks your customers, insurers, and regulators expect.'},
+  resilience:  {label:'Resilience & Response', icon:'lifebuoy',  desc:'Prepare for incidents before they happen — and get help when they do.'},
+  ai:          {label:'AI Security',           icon:'sparkles',  desc:'Let AI — including autonomous agents — move fast without creating new exposure.'}
+};
+
+const TECH=[
+  ['M365','Microsoft 365','Email, files & collaboration'],
+  ['EID','Microsoft Entra ID','Identity & access'],
+  ['DEF','Microsoft Defender','Endpoint & email protection'],
+  ['SEN','Microsoft Sentinel','Detection & response'],
+  ['AZ','Microsoft Azure','Cloud platform'],
+  ['AWS','Amazon Web Services','Cloud infrastructure'],
+  ['GCP','Google Cloud','Cloud platform'],
+  ['GW','Google Workspace','Collaboration suite'],
+  ['TF','Terraform','Infrastructure as code'],
+  ['K8S','Kubernetes','Container orchestration'],
+  ['DKR','Docker','Containers'],
+  ['GH','GitHub','Code & CI/CD pipelines']
+];
+
+const SERVICES = [
+{
+  slug:'m365-security', t:'Microsoft 365 Security & Identity', g:'security', tier:1, icon:'app', topic:'m365',
+  short:'Assess, harden, and continuously improve the environment your business runs on.',
+  tag:'Your Microsoft 365 environment is now your security perimeter.',
+  lede:'For most organizations, Microsoft 365 is where business actually happens. Zuronix assesses, hardens, and improves the security of that environment — so convenience never quietly becomes exposure.',
+  prob:{b:'Most Microsoft 365 tenants were configured for productivity, not defense. The gaps rarely announce themselves — they surface as oversharing discovered mid-deal, an insurance question you can\u2019t answer, or a compromised mailbox.',bullets:[
+    'MFA enforced inconsistently — or not for all accounts',
+    'SharePoint and OneDrive content shared far beyond who needs it',
+    'No Conditional Access, leaving sign-ins uncontrolled',
+    'Departed employees and guests still holding access',
+    'Privileged roles assigned broadly and rarely reviewed',
+    'Copilot arriving before data-exposure controls exist']},
+  scope:[
+    {h:'Identity & Access',icon:'key',items:['Microsoft Entra ID security review','MFA and Conditional Access design','Privileged access and role management','Account lifecycle and offboarding','Access reviews and guest governance']},
+    {h:'Platform & Data',icon:'db',items:['Full Microsoft 365 configuration review','SharePoint and OneDrive oversharing remediation','Exchange and email security hardening','Secure architecture and baseline alignment']},
+    {h:'AI & Copilot',icon:'sparkles',items:['Copilot readiness and security assessment','AI-related data exposure review','Data governance before AI rollout']},
+    {h:'Improve & Sustain',icon:'refresh',items:['Prioritized posture improvement roadmap','Executive-ready findings','Optional continuous posture management']}],
+  del:['A prioritized findings report and risk register','A sequenced remediation roadmap','An identity and access improvement plan','A data exposure and oversharing report','An executive summary for leadership','Optional transition into Managed Security Posture'],
+  fit:['Organizations of any size running Microsoft 365','Teams rolling out — or considering — Copilot','Companies facing insurance or customer security questions'],
+  steps:[['Scope','Confirm environment, licensing, priorities, and admin access.'],['Assess','Full review of identity, configuration, and data exposure.'],['Prioritize','Findings ranked by risk, effort, and business impact.'],['Improve','Guided remediation — and optional continuous management.']],
+  rel:['managed-security-posture','cyber-insurance-readiness','ai-security','email-security']
+},
+{
+  slug:'cyber-insurance-readiness', t:'Cyber Insurance Readiness', g:'grc', tier:1, icon:'clock', topic:'insurance',
+  short:'Close the gaps, build the evidence, and face your renewal calmly.',
+  tag:'Be ready before your renewal becomes a problem.',
+  lede:'Underwriters now ask specific, technical questions — and vague answers raise premiums or restrict coverage. Zuronix helps you close the gaps and document the evidence.',
+  prob:{b:'The renewal questionnaire no longer asks whether you take security seriously. It asks whether MFA is enforced, whether EDR is deployed, whether backups are isolated, and who is accountable when something happens.',bullets:[
+    'Control questions you can\u2019t answer with evidence',
+    'MFA, EDR, and backup requirements partially met',
+    'No incident response plan to point to',
+    'Privileged access unmanaged',
+    'Documentation that doesn\u2019t exist — or doesn\u2019t match reality']},
+  scope:[
+    {h:'Readiness',icon:'eye',items:['Cyber insurance readiness assessment','Control gap assessment mapped to underwriting expectations','Review of MFA, EDR, backup, and recovery posture','Privileged access and incident response planning review']},
+    {h:'Prepare',icon:'doc',items:['Security documentation development','Evidence preparation and organization','Renewal timeline and improvement roadmap','Summary materials for your broker and underwriter']}],
+  del:['A control gap report mapped to underwriting requirements','An evidence pack organized by control area','A remediation roadmap tied to your renewal timeline','A renewal-ready summary for your broker'],
+  fit:['Organizations approaching renewal with harder questions','First-time buyers facing the application','Companies told to \u201cimprove controls\u201d without a definition of done'],
+  callout:{t:'Honest expectations',b:'We don\u2019t promise lower premiums — no honest partner can. What we do is improve insurability, reduce control gaps, prepare your evidence, and take the surprise out of renewal.'},
+  steps:[['Review requirements','What your insurer — and the market — actually requires.'],['Assess controls','Gap assessment across MFA, EDR, backups, access, and planning.'],['Close gaps','Prioritized remediation tied to your renewal timeline.'],['Prepare evidence','Documentation ready for broker and underwriter.']],
+  rel:['endpoint-infrastructure','m365-security','incident-preparedness','managed-security-posture']
+},
+{
+  slug:'managed-security-posture', t:'Managed Security Posture', g:'security', tier:1, icon:'refresh', topic:'managed',
+  short:'Continuous monitoring, governance, and improvement — month after month.',
+  tag:'Security that keeps up with your business.',
+  lede:'Security isn\u2019t a project that ends. Managed Security Posture is our recurring service: scheduled reviews, drift detection, governance, and executive reporting that keep your program improving as your organization changes.',
+  prob:{b:'Assessments age quickly. People join and leave, configurations drift, and requirements tighten. Most organizations need a disciplined, recurring practice that keeps security moving forward — and can prove where it stands.',bullets:[
+    'Last year\u2019s assessment is already out of date',
+    'Configuration drift nobody notices until it matters',
+    'Remediation plans that stall without ownership',
+    'Documentation maintained only when audits force it',
+    'Leadership with no current view of security status']},
+  scope:[
+    {h:'Monitor & Review',icon:'eye',items:['Security posture monitoring on a set cadence','Configuration drift and change review','Periodic identity and Microsoft 365 security reviews','Periodic review of key platforms, cloud, and SaaS']},
+    {h:'Govern & Maintain',icon:'landmark',items:['Remediation backlog and risk register upkeep','Security documentation maintenance','Audit and insurance readiness upkeep','Periodic security reviews and executive reporting']}],
+  del:['A standing cadence of security reviews','A maintained risk register and remediation backlog','Current, audit-ready documentation','Executive-level reporting on posture, trend, and priorities','Maintained insurance and compliance readiness'],
+  fit:['Organizations that want security to keep pace with growth','Teams without internal security staff','Companies that must continuously demonstrate posture'],
+  callout:{t:'What this is — and what it isn\u2019t',b:'This is continuous improvement, governance, visibility, and accountability. It is not a 24/7 SOC and not a replacement for your endpoint tooling — it\u2019s the layer that makes all of it add up to a managed business capability.'},
+  steps:[['Baseline','Establish current posture, priorities, and owners.'],['Review','Scheduled assessments across identity, M365, cloud, and platforms.'],['Track & govern','Backlog, risk register, and documentation upkeep.'],['Report','Executive reporting on trend, status, and next steps.']],
+  rel:['m365-security','governance-risk','cyber-insurance-readiness','vciso']
+},
+{
+  slug:'incident-response', t:'Incident Response', g:'resilience', tier:1, icon:'lifebuoy', topic:'incident',
+  short:'Help understanding, containing, and recovering from security incidents.',
+  tag:'When something goes wrong, you need more than technology.',
+  shortOnly:true
+},
+{
+  slug:'security-assessments', t:'Security Assessments', g:'security', tier:2, icon:'eye', topic:'assessment',
+  short:'Find out where you stand — and what to fix first.',
+  tag:'Clarity is the first control.',
+  lede:'A Zuronix assessment gives you a clear, prioritized picture of your security posture — in business terms, delivered as decisions you can act on, not a 200-page report nobody reads.',
+  prob:{b:'Most organizations either don\u2019t know their real exposure, or drown in findings without priorities. A useful assessment answers three questions: where are we exposed, what matters most, and what do we do next?',bullets:[
+    'Unclear where you\u2019re actually exposed',
+    'Findings without priorities or ownership',
+    'Audit, insurance, or customer pressure creating urgency',
+    'Security spend without confidence it\u2019s aimed correctly']},
+  scope:[
+    {h:'Assess',icon:'eye',items:['Security posture assessment across the organization','Technical and configuration reviews of key platforms','Security architecture and gap assessments']},
+    {h:'Frame the risk',icon:'chart',items:['Risk assessment mapped to business impact','A risk register your leadership can use','Framework-informed gap analysis (NIST CSF and related)']}],
+  del:['Prioritized findings and a risk register','A sequenced remediation roadmap','An executive summary for leadership','A baseline you can show insurers and auditors'],
+  fit:['Organizations facing requirements or uncertainty','First formal assessment','Post-growth catch-up','The right first step before deeper engagements'],
+  steps:[['Scope','Confirm systems, priorities, and requirements.'],['Assess','Review controls, identity, cloud, endpoints, and email.'],['Prioritize','Rank findings by risk and business impact.'],['Roadmap','Define what to do first, next, and later.']],
+  rel:['m365-security','governance-risk','cyber-insurance-readiness','application-security']
+},
+{
+  slug:'identity-access', t:'Identity & Access Security', g:'security', tier:2, icon:'key', topic:'assessment',
+  short:'Identity is the new perimeter. Secure it like it matters.',
+  tag:'Identity is the new perimeter.',
+  lede:'Most modern breaches begin with a username and a password. Zuronix designs and strengthens identity controls — MFA, Conditional Access, privileged access, and lifecycle — so the right people have the right access, and nothing more.',
+  prob:{b:'Attackers no longer break in; they log in. Weak identity turns every password into a door, and every over-privileged account into a master key. AI agents and service accounts widen the same surface.',bullets:[
+    'MFA missing, inconsistent, or riddled with exceptions',
+    'Sign-ins uncontrolled — no Conditional Access',
+    'Admin, service, and non-human accounts sprawled',
+    'Departed staff and guests quietly retaining access']},
+  scope:[
+    {h:'Strengthen authentication',icon:'lock',items:['MFA strategy and enforcement','Phishing-resistant and passwordless approaches','Sign-in risk policies']},
+    {h:'Control & limit access',icon:'key',items:['Conditional Access design','Privileged access management and role review','Access reviews and lifecycle governance']},
+    {h:'All identities',icon:'bot',items:['Non-human and service account governance','Least-privilege model for people and machines','Offboarding and guest governance']}],
+  del:['An identity control design and policy set','A privileged access improvement plan','A non-human identity model','An access review cadence your team can sustain'],
+  fit:['Organizations relying on Microsoft 365 or cloud identity','Teams told to \u201cenforce MFA everywhere\u201d','Companies adopting AI tools faster than policy'],
+  steps:[['Map','Inventory identities, roles, and access paths — human and machine.'],['Design','Define the target control state.'],['Harden','Implement policies in safe, staged steps.'],['Sustain','Review cadence and drift monitoring.']],
+  rel:['m365-security','cloud-saas-security','ai-agent-security','incident-response']
+},
+{
+  slug:'cloud-saas-security', t:'Cloud & SaaS Security', g:'security', tier:2, icon:'cloud', topic:'assessment',
+  short:'Secure the SaaS and cloud your business actually runs on.',
+  tag:'Your business runs in the cloud. Your controls should too.',
+  lede:'Microsoft 365, Azure, AWS, Google Cloud — and the SaaS apps behind them, each with its own configuration and quietly accumulating risk. Zuronix brings order to your cloud estate.',
+  prob:{b:'Every SaaS subscription starts with good intentions and default settings. Two years later, nobody remembers which apps connect to what, which data flows where, or who still has admin. That\u2019s entropy — it needs deliberate governance.',bullets:[
+    'SaaS configured by defaults, not intent',
+    'OAuth apps connected without review',
+    'Shadow IT and shadow AI nobody catalogued',
+    'API keys and service accounts unmanaged',
+    'Data shared broadly by well-meaning teams']},
+  scope:[
+    {h:'Platform security',icon:'cloud',items:['Microsoft 365, Azure, AWS, and Google Cloud configuration reviews','Tenant hardening and baseline alignment','Multi-cloud consistency and governance']},
+    {h:'SaaS governance',icon:'landmark',items:['SaaS inventory and configuration baselines','Administrative access review','Ongoing SaaS governance model']},
+    {h:'Integrations & visibility',icon:'share',items:['OAuth application and consent policy reviews','API and non-human identity considerations','Shadow IT and shadow AI discovery']}],
+  del:['Configuration review reports for key platforms','A SaaS inventory ranked by risk','OAuth and integration findings','A remediation and governance roadmap'],
+  fit:['Organizations with a growing SaaS footprint','Teams preparing for security reviews or audits','Companies rolling out AI features inside existing SaaS'],
+  steps:[['Inventory','Map platforms, integrations, and data flows.'],['Review','Assess configurations, access, and exposure.'],['Prioritize','Rank findings by risk and effort.'],['Govern','Establish baselines and review cadence.']],
+  rel:['m365-security','ai-security','infrastructure-platform-security','managed-security-posture']
+},
+{
+  slug:'infrastructure-platform-security', t:'Infrastructure & Platform Security', g:'security', tier:2, icon:'server', topic:'assessment',
+  short:'Networks, cloud infrastructure, containers, and pipelines — hardened by design.',
+  tag:'Infrastructure hardened by design, not by afterthought.',
+  lede:'Firewalls, cloud networks, Infrastructure as Code, containers, and CI/CD pipelines are the foundation everything runs on. Zuronix hardens that foundation with an automation-first approach — security embedded in how systems are built.',
+  prob:{b:'Infrastructure security fails quietly: a firewall rule added under pressure, a Terraform template copied without review, a pipeline credential with no expiry. None of it breaks today. All of it breaks the day it matters.',bullets:[
+    'Firewall and network configurations drifted from any baseline',
+    'Infrastructure built by console clicks — unreviewable, unreproducible',
+    'Containers and Kubernetes running on default settings',
+    'CI/CD pipelines holding broad, standing credentials']},
+  scope:[
+    {h:'Network security',icon:'lock',items:['Firewall policy review and hardening','Segmentation, remote access, and VPN review','Routing and switching security considerations','Intrusion detection and traffic-analysis readiness']},
+    {h:'Infrastructure as Code',icon:'doc',items:['Terraform and IaC template security review','Policy-as-code guardrails and automated checks','Safe-by-default patterns for new environments','Consistent baselines across AWS, Azure, and Google Cloud']},
+    {h:'Containers & pipelines',icon:'refresh',items:['Kubernetes and container security standards','CI/CD pipeline security and secrets management','Code and configuration scanning integration','DevSecOps advisory for engineering teams']}],
+  del:['A documented, hardened network baseline','IaC templates and policy-as-code guardrails','Container and pipeline security standards','A prioritized remediation roadmap'],
+  fit:['Engineering-led organizations and SaaS platforms','Multi-cloud or hybrid environments','Regulated workloads requiring demonstrable controls'],
+  steps:[['Assess','Inventory networks, infrastructure, and pipelines.'],['Design','Define the hardened target state.'],['Codify','Embed controls in templates, policy, and pipelines.'],['Sustain','Drift detection and periodic review.']],
+  rel:['cloud-saas-security','ai-agent-security','security-monitoring-detection','application-security']
+},
+{
+  slug:'security-monitoring-detection', t:'Security Monitoring & Detection', g:'security', tier:2, icon:'eye', topic:'assessment',
+  short:'Signals, alerts, and dashboards that actually get seen and acted on.',
+  tag:'Visibility you can act on — not noise you can ignore.',
+  lede:'Most organizations generate logs and few answers. Zuronix designs monitoring that fits your size: reliable pipelines, high-signal alerts, and dashboards both leadership and IT understand.',
+  prob:{b:'Monitoring fails in two directions: silence, where real events pass unnoticed — and noise, where thousands of unimportant alerts train everyone to ignore them. The gap is almost never tooling. It\u2019s design.',bullets:[
+    'Logs exist, but nobody reviews them',
+    'Alerts either never fire — or fire on everything',
+    'No baseline of what \u201cnormal\u201d looks like',
+    'Cloud, identity, and SaaS activity unmonitored']},
+  scope:[
+    {h:'Visibility',icon:'eye',items:['Log and event source design across cloud, identity, M365, and endpoints','SIEM and alerting architecture guidance','Cloud security posture monitoring (CSPM) guidance','Baselines of normal activity']},
+    {h:'Detection',icon:'target',items:['High-signal detection rules for the threats you actually face','Account compromise, BEC, and ransomware indicators','Security metrics and executive dashboards','Reporting cadence and escalation paths']}],
+  del:['A monitoring and logging design','A prioritized, high-signal detection rule set','Dashboards for operations and leadership','An escalation runbook your team can follow'],
+  fit:['Organizations told by insurers or auditors to \u201cmonitor logs\u201d','Teams overwhelmed by noisy tooling','Companies building incident response capability'],
+  callout:{t:'What this is — and isn\u2019t',b:'This is detection design and engineering, not a 24/7 SOC. We build and maintain the monitoring capability; your team or existing providers operate it — and Zuronix keeps improving it.'},
+  steps:[['Design','Decide what to collect and why.'],['Build','Pipelines, rules, and dashboards.'],['Tune','Cut noise, raise signal.'],['Sustain','Review as threats and systems evolve.']],
+  rel:['managed-security-posture','incident-response','infrastructure-platform-security','m365-security']
+},
+{
+  slug:'endpoint-infrastructure', t:'Endpoint & Infrastructure Security', g:'security', tier:2, icon:'server', topic:'assessment',
+  short:'Endpoints, servers, networks, and backups — secured and recoverable.',
+  tag:'Secure what runs your business. Be able to recover it.',
+  lede:'Laptops, servers, networks, and backups are still where attacks land — and where recovery begins. Zuronix assesses and hardens the foundation, and makes sure you can restore when things fail.',
+  prob:{b:'Ransomware doesn\u2019t begin with clever code; it begins with an unpatched server, an unmonitored endpoint, or a backup reachable from the infected network. The fundamentals insurers ask about are the ones attackers test.',bullets:[
+    'EDR absent, partial, or unmonitored',
+    'Patch gaps across servers and workstations',
+    'Backups untested — or reachable by attackers',
+    'Remote access and segmentation unreviewed']},
+  scope:[
+    {h:'Endpoint & server',icon:'server',items:['Endpoint security and EDR readiness assessment','Configuration baseline review','Patch management assessment']},
+    {h:'Recovery',icon:'lifebuoy',items:['Backup security, isolation, and immutability review','Recovery readiness and restore testing guidance']},
+    {h:'Network',icon:'eye',items:['Network security assessment','Remote access review','Segmentation considerations']}],
+  del:['A hardening roadmap for endpoints and servers','An EDR readiness and coverage plan','A backup and recovery review','A network and remote access assessment'],
+  fit:['Organizations facing EDR and backup requirements from insurers','Teams without dedicated infrastructure security','Companies validating recovery readiness'],
+  steps:[['Assess','Inventory endpoints, servers, and backup paths.'],['Identify','Find the gaps attackers and insurers both look for.'],['Harden','Staged improvements in priority order.'],['Verify','Validate backups, recovery, and monitoring.']],
+  rel:['cyber-insurance-readiness','incident-preparedness','security-monitoring-detection','managed-security-posture']
+},
+{
+  slug:'email-security', t:'Email Security', g:'security', tier:2, icon:'mail', topic:'assessment',
+  short:'DMARC, BEC defense, and phishing — email treated like the #1 attack channel.',
+  tag:'Email is where most attacks actually start.',
+  lede:'The majority of breaches begin with an email — phished credentials, invoice fraud, executive impersonation. Zuronix hardens email as a channel: authentication, posture, and business email compromise defense.',
+  prob:{b:'Email remains the highest-volume attack channel, and the cheapest to attack. Spoofing your domain takes minutes. Convincing your finance team that a payment detail \u201cchanged\u201d takes one well-timed message.',bullets:[
+    'No SPF, DKIM, or DMARC — or DMARC not enforced',
+    'Executives impersonated to finance and operations teams',
+    'Phishing leading directly to account takeover',
+    'Lookalike domains targeting your customers']},
+  scope:[
+    {h:'Authentication',icon:'mail',items:['SPF, DKIM, and DMARC design and enforcement','Domain spoofing and lookalike considerations']},
+    {h:'BEC defense',icon:'shield',items:['Business Email Compromise protection measures','Payment-change verification and finance-process controls','Executive impersonation defenses','External-sender identification and reporting workflows']},
+    {h:'Posture',icon:'eye',items:['Filtering and policy review','Targeted awareness for the teams attackers actually contact']}],
+  del:['Enforced email authentication (DMARC)','An email security posture report','A BEC control checklist for finance and operations','A hardening roadmap'],
+  fit:['Organizations without enforced DMARC','Finance teams exposed to payment fraud','Executives and customer-facing staff who are targeted'],
+  steps:[['Measure','Test current authentication and posture.'],['Enforce','Implement SPF, DKIM, and DMARC safely.'],['Harden','Apply BEC and impersonation controls.'],['Sustain','Monitor and adjust over time.']],
+  rel:['identity-access','m365-security','human-risk','incident-response']
+},
+{
+  slug:'application-security', t:'Application & Technical Security', g:'security', tier:3, icon:'target', topic:'assessment',
+  short:'Vulnerability assessment, penetration testing, and secure architecture.',
+  tag:'Find the weaknesses before someone else does.',
+  lede:'For products, APIs, and internet-facing infrastructure, proactive testing is due diligence. Zuronix provides structured technical security testing — directly, and through specialized partners for deep engagements.',
+  note:'Specialized penetration testing engagements are delivered through Zuronix and our specialized security partners, with a single point of accountability.',
+  prob:{b:'Customer security reviews, enterprise procurement, and pre-launch diligence all converge on one question: has anyone actually tested this? Untested isn\u2019t the same as secure — it\u2019s the same as unknown.',bullets:[
+    'Products or APIs heading to enterprise buyers',
+    'Internet-facing infrastructure never formally tested',
+    'Security questionnaires asking for test evidence',
+    'Development moving faster than security review']},
+  scope:[
+    {h:'Testing',icon:'search',items:['Vulnerability assessments','Penetration testing — external, internal, and web','Web application and API security testing','Cloud and network security testing']},
+    {h:'Build it right',icon:'compass',items:['Configuration and architecture reviews','Secure development guidance','DevSecOps advisory']}],
+  del:['A findings report ranked by exploitability and impact','Remediation guidance developers can act on','Evidence suitable for customer security reviews','A re-test path that shows progress'],
+  fit:['SaaS and product companies','Pre-launch applications and platforms','Organizations facing customer testing requirements'],
+  steps:[['Scope','Define targets, rules, and objectives.'],['Test','Structured testing against agreed scope.'],['Report','Findings ranked by real-world impact.'],['Retest','Verify fixes and document the outcome.']],
+  rel:['security-questionnaires','soc-2-readiness','infrastructure-platform-security','security-assessments']
+},
+{
+  slug:'human-risk', t:'Security Awareness & Human Risk', g:'security', tier:3, icon:'cap', topic:'assessment',
+  short:'Turn your people into a control — not a liability.',
+  tag:'Your people are your most-used attack surface.',
+  lede:'Awareness training fails when it\u2019s generic and annual. Zuronix builds human-risk programs aimed at the risks you actually face — business email compromise, executive targeting, and social engineering.',
+  prob:{b:'Attackers don\u2019t target your firewall; they target your controller the week before payroll. Generic training prepares people for a generic threat. Your program should reflect how your people are actually attacked.',bullets:[
+    'Phishing leading to account compromise',
+    'Finance teams targeted with payment fraud',
+    'Executives impersonated to staff and customers',
+    'No safe, simple way to report suspicious messages']},
+  scope:[
+    {h:'Program',icon:'cap',items:['Phishing simulation and reporting practice','Executive and finance-team awareness (BEC-focused)','Social engineering risk review','Security culture development']},
+    {h:'Measure',icon:'chart',items:['Human risk assessment','Trend reporting on reporting rates and susceptibility']}],
+  del:['A human-risk program tailored to your actual threats','Simulation results and trend reporting','Targeted briefings for high-risk roles','A simple reporting workflow people actually use'],
+  fit:['Organizations that have seen BEC or phishing attempts','Teams where a single click has outsized consequences','Companies building security culture'],
+  steps:[['Assess','Identify the human risks that matter most.'],['Design','Build a program around real scenarios.'],['Run','Simulations and targeted briefings.'],['Improve','Measure, report, and refine.']],
+  rel:['email-security','incident-preparedness','m365-security','managed-security-posture']
+},
+{
+  slug:'governance-risk', t:'Governance & Risk Management', g:'grc', tier:2, icon:'landmark', topic:'compliance',
+  short:'Policies, risk registers, and reporting leadership can act on.',
+  tag:'Security you can govern — not just operate.',
+  lede:'Technology without governance produces noise. Zuronix builds the management system around your security: policies, risk registers, control mapping, metrics, and reporting that let leadership steer with confidence.',
+  prob:{b:'Security decisions made ad hoc eventually become incidents handled ad hoc. Without a governance layer, every choice — what to buy, what to allow, what to defer — is improvised, and nobody can later explain why.',bullets:[
+    'Security decisions made without a framework',
+    'Policies that don\u2019t exist — or that nobody follows',
+    'Risks known informally, never written down or prioritized',
+    'Leadership flying blind on security status']},
+  scope:[
+    {h:'Govern',icon:'landmark',items:['Security governance structure and program development','Policy development and lifecycle management','Security strategy aligned to business objectives']},
+    {h:'Manage risk',icon:'chart',items:['Risk register and assessment cadence','Risk acceptance, treatment, and ownership decisions','Control mapping to frameworks and requirements']},
+    {h:'Report',icon:'eye',items:['Security metrics and KPIs','Executive and board-level reporting','Security maturity assessments']}],
+  del:['A right-sized policy set your team can follow','A working risk register with owners and decisions','Control mapping to your applicable frameworks','A metrics pack and reporting rhythm','A program development roadmap'],
+  fit:['Organizations building a real security program','Leadership that wants visibility, not volume','Companies preparing for audits or enterprise customers'],
+  steps:[['Understand','Organization, obligations, and risk appetite.'],['Build','Policies, registers, and reporting that fit.'],['Operate','Cadences, decisions, and documentation.'],['Improve','Maturity measured and raised over time.']],
+  rel:['vciso','managed-security-posture','security-questionnaires','security-assessments']
+},
+{
+  slug:'vciso', t:'Fractional Security Leadership (vCISO)', g:'grc', tier:2, icon:'compass', topic:'compliance',
+  short:'Security leadership without building a security organization.',
+  tag:'Security leadership, without the overhead.',
+  lede:'Most small and mid-market organizations need senior security judgment far more than a full security department. Zuronix provides fractional security leadership — strategy, prioritization, governance — as an ongoing relationship, not an hourly rental.',
+  prob:{b:'The gap between \u201cwe know security matters\u201d and \u201cwe know what to do next\u201d is judgment. Without senior leadership, organizations over-buy tools, under-manage risk, and discover gaps only when an auditor, insurer, or attacker finds them first.',bullets:[
+    'Security priorities set by vendors, not strategy',
+    'No one accountable for the security program',
+    'Board or investor questions without answers',
+    'Budget requests without a defensible rationale']},
+  scope:[
+    {h:'Lead',icon:'compass',items:['Security strategy and roadmap','Program development and oversight','Risk management ownership','Incident preparedness oversight']},
+    {h:'Advise',icon:'chart',items:['Executive and board reporting','Budgeting and vendor evaluation','Compliance and insurance strategy','Program maturity measurement']}],
+  del:['A security strategy and prioritized roadmap','Steady executive and board reporting','Accountable oversight of your security program','Vendor and budget guidance grounded in your risk'],
+  fit:['Organizations that need CISO-level judgment at SMB scale','Companies preparing for growth, transactions, or audits','Leadership that wants a partner, not a body'],
+  callout:{t:'Not \u201crent a CISO by the hour\u201d',b:'This is an accountable leadership function scaled to your organization — continuity, context, and ownership, not fragmented consulting hours.'},
+  steps:[['Understand','Business context, obligations, and risk appetite.'],['Plan','Strategy, roadmap, and resource reality.'],['Steer','Ongoing decisions, reporting, and oversight.'],['Raise','Program maturity, measured over time.']],
+  rel:['governance-risk','managed-security-posture','security-questionnaires','cyber-insurance-readiness']
+},
+{
+  slug:'security-questionnaires', t:'Security Questionnaires & Customer Requirements', g:'grc', tier:2, icon:'clipboard', topic:'compliance',
+  short:'Answer customer security reviews without slowing deals.',
+  tag:'Security requirements shouldn\u2019t slow down your next contract.',
+  lede:'Enterprise customers, healthcare systems, and government buyers send detailed security questionnaires before signing. Zuronix helps you answer them honestly and fast — and builds the evidence library that makes the next one faster.',
+  prob:{b:'Somewhere between \u201cwe love your product\u201d and \u201ccontract sent\u201d arrives the questionnaire: 150 questions, due Friday. Answered badly, it kills momentum. Answered dishonestly, it creates liability.',bullets:[
+    'Questionnaires arriving mid-deal, under deadline',
+    'Answers assembled in spreadsheets at the last minute',
+    'Claims with no evidence behind them',
+    'Sales blocked waiting on security responses']},
+  scope:[
+    {h:'Respond',icon:'clipboard',items:['Response support — SIG, CAIQ, and bespoke enterprise questionnaires','Customer security requirement readiness','Consistent, honest, well-framed answers']},
+    {h:'Build once, reuse forever',icon:'db',items:['Security evidence library development','Policy and documentation development','A repeatable response process']}],
+  del:['Professionally completed questionnaire responses','An organized evidence library','Policies and documentation to support your claims','A faster process for every future questionnaire'],
+  fit:['Growing SaaS and professional-services companies','Vendors to enterprises, healthcare, and government buyers','Teams where security reviews gate revenue'],
+  steps:[['Assess','What you can claim, and what needs to become true.'],['Build','Evidence, policies, and a master response set.'],['Respond','Complete the questionnaire accurately and fast.'],['Reuse','Every next one gets easier.']],
+  rel:['soc-2-readiness','governance-risk','application-security','vciso']
+},
+{
+  slug:'vendor-risk', t:'Third-Party & Vendor Risk', g:'grc', tier:3, icon:'share', topic:'compliance',
+  short:'Know the risk your vendors bring through the door.',
+  tag:'Your risk includes everyone you trust.',
+  lede:'Your customers assess you — and your vendors create risk you inherit. Zuronix builds third-party risk management that fits your size: tiered assessments, vendor questionnaires, and ongoing attention where it matters most.',
+  prob:{b:'A breach at a key vendor is a breach at your organization, minus the control. Most companies can\u2019t list their critical vendors, let alone say which ones hold their data or have privileged access.',bullets:[
+    'Critical vendors never assessed',
+    'Data shared with vendors on unclear terms',
+    'No process for reviewing vendor security over time']},
+  scope:[
+    {h:'Program',icon:'share',items:['Vendor risk program design','Tiered third-party assessments','Vendor security questionnaires']},
+    {h:'Ongoing',icon:'eye',items:['Contract security requirement guidance','Critical vendor review cadence','Monitoring approach scaled to your size']}],
+  del:['A tiered vendor risk framework','Assessment and questionnaire templates','A shortlist of critical vendors and their risk','A sustainable review cadence'],
+  fit:['Organizations answering customer questions about their vendors','Companies whose critical vendors hold sensitive data','Teams formalizing procurement security'],
+  steps:[['Inventory','Map vendors, data, and access.'],['Tier','Rank by criticality and exposure.'],['Assess','Right-sized questionnaires and reviews.'],['Sustain','Review cadence and escalation paths.']],
+  rel:['security-questionnaires','governance-risk','cloud-saas-security']
+},
+{
+  slug:'hipaa-readiness', t:'HIPAA Security Readiness', g:'compliance', tier:2, icon:'shield', topic:'compliance',
+  short:'Security risk analysis and safeguards readiness for HIPAA.',
+  tag:'HIPAA readiness built on real safeguards — not binderware.',
+  lede:'Covered entities and business associates need more than a policy template: a real risk analysis, implemented safeguards, and documentation that stands up to scrutiny. Zuronix provides readiness support, working alongside your legal and compliance teams.',
+  prob:{b:'HIPAA security is not a binder — it\u2019s a risk analysis that\u2019s real, safeguards that function, and documentation that matches what you actually do. The gap between the policy on the shelf and the practice on the network is where penalties live.',bullets:[
+    'A risk analysis that\u2019s outdated or never technical',
+    'Safeguards assumed rather than verified',
+    'Breach response plans untested',
+    'Vendors and BAAs never reviewed for security']},
+  scope:[
+    {h:'Analyze & assess',icon:'eye',items:['Security risk analysis','Administrative, physical, and technical safeguards assessment','Workstation, device, and access control review']},
+    {h:'Prepare',icon:'doc',items:['Policy and documentation development','Breach response readiness (security side)','Vendor security review guidance','Workforce training support']}],
+  del:['A documented security risk analysis','A safeguards gap report and remediation plan','Policies aligned to what you actually do','Breach response readiness review'],
+  fit:['Practices, clinics, and covered entities','Business associates serving healthcare','Vendors entering healthcare markets'],
+  steps:[['Analyze','Risk analysis grounded in your environment.'],['Assess','Safeguards verified, not assumed.'],['Remediate','Prioritized, documented improvements.'],['Maintain','Review cadence and readiness upkeep.']],
+  rel:['security-assessments','governance-risk','incident-preparedness','ftc-safeguards']
+},
+{
+  slug:'ftc-safeguards', t:'FTC Safeguards Rule Readiness', g:'compliance', tier:2, icon:'lock', topic:'compliance',
+  short:'Meet the Safeguards Rule\u2019s requirements — with evidence.',
+  tag:'The Safeguards Rule is specific. Your program should be too.',
+  lede:'Non-banking financial institutions fall under the FTC Safeguards Rule\u2019s concrete requirements — from risk assessment to a written information security program. Zuronix helps you build and evidence each element.',
+  prob:{b:'The Safeguards Rule doesn\u2019t ask for aspiration; it asks for specifics — access controls, encryption, MFA, monitoring, an incident response plan, training, and vendor oversight, inside a written program.',bullets:[
+    'A WISP that exists but doesn\u2019t reflect reality',
+    'MFA, encryption, and monitoring gaps',
+    'No designated qualified individual or program owner',
+    'Vendor oversight limited to signatures']},
+  scope:[
+    {h:'Assess',icon:'eye',items:['Data inventory and risk assessment','Gap assessment against the Rule\u2019s safeguard elements']},
+    {h:'Build',icon:'doc',items:['Written information security program (WISP) development','Access control, encryption, and MFA implementation guidance','Incident response plan alignment','Training and vendor oversight practices']}],
+  del:['A gap assessment mapped to the Rule\u2019s elements','A WISP that reflects your actual environment','A remediation plan with owners and evidence','Documentation structured for examination'],
+  fit:['Lenders, brokers, dealers, financial advisors, and other non-bank financial institutions','Companies newly in scope after growth or acquisition'],
+  steps:[['Inventory','Customer data, systems, and flows.'],['Assess','Gaps against each required element.'],['Build','Program, controls, and documentation.'],['Evidence','Proof of operation, not just intent.']],
+  rel:['security-assessments','governance-risk','incident-preparedness','hipaa-readiness']
+},
+{
+  slug:'pci-dss-readiness', t:'PCI DSS Readiness', g:'compliance', tier:3, icon:'db', topic:'compliance',
+  short:'Scope awareness and control readiness for cardholder data.',
+  tag:'Reduce scope. Prepare controls. Face validation calmly.',
+  lede:'Near payment flows, cardholder-data obligations are contractual and specific. Zuronix helps you understand your scope, prepare controls, and get validation-ready.',
+  note:'Zuronix provides readiness support. Formal assessments and attestation involve your acquirer and qualified assessors — we prepare you and coordinate alongside them.',
+  prob:{b:'PCI scope quietly expands: a stored PAN here, a screenshot there, a logging path that touches cardholder data. The result is validation cost and complexity nobody budgeted for.',bullets:[
+    'Scope larger than it needs to be',
+    'Controls documented but not consistently operating',
+    'Evidence assembled only at validation time']},
+  scope:[
+    {h:'Scope',icon:'eye',items:['Scope and data-flow discovery','Scope reduction guidance']},
+    {h:'Prepare',icon:'doc',items:['Control gap assessment','Remediation planning','Policy and evidence preparation','SAQ alignment']}],
+  del:['A documented scope and data-flow map','A control gap report and remediation plan','Evidence and policy preparation','A validation-ready posture'],
+  fit:['Retailers and e-commerce','SaaS platforms touching payment data','Organizations facing validation deadlines'],
+  steps:[['Discover','Find where cardholder data lives and flows.'],['Reduce','Shrink scope where possible.'],['Prepare','Close control gaps with evidence.'],['Validate','Walk into assessment ready.']],
+  rel:['endpoint-infrastructure','security-questionnaires','security-assessments']
+},
+{
+  slug:'soc-2-readiness', t:'SOC 2 Readiness', g:'compliance', tier:3, icon:'chart', topic:'compliance',
+  short:'Get audit-ready — controls, policies, evidence.',
+  tag:'SOC 2 readiness without the panic.',
+  lede:'Enterprise buyers increasingly require SOC 2. The readiness work — controls, policies, and evidence habits — determines whether your audit is calm or chaotic. Zuronix takes you from \u201cwe should probably\u201d to audit-ready.',
+  note:'Your independent auditor performs the attestation. Zuronix makes you ready for it — and coordinates alongside your audit team.',
+  prob:{b:'SOC 2 isn\u2019t a test you cram for; it\u2019s controls that must exist, operate, and leave evidence over time. Companies that start evidence habits six months before audit are calm. Companies that start six weeks before are not.',bullets:[
+    'Enterprise deals stalled on SOC 2',
+    'Controls operating but undocumented',
+    'Evidence collected manually, at the last minute',
+    'Policies copied from templates, unaligned with reality']},
+  scope:[
+    {h:'Prepare',icon:'eye',items:['Trust services criteria gap assessment','Control design and implementation guidance','Policy development aligned to actual operations']},
+    {h:'Sustain',icon:'refresh',items:['Evidence collection practice','Remediation tracking','Auditor coordination support']}],
+  del:['A criteria-mapped gap assessment','Designed controls and an aligned policy set','An evidence practice that scales','A readiness roadmap to your audit window'],
+  fit:['SaaS and services companies selling to enterprises','Organizations facing SOC 2 requirements in contracts','Teams building controls before their first audit'],
+  steps:[['Gap','Where you stand against the criteria.'],['Build','Controls and policies that fit how you work.'],['Practice','Evidence habits before audit pressure.'],['Audit','Enter the window prepared.']],
+  rel:['security-questionnaires','governance-risk','vciso','application-security']
+},
+{
+  slug:'nist-cmmc-readiness', t:'NIST & CMMC Readiness', g:'compliance', tier:3, icon:'landmark', topic:'compliance',
+  short:'NIST CSF, SP 800-171, and CMMC readiness for the defense supply chain.',
+  tag:'Government work has security prerequisites. Get ready on schedule.',
+  lede:'Defense contracts flow CMMC and NIST SP 800-171 requirements down to suppliers of every size. Zuronix provides readiness support — gap assessment, remediation planning, and evidence practice — alongside your compliance and legal advisors.',
+  prob:{b:'The defense industrial base runs on demonstrated compliance: not intentions — implemented controls with evidence. Primes check. Assessors check. Missing the window means missing the contract.',bullets:[
+    '800-171 requirements flowing down from primes',
+    'Gaps between stated and actual control implementation',
+    'No evidence practice for assessment',
+    'Remediation lists with no sequencing or ownership']},
+  scope:[
+    {h:'Assess',icon:'eye',items:['NIST CSF alignment assessment','SP 800-171 gap assessment','CMMC practice and evidence review']},
+    {h:'Remediate',icon:'doc',items:['Prioritized remediation planning','Documentation and policy development','Evidence practice development']}],
+  del:['A requirement-by-requirement gap report','A sequenced remediation roadmap','Documentation aligned to the controls','An evidence approach for assessment'],
+  fit:['Suppliers and subcontractors in the defense supply chain','Organizations pursuing CMMC at any level','Companies aligning to NIST CSF broadly'],
+  steps:[['Map','Requirements that apply to your contracts.'],['Assess','Gaps in implementation and evidence.'],['Remediate','Sequenced, owned, documented.'],['Demonstrate','Ready for assessment or prime review.']],
+  rel:['governance-risk','security-assessments','security-questionnaires']
+},
+{
+  slug:'incident-preparedness', t:'Incident Preparedness & Resilience', g:'resilience', tier:2, icon:'checkCircle', topic:'assessment',
+  short:'IR plans, tabletops, and ransomware readiness — before you need them.',
+  tag:'The best time to prepare for an incident is before one happens.',
+  lede:'During an incident you don\u2019t rise to the occasion — you fall to your level of preparation. Zuronix builds incident response plans, runs realistic exercises, and pressure-tests recovery before reality does.',
+  prob:{b:'The middle of a ransomware event is a terrible time to write your first incident response plan. Who decides? Who talks to insurers, legal, customers? Preparedness turns those questions into checklists.',bullets:[
+    'No written incident response plan',
+    'Recovery never tested under pressure',
+    'Roles unclear until the moment they matter',
+    'Insurers requiring an IR plan you don\u2019t have']},
+  scope:[
+    {h:'Plan',icon:'doc',items:['Incident response planning','Ransomware and recovery readiness','Business continuity and disaster recovery security considerations','Crisis communication coordination']},
+    {h:'Practice',icon:'users',items:['Tabletop exercises — ransomware, BEC, and executive scenarios','Executive incident exercises','Lessons-learned process']}],
+  del:['A usable incident response plan with clear roles','Exercise results and gap findings','A preparedness roadmap','Confidence, rehearsed'],
+  fit:['Organizations required to have IR plans by insurers or customers','Leadership teams that have never rehearsed a crisis','Companies recovering into a stronger position'],
+  steps:[['Plan','Define roles, decisions, and playbooks.'],['Practice','Tabletop the scenarios you fear.'],['Pressure-test','Find the gaps while it\u2019s cheap.'],['Improve','Refine plans from what you learn.']],
+  rel:['incident-response','endpoint-infrastructure','governance-risk','managed-security-posture']
+},
+{
+  slug:'digital-forensics', t:'Digital Forensics & Investigation', g:'resilience', tier:3, icon:'search', topic:'incident',
+  short:'Compromise assessment, log analysis, and post-incident investigation.',
+  tag:'Find out what actually happened.',
+  lede:'After an incident — or when something just feels wrong — disciplined investigation turns guesswork into facts: what was accessed, when, and what it means. Zuronix conducts and coordinates investigations, preserving evidence properly.',
+  note:'Where matters require specialized forensic or legal expertise, we coordinate with appropriate specialists — and preserve evidence to their standards.',
+  prob:{b:'\u201cWe think someone got in\u201d is not a finding — it\u2019s a starting point. Without careful analysis, organizations rebuild, reset, and move on without ever knowing what was touched, exfiltrated, or left behind.',bullets:[
+    'Suspected compromise without clear answers',
+    'Evidence destroyed by well-intentioned cleanup',
+    'Legal or insurance questions requiring facts',
+    'Recurring events nobody can explain']},
+  scope:[
+    {h:'Investigate',icon:'search',items:['Compromise assessments','Account compromise and cloud / Microsoft 365 investigation','Log analysis and event reconstruction']},
+    {h:'Preserve & report',icon:'doc',items:['Evidence preservation','Post-incident analysis and reporting','Root-cause and lessons-learned documentation']}],
+  del:['A factual account of what occurred','Evidence preserved to defensible standards','A post-incident analysis and report','Recommendations that prevent recurrence'],
+  fit:['Organizations recovering from incidents','Teams with unexplained security events','Situations where facts matter for legal or insurance purposes'],
+  steps:[['Preserve','Protect logs and evidence immediately.'],['Investigate','Reconstruct what actually happened.'],['Report','Findings, impact, and meaning.'],['Strengthen','Close the path it came through.']],
+  rel:['incident-response','m365-security','security-assessments']
+},
+{
+  slug:'ai-security', t:'AI Security & Governance', g:'ai', tier:2, icon:'sparkles', topic:'ai',
+  short:'Adopt AI without importing new risk.',
+  tag:'AI is becoming part of your security environment. Your program should evolve with it.',
+  lede:'Copilot, AI assistants, AI features inside every SaaS product, and teams pasting sensitive data into tools nobody approved — AI is already in your organization. Zuronix makes adoption deliberate: governed, secured, and understood.',
+  prob:{b:'AI adoption usually happens twice: once officially, with a policy, and once unofficially, weeks earlier, in browser tabs. Shadow AI expands your data surface, and AI features surface information your permissions never intended.',bullets:[
+    'Shadow AI — tools in use that nobody catalogued or approved',
+    'AI changing how data is surfaced (Copilot reads what permissions allow)',
+    'AI vendors processing data with unclear terms',
+    'Policies silent on AI use',
+    'AI features arriving inside SaaS you already run']},
+  scope:[
+    {h:'Discover & assess',icon:'eye',items:['Shadow AI discovery and inventory','AI risk assessments','AI data exposure review']},
+    {h:'Govern',icon:'landmark',items:['AI acceptable-use and security policies','AI usage governance','Access control and data protection for AI tools']},
+    {h:'Secure adoption',icon:'sparkles',items:['Microsoft Copilot security readiness','AI vendor risk review','Integration and OAuth review']},
+    {h:'Advanced',icon:'target',items:['LLM application security','AI agent security considerations','AI incident preparedness']}],
+  del:['An AI inventory and risk report','A governance policy set for AI use','A Copilot readiness assessment','An adoption roadmap that keeps pace'],
+  fit:['Organizations rolling out or considering Microsoft Copilot','Teams already using AI tools informally','Companies whose customers or insurers are asking about AI'],
+  steps:[['Discover','What AI is already in your organization.'],['Assess','Exposure, governance, and vendor risk.'],['Govern','Policies and controls that fit your teams.'],['Sustain','Keep pace as AI capability evolves.']],
+  rel:['ai-agent-security','m365-security','cloud-saas-security','governance-risk']
+},
+{
+  slug:'ai-agent-security', t:'AI Agent Security & Isolation', g:'ai', tier:2, icon:'bot', topic:'ai',
+  short:'Isolated AI environments, enforced guardrails, and agent monitoring.',
+  tag:'AI agents that act — inside boundaries you control.',
+  lede:'AI agents are moving from answering questions to taking actions: reading systems, calling APIs, moving data. Zuronix designs the environments they operate in — isolated, least-privileged, and monitored — so autonomy always has boundaries.',
+  prob:{b:'An agent with broad credentials is an intern with admin rights, always on, and invisible in your audit trail. The risk isn\u2019t that agents fail — it\u2019s that they succeed at the wrong thing, at scale, with permissions nobody meant to grant.',bullets:[
+    'Agents given broad credentials \u201cto make them work\u201d',
+    'No boundary between agent-accessible and sensitive data',
+    'Agent actions invisible in logs and audits',
+    'No approval point between an agent and a consequential action']},
+  scope:[
+    {h:'Isolate',icon:'lock',items:['Isolated, sandboxed AI environments','Network and data boundaries around agent activity','Environment design for autonomous workloads']},
+    {h:'Govern',icon:'landmark',items:['Least-privilege identities for agents (non-human accounts)','Policy-as-code guardrails — enforced, not suggested','Safe-by-default environments, identical for human and machine operators','Approval gates for sensitive actions']},
+    {h:'Monitor',icon:'eye',items:['Agent activity logging and observability','Anomaly detection on agent behavior','Audit-ready records of what agents accessed and changed','Review cadence as agent capabilities grow']}],
+  del:['An isolation architecture for AI workloads','A guardrail and identity model for agents','A monitoring and audit design for agent activity','A governance roadmap that keeps pace with capability'],
+  fit:['Teams deploying autonomous agents or internal AI tools','Organizations building AI features into products','Regulated sectors adopting AI under scrutiny','Leadership asking \u201cwhat exactly can our agents do?\u201d'],
+  steps:[['Map','What agents access, call, and change today.'],['Isolate','Boundaries around environments and data.'],['Govern','Identities, guardrails, and approval gates.'],['Monitor','Observability and audit from day one.']],
+  rel:['ai-security','infrastructure-platform-security','governance-risk','identity-access']
+}
+];
+
+/* ═══ MODULE 3 · RENDER HELPERS ═══ */
+const bySlug = s => SERVICES.find(x => x.slug === s);
+function checkList(items){ return '<ul class="check-list">'+items.map(i=>'<li>'+ic('check')+'<span>'+i+'</span></li>').join('')+'</ul>'; }
+function ctaBand(title, body, primaryLabel, primaryHref){
+  return '<section class="section section--dark"><div class="container">'+
+  '<div class="sec-head sec-head--center reveal"><p class="eyebrow eyebrow--center"><span class="dot"></span>Next step</p>'+
+  '<h2 class="h2">'+title+'</h2><p class="sec-lede">'+body+'</p>'+
+  '<div class="btn-row" style="justify-content:center;margin-top:24px"><a class="btn btn-primary" href="'+primaryHref+'">'+primaryLabel+ic('arrowR','ic-s')+'</a>'+
+  '<a class="btn btn-ghostd" href="#/services">Explore services</a></div></div></div></section>';
+}
+function serviceCard(s, featured){
+  return '<a class="card'+(featured?' card--featured':'')+(s.g==='ai'?' v':'')+'" href="#/services/'+s.slug+'">'+
+  '<div class="tile">'+ic(s.icon)+'</div>'+(featured?'<p class="kicker" style="margin-top:12px">Start here</p>':'')+
+  '<h3>'+s.t+'</h3><p>'+s.short+'</p>'+
+  '<p class="tlink" style="margin-top:12px">Learn more '+ic('arrowR')+'</p></a>';
+}
+function stepsHtml(steps){
+  return '<div class="steps">'+steps.map((st,i)=>'<div class="step reveal" style="--d:'+(i*0.08)+'s"><div class="step-num">0'+(i+1)+'</div><h3>'+st[0]+'</h3><p>'+st[1]+'</p></div>').join('')+'</div>';
+}
+function relatedHtml(rel){
+  return '<div class="grid g3">'+rel.map(r=>{const x=bySlug(r); return x?'<a class="card'+(x.g==='ai'?' v':'')+'" href="#/services/'+x.slug+'"><div class="tile">'+ic(x.icon)+'</div><h3>'+x.t+'</h3><p>'+x.short+'</p></a>':'';}).join('')+'</div>';
+}
+
+/* ═══ MODULE 4 · LIVE ELEMENTS ═══ */
+function miniMesh(){
+  const nodes=[
+    {cx:168,cy:30, label:'Identity'},
+    {cx:288,cy:95, label:'Cloud & SaaS'},
+    {cx:288,cy:205,label:'Applications'},
+    {cx:168,cy:260,label:'People'},
+    {cx:48, cy:205,label:'Governance'},
+    {cx:48, cy:95, label:'AI Agents'}
+  ];
+  const paths=[
+    'M170 138 Q 215 85 168 34',
+    'M176 134 Q 240 118 284 99',
+    'M176 146 Q 240 162 284 201',
+    'M170 146 Q 215 195 168 256',
+    'M164 146 Q 100 162 52 201',
+    'M164 134 Q 100 118 52 99'
+  ];
+  const dots=['#18E0FF','#7C5CFF','#367CFF'];
+  const lines=paths.map(p=>'<path class="flow" d="'+p+'" fill="none" stroke="rgba(155,229,255,.3)" stroke-width="1.3" stroke-linecap="round"/>').join('');
+  let particles='';
+  if(!RM){
+    particles='<circle r="2" fill="#9BE5FF"><animateMotion dur="2.8s" repeatCount="indefinite" path="'+paths[0]+'"/></circle>'+
+      '<circle r="2" fill="#A79BFF"><animateMotion dur="3.4s" begin=".7s" repeatCount="indefinite" path="'+paths[3]+'"/></circle>'+
+      '<circle r="2" fill="#9BE5FF"><animateMotion dur="3.1s" begin="1.2s" repeatCount="indefinite" path="'+paths[1]+'"/></circle>';
+  }
+  const boxes=nodes.map((n,i)=>{
+    const x=n.cx-46,y=n.cy-16;
+    return '<g class="node"><rect x="'+x+'" y="'+y+'" width="92" height="32" rx="7" fill="#0E1621" stroke="rgba(148,163,184,.3)" stroke-width="1.1"/><circle cx="'+(x+12)+'" cy="'+n.cy+'" r="2.6" fill="'+dots[i%3]+'"/><text x="'+(n.cx+8)+'" y="'+(n.cy+3.5)+'" text-anchor="middle" font-size="9.5" font-weight="600" fill="#F5F8FC" font-family="Space Grotesk, sans-serif">'+n.label+'</text></g>';
+  }).join('');
+  return '<svg viewBox="0 0 340 280" role="img" aria-label="Agent topology: identity, cloud, applications, people, governance, and AI agents governed around a central security core">'+
+    '<circle class="ring" cx="170" cy="140" r="128" fill="none" stroke="rgba(148,163,184,.14)" stroke-width="1.1" stroke-dasharray="2 8"/>'+
+    lines+particles+
+    '<circle class="halo" cx="170" cy="140" r="46" fill="none" stroke="#18E0FF" stroke-width="1"/>'+
+    '<g class="node"><rect x="120" y="118" width="100" height="44" rx="9" fill="url(#coreGrad)"/><text x="170" y="144" text-anchor="middle" font-size="10" font-weight="700" fill="#041019" font-family="Space Grotesk, sans-serif">SECURITY CORE</text></g>'+
+    boxes+
+  '</svg>';
+}
+
+const TERM_LINES=[
+  {c:'t-dim',t:'$ zuronix monitor --live'},
+  {c:'t-ok',t:'[ ok ]  identity guardrails ......... ENFORCED'},
+  {c:'t-ai',t:'[ ai ]  agent:copilot-reader ........ SANDBOXED'},
+  {c:'t-ok',t:'[ ok ]  MFA coverage ................ 99.4%'},
+  {c:'t-id',t:'[ id ]  anomalous sign-in blocked ... 1 session'},
+  {c:'t-ok',t:'[ ok ]  conditional access .......... 12 policies'},
+  {c:'t-ai',t:'[ ai ]  agent egress request ........ DENIED (policy 7)'},
+  {c:'t-ok',t:'[ ok ]  backup isolation ............ VERIFIED'},
+  {c:'t-warn',t:'[warn]  config drift detected ....... sharepoint'},
+  {c:'t-ok',t:'[ ok ]  drift remediation ........... QUEUED'},
+  {c:'t-ai',t:'[ ai ]  agent:report-writer ......... AUDIT LOG ON'},
+  {c:'t-ok',t:'[ ok ]  DMARC enforcement ........... p=reject'},
+  {c:'t-id',t:'[ id ]  credential rotations ........ 14 completed'},
+  {c:'t-ai',t:'[ ai ]  shadow-ai discovery ......... 3 tools found'},
+  {c:'t-ok',t:'[ ok ]  posture score ............... 87 \u2192 91 (+4)'}
+];
+function startTerminal(){
+  const body=document.getElementById('termBody');
+  if(!body) return;
+  if(RM){
+    body.innerHTML=TERM_LINES.map(l=>'<div class="term-line"><span class="'+l.c+'">'+l.t+'</span></div>').join('');
+    return;
+  }
+  let li=0;
+  function typeLine(){
+    if(!document.body.contains(body)) return;
+    const line=TERM_LINES[li%TERM_LINES.length]; li++;
+    const div=document.createElement('div'); div.className='term-line';
+    const span=document.createElement('span'); span.className=line.c;
+    const cur=document.createElement('span'); cur.className='cursor';
+    div.appendChild(span); div.appendChild(cur); body.appendChild(div);
+    while(body.children.length>11) body.removeChild(body.firstChild);
+    let ci=0;
+    (function tick(){
+      if(!document.body.contains(div)) return;
+      span.textContent=line.t.slice(0,ci);
+      if(ci<line.t.length){ ci++; setTimeout(tick,9); }
+      else { cur.remove(); setTimeout(typeLine,430); }
+    })();
+  }
+  typeLine();
+  const ev=document.getElementById('tEvents'), dr=document.getElementById('tDrift');
+  let evN=1204, drN=312;
+  const fmt=v=>v.toLocaleString('en-US');
+  if(ev&&dr){
+    ev.textContent=fmt(evN); dr.textContent=fmt(drN);
+    const iv=setInterval(()=>{
+      if(!document.body.contains(ev)){ clearInterval(iv); return; }
+      evN+=1+Math.floor(Math.random()*6);
+      drN+=Math.random()<.4?1:0;
+      ev.textContent=fmt(evN); dr.textContent=fmt(drN);
+    },3200);
+  }
+}
+function initCounters(){
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const raw=el.dataset.count;
+    const target=parseFloat(raw);
+    const dec=raw.indexOf('.')>-1?1:0;
+    const suf=el.dataset.suffix||'';
+    const set=v=>{ el.textContent=(dec?v.toFixed(1):Math.round(v).toLocaleString('en-US'))+suf; };
+    if(RM){ set(target); return; }
+    const io=new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        if(!e.isIntersecting) return;
+        io.disconnect();
+        const t0=performance.now(), dur=1800;
+        (function fr(now){
+          const p=Math.min(1,(now-t0)/dur);
+          const ease=1-Math.pow(1-p,3);
+          set(target*ease);
+          if(p<1) requestAnimationFrame(fr);
+        })(t0);
+      });
+    },{threshold:.4});
+    io.observe(el);
+  });
+}
+
+/* ═══ MODULE 5 · PAGES ═══ */
+function renderHome(){
+  const values=[
+    {i:'shield',h:'Reduce Risk',p:'Know your exposure. Fix what matters first.'},
+    {i:'key',h:'Protect Identity, Cloud & AI',p:'Microsoft 365, cloud, SaaS, and AI agents — secured.'},
+    {i:'clipboard',h:'Meet Requirements',p:'Insurance, regulatory, and customer requirements — with evidence.'},
+    {i:'lifebuoy',h:'Prepare for Incidents',p:'Plans, practice, and a partner when it matters.'},
+    {i:'sparkles',h:'Secure AI Adoption',p:'Copilot to autonomous agents — governed and monitored.'},
+    {i:'landmark',h:'Strengthen Governance',p:'Clear visibility and policy leadership can act on.'}
+  ];
+  const scenarios=[
+    {q:'Your cyber insurance renewal is approaching.',a:'We map your gaps to what underwriters actually require.',l:'cyber-insurance-readiness',lt:'Cyber Insurance Readiness'},
+    {q:'Your teams want to deploy AI agents — not just chatbots.',a:'Govern access, isolate execution, monitor every action.',l:'ai-agent-security',lt:'AI Agent Security'},
+    {q:'A major customer just sent a 150-question security questionnaire.',a:'Turn security reviews into a growth asset.',l:'security-questionnaires',lt:'Security Questionnaires'},
+    {q:'You suspect an account has been compromised.',a:'Experienced help — what happened, and what to do next.',l:'incident-response',lt:'Incident Response'},
+    {q:'You need a security program, but don\u2019t know where to start.',a:'A prioritized assessment is the right first step.',l:'security-assessments',lt:'Security Assessments'},
+    {q:'Your organization has grown faster than your controls.',a:'Continuous posture management keeps pace with growth.',l:'managed-security-posture',lt:'Managed Security Posture'}
+  ];
+  const entries=[
+    {s:'m365-security',k:'Entry point 01',h:'Secure Your Microsoft 365',sub:'M365 Security & Identity Assessment',p:'Start where your business runs — identity, data, and email, secured.'},
+    {s:'cyber-insurance-readiness',k:'Entry point 02',h:'Prepare for Your Renewal',sub:'Cyber Insurance Readiness',p:'Close gaps, build evidence, reduce renewal surprises.'},
+    {s:'managed-security-posture',k:'Entry point 03',h:'Build Continuous Security',sub:'Managed Security Posture',p:'Monitoring, governance, and improvement — month after month.'}
+  ];
+  const industries=['Government Contractors','Healthcare','Legal','Professional Services','Technology & SaaS','Financial Services','Accounting & Tax','Construction','Manufacturing','Retail & E-commerce','Nonprofits','SMBs & Mid-Market'];
+  const gflow=[['server','Technology'],['users','People'],['doc','Process'],['eye','Risk'],['landmark','Governance']];
+  const questions=[
+    'What risks exist — and which ones actually matter?',
+    'What should we fix first, and why?',
+    'How much should we invest — and where?',
+    'Are the controls we\u2019ve paid for actually working?',
+    'Can we demonstrate our security to customers, insurers, and regulators?'
+  ];
+  const groupLinks={
+    security:['m365-security','managed-security-posture','infrastructure-platform-security','security-monitoring-detection','identity-access','cloud-saas-security'],
+    grc:['cyber-insurance-readiness','governance-risk','vciso','security-questionnaires','vendor-risk'],
+    compliance:['hipaa-readiness','ftc-safeguards','soc-2-readiness','nist-cmmc-readiness','pci-dss-readiness'],
+    resilience:['incident-response','incident-preparedness','digital-forensics'],
+    ai:['ai-security','ai-agent-security']
+  };
+  const bcell=(v,i,extra)=>'<div class="b-cell'+(extra?' '+extra:'')+' reveal" style="--d:'+(i*0.05)+'s"><div class="tile">'+ic(v.i)+'</div><h3>'+v.h+'</h3><p>'+v.p+'</p></div>';
+  return '<section class="hero"><div class="container hero-grid">'+
+    '<div>'+
+      '<p class="reveal"><span class="chip"><span class="dot"></span>Cybersecurity · Risk · Compliance · AI Agents</span></p>'+
+      '<h1 class="reveal" style="--d:.06s">Cybersecurity built around your <em>business</em>.</h1>'+
+      '<span class="gold-rule reveal" style="--d:.09s" aria-hidden="true"></span>'+
+      '<p class="hero-lede reveal" style="--d:.12s">Reduce cyber risk across identity, cloud, and AI. Meet compliance and insurance requirements with evidence. Respond to incidents with confidence.</p>'+
+      '<div class="btn-row reveal" style="--d:.18s"><a class="btn btn-primary" href="#/contact">Contact Us '+ic('arrowR','ic-s')+'</a><a class="btn btn-ghostd" href="#/services">Explore Our Services</a></div>'+
+      '<p class="hero-meta reveal" style="--d:.24s">'+ic('clock')+'<span><b>Every inquiry answered within one business day.</b> Scoped in one conversation.</span></p>'+
+    '</div>'+
+    '<div class="reveal" style="--d:.15s">'+
+      '<div class="terminal" role="img" aria-label="Live security operations monitoring terminal">'+
+        '<div class="term-head"><span class="term-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term-title">zuronix \u00b7 security-ops</span><span class="term-live"><span class="dot"></span>LIVE</span></div>'+
+        '<div class="term-body" id="termBody" aria-hidden="true"></div>'+
+        '<div class="term-stats">'+
+          '<div><b id="tEvents">1,204</b><span>events analyzed</span></div>'+
+          '<div><b>24/7</b><span>monitoring</span></div>'+
+          '<div><b id="tDrift">312</b><span>drift checks</span></div>'+
+        '</div>'+
+      '</div>'+
+    '</div>'+
+  '</div></section>'+
+
+  '<section class="stats-band"><div class="container">'+
+    '<div class="stats-head reveal"><span class="term-live"><span class="dot"></span>LIVE</span><p>Security operations \u00b7 continuous monitoring \u00b7 24/7/365</p></div>'+
+    '<div class="stats-grid">'+
+      '<div class="stat reveal"><b>24/7</b><span>continuous monitoring</span></div>'+
+      '<div class="stat reveal" style="--d:.06s"><b data-count="'+SERVICES.length+'">0</b><span>integrated services</span></div>'+
+      '<div class="stat reveal" style="--d:.12s"><b data-count="10" data-suffix="+">0</b><span>frameworks &amp; platforms</span></div>'+
+      '<div class="stat reveal" style="--d:.18s"><b>&lt;1</b><span>business-day response</span></div>'+
+    '</div>'+
+    '<div class="seal-row reveal" style="--d:.2s">'+
+      '<span class="seal">'+ic('checkCircle')+'US-Based Practice</span>'+
+      '<span class="seal">'+ic('doc')+'Insurance-Ready Evidence</span>'+
+      '<span class="seal">'+ic('landmark')+'NIST · HIPAA · CMMC · SOC 2 Aligned</span>'+
+      '<span class="seal">'+ic('check')+'No Lock-In Engagements</span>'+
+    '</div>'+
+  '</div></section>'+
+
+  '<section class="section"><div class="container">'+
+    '<div class="sec-head reveal"><p class="eyebrow">01 \u00b7 Outcomes</p><h2 class="h2">Security outcomes, engineered.</h2><p class="sec-lede">Every engagement is aimed at a result your organization can point to — for leadership, customers, insurers, and regulators.</p></div>'+
+    '<div class="bento">'+
+      '<div class="b-cell b-mesh reveal"><div class="b-mesh-head"><span class="mono-label">Agent topology</span><span class="term-live"><span class="dot"></span>LIVE</span></div><div class="b-mesh-svg">'+miniMesh()+'</div><div class="b-mesh-foot"><span class="chip">governed</span><span class="chip">isolated</span><span class="chip">monitored</span></div></div>'+
+      bcell(values[0],1)+bcell(values[1],2)+
+      bcell(values[2],3,'b-wide')+
+      bcell(values[3],4)+bcell(values[4],5,' v')+bcell(values[5],6)+
+      '<a class="b-cell b-cta reveal" style="--d:.35s" href="#/services"><span class="mono-label">Full capability</span><h3>'+SERVICES.length+' services. One partner.</h3><p>Assessment to response — the full lifecycle, one accountable team.</p><span class="tlink" style="margin-top:10px">Explore all services '+ic('arrowR')+'</span></a>'+
+    '</div>'+
+  '</div></section>'+
+
+  '<section class="section section--white"><div class="container">'+
+    '<div class="sec-head reveal"><p class="eyebrow">02 \u00b7 Scenarios</p><h2 class="h2">Security problems don\u2019t wait for the perfect time.</h2><p class="sec-lede">Each of these has a clear next step.</p></div>'+
+    '<div class="grid g3">'+scenarios.map((s,i)=>'<a class="scn-card reveal" style="--d:'+(i*0.05)+'s" href="#/services/'+s.l+'"><h3>\u201c'+s.q+'\u201d</h3><p>'+s.a+'</p><span class="tlink">'+s.lt+' '+ic('arrowR')+'</span></a>').join('')+'</div>'+
+  '</div></section>'+
+
+  '<section class="section section--tint"><div class="container">'+
+    '<div class="sec-head sec-head--center reveal"><p class="eyebrow eyebrow--center">03 \u00b7 Where to start</p><h2 class="h2">Three proven entry points.</h2><p class="sec-lede">Most Zuronix relationships begin with one concrete problem — and grow from there.</p></div>'+
+    '<div class="grid g3">'+entries.map((e,i)=>{const s=bySlug(e.s);return '<a class="entry-card reveal" style="--d:'+(i*0.07)+'s" href="#/services/'+s.slug+'"><div class="tile">'+ic(s.icon)+'</div><p class="kicker" style="margin-top:12px">'+e.k+'</p><h3>'+e.h+'</h3><p class="sub" style="margin:2px 0 8px">'+e.sub+'</p><p>'+e.p+'</p><span class="tlink">Start here '+ic('arrowR')+'</span></a>';}).join('')+'</div>'+
+    '<div class="ir-strip reveal"><p>Already dealing with an incident?</p><a class="tlink" href="#/incident-response">Get Incident Response help '+ic('arrowR')+'</a></div>'+
+  '</div></section>'+
+
+  '<section class="section"><div class="container">'+
+    '<div class="sec-head reveal"><p class="eyebrow">04 \u00b7 Capability</p><h2 class="h2">One partner across your security lifecycle.</h2><p class="sec-lede">Start with the problem you have today. Stay for the program you\u2019ll need tomorrow.</p></div>'+
+    '<div class="grid g3">'+Object.keys(GROUPS).map((g,i)=>'<div class="group-card'+(g==='ai'?' v':'')+' reveal" style="--d:'+(i*0.05)+'s"><h3>'+ic(GROUPS[g].icon)+' '+GROUPS[g].label+'</h3>'+groupLinks[g].map(l=>{const s=bySlug(l);return '<a href="#/services/'+s.slug+'">'+s.t+'</a>';}).join('')+'<a class="tlink" style="margin-top:8px;font-size:.8rem" href="#/services">View all '+ic('arrowR')+'</a></div>').join('')+'</div>'+
+  '</div></section>'+
+
+  '<section class="section section--white"><div class="container">'+
+    '<div class="sec-head reveal"><p class="eyebrow">05 \u00b7 Technology</p><h2 class="h2">Platforms &amp; technologies we secure.</h2><p class="sec-lede">Vendor-neutral expertise across the stack your organization already runs.</p></div>'+
+    '<div class="tech-grid">'+TECH.map((t,i)=>'<div class="tech reveal" style="--d:'+(i*0.03)+'s"><div class="tech-mono">'+t[0]+'</div><div><b>'+t[1]+'</b><span>'+t[2]+'</span></div></div>').join('')+'</div>'+
+    '<p class="tech-note reveal">Product names are trademarks of their respective owners, shown to indicate technical scope — not affiliation or partnership.</p>'+
+  '</div></section>'+
+
+  '<section class="section section--dark"><div class="container">'+
+    '<div class="two-col">'+
+      '<div><p class="eyebrow reveal">06 \u00b7 Governance</p><h2 class="h2 reveal" style="--d:.05s">Security isn\u2019t just technology.</h2>'+
+      '<p class="sec-lede reveal" style="--d:.1s">Strong programs connect technology, people, and process to risk and governance — deliberately.</p>'+
+      '<div class="reveal" style="margin-top:22px;--d:.15s">'+checkList(questions)+'</div>'+
+      '<p class="reveal" style="margin-top:18px;max-width:34rem">We connect the technical layer to leadership decisions — security as a managed business capability, not a recurring emergency.</p></div>'+
+      '<div class="gflow">'+
+        gflow.map((f,i)=>'<div class="gnode reveal" style="--d:'+(i*0.07)+'s"><div class="tile">'+ic(f[0])+'</div>'+f[1]+'</div><div class="glink"></div>').join('')+
+        '<div class="gnode gnode--end reveal" style="--d:.4s"><div class="tile">'+ic('shield')+'</div>Business Resilience</div>'+
+      '</div>'+
+    '</div>'+
+  '</div></section>'+
+
+  '<section class="section"><div class="container">'+
+    '<div class="sec-head sec-head--center reveal"><p class="eyebrow eyebrow--center">07 \u00b7 Process</p><h2 class="h2">A calm, deliberate process.</h2></div>'+
+    stepsHtml([['Understand','Your organization — how you work, what you rely on, what you\u2019re required to meet.'],['Assess','Gaps identified and prioritized by risk, requirements, and budget.'],['Improve','Practical improvements, sequenced and documented.'],['Maintain','Continuous monitoring, governance, and reporting.']])+
+  '</div></section>'+
+
+  '<section class="section section--tint"><div class="container">'+
+    '<div class="sec-head reveal"><p class="eyebrow">08 \u00b7 Industries</p><h2 class="h2">Security for the way your organization works.</h2><p class="sec-lede">We adapt your program to your industry, technology, risk profile, and regulatory environment.</p></div>'+
+    '<div class="ind-chips reveal">'+industries.map(i=>'<a href="#/industries">'+i+'</a>').join('')+'</div>'+
+  '</div></section>'+
+
+  '<section class="section section--dark"><div class="container">'+
+    '<div class="two-col" style="align-items:center">'+
+      '<div><p class="eyebrow reveal">09 \u00b7 Response</p><h2 class="h2 reveal" style="--d:.05s">Something happened?</h2>'+
+      '<p class="sec-lede reveal" style="--d:.1s">If you suspect a security incident, don\u2019t wait until you understand everything. The first hours matter.</p>'+
+      '<div class="btn-row reveal" style="--d:.15s;margin-top:22px"><a class="btn btn-primary" href="#/contact?topic=incident">Contact Us</a><a class="btn btn-ghostd" href="#/incident-response">How we help</a></div></div>'+
+      '<div class="note reveal" style="--d:.1s"><b style="display:block;margin-bottom:8px">While you reach out</b><ul style="font-size:.9rem">'+['Preserve evidence — don\u2019t wipe, rebuild, or reset affected systems yet.','Contain what you safely can: disable compromised accounts, reset credentials, keep logs.','Write down what you observed and when. It matters more than you\u2019d expect.'].map(t=>'<li style="padding:5px 0;display:flex;gap:9px">'+ic('check','ic-s')+'<span>'+t+'</span></li>').join('')+'</ul></div>'+
+    '</div>'+
+  '</div></section>'+
+
+  ctaBand('Turn cybersecurity from a reactive problem into a managed business capability.','Protect. Govern. Respond. Improve. One conversation is enough to find your starting point.','Contact Us','#/contact');
+}
+
+function renderServicesIndex(){
+  const featured=['m365-security','cyber-insurance-readiness','managed-security-posture','incident-response'];
+  const life=['Assess','Remediate','Maintain','Govern','Comply','Prepare','Respond','Adapt'];
+  let groupsHtml='';
+  for(const g of Object.keys(GROUPS)){
+    const list=SERVICES.filter(s=>s.g===g);
+    groupsHtml+='<div style="margin-top:44px" class="reveal"><div class="sec-head" style="margin-bottom:24px"><p class="eyebrow">'+ic(GROUPS[g].icon,'ic-s')+' '+GROUPS[g].label+'</p><h2 class="h2" style="font-size:1.4rem">'+GROUPS[g].desc+'</h2></div><div class="grid g3">'+list.map(s=>serviceCard(s,false)).join('')+'</div></div>';
+  }
+  return '<section class="page-hero"><div class="container">'+
+    '<p class="eyebrow reveal">Services</p><h1 class="reveal" style="--d:.05s">One partner across your security lifecycle.</h1>'+
+    '<p class="lede reveal" style="--d:.1s">Start with the problem you have today. Stay for the program you\u2019ll need tomorrow: continuous posture, governance, compliance, and preparedness.</p>'+
+    '<div class="lifecycle reveal" style="--d:.15s;margin-top:22px">'+life.map((l,i)=>(i?'<i>\u2192</i>':'')+'<span>'+l+'</span>').join('')+'</div>'+
+  '</div></section>'+
+  '<section class="section"><div class="container">'+
+    '<p class="eyebrow reveal" style="margin-bottom:18px">Most engagements start here</p>'+
+    '<div class="grid g2">'+featured.map(s=>{const x=bySlug(s);return '<a class="entry-card reveal" href="#/'+(s==='incident-response'?'incident-response':'services/'+s)+'"><div class="tile">'+ic(x.icon)+'</div><h3>'+x.t+'</h3><p style="margin:6px 0 12px">'+x.short+'</p><span class="tlink">Learn more '+ic('arrowR')+'</span></a>';}).join('')+'</div>'+
+    groupsHtml+
+  '</div></section>'+
+  ctaBand('Not sure where to start?','A short conversation is usually enough to identify the right first step.','Contact Us','#/contact');
+}
+
+function renderService(s){
+  const g=GROUPS[s.g];
+  const cta='Contact Us';
+  let html='<section class="page-hero"><div class="container">'+
+    '<nav class="crumb reveal" aria-label="Breadcrumb"><a href="#/services">Services</a> / <span>'+g.label+'</span></nav>'+
+    '<p class="eyebrow reveal">'+g.label+'</p>'+
+    '<h1 class="reveal" style="--d:.05s">'+s.tag+'</h1>'+
+    '<p class="lede reveal" style="--d:.1s">'+s.lede+'</p>'+
+    '<div class="btn-row reveal" style="--d:.15s;margin-top:26px"><a class="btn btn-primary" href="#/contact?topic='+(s.topic||'other')+'">'+cta+' '+ic('arrowR','ic-s')+'</a><a class="btn btn-outline" href="#/services">All services</a></div>'+
+  '</div></section>';
+
+  html+='<section class="section" style="padding-top:56px"><div class="container"><div class="two-col">'+
+    '<div><p class="eyebrow reveal">The problem</p><h2 class="h2 reveal" style="--d:.05s">Why this matters.</h2><p class="reveal" style="margin-top:14px;max-width:36rem">'+s.prob.b+'</p></div>'+
+    '<div class="card reveal" style="--d:.1s"><h3 style="margin-top:0;display:flex;gap:9px;align-items:center">'+ic('alert','ic-m')+'Common signals</h3>'+checkList(s.prob.bullets)+'</div>'+
+  '</div></div></section>';
+
+  html+='<section class="section section--white"><div class="container">'+
+    '<div class="sec-head reveal"><p class="eyebrow">What we do</p><h2 class="h2">Scope, in plain language.</h2></div>'+
+    '<div class="grid g3">'+s.scope.map((sc,i)=>'<div class="scope-group reveal" style="--d:'+(i*0.05)+'s"><h3>'+ic(sc.icon,'ic-m')+' '+sc.h+'</h3>'+checkList(sc.items)+'</div>').join('')+'</div>'+
+    (s.note?'<p class="note reveal" style="margin-top:22px">'+s.note+'</p>':'')+
+  '</div></section>';
+
+  html+='<section class="section"><div class="container"><div class="two-col">'+
+    '<div class="del-panel reveal"><h3>'+ic('doc','ic-m')+' What you receive</h3>'+checkList(s.del)+'</div>'+
+    '<div class="reveal" style="--d:.1s"><p class="eyebrow">Who it\u2019s for</p><h2 class="h2" style="font-size:1.35rem">The right fit.</h2><ul class="fit-list" style="margin-top:8px">'+s.fit.map(f=>'<li>'+ic('arrowR','ic-s')+'<span>'+f+'</span></li>').join('')+'</ul>'+
+    (s.callout?'<div class="note" style="margin-top:18px"><b>'+s.callout.t+'. </b>'+s.callout.b+'</div>':'')+
+    (s.g==='compliance'?'<div class="note" style="margin-top:18px"><b>A note on scope. </b>Zuronix provides security and compliance readiness support. Where legal interpretation or formal attestation is required, we work alongside your legal, compliance, and audit teams.</div>':'')+
+    '</div>'+
+  '</div></div></section>';
+
+  html+='<section class="section section--white"><div class="container">'+
+    '<div class="sec-head reveal"><p class="eyebrow">How it works</p><h2 class="h2">From conversation to capability.</h2></div>'+
+    stepsHtml(s.steps)+
+  '</div></section>';
+
+  html+='<section class="section"><div class="container">'+
+    '<div class="sec-head reveal"><p class="eyebrow">Related services</p><h2 class="h2">Where this leads next.</h2></div>'+
+    relatedHtml(s.rel)+
+  '</div></section>'+
+  ctaBand('Discuss '+s.t.toLowerCase()+' for your organization.','One focused conversation scopes the work, sequence, and investment.',cta,'#/contact?topic='+(s.topic||'other'));
+  return html;
+}
+
+function renderIR(){
+  const assists=[
+    ['search','Security incident triage and initial assessment'],
+    ['shield','Containment coordination and guidance'],
+    ['eye','Investigation support and compromise assessment'],
+    ['refresh','Eradication and recovery guidance'],
+    ['app','Account compromise, BEC, and Microsoft 365 incidents'],
+    ['alert','Ransomware and malware incidents'],
+    ['cloud','Cloud account compromise and security event analysis'],
+    ['doc','Incident documentation and recovery planning'],
+    ['landmark','Post-incident remediation and lessons learned'],
+    ['users','Tabletop exercises and incident response planning']
+  ];
+  const rightNow=[
+    'Preserve evidence. Don\u2019t wipe, rebuild, or \u201creset\u201d affected systems yet — that destroys the answers you\u2019ll need.',
+    'Contain what you safely can: disable compromised accounts, reset exposed credentials, keep logs and alerts.',
+    'Write down what you observed and when — timeline matters for insurers, legal, and investigation.'
+  ];
+  return '<section class="page-hero page-hero--dark"><div class="container">'+
+    '<nav class="crumb reveal"><a href="#/services">Services</a> / <span>Resilience & Response</span></nav>'+
+    '<p class="eyebrow reveal">Incident Response</p>'+
+    '<h1 class="reveal" style="--d:.05s">When something goes wrong, you need more than technology.</h1>'+
+    '<p class="lede reveal" style="--d:.1s">Zuronix helps you understand what happened, contain the risk, recover safely, and strengthen the environment afterward.</p>'+
+    '<div class="btn-row reveal" style="--d:.15s;margin-top:26px"><a class="btn btn-primary" href="#/contact?topic=incident">Contact Us</a><a class="btn btn-ghostd" href="#/services/incident-preparedness">Prepare before an incident</a></div>'+
+  '</div></section>'+
+
+  '<section class="section"><div class="container">'+
+    '<div class="note reveal"><b style="display:block;margin-bottom:6px">Dealing with an incident right now?</b>Take a breath, then do three things: '+
+    '<ul style="margin-top:10px">'+rightNow.map(r=>'<li style="display:flex;gap:9px;padding:4px 0">'+ic('check','ic-s')+'<span>'+r+'</span></li>').join('')+'</ul>'+
+    '<p style="margin-top:10px">Then <a class="tlink" href="mailto:'+SITE.email+'">email '+SITE.email+'</a> or use the form — incident inquiries are prioritized and answered first.</p></div>'+
+  '</div></section>'+
+
+  '<section class="section" style="padding-top:16px"><div class="container">'+
+    '<div class="sec-head reveal"><p class="eyebrow">Two ways to work with us</p><h2 class="h2">Preparedness — and response.</h2></div>'+
+    '<div class="grid g2">'+
+      '<div class="card card--featured reveal"><div class="tile">'+ic('checkCircle')+'</div><h3>Before: preparedness & retainers</h3><p>Retainers, planning, and tabletop exercises — who to call, what to do, and what evidence to preserve, decided in advance. <a class="tlink" style="display:inline-flex;margin-top:10px" href="#/services/incident-preparedness">Incident preparedness '+ic('arrowR')+'</a></p></div>'+
+      '<div class="card reveal" style="--d:.08s"><div class="tile">'+ic('lifebuoy')+'</div><h3>During: incident response</h3><p>Triage, initial assessment, containment coordination, investigation support, recovery guidance, and documentation — through recovery and lessons learned.</p></div>'+
+    '</div>'+
+    '<div class="note reveal" style="margin-top:20px"><b>Honest about response. </b>Response availability and timing are defined by your service agreement. If incident response matters to your organization, let\u2019s discuss a retainer — so help is pre-arranged, not improvised.</div>'+
+  '</div></section>'+
+
+  '<section class="section section--white"><div class="container">'+
+    '<div class="sec-head reveal"><p class="eyebrow">What we assist with</p><h2 class="h2">From first suspicion to full recovery.</h2></div>'+
+    '<div class="grid g3">'+assists.map((a,i)=>'<div class="scope-group reveal" style="--d:'+(i*0.04)+'s"><h3>'+ic(a[0],'ic-m')+' '+a[1]+'</h3></div>').join('')+'</div>'+
+  '</div></section>'+
+
+  '<section class="section"><div class="container">'+
+    '<div class="sec-head reveal"><p class="eyebrow">Common scenarios</p><h2 class="h2">Incident types we work.</h2></div>'+
+    '<div class="ind-chips reveal">'+['Account compromise','Business email compromise','Ransomware','Malware','Cloud & Microsoft 365 compromise','Security events needing analysis'].map(t=>'<span style="border:1px solid var(--border);background:var(--surface);border-radius:999px;padding:8px 16px;font-weight:700;font-size:.86rem;color:var(--text)">'+t+'</span>').join('')+'</div>'+
+  '</div></section>'+
+
+  '<section class="section" style="padding-top:0"><div class="container">'+
+    '<div class="sec-head reveal"><p class="eyebrow">How an engagement runs</p><h2 class="h2">Calm, sequenced, documented.</h2></div>'+
+    stepsHtml([['Triage','Rapid assessment of what is happening and how urgent it is.'],['Contain','Stop the damage without destroying evidence.'],['Investigate','Establish what was accessed, changed, or taken — and when.'],['Recover','Guided restoration to a known-good, strengthened state.'],['Strengthen','Close the path it came through, and document lessons learned.']])+
+  '</div></section>'+
+
+  ctaBand('Don\u2019t wait until you understand everything.','If you suspect an incident — talk to us. Incident inquiries are answered first.','Contact Us','#/contact?topic=incident');
+}
+
+function renderAbout(){
+  const principles=[
+    ['compass','Business before technology','Security decisions start with how you operate, what you\u2019re obligated to, and what risk you actually carry — not with a product catalog.'],
+    ['eye','Evidence over promises','Every claim backed by documentation you can show a customer, insurer, or auditor.'],
+    ['shield','Calm, not fear','Clear thinking beats alarm. No fear marketing, no jargon walls, no \u201cunhackable.\u201d'],
+    ['check','Practical progress','Prioritized, sequenced improvements you can actually complete.'],
+    ['refresh','One lifecycle','Assess, improve, maintain, govern, respond — one partner end to end.'],
+    ['share','Honest scope','When specialized work calls for specialists, we say so — and coordinate them with a single point of accountability.']
+  ];
+  return '<section class="page-hero"><div class="container">'+
+    '<p class="eyebrow reveal">About Zuronix</p>'+
+    '<h1 class="reveal" style="--d:.05s">A different kind of security partner.</h1>'+
+    '<p class="lede reveal" style="--d:.1s">Zuronix was founded on a simple observation: the organizations that most need strong security — small and mid-market businesses — are the least well served by the industry. Vendors sell tools. Enterprises hire departments. Everyone else gets fear, acronyms, and generic advice.</p>'+
+    '<p class="lede reveal" style="--d:.15s">Zuronix exists to close that gap — with boutique expertise and a modern practice. Security is not a product you buy. It\u2019s an ongoing business capability you build. We help you build it.</p>'+
+  '</div></section>'+
+
+  '<section class="section" style="padding-top:56px"><div class="container">'+
+    '<div class="sec-head reveal"><p class="eyebrow">What we believe</p><h2 class="h2">Six principles we work by.</h2></div>'+
+    '<div class="grid g3">'+principles.map((p,i)=>'<div class="card reveal" style="--d:'+(i*0.05)+'s"><div class="tile">'+ic(p[0])+'</div><h3>'+p[1]+'</h3><p>'+p[2]+'</p></div>').join('')+'</div>'+
+  '</div></section>'+
+
+  '<section class="section section--white"><div class="container">'+
+    '<div class="sec-head sec-head--center reveal"><p class="eyebrow eyebrow--center">How we work</p><h2 class="h2">Understand. Assess. Improve. Maintain.</h2></div>'+
+    stepsHtml([['Understand','Your organization, technology, risks, and requirements.'],['Assess','Gaps identified and prioritized by what matters.'],['Improve','Practical improvements, sequenced and documented.'],['Maintain','Continuous monitoring, governance, and reporting.']])+
+  '</div></section>'+
+
+  '<section class="section"><div class="container"><div class="two-col" style="align-items:center">'+
+    '<div><p class="eyebrow reveal">Who we serve</p><h2 class="h2 reveal" style="--d:.05s">Organizations that need a partner, not a department.</h2>'+
+    '<p class="reveal" style="--d:.1s;margin-top:12px;max-width:34rem">Zuronix serves government contractors, healthcare organizations, legal practices, and the broader private sector — SaaS, professional services, financial services, construction, manufacturing, retail, nonprofits, and SMBs. We adapt to your industry, technology, risk profile, and regulatory environment.</p>'+
+    '<p class="reveal" style="--d:.15s;margin-top:12px;max-width:34rem">Technical teams recognize our technical credibility. The person who signs the contract should always be able to answer four things: what problem we\u2019re solving, why it matters, what happens next, and what it costs.</p></div>'+
+    '<div class="card reveal" style="--d:.1s"><div class="tile">'+ic('clock')+'</div><h3 style="margin-top:14px">Fast, focused engagement</h3><p>Every inquiry answered within one business day, scoped in one conversation, delivered as a clear proposal — priorities, sequence, and investment.</p><a class="tlink" style="margin-top:12px" href="#/industries">See industries we serve '+ic('arrowR')+'</a></div>'+
+  '</div></div></section>'+
+
+  ctaBand('Meet your security partner.','Protect. Govern. Respond. Improve. — it starts with one conversation.','Contact Us','#/contact');
+}
+
+function renderIndustries(){
+  const inds=[
+    ['Government Contractors','CMMC and NIST 800-171 readiness across the defense supply chain — and security reviews from primes.'],
+    ['Healthcare','HIPAA-driven security and privacy readiness for practices, clinics, and their vendors.'],
+    ['Legal','Client confidentiality, matter security, and increasingly targeted email fraud.'],
+    ['Professional Services','Client trust, confidentiality, and the security reviews your clients run on you.'],
+    ['Technology & SaaS','SOC 2 readiness, product security, and the questionnaires enterprise buyers send.'],
+    ['Financial Services','Regulatory expectations, FTC Safeguards, and high-value fraud targeting.'],
+    ['Accounting & Tax','Safeguards obligations, sensitive client data, and seasonal fraud pressure.'],
+    ['Construction','Owner and insurer requirements, project data, and payment fraud.'],
+    ['Manufacturing','Supply-chain requirements, connected operations, and IP protection.'],
+    ['Retail & E-commerce','PCI DSS scope, payment fraud, and seasonal attack pressure.'],
+    ['Nonprofits','Donor and beneficiary data protection on real-world budgets.'],
+    ['SMBs & Mid-Market','Real security without an internal department — adapted to how you work.']
+  ];
+  return '<section class="page-hero"><div class="container">'+
+    '<p class="eyebrow reveal">Industries</p>'+
+    '<h1 class="reveal" style="--d:.05s">Security for the way your organization works.</h1>'+
+    '<p class="lede reveal" style="--d:.1s">We adapt your security program to your industry, technology, risk profile, and regulatory environment — with evidence your customers, insurers, and regulators can verify.</p>'+
+  '</div></section>'+
+  '<section class="section" style="padding-top:56px"><div class="container">'+
+    '<div class="grid g3">'+inds.map((i,x)=>'<div class="card reveal" style="--d:'+(x*0.04)+'s"><h3 style="margin-top:0">'+i[0]+'</h3><p>'+i[1]+'</p></div>').join('')+'</div>'+
+    '<p class="reveal" style="margin-top:24px;text-align:center;color:var(--text-dim)">Don\u2019t see yours? We likely still serve it — <a class="tlink" href="#/contact">ask us</a>.</p>'+
+  '</div></section>'+
+  ctaBand('Security that fits how you work.','Tell us about your organization — we\u2019ll tell you what actually applies to you.','Contact Us','#/contact');
+}
+
+function renderInsights(){
+  const arts=[
+    {t:'What cyber insurers actually ask for — and how to be ready',
+     b:'<p>Cyber insurance renewals look less like paperwork and more like a technical audit. Underwriters aren\u2019t asking whether you \u201ctake security seriously\u201d — they\u2019re asking whether MFA is enforced, whether endpoints run EDR, whether backups are isolated, and who leads your response when something breaks.</p><p>The pattern behind nearly every question: <b>prove it, don\u2019t promise it.</b> Insurers have learned that intentions don\u2019t reduce claims — implemented controls do.</p><p>Readiness means three things: know the requirements before renewal season, close the gaps that matter most first, and keep evidence current enough to hand over without a scramble.</p>',
+     link:['Read about Cyber Insurance Readiness','cyber-insurance-readiness']},
+    {t:'Five Microsoft 365 settings we most often find exposing data',
+     b:'<p>Tenant reviews surface the same handful of issues — none exotic, all consequential:</p><p><b>1.</b> No Conditional Access, so any sign-in from anywhere works. <b>2.</b> MFA \u201cexceptions\u201d that quietly became the rule. <b>3.</b> SharePoint links that let content travel far beyond who needed it. <b>4.</b> Guests and departed staff never offboarded. <b>5.</b> Far more admin roles than jobs require.</p><p>None of these break anything — which is why they persist. But each widens the blast radius of a single compromised account, and each is exactly what Copilot will amplify: AI surfaces whatever permissions allow.</p>',
+     link:['Explore M365 Security & Identity','m365-security']},
+    {t:'AI agents are joining your workforce. Security hasn\u2019t caught up.',
+     b:'<p>Agents don\u2019t just answer anymore — they read systems, call APIs, and move data. The question is no longer \u201cshould we use agents?\u201d but \u201cwhat exactly are ours allowed to do?\u201d</p><p>Three questions decide whether adoption is safe: What can they access? Where do they run? Who watches them? The answers are architectural — isolated environments, least-privilege non-human identities, and monitoring that treats agent actions as auditable events.</p><p>One principle above all: <b>identical guardrails for human and machine operators.</b> If a person couldn\u2019t do it without approval, an agent shouldn\u2019t either.</p>',
+     link:['Explore AI Agent Security & Isolation','ai-agent-security']}
+  ];
+  return '<section class="page-hero"><div class="container">'+
+    '<p class="eyebrow reveal">Insights</p>'+
+    '<h1 class="reveal" style="--d:.05s">Short, useful notes for executives.</h1>'+
+    '<p class="lede reveal" style="--d:.1s">The security topics that come up most often in boardrooms, renewals, and procurement — no fear, no jargon.</p>'+
+  '</div></section>'+
+  '<section class="section" style="padding-top:56px"><div class="container">'+
+    arts.map((a,i)=>'<article class="card reveal" style="margin-bottom:18px"><h3 style="margin-top:0;font-size:1.2rem">'+a.t+'</h3><div style="margin-top:10px;color:var(--text-muted);font-size:.94rem;max-width:44rem">'+a.b+'</div><a class="tlink" style="margin-top:14px" href="#/services/'+a.link[1]+'">'+a.link[0]+' '+ic('arrowR')+'</a></article>').join('')+
+  '</div></section>'+
+  ctaBand('Have a question these raised?','That\u2019s what we\u2019re here for.','Contact Us','#/contact');
+}
+
+function renderContact(topic){
+  const TOPICS=[['','What do you need help with?'],['assessment','Security Assessment'],['m365','Microsoft 365 Security'],['insurance','Cyber Insurance'],['compliance','Compliance / Governance'],['incident','Incident Response'],['ai','AI / AI Agent Security'],['managed','Managed Security Posture'],['other','Other / Not sure yet']];
+  const topics=TOPICS.map(t=>'<option value="'+t[0]+'"'+(topic===t[0]?' selected':'')+'>'+t[1]+'</option>').join('');
+  return '<section class="page-hero"><div class="container">'+
+    '<p class="eyebrow reveal">Contact</p>'+
+    '<h1 class="reveal" style="--d:.05s">Talk to a security expert.</h1>'+
+    '<p class="lede reveal" style="--d:.1s">A renewal, a requirement, a suspicion, or \u201cwe don\u2019t know where to start\u201d — all good places to begin.</p>'+
+  '</div></section>'+
+  '<section class="section" style="padding-top:56px"><div class="container"><div class="two-col">'+
+    '<div><form id="contactForm" novalidate class="reveal">'+
+      '<div class="form-grid">'+
+      '<div class="field"><label for="f-name">Name <i>*</i></label><input id="f-name" name="name" type="text" autocomplete="name" required><p class="err">Please tell us your name.</p></div>'+
+      '<div class="field"><label for="f-email">Work email <i>*</i></label><input id="f-email" name="email" type="email" autocomplete="email" required><p class="err">Please enter a valid email address.</p></div>'+
+      '<div class="field"><label for="f-company">Company <i>*</i></label><input id="f-company" name="company" type="text" autocomplete="organization" required><p class="err">Please enter your organization\u2019s name.</p></div>'+
+      '<div class="field"><label for="f-phone">Phone <span style="color:var(--text-dim);font-weight:600">(optional)</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>'+
+      '<div class="field"><label for="f-size">Organization size</label><select id="f-size" name="size"><option value="">Select size</option><option>1\u201310</option><option>11\u201350</option><option>51\u2013200</option><option>201\u20131,000</option><option>1,000+</option></select></div>'+
+      '<div class="field"><label for="f-topic">What do you need help with? <i>*</i></label><select id="f-topic" name="topic" required>'+topics+'</select><p class="err">Please choose a topic — \u201cOther\u201d is fine.</p></div>'+
+      '<div class="field field--full"><label for="f-msg">Message <i>*</i></label><textarea id="f-msg" name="message" required placeholder="A sentence or two is plenty."></textarea><p class="err">Please add a short message.</p></div>'+
+      '</div>'+
+      '<div class="hp" aria-hidden="true"><label for="f-web">Website</label><input id="f-web" name="company_website" type="text" tabindex="-1" autocomplete="off"></div>'+
+      '<button class="btn btn-primary" type="submit" style="margin-top:18px">Send message '+ic('arrowR','ic-s')+'</button>'+
+      '<p class="form-note">We use these details only to respond to your inquiry. If you suspect an active incident, say so — incident inquiries are answered first.</p>'+
+    '</form>'+
+    '<div id="formSuccess" hidden class="success-card">'+ic('checkCircle')+'<h3>Message received.</h3><p style="color:var(--text-muted)">A member of our team will follow up within one business day. If this is an active security incident, email <a class="tlink" href="mailto:'+SITE.email+'">'+SITE.email+'</a> directly.</p></div></div>'+
+    '<div class="contact-aside reveal" style="--d:.1s">'+
+      '<h3>What happens next</h3><ul>'+
+      '<li>'+ic('clock')+'<span>We respond within one business day — every inquiry, no exceptions.</span></li>'+
+      '<li>'+ic('eye')+'<span>We scope the work in one conversation — problem, approach, outcome.</span></li>'+
+      '<li>'+ic('doc')+'<span>You receive a clear proposal with priorities and investment.</span></li>'+
+      '</ul>'+
+      '<h3 style="margin-top:22px">Reach us directly</h3><ul>'+
+      '<li>'+ic('mail')+'<span><a href="mailto:'+SITE.email+'" style="color:var(--cyan-soft);text-decoration:underline">'+SITE.email+'</a></span></li>'+
+      '</ul>'+
+      '<div class="seal-row" style="margin-top:18px">'+
+        '<span class="seal">'+ic('checkCircle')+'US-Based Practice</span>'+
+        '<span class="seal">'+ic('check')+'No Lock-In</span>'+
+      '</div>'+
+    '</div>'+
+  '</div></div></section>';
+}
+
+function renderPrivacy(){
+  const secs=[
+    ['Overview','This privacy policy explains how Zuronix handles information collected through this website. It is deliberately short, because we collect very little.'],
+    ['Information we collect','When you use the contact form, we receive the details you provide: name, work email, company, optional phone number, organization size, topic, and message. We use this information only to respond to your inquiry.'],
+    ['Cookies and tracking','This website sets no advertising or tracking cookies and runs no third-party analytics or behavioral trackers. We load a web font from a third-party font service; your browser requests it directly, and we receive no analytics from it.'],
+    ['Sharing','We do not sell, rent, or share your information with third parties for marketing purposes.'],
+    ['Retention','We retain form submissions only as long as needed to respond to your inquiry and any resulting engagement.'],
+    ['Your choices','You may request confirmation, correction, or deletion of information you have sent us by using the contact form or our published email address.'],
+    ['Security of this site','We practice what we preach: minimal attack surface, no unnecessary third-party scripts, no exposed secrets, and privacy-conscious defaults.']
+  ];
+  return '<section class="page-hero"><div class="container"><p class="eyebrow reveal">Legal</p><h1 class="reveal" style="--d:.05s">Privacy Policy</h1><p class="lede reveal" style="--d:.1s">How Zuronix handles information — intentionally minimal, because we collect almost none.</p></div></section>'+
+  '<section class="section" style="padding-top:56px"><div class="container" style="max-width:760px">'+
+  secs.map((s,i)=>'<div class="reveal" style="margin-bottom:24px"><h2 style="font-size:1.12rem;margin-bottom:8px">'+s[0]+'</h2><p style="color:var(--text-muted)">'+s[1]+'</p></div>').join('')+
+  '</div></section>';
+}
+function renderTerms(){
+  const secs=[
+    ['Use of this website','This website provides general information about Zuronix and its services. It is informational and does not create a professional or contractual relationship.'],
+    ['No professional advice','Content on this site is general in nature and does not constitute legal, compliance, or other professional advice for your specific situation. Services are provided under written agreement. Where legal interpretation or formal attestation is required, we work alongside your legal, compliance, and audit teams.'],
+    ['Intellectual property','The design, text, and materials on this site are owned by Zuronix. Product names referenced are trademarks of their respective owners.'],
+    ['Accuracy','We aim for accuracy and keep content current, but requirements, tools, and threats change. Rely on a direct conversation for anything decision-critical.'],
+    ['Limitation of liability','To the fullest extent permitted by law, Zuronix is not liable for decisions made based on general website content. Services are governed by the terms of the applicable written engagement.'],
+    ['Changes','We may update this website and these terms from time to time. Continued use of the site constitutes acceptance of the current terms.']
+  ];
+  return '<section class="page-hero"><div class="container"><p class="eyebrow reveal">Legal</p><h1 class="reveal" style="--d:.05s">Terms of Use</h1><p class="lede reveal" style="--d:.1s">Simple terms for a simple promise: this site informs, agreements govern.</p></div></section>'+
+  '<section class="section" style="padding-top:56px"><div class="container" style="max-width:760px">'+
+  secs.map((s,i)=>'<div class="reveal" style="margin-bottom:24px"><h2 style="font-size:1.12rem;margin-bottom:8px">'+s[0]+'</h2><p style="color:var(--text-muted)">'+s[1]+'</p></div>').join('')+
+  '</div></section>';
+}
+function render404(){
+  return '<section class="page-hero" style="min-height:60vh"><div class="container"><p class="eyebrow reveal">404</p><h1 class="reveal" style="--d:.05s">That page doesn\u2019t exist.</h1><p class="lede reveal" style="--d:.1s">The link may be outdated — or the page moved as we evolved.</p><div class="btn-row reveal" style="--d:.15s;margin-top:22px"><a class="btn btn-primary" href="#/">Back to home</a><a class="btn btn-outline" href="#/services">Explore services</a></div></div></section>';
+}
+
+/* ═══ MODULE 6 · CHROME ═══ */
+function buildDropdown(){
+  let cols='';
+  for(const g of Object.keys(GROUPS)){
+    const list=SERVICES.filter(s=>s.g===g);
+    cols+='<div class="dd-g"><h4>'+ic(GROUPS[g].icon)+' '+GROUPS[g].label+'</h4>'+list.map(s=>'<a href="#/services/'+s.slug+'">'+s.t+'</a>').join('')+'</div>';
+  }
+  document.getElementById('ddPanel').innerHTML=cols+
+  '<div class="dd-foot"><span>One partner across your security lifecycle — from first assessment to continuous governance.</span><a class="tlink" href="#/services">View all services '+ic('arrowR')+'</a></div>';
+}
+function buildMobileNav(){
+  let html='';
+  for(const g of Object.keys(GROUPS)){
+    html+='<div class="m-group"><h4>'+GROUPS[g].label+'</h4>'+SERVICES.filter(s=>s.g===g).map(s=>'<a href="#/services/'+s.slug+'">'+s.t+'</a>').join('')+'</div>';
+  }
+  html+='<div class="m-pages"><a href="#/incident-response">Incident Response</a><a href="#/industries">Industries</a><a href="#/insights">Insights</a><a href="#/about">About</a><a href="#/privacy">Privacy</a><a href="#/terms">Terms</a></div>'+
+  '<a class="btn btn-primary" style="margin-top:20px" href="#/contact">Contact Us</a>';
+  document.getElementById('mobileNav').innerHTML=html;
+}
+function buildFooter(){
+  const year=new Date().getFullYear();
+  const svc=['m365-security','cyber-insurance-readiness','managed-security-posture','incident-response','ai-agent-security'];
+  document.getElementById('siteFooter').innerHTML='<div class="container">'+
+  '<div class="footer-grid">'+
+    '<div class="footer-brand"><a class="brand" href="#/"><svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 L34 10 L34 26 L20 38 L6 26 L6 10 Z" fill="url(#zg)"/><path d="M20 2 L34 10 L34 26 L20 38 L6 26 L6 10 Z" fill="url(#zxGlow)"/><path d="M20 5 L31.4 11.5 L31.4 24.5 L20 35 L8.6 24.5 L8.6 11.5 Z" fill="none" stroke="#05070B" stroke-width="0.6" opacity="0.25"/><path d="M13 14 L27 14 L13 26 L27 26" stroke="#05070B" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="20" r="1.5" fill="#22E68A"/></svg><span>Zuronix</span></a>'+
+    '<p>Cybersecurity, risk, and governance for organizations that need a partner — not a product. Security as a managed business capability.</p>'+
+    '<p class="footer-tagline">Protect · Govern · Respond · Improve</p></div>'+
+    '<div class="footer-col"><h4>Services</h4>'+svc.map(s=>{const x=bySlug(s);return '<a href="#/'+(s==='incident-response'?'incident-response':'services/'+s)+'">'+x.t+'</a>';}).join('')+'<a href="#/services">All services</a></div>'+
+    '<div class="footer-col"><h4>Company</h4><a href="#/about">About</a><a href="#/industries">Industries</a><a href="#/insights">Insights</a><a href="#/contact">Contact</a><a href="#/privacy">Privacy</a><a href="#/terms">Terms</a></div>'+
+    '<div class="footer-col"><h4>Get in touch</h4><p style="font-size:.88rem;margin-bottom:12px"><a href="mailto:'+SITE.email+'">'+SITE.email+'</a><br>Every inquiry answered within one business day.</p><a class="btn btn-primary btn-sm" href="#/contact">Contact Us</a></div>'+
+  '</div>'+
+  '<div class="footer-bottom"><span>© '+year+' Zuronix. All rights reserved.</span><span style="display:flex;gap:18px;align-items:center"><span>No analytics. No tracking.</span><span class="links"><a href="#/privacy">Privacy</a><a href="#/terms">Terms</a></span></span></div>'+
+  '</div>';
+}
+
+/* ═══ MODULE 7 · ROUTER ═══ */
+const main=document.getElementById('main');
+function initReveal(){
+  if(!('IntersectionObserver' in window)){document.querySelectorAll('.reveal').forEach(n=>n.classList.add('in'));return;}
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1,rootMargin:'0px 0px -32px'});
+  document.querySelectorAll('.reveal').forEach(n=>io.observe(n));
+}
+function updateNav(seg){
+  document.querySelectorAll('.nav-link').forEach(a=>a.classList.toggle('active',a.dataset.route===seg));
+}
+function closeMobile(){
+  document.getElementById('mobileNav').classList.remove('open');
+  document.body.classList.remove('locked');
+  document.getElementById('navToggle').setAttribute('aria-expanded','false');
+}
+function bindContactForm(){
+  const form=document.getElementById('contactForm');
+  if(!form) return;
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    if(form.company_website.value) { form.reset(); document.getElementById('formSuccess').hidden=false; form.hidden=true; return; }
+    let ok=true;
+    const need=(id,test)=>{const f=document.getElementById(id).closest('.field');const v=document.getElementById(id).value.trim();
+      if(!test(v)){f.classList.add('invalid');ok=false;}else f.classList.remove('invalid');};
+    need('f-name',v=>v.length>1);
+    need('f-email',v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+    need('f-company',v=>v.length>1);
+    need('f-topic',v=>v!=='');
+    need('f-msg',v=>v.length>4);
+    if(!ok){const bad=form.querySelector('.field.invalid input,.field.invalid select,.field.invalid textarea');if(bad)bad.focus();return;}
+    /* PRODUCTION: POST to your secure endpoint here. Success state below. */
+    form.hidden=true;
+    const s=document.getElementById('formSuccess');s.hidden=false;s.setAttribute('role','status');
+    s.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+}
+function navigate(){
+  const raw=location.hash.replace(/^#\/?/,'');
+  const parts=raw.split('?');
+  const path=parts[0];
+  const segs=path.split('/').filter(Boolean);
+  const params=new URLSearchParams(parts[1]||'');
+  let html,title;
+  if(!segs.length){html=renderHome();title='Zuronix — Cybersecurity, Risk & AI Agent Security | 24/7 Monitoring';}
+  else if(segs[0]==='services'&&segs.length===1){html=renderServicesIndex();title='Services — Zuronix';}
+  else if(segs[0]==='services'&&segs[1]){
+    const s=bySlug(segs[1]);
+    if(s&&s.slug==='incident-response'){html=renderIR();title='Incident Response — Zuronix';}
+    else if(s){html=renderService(s);title=s.t+' — Zuronix';}
+    else {html=render404();title='Not found — Zuronix';}
+  }
+  else if(segs[0]==='incident-response'){html=renderIR();title='Incident Response — Zuronix';}
+  else if(segs[0]==='about'){html=renderAbout();title='About — Zuronix';}
+  else if(segs[0]==='industries'){html=renderIndustries();title='Industries — Zuronix';}
+  else if(segs[0]==='insights'){html=renderInsights();title='Insights — Zuronix';}
+  else if(segs[0]==='contact'){html=renderContact(params.get('topic')||'');title='Contact — Zuronix';}
+  else if(segs[0]==='privacy'){html=renderPrivacy();title='Privacy Policy — Zuronix';}
+  else if(segs[0]==='terms'){html=renderTerms();title='Terms of Use — Zuronix';}
+  else {html=render404();title='Not found — Zuronix';}
+  main.innerHTML=html;
+  document.title=title;
+  main.classList.remove('page-in'); void main.offsetWidth; main.classList.add('page-in');
+  closeMobile();
+  const dd=document.getElementById('ddPanel');if(dd)dd.hidden=true;
+  updateNav(segs[0]||'');
+  window.scrollTo(0,0);
+  main.focus({preventScroll:true});
+  initReveal();
+  initCounters();
+  startTerminal();
+  bindContactForm();
+}
+window.addEventListener('hashchange',navigate);
+
+/* ═══ MODULE 8 · BEHAVIORS + BOOT ═══ */
+window.addEventListener('scroll',()=>{document.getElementById('siteHeader').classList.toggle('scrolled',window.scrollY>8);},{passive:true});
+(function(){
+  const btn=document.getElementById('ddBtn'),panel=document.getElementById('ddPanel');
+  let ddTimer=null;
+  const setDD=o=>{panel.hidden=!o;btn.setAttribute('aria-expanded',o?'true':'false');};
+  const openDD=()=>{clearTimeout(ddTimer);setDD(true);};
+  const closeDD=()=>{clearTimeout(ddTimer);ddTimer=setTimeout(()=>setDD(false),300);};
+  btn.addEventListener('click',e=>{e.stopPropagation();clearTimeout(ddTimer);setDD(panel.hidden);});
+  document.addEventListener('click',e=>{if(!panel.hidden&&!panel.contains(e.target)&&!btn.contains(e.target)){clearTimeout(ddTimer);setDD(false);}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){clearTimeout(ddTimer);setDD(false);}});
+  if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+    const wrap=btn.parentElement;
+    wrap.addEventListener('mouseenter',openDD);
+    wrap.addEventListener('mouseleave',closeDD);
+    panel.addEventListener('mouseenter',openDD);
+  }
+})();
+(function(){
+  const t=document.getElementById('navToggle'),m=document.getElementById('mobileNav');
+  t.addEventListener('click',()=>{
+    const open=m.classList.toggle('open');
+    document.body.classList.toggle('locked',open);
+    t.setAttribute('aria-expanded',open?'true':'false');
+    t.setAttribute('aria-label',open?'Close menu':'Open menu');
+  });
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMobile();});
+})();
+(function(){
+  if(window.matchMedia('(hover:none)').matches||RM) return;
+  document.addEventListener('pointermove',e=>{
+    const c=e.target.closest('.card,.entry-card,.scope-group,.scn-card,.b-cell,.tech');
+    if(!c) return;
+    const r=c.getBoundingClientRect();
+    c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+    c.style.setProperty('--my',(e.clientY-r.top)+'px');
+  },{passive:true});
+})();
+
+buildDropdown();buildMobileNav();buildFooter();navigate();
+</script>
+</body>
+</html>

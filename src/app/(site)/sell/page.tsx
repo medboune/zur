@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { SECTORS } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Sell Surplus Equipment — One Item or a Full List",
+  title: "List Your Equipment — One Item or a Full Inventory",
   description:
-    "Sell surplus semiconductor, data center, or industrial equipment. Submit a single item or upload a whole CSV/Excel inventory list — no account, no per-item listings. Nothing is published without your approval.",
+    "List semiconductor, data center, or industrial equipment for sale. Submit a single item or upload a whole CSV/Excel inventory list — no account, no per-item listings. Nothing is published without your approval.",
   alternates: { canonical: "/sell" },
 };
 
@@ -30,13 +30,13 @@ export default async function SellPage({
           </li>
           <li aria-hidden="true">/</li>
           <li aria-current="page" className="text-foreground/80">
-            Sell surplus equipment
+            List equipment
           </li>
         </ol>
       </nav>
 
       <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-        Sell your surplus equipment
+        List your equipment
       </h1>
       <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
         One machine or a full site list — send it once. Our team reviews it with you,

@@ -135,12 +135,12 @@ export default async function HomePage() {
         <div className="relative mx-auto grid w-full max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.06fr_0.94fr] lg:items-center lg:py-24">
           <div>
             <p className="eyebrow !text-white/60">
-              Industrial equipment sourcing &amp; surplus sales
+              Industrial equipment sourcing &amp; sales
             </p>
             <h1 className="font-display mt-5 text-4xl font-extrabold leading-[1.05] sm:text-5xl lg:text-[3.4rem]">
               Source equipment.
               <br />
-              <span className="text-white/90">Sell your surplus.</span>
+              <span className="text-white/90">List yours for sale.</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/75">
               Semiconductor tools, data center hardware, industrial machinery — send
@@ -161,7 +161,7 @@ export default async function HomePage() {
                 variant="outline"
                 className="border-white/25 bg-white/5 text-[15px] text-white hover:bg-white/10 hover:text-white"
               >
-                <Link href="/sell">Sell surplus equipment</Link>
+                <Link href="/sell">List your equipment</Link>
               </Button>
             </div>
 
@@ -409,7 +409,7 @@ export default async function HomePage() {
                   <FileSpreadsheet className="size-5" aria-hidden="true" />
                 </span>
                 <div>
-                  <h3 className="text-lg font-semibold">Selling surplus</h3>
+                  <h3 className="text-lg font-semibold">Selling equipment</h3>
                   <p className="text-sm text-muted-foreground">For asset &amp; plant managers</p>
                 </div>
               </div>
@@ -475,7 +475,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── Sell surplus band — dark, warehouse ──────────────────────────── */}
+      {/* ── For-sellers band — dark, warehouse ──────────────────────────── */}
       <section aria-labelledby="sell-heading" className="relative overflow-hidden bg-brand-ink text-white">
         <div className="absolute inset-0">
           <Image
@@ -533,7 +533,7 @@ export default async function HomePage() {
                 href="/sell/list"
                 className="group flex flex-col rounded-xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm transition-colors hover:border-primary/60 hover:bg-white/10"
               >
-                <span className="font-semibold">Upload a surplus list</span>
+                <span className="font-semibold">Upload an inventory list</span>
                 <span className="mt-2 text-sm leading-relaxed text-white/65">
                   One CSV or Excel file, any common layout. We parse it, confirm the
                   row count with you, and take it from there.
@@ -556,7 +556,7 @@ export default async function HomePage() {
               Tell us what you need.
             </h2>
             <p className="mt-3 max-w-xl text-muted-foreground">
-              Send a requirement or a surplus list today — we will confirm the next
+              Send a requirement or an inventory list today — we will confirm the next
               step with you by email. Prefer to talk it through first? Call or write.
             </p>
           </div>
@@ -565,7 +565,7 @@ export default async function HomePage() {
               <Link href="/request-equipment">Request equipment</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href="/sell">Sell surplus equipment</Link>
+              <Link href="/sell">List your equipment</Link>
             </Button>
           </div>
           <ul className="w-full space-y-1.5 text-sm text-muted-foreground lg:w-auto">

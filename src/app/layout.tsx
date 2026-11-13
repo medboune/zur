@@ -45,7 +45,7 @@ export function generateMetadata(): Metadata {
       "data center hardware",
       "refurbished servers",
       "industrial machinery",
-      "surplus equipment sales",
+      "used equipment dealer",
     ],
     openGraph: {
       title: `${SITE.name} — ${SITE.tagline}`,

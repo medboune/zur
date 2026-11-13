@@ -88,7 +88,7 @@ export function Confirmation({
         </Button>
         <Button asChild variant="ghost">
           <Link href={kind === "sourcing" ? "/sell" : "/request-equipment"}>
-            {kind === "sourcing" ? "Sell surplus equipment" : "Request equipment"}
+            {kind === "sourcing" ? "List your equipment" : "Request equipment"}
           </Link>
         </Button>
       </div>

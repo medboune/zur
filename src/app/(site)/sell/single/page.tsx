@@ -5,7 +5,7 @@ import { SurplusSingleForm } from "@/components/site/form/surplus-single-form";
 export const metadata: Metadata = {
   title: "Submit One Item for Sale",
   description:
-    "Submit a single piece of surplus equipment for review — manufacturer, model, quantity, condition, and location. No account needed.",
+    "Submit a single piece of equipment for review — manufacturer, model, quantity, condition, and location. No account needed.",
   alternates: { canonical: "/sell/single" },
 };
 
@@ -22,7 +22,7 @@ export default function SellSinglePage() {
           <li aria-hidden="true">/</li>
           <li>
             <Link href="/sell" className="hover:text-foreground hover:underline">
-              Sell surplus
+              List equipment
             </Link>
           </li>
           <li aria-hidden="true">/</li>

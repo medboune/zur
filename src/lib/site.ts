@@ -4,9 +4,9 @@
 export const SITE = {
   name: "Zuronix",
   legalName: "Zuronix",
-  tagline: "Industrial Equipment Sourcing & Surplus Sales",
+  tagline: "Industrial Equipment Sourcing & Sales",
   description:
-    "Zuronix sources semiconductor, data center, and industrial equipment for buyers, and helps companies sell surplus equipment and assets. Based in Vancouver, Washington.",
+    "Zuronix sources semiconductor, data center, and industrial equipment for buyers, and helps companies list and sell idle equipment and assets. Based in Vancouver, Washington.",
   phone: "+1 360 822 0923",
   phoneHref: "+13608220923",
   email: "info@zuronix.com",
@@ -47,7 +47,7 @@ export const SECTORS: SectorContent[] = [
     title: "Semiconductor equipment",
     metaTitle: "Used Semiconductor Equipment Sourcing & Sales | Zuronix",
     metaDescription:
-      "Sourcing and surplus sales for semiconductor manufacturing equipment: wafer test and ATE, probers, dicing and grinding, die attach, packaging, inspection, metrology, and spare parts.",
+      "Sourcing and sales for semiconductor manufacturing equipment: wafer test and ATE, probers, dicing and grinding, die attach, packaging, inspection, metrology, and spare parts.",
     image: "/images/sector-semiconductor.jpg",
     imageAlt: "Probe needles testing a silicon wafer in semiconductor manufacturing",
     intro: [
@@ -72,7 +72,7 @@ export const SECTORS: SectorContent[] = [
     title: "Data center hardware",
     metaTitle: "Refurbished Servers, Storage & Networking Sourcing | Zuronix",
     metaDescription:
-      "Sourcing and surplus sales for data center hardware: Dell, HPE and Supermicro servers, NetApp and Pure storage, Cisco, Juniper and Arista networking, plus enterprise components in volume.",
+      "Sourcing and sales for data center hardware: Dell, HPE and Supermicro servers, NetApp and Pure storage, Cisco, Juniper and Arista networking, plus enterprise components in volume.",
     image: "/images/sector-datacenter.jpg",
     imageAlt: "Server racks in a modern data center aisle",
     intro: [
@@ -96,13 +96,13 @@ export const SECTORS: SectorContent[] = [
     title: "Industrial machinery",
     metaTitle: "Used Industrial Machinery & Plant Equipment Sourcing | Zuronix",
     metaDescription:
-      "Sourcing and surplus sales for industrial machinery: CNC machining centers and lathes, EDM, CMMs and vision inspection, PLCs and drives, chillers, compressors, and plant support equipment.",
+      "Sourcing and sales for industrial machinery: CNC machining centers and lathes, EDM, CMMs and vision inspection, PLCs and drives, chillers, compressors, and plant support equipment.",
     image: "/images/sector-industrial.jpg",
     imageAlt: "CNC milling machine spindle machining a metal part",
     intro: [
       "A machine that fits one plant can be wrong for another. Travels, spindle taper, control version, voltage, and tooling all decide whether a used machine is a bargain or a project. We check these before you spend.",
       "Send us the machine, the work you need it to do, and your floor constraints. We confirm condition and history with the owner, tell you what was tested and what wasn't, and deliver one clear offer.",
-      "Surplus machines, auxiliaries, and whole plant lines: send the list once. We review it with you and agree what can be marketed — nothing is published without your approval.",
+      "Idle machines, auxiliaries, and whole plant lines: send the list once. We review it with you and agree what can be marketed — nothing is published without your approval.",
     ],
     types: [
       { name: "Machining centers & lathes", examples: "Haas, Mazak, Okuma, Doosan" },
@@ -141,8 +141,8 @@ export function conditionLabel(key: string): string {
 
 export const REQUEST_TYPE_LABELS: Record<string, string> = {
   SOURCING: "Sourcing request",
-  SURPLUS_SINGLE: "Surplus — single item",
-  SURPLUS_LIST: "Surplus — list",
+  SURPLUS_SINGLE: "Sell — single item",
+  SURPLUS_LIST: "Sell — list",
 };
 
 export const REQUEST_STATUS_LABELS: Record<string, string> = {

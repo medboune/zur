@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 
 const NAV = [
   { href: "/equipment", label: "Equipment" },
-  { href: "/sell", label: "Sell surplus" },
+  { href: "/sell", label: "List equipment" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
@@ -153,7 +153,7 @@ export function Header() {
             </Button>
             <Button asChild variant="outline">
               <Link href="/sell" onClick={() => setOpen(false)}>
-                Sell surplus equipment
+                List your equipment
               </Link>
             </Button>
           </div>

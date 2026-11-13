@@ -71,7 +71,7 @@ export default async function AdminDashboard({
           <h1 className="text-2xl font-semibold tracking-tight">Requests</h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Every form submission from the website lands here immediately — sourcing requests
-            and surplus submissions, with attachments.
+            and sell submissions, with attachments.
           </p>
         </div>
       </div>
@@ -94,7 +94,7 @@ export default async function AdminDashboard({
         </div>
         <div className="rounded-xl border border-border bg-card p-4 shadow-sm">
           <p className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-            <Tags className="size-3.5" aria-hidden="true" /> Surplus
+            <Tags className="size-3.5" aria-hidden="true" /> Sell
           </p>
           <p className="mt-1 text-2xl font-semibold">
             {(typeCounts.SURPLUS_SINGLE ?? 0) + (typeCounts.SURPLUS_LIST ?? 0)}
@@ -150,7 +150,7 @@ export default async function AdminDashboard({
             type === "SURPLUS_SINGLE" && !status ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-muted-foreground hover:text-foreground"
           }`}
         >
-          Surplus — items
+          Sell — items
         </Link>
         <Link
           href={buildHref({ type: "SURPLUS_LIST", status: "" })}
@@ -158,7 +158,7 @@ export default async function AdminDashboard({
             type === "SURPLUS_LIST" && !status ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-muted-foreground hover:text-foreground"
           }`}
         >
-          Surplus — lists
+          Sell — lists
         </Link>
         <span aria-hidden="true" className="mx-1 w-px self-stretch bg-border" />
         {["NEW", "IN_REVIEW", "QUOTED", "WON", "CLOSED"].map((s) => (
@@ -214,7 +214,7 @@ export default async function AdminDashboard({
                   </td>
                   <td className="px-4 py-3">
                     <span className={`inline-block rounded-full border px-2 py-0.5 text-[11px] font-semibold ${TYPE_TONE[lead.type]}`}>
-                      {REQUEST_TYPE_LABELS[lead.type]?.replace("Surplus — ", "")}
+                      {REQUEST_TYPE_LABELS[lead.type]?.replace("Sell — ", "")}
                     </span>
                   </td>
                   <td className="px-4 py-3">

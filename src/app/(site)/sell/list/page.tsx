@@ -3,9 +3,9 @@ import Link from "next/link";
 import { SurplusListForm } from "@/components/site/form/surplus-list-form";
 
 export const metadata: Metadata = {
-  title: "Upload a Surplus Inventory List (CSV / Excel)",
+  title: "Upload an Inventory List (CSV / Excel)",
   description:
-    "Send your whole surplus inventory in one file — CSV or Excel, any layout. Our team reviews it with you and agrees what can be marketed. No per-item forms, no account.",
+    "Send your whole equipment inventory in one file — CSV or Excel, any layout. Our team reviews it with you and agrees what can be marketed. No per-item forms, no account.",
   alternates: { canonical: "/sell/list" },
 };
 
@@ -22,7 +22,7 @@ export default function SellListPage() {
           <li aria-hidden="true">/</li>
           <li>
             <Link href="/sell" className="hover:text-foreground hover:underline">
-              Sell surplus
+              List equipment
             </Link>
           </li>
           <li aria-hidden="true">/</li>

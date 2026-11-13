@@ -62,7 +62,7 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
                 </Link>
               </Button>
               <Button asChild variant="outline">
-                <Link href={`/sell?sector=${sector.slug}`}>Sell {sector.shortName.toLowerCase()} surplus</Link>
+                <Link href={`/sell?sector=${sector.slug}`}>List your {sector.shortName.toLowerCase()} equipment</Link>
               </Button>
             </div>
           </div>
@@ -114,7 +114,7 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
             <div>
               <h3 className="flex items-center gap-2 font-semibold">
                 <CheckCircle2 className="size-5 text-primary" aria-hidden="true" />
-                Selling this kind of surplus
+                Selling this kind of equipment
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 {sector.intro[2]}
@@ -127,7 +127,7 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
       <section className="bg-brand-ink text-brand-ink-foreground">
         <div className="mx-auto flex w-full max-w-6xl flex-col items-start justify-between gap-6 px-4 py-12 sm:px-6 lg:flex-row lg:items-center">
           <h2 className="max-w-xl text-xl font-semibold tracking-tight sm:text-2xl">
-            Send us a {sector.shortName.toLowerCase()} requirement — or a surplus list to review.
+            Send us a {sector.shortName.toLowerCase()} requirement — or an inventory list to review.
           </h2>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg">
@@ -139,7 +139,7 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
               variant="outline"
               className="border-white/25 bg-transparent text-brand-ink-foreground hover:bg-white/10 hover:text-white"
             >
-              <Link href={`/sell?sector=${sector.slug}`}>Sell surplus</Link>
+              <Link href={`/sell?sector=${sector.slug}`}>List equipment</Link>
             </Button>
           </div>
         </div>

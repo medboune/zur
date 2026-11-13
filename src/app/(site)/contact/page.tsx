@@ -49,14 +49,14 @@ export default function ContactPage() {
           </Button>
         </div>
         <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
-          <h2 className="font-semibold">Selling surplus</h2>
+          <h2 className="font-semibold">Selling equipment</h2>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
             One item or a full inventory file — our team reviews it with you and agrees what
             can be marketed.
           </p>
           <Button asChild variant="outline" className="mt-4">
             <Link href="/sell">
-              Sell surplus equipment
+              List your equipment
               <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </Button>

@@ -3,7 +3,7 @@ import { SITE, conditionLabel, REQUEST_TYPE_LABELS } from "@/lib/site";
 import { humanFileSize } from "@/lib/form-schemas";
 
 // ── Team email notifications ─────────────────────────────────────────────────
-// Every NEW lead (sourcing request or surplus submission) triggers one email
+// Every NEW lead (sourcing request or equipment listing submission) triggers one email
 // to the team through the Resend HTTP API — no extra dependency, plain fetch.
 //
 // Environment (see .env.example):
@@ -84,7 +84,7 @@ export function composeNotificationEmail(lead: Lead): { subject: string; text: s
     );
   } else {
     let block =
-      "SURPLUS LIST\n" +
+      "EQUIPMENT LIST\n" +
       line("Summary:", lead.listSummary) +
       line("Location:", lead.itemLocation);
     if (lead.pastedList) {
@@ -187,8 +187,8 @@ export async function notifyTeamOfNewLead(lead: Lead): Promise<NotifyResult> {
 
 function ackRequestPhrase(type: string): string {
   if (type === "SOURCING") return "equipment request";
-  if (type === "SURPLUS_SINGLE") return "surplus equipment submission";
-  return "surplus equipment list";
+  if (type === "SURPLUS_SINGLE") return "equipment listing submission";
+  return "equipment list submission";
 }
 
 export function composeCustomerAcknowledgment(lead: Lead): { subject: string; text: string } {

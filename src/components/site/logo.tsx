@@ -41,7 +41,7 @@ export function Logo({
             )}
           >
             Industrial Sourcing
-            <br />&amp; Surplus Sales
+            <br />&amp; Sales
           </span>
         </>
       )}

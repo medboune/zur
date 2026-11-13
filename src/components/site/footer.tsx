@@ -80,7 +80,7 @@ export function Footer() {
                   href="/sell"
                   className="text-brand-ink-foreground/70 underline-offset-4 hover:text-brand-ink-foreground hover:underline"
                 >
-                  Sell surplus equipment
+                  List your equipment
                 </Link>
               </li>
             </ul>

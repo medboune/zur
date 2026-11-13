@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { SITE, SITE_ADDRESS_ONE_LINE, SECTORS } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About Zuronix — Sourcing & Surplus Sales",
+  title: "About Zuronix — Sourcing & Sales",
   description:
-    "Zuronix is an industrial equipment sourcing and surplus sales company based in Vancouver, Washington, serving semiconductor, data center, and industrial equipment buyers and sellers.",
+    "Zuronix is an industrial equipment sourcing and sales company based in Vancouver, Washington, serving semiconductor, data center, and industrial equipment buyers and sellers.",
   alternates: { canonical: "/about" },
 };
 
@@ -53,7 +53,7 @@ export default function AboutPage() {
 
       <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
         <p>
-          Zuronix is an industrial equipment sourcing and surplus sales company based in
+          Zuronix is an industrial equipment sourcing and sales company based in
           Vancouver, Washington. We work two sides of the same problem: helping companies buy
           the equipment they need, and helping them sell the equipment they no longer use.
         </p>
@@ -146,7 +146,7 @@ export default function AboutPage() {
           </Link>
         </Button>
         <Button asChild size="lg" variant="outline">
-          <Link href="/sell">Sell surplus equipment</Link>
+          <Link href="/sell">List your equipment</Link>
         </Button>
       </div>
     </div>

@@ -6,7 +6,10 @@ import { equipmentVisibilityFilter } from "@/lib/equipment";
 export const dynamic = "force-dynamic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  // APP_URL is a runtime (per-environment) variable — never NEXT_PUBLIC_*,
+  // which gets inlined at build time and would be identical for staging
+  // and production.
+  const base = process.env.APP_URL || "http://localhost:3000";
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [

@@ -49,8 +49,8 @@
     "NOTIFY_EMAIL_FROM": "Zuronix Website <onboarding@resend.dev>",
     "ACK_EMAIL_FROM": "Zuronix <info@zuronix.com>",
     "AUTO_ACK_EMAIL_ENABLED": "false",
-    // Adjust if your domain differs.
-    "APP_URL": "https://zuronix.com",
-    "NEXT_PUBLIC_SITE_URL": "https://zuronix.com"
+    // Adjust if your domain differs. APP_URL is the single source of truth
+    // for canonical/sitemap/email links (read at runtime per environment).
+    "APP_URL": "https://zuronix.com"
   }
 }

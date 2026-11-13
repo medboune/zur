@@ -1,0 +1,70 @@
+# Daily offsite backup of production data:
+#   1) D1 database (leads + equipment) exported to a SQL file and stored in a
+#      dedicated R2 bucket (zuronix-backups).
+#   2) R2 attachment objects synced to the same backup bucket — activates
+#      itself once the two R2 API secrets exist, otherwise it skips quietly.
+#
+# One-time activation (full walkthrough in STAGING-BACKUP-ar.md):
+#   - Create the bucket:  npx wrangler r2 bucket create zuronix-backups
+#   - Create an API token (dashboard → My Profile → API Tokens) with
+#     D1:Edit + Workers R2 Storage:Edit permissions.
+#   - Add repository secrets (GitHub → Settings → Secrets and variables → Actions):
+#       CF_ACCOUNT_ID  = your Cloudflare account ID (dashboard home page)
+#       CF_API_TOKEN   = the token created above
+#       R2_BACKUP_ACCESS_KEY_ID / R2_BACKUP_SECRET_ACCESS_KEY = optional R2
+#         API token (dashboard → R2 → Manage API tokens) — enables attachments sync.
+#   - The workflow runs daily at 02:23 UTC and can always be triggered
+#     manually (Actions tab → Backup → Run workflow).
+#
+# Restore procedures (Time Travel + SQL import) are documented in
+# STAGING-BACKUP-ar.md — practice one restore per month.
+
+name: Backup (D1 + R2)
+
+on:
+  schedule:
+    - cron: "23 2 * * *" # daily at 02:23 UTC
+  workflow_dispatch: {} # manual "Run workflow" button
+
+permissions: {} # no access to the repository contents is needed
+
+jobs:
+  d1-export:
+    name: D1 database → SQL file in R2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Export production D1 and upload to the backup bucket
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+          STAMP="$(date -u +%F)"
+          npx --yes wrangler@4 d1 export zuronix-db --remote --output="d1-${STAMP}.sql"
+          npx --yes wrangler@4 r2 object put "zuronix-backups/d1/d1-${STAMP}.sql" \
+            --file="d1-${STAMP}.sql" --content-type="application/sql"
+          echo "Backup uploaded: zuronix-backups/d1/d1-${STAMP}.sql"
+          ls -lh "d1-${STAMP}.sql"
+
+  r2-attachments:
+    name: R2 attachments → backup bucket
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.R2_BACKUP_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_BACKUP_SECRET_ACCESS_KEY }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+    steps:
+      - name: Not configured notice
+        if: env.AWS_ACCESS_KEY_ID == ''
+        run: echo "R2 backup keys are not configured — skipping attachments sync. Add R2_BACKUP_ACCESS_KEY_ID / R2_BACKUP_SECRET_ACCESS_KEY to enable it (see STAGING-BACKUP-ar.md)."
+      - name: Sync attachments with rclone
+        if: env.AWS_ACCESS_KEY_ID != ''
+        run: |
+          set -euo pipefail
+          command -v rclone >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq rclone; }
+          rclone sync \
+            --s3-provider=Cloudflare \
+            --s3-endpoint="https://${CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com" \
+            --transfers=8 -v \
+            ":s3:zuronix-uploads" ":s3:zuronix-backups/attachments"
+          echo "Attachments synced to zuronix-backups/attachments"

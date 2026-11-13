@@ -1,0 +1,68 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // ─────────────────────────────────────────────────────────────────────────
+  // STAGING environment (بيئة التجربة) — a fully separate Worker that
+  // watches the `staging` branch of the same repository.
+  //
+  // Completely isolated data — testing here can never touch production:
+  //   - D1: zuronix-staging-db        (create: npx wrangler d1 create zuronix-staging-db)
+  //   - R2: zuronix-staging-uploads   (create: npx wrangler r2 bucket create zuronix-staging-uploads)
+  //
+  // One-time setup (full walkthrough in STAGING-BACKUP-ar.md):
+  //   1. Create the two resources above, paste the staging database_id below.
+  //   2. In the dashboard create a Worker named "zuronix-staging" and connect
+  //      the same repo with production branch = `staging`.
+  //   3. Its Build command:   npm run cf:build
+  //      Its Deploy command:  npx wrangler d1 migrations apply zuronix-staging-db --remote && npx wrangler deploy -c wrangler.staging.jsonc
+  // ─────────────────────────────────────────────────────────────────────────
+  "name": "zuronix-staging",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "zuronix-staging"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "zuronix-staging-db",
+      "database_id": "REPLACE_WITH_STAGING_D1_DATABASE_ID"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "BUCKET",
+      "bucket_name": "zuronix-staging-uploads"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  },
+  // Non-secret runtime configuration for staging. Secrets are per-Worker:
+  //   npx wrangler secret put ADMIN_PASSWORD --name zuronix-staging
+  //   npx wrangler secret put ADMIN_SESSION_SECRET --name zuronix-staging
+  // Leave RESEND_API_KEY unset on staging to test email-free, or set it
+  // temporarily (with NOTIFY_EMAIL_TO pointing at yourself) when testing
+  // email features.
+  "vars": {
+    // Staging shows the demo listings and the "preview" disclaimer.
+    "SHOW_SAMPLE_LISTINGS": "true",
+    // Keep staging out of Google — robots.txt blocks everything and pages
+    // carry a noindex meta tag. Production does not set this (indexable).
+    "ALLOW_INDEXING": "false",
+    "NOTIFY_EMAIL_TO": "Zuronix Team <info@zuronix.com>",
+    "NOTIFY_EMAIL_FROM": "Zuronix Website <onboarding@resend.dev>",
+    "ACK_EMAIL_FROM": "Zuronix <info@zuronix.com>",
+    "AUTO_ACK_EMAIL_ENABLED": "false",
+    // Set to your staging URL: the custom domain you attach in the dashboard
+    // (e.g. https://staging.zuronix.com) or the Worker's workers.dev URL.
+    "APP_URL": "https://staging.zuronix.com"
+  }
+}

@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Pencil, Plus, Trash2 } from "lucide-react";
+import { Pencil, Plus } from "lucide-react";
 import { db } from "@/lib/db";
-import { deleteEquipment, toggleEquipmentPublished } from "@/app/admin/actions";
+import { toggleEquipmentPublished } from "@/app/admin/actions";
+import { EquipmentDeleteButton } from "@/components/admin/equipment-delete-button";
 import { CONDITIONS } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
@@ -125,16 +126,10 @@ export default async function AdminEquipmentPage() {
                         <Pencil className="size-3.5" aria-hidden="true" />
                         Edit
                       </Link>
-                      <form action={deleteEquipment}>
-                        <input type="hidden" name="id" value={item.id} />
-                        <button
-                          type="submit"
-                          className="inline-flex items-center gap-1 rounded-md border border-red-200 bg-background px-2.5 py-1.5 text-xs font-medium text-red-700 hover:bg-red-50"
-                          aria-label={`Delete ${item.manufacturer} ${item.model}`}
-                        >
-                          <Trash2 className="size-3.5" aria-hidden="true" />
-                        </button>
-                      </form>
+                      <EquipmentDeleteButton
+                        equipmentId={item.id}
+                        name={`${item.manufacturer} ${item.model}`}
+                      />
                     </div>
                   </td>
                 </tr>

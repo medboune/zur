@@ -1,2 +1,14 @@
+# Headers for static assets (Workers static assets supports this file
+# natively — same syntax as Cloudflare Pages). Dynamic responses get their
+# security headers from src/middleware.ts.
+
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
+
+/images/*
+  Cache-Control: public, max-age=604800
+  X-Content-Type-Options: nosniff
+
+/favicon.ico
+  Cache-Control: public, max-age=86400

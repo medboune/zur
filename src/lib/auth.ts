@@ -16,6 +16,25 @@ function sign(payload: string): string {
   return createHmac("sha256", secret()).update(payload).digest("hex");
 }
 
+/** Constant-time password check: no early exit on the first wrong byte. */
+function safeEqual(a: string, b: string): boolean {
+  const bufA = Buffer.from(a);
+  const bufB = Buffer.from(b);
+  if (bufA.length !== bufB.length) {
+    // Compare against self to keep the timing profile, then fail.
+    timingSafeEqual(bufA, bufA);
+    return false;
+  }
+  return timingSafeEqual(bufA, bufB);
+}
+
+export function verifyAdminPassword(candidate: string): boolean {
+  const expected = adminPassword();
+  // Reject empty candidates without revealing anything.
+  if (!candidate) return false;
+  return safeEqual(candidate, expected);
+}
+
 export function createSessionToken(): { token: string; maxAgeSeconds: number } {
   const expires = Date.now() + SESSION_HOURS * 3600 * 1000;
   const payload = `admin.${expires}`;

@@ -16,6 +16,7 @@ import { updateLead } from "@/app/admin/actions";
 import { REQUEST_STATUSES, REQUEST_STATUS_LABELS, REQUEST_TYPE_LABELS, CONDITIONS } from "@/lib/site";
 import { humanFileSize } from "@/lib/form-schemas";
 import { LeadUpdateForm } from "@/components/admin/lead-update-form";
+import { LeadDeleteButton } from "@/components/admin/lead-delete-button";
 
 export const dynamic = "force-dynamic";
 
@@ -204,6 +205,8 @@ export default async function AdminLeadDetail({
             status={lead.status}
             adminNotes={lead.adminNotes ?? ""}
           />
+
+          <LeadDeleteButton leadId={lead.id} reference={lead.reference} />
 
           {lead.adminNotes && (
             <section className="rounded-xl border border-border bg-secondary/40 p-5">

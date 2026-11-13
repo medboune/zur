@@ -3,11 +3,31 @@ import { after } from "next/server";
 import { createLeadWithReference, saveAttachment, SubmissionError, LeadType } from "@/lib/requests";
 import { notifyTeamOfNewLead, sendCustomerAcknowledgment } from "@/lib/notify";
 import { sourcingSchema, surplusSingleSchema, surplusListSchema, surplusListBaseSchema } from "@/lib/form-schemas";
+import { clientIp, rateLimit } from "@/lib/rate-limit";
 
 const TYPES: LeadType[] = ["SOURCING", "SURPLUS_SINGLE", "SURPLUS_LIST"];
 
+// Public form abuse limits: generous enough for a shared office IP behind
+// one NAT, tight enough to stop scripted flooding.
+const SUBMIT_LIMIT = 8;
+const SUBMIT_WINDOW_SECONDS = 3600;
+
 export async function POST(req: NextRequest) {
   try {
+    // Layer 1 — per-IP rate limit (fails open; see lib/rate-limit.ts).
+    const limiter = await rateLimit(
+      "submit",
+      clientIp(req.headers),
+      SUBMIT_LIMIT,
+      SUBMIT_WINDOW_SECONDS
+    );
+    if (!limiter.allowed) {
+      return NextResponse.json(
+        { ok: false, error: "You have sent several requests just now — please wait a bit or email info@zuronix.com." },
+        { status: 429, headers: { "Retry-After": "600" } }
+      );
+    }
+
     const formData = await req.formData();
     const token = String(formData.get("token") ?? "");
     const type = String(formData.get("type") ?? "") as LeadType;
@@ -22,6 +42,14 @@ export async function POST(req: NextRequest) {
       values = JSON.parse(payloadRaw);
     } catch {
       return NextResponse.json({ ok: false, error: "Malformed request payload." }, { status: 400 });
+    }
+
+    // Layer 2 — honeypot. The forms render a hidden "website" field that
+    // humans never see; bots that fill it get a fake success and no DB write.
+    const honeypot = String(values.website ?? "").trim();
+    if (honeypot) {
+      console.warn("[api/requests] honeypot tripped — silently accepting");
+      return NextResponse.json({ ok: true, reference: "REQ-0000", duplicate: true });
     }
 
     // Authoritative server-side validation, independent of the client.
@@ -79,7 +107,12 @@ export async function POST(req: NextRequest) {
       neededBy: clean(data.neededBy) ?? null,
       budget: clean(data.budget) ?? null,
       notes: clean(data.notes) ?? null,
-      relatedRef: clean((values as Record<string, unknown>).relatedRef as string | undefined) ?? null,
+      // Cross-reference to a listing (EQ-0001) — strictly validated:
+      // free-form strings never reach the admin console unvetted.
+      relatedRef: (() => {
+        const raw = String((values as Record<string, unknown>).relatedRef ?? "").trim();
+        return /^[A-Za-z0-9-]{2,20}$/.test(raw) ? raw.toUpperCase() : null;
+      })(),
       // Surplus single
       condition: clean(data.condition) ?? null,
       itemLocation: clean(data.itemLocation) ?? null,

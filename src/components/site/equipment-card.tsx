@@ -1,18 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
-import { CalendarCheck, MapPin } from "lucide-react";
+import { ArrowRight, CalendarCheck, MapPin } from "lucide-react";
 import { ConditionBadge } from "@/components/site/condition-badge";
 import type { Equipment } from "@prisma/client";
 
-function formatPrice(item: Equipment): string | null {
+function priceParts(item: Equipment): { amount: string; unit: string } | null {
   if (item.priceType === "QUOTE" || !item.price) return null;
   const num = Number(item.price);
   const amount = Number.isFinite(num)
     ? num.toLocaleString("en-US", { maximumFractionDigits: 0 })
     : item.price;
   const cur = item.currency === "USD" ? "$" : `${item.currency ?? ""} `;
-  if (item.priceType === "UNIT") return `${cur}${amount} per unit`;
-  return `${cur}${amount} for the lot`;
+  return {
+    amount: `${cur}${amount}`,
+    unit: item.priceType === "UNIT" ? "/unit" : "/lot",
+  };
 }
 
 export function VerifiedDate({ date }: { date: Date | null }) {
@@ -27,55 +29,85 @@ export function VerifiedDate({ date }: { date: Date | null }) {
 }
 
 export function EquipmentCard({ item }: { item: Equipment }) {
-  const price = formatPrice(item);
+  const price = priceParts(item);
+  const requestHref = `/request-equipment?ref=${encodeURIComponent(item.reference)}&model=${encodeURIComponent(
+    `${item.manufacturer} ${item.model}`
+  )}`;
+
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-shadow hover:shadow-md">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md">
       <Link
         href={`/equipment/${item.slug}`}
-        className="absolute inset-0 z-10 rounded-lg focus-visible:outline-2 focus-visible:outline-ring"
+        className="relative block aspect-[4/3] w-full overflow-hidden bg-muted"
         aria-label={`${item.manufacturer} ${item.model} — view details`}
-      />
-      <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-border bg-muted">
-        {item.image ? (
+      >
+        {item.image && (
           <Image
             src={item.image}
             alt={item.imageCaption || `${item.manufacturer} ${item.model}`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover"
+            className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
           />
-        ) : null}
-        {item.isSample && (
-          <span className="absolute right-2 top-2 rounded bg-amber-100/95 px-2 py-0.5 text-[11px] font-semibold text-amber-900 shadow-sm">
-            Demo listing
+        )}
+        {/* Price badge — first thing the eye lands on */}
+        {price ? (
+          <span className="absolute left-3 top-3 rounded-md bg-foreground/90 px-2.5 py-1 font-mono text-[13px] font-semibold text-background backdrop-blur-sm">
+            {price.amount}
+            <span className="text-[11px] font-medium opacity-70">{price.unit}</span>
+          </span>
+        ) : (
+          <span className="absolute left-3 top-3 rounded-md border border-foreground/15 bg-background/90 px-2.5 py-1 font-mono text-[11px] font-medium uppercase tracking-wider text-foreground/80 backdrop-blur-sm">
+            By quote
           </span>
         )}
-      </div>
+        {item.isSample && (
+          <span className="absolute right-3 top-3 rounded bg-amber-100/95 px-2 py-0.5 text-[11px] font-semibold text-amber-900 shadow-sm">
+            Demo
+          </span>
+        )}
+      </Link>
+
       <div className="flex flex-1 flex-col gap-2 p-4">
         <div className="flex flex-wrap items-center gap-2">
           <ConditionBadge conditionKey={item.conditionKey} />
           <span className="text-xs text-muted-foreground">{item.category}</span>
         </div>
         <h3 className="text-[15px] font-semibold leading-snug">
-          <span className="text-foreground">{item.manufacturer}</span>{" "}
-          <span className="text-part font-medium">{item.model}</span>
+          <Link href={`/equipment/${item.slug}`} className="text-foreground hover:text-primary">
+            {item.manufacturer}{" "}
+            <span className="text-part font-medium">{item.model}</span>
+          </Link>
         </h3>
-        <div className="mt-auto space-y-1.5 text-sm text-muted-foreground">
-          <p className="flex items-center gap-1.5">
-            <MapPin className="size-3.5 shrink-0" aria-hidden="true" />
-            {item.location}
-            <span aria-hidden="true">·</span>
-            <span>
-              {item.quantity > 1 ? `${item.quantity} units` : "1 unit"}
-            </span>
-          </p>
-          <VerifiedDate date={item.lastVerifiedAt} />
-          <p className="pt-0.5 text-sm font-medium text-foreground">
-            {price ?? "Request a quote"}
-            {price && item.includesShipping === false && (
-              <span className="font-normal text-muted-foreground"> · excludes shipping</span>
+        <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
+          <MapPin className="size-3.5 shrink-0" aria-hidden="true" />
+          {item.location}
+          <span aria-hidden="true">·</span>
+          <span>{item.quantity > 1 ? `${item.quantity} units` : "1 unit"}</span>
+        </p>
+        <VerifiedDate date={item.lastVerifiedAt} />
+        <div className="mt-auto flex items-center justify-between gap-2 border-t border-border pt-3">
+          <span className="text-sm font-semibold text-foreground">
+            {price ? (
+              <>
+                {price.amount}
+                <span className="text-xs font-normal text-muted-foreground">
+                  {" "}
+                  {item.priceType === "UNIT" ? "per unit" : "for the lot"}
+                  {item.includesShipping === false && " · excl. shipping"}
+                </span>
+              </>
+            ) : (
+              <span className="text-sm font-medium text-muted-foreground">Request a quote</span>
             )}
-          </p>
+          </span>
+          <Link
+            href={requestHref}
+            className="inline-flex shrink-0 items-center gap-1 rounded-md bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            Make offer
+            <ArrowRight className="size-3.5" aria-hidden="true" />
+          </Link>
         </div>
       </div>
     </article>

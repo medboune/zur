@@ -9,7 +9,7 @@ export function Footer() {
       <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:py-14">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
-            <Logo inverted />
+            <Logo inverted withTagline />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-brand-ink-foreground/70">
               {SITE.tagline}. We help manufacturers and IT teams source the equipment they
               need — and find buyers for the equipment they no longer use.

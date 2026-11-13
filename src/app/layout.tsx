@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Archivo, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { SITE } from "@/lib/site";
+
+const archivo = Archivo({
+  variable: "--font-archivo",
+  subsets: ["latin"],
+  weight: ["600", "700", "800", "900"],
+  display: "swap",
+});
 
 const plexSans = IBM_Plex_Sans({
   variable: "--font-plex-sans",
@@ -57,7 +64,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${plexSans.variable} ${plexMono.variable} font-sans antialiased bg-background text-foreground`}
+        className={`${archivo.variable} ${plexSans.variable} ${plexMono.variable} font-sans antialiased bg-background text-foreground`}
       >
         {children}
         <Toaster />

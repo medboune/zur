@@ -31,6 +31,7 @@ export function RequestForm({ prefill }: { prefill: RequestFormPrefill }) {
     contactName: "",
     email: "",
     phone: "",
+    website: "", // honeypot — humans never see this field
   });
   const [file, setFile] = useState<File | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -56,13 +57,25 @@ export function RequestForm({ prefill }: { prefill: RequestFormPrefill }) {
     }
     setErrors({});
     await submit(
-      { ...parsed.data, relatedRef: prefill.ref || undefined },
+      { ...parsed.data, website: form.website, relatedRef: prefill.ref || undefined },
       file
     );
   };
 
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-5">
+      {/* Honeypot: invisible to humans, attractive to bots. Server rejects silently. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] size-px overflow-hidden">
+        <label htmlFor={ids("website")}>Website</label>
+        <input
+          id={ids("website")}
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={form.website}
+          onChange={set("website")}
+        />
+      </div>
       {prefill.ref && (
         <div className="rounded-lg border border-primary/25 bg-primary/5 px-4 py-3 text-sm">
           About <span className="text-part font-semibold">{prefill.ref}</span>

@@ -58,6 +58,15 @@ model Lead {
   updatedAt      DateTime @updatedAt
 }
 
+// Fixed-window abuse limiter for public endpoints (form submissions,
+// admin login attempts). One row per bucket+identifier+window.
+// Rows are short-lived and pruned opportunistically.
+model RateLimit {
+  key         String   @id // "submit:<ip>" | "login:<ip>"
+  windowStart Int      // epoch seconds, aligned to the window
+  count       Int      @default(1)
+}
+
 model Equipment {
   id             Int      @id @default(autoincrement())
   slug           String   @unique

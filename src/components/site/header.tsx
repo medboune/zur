@@ -33,7 +33,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
         <Link href="/" aria-label="Zuronix home" className="shrink-0 rounded-md focus-visible:outline-2 focus-visible:outline-ring">
-          <Logo />
+          <Logo withTagline />
         </Link>
 
         {/* Desktop nav */}

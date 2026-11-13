@@ -25,6 +25,7 @@ export function SurplusSingleForm() {
     contactName: "",
     email: "",
     phone: "",
+    website: "", // honeypot — humans never see this field
   });
   const [file, setFile] = useState<File | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -45,11 +46,23 @@ export function SurplusSingleForm() {
       return;
     }
     setErrors({});
-    await submit(parsed.data, file);
+    await submit({ ...parsed.data, website: form.website }, file);
   };
 
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-5">
+      {/* Honeypot: invisible to humans, attractive to bots. Server rejects silently. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] size-px overflow-hidden">
+        <label htmlFor={ids("website")}>Website</label>
+        <input
+          id={ids("website")}
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={form.website}
+          onChange={set("website")}
+        />
+      </div>
       <FormErrorBanner message={error} />
 
       <fieldset className="space-y-5" disabled={pending}>

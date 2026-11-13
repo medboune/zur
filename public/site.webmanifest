@@ -1,0 +1,26 @@
+{
+  "name": "Zuronix — Industrial Equipment Sourcing & Sales",
+  "short_name": "Zuronix",
+  "description": "Semiconductor, data center, and industrial equipment sourcing and sales. Send the model you need, or the list you want to sell.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1b222b",
+  "theme_color": "#1b222b",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

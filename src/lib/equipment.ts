@@ -18,21 +18,28 @@ export function equipmentVisibilityFilter(): Prisma.EquipmentWhereInput {
   return base;
 }
 
-export async function searchEquipment(query: string, limit = 60) {
-  const norm = normalizeSearch(query);
-  if (!norm) {
-    return db.equipment.findMany({
-      where: equipmentVisibilityFilter(),
+/**
+ * Paginated catalog query (server-side): returns one page of listings plus
+ * the total matching count so the UI can render exact page numbers.
+ */
+export async function listEquipmentPaged(opts: {
+  query?: string;
+  skip: number;
+  take: number;
+}) {
+  const where = opts.query
+    ? { ...equipmentVisibilityFilter(), searchKey: { contains: normalizeSearch(opts.query) } }
+    : equipmentVisibilityFilter();
+  const [items, total] = await Promise.all([
+    db.equipment.findMany({
+      where,
       orderBy: [{ sector: "asc" }, { manufacturer: "asc" }],
-      take: limit,
-    });
-  }
-  // Broad prefix/substring match on the normalized key.
-  return db.equipment.findMany({
-    where: { ...equipmentVisibilityFilter(), searchKey: { contains: norm } },
-    orderBy: [{ sector: "asc" }, { manufacturer: "asc" }],
-    take: limit,
-  });
+      skip: opts.skip,
+      take: opts.take,
+    }),
+    db.equipment.count({ where }),
+  ]);
+  return { items, total };
 }
 
 export async function listEquipment(limit = 60) {

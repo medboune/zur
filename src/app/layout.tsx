@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Archivo, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
 import { SITE } from "@/lib/site";
+import { absoluteUrl, isIndexable } from "@/lib/seo";
 
 const archivo = Archivo({
   variable: "--font-archivo",
@@ -28,17 +28,18 @@ const plexMono = IBM_Plex_Mono({
 // generateMetadata (not a static `metadata` object) so APP_URL and
 // ALLOW_INDEXING are read at request time from the environment's vars.
 export function generateMetadata(): Metadata {
-  const base = process.env.APP_URL || "http://localhost:3000";
-  const indexable = process.env.ALLOW_INDEXING !== "false";
+  const indexable = isIndexable();
+  const siteUrl = absoluteUrl("/");
 
   return {
-    metadataBase: new URL(base),
+    metadataBase: new URL(siteUrl),
     ...(indexable ? {} : { robots: { index: false, follow: false } }),
     title: {
       default: `${SITE.name} — ${SITE.tagline}`,
       template: `%s | ${SITE.name}`,
     },
     description: SITE.description,
+    applicationName: SITE.name,
     keywords: [
       "semiconductor equipment sourcing",
       "used semiconductor equipment",
@@ -47,12 +48,37 @@ export function generateMetadata(): Metadata {
       "industrial machinery",
       "used equipment dealer",
     ],
+    alternates: { canonical: "/" },
     openGraph: {
       title: `${SITE.name} — ${SITE.tagline}`,
       description: SITE.description,
       siteName: SITE.name,
       type: "website",
+      url: siteUrl,
+      locale: "en_US",
+      images: [
+        {
+          url: "/images/hero-bg.jpg",
+          width: 1600,
+          height: 900,
+          alt: "Industrial equipment sourcing and sales — Zuronix",
+        },
+      ],
     },
+    twitter: {
+      card: "summary_large_image",
+      title: `${SITE.name} — ${SITE.tagline}`,
+      description: SITE.description,
+      images: ["/images/hero-bg.jpg"],
+    },
+    icons: {
+      icon: [
+        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/favicon.ico", sizes: "48x48" },
+      ],
+      apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    },
+    manifest: "/site.webmanifest",
   };
 }
 
@@ -67,7 +93,6 @@ export default function RootLayout({
         className={`${archivo.variable} ${plexSans.variable} ${plexMono.variable} font-sans antialiased bg-background text-foreground`}
       >
         {children}
-        <Toaster />
       </body>
     </html>
   );

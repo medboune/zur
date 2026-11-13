@@ -17,6 +17,7 @@ import { PrismaD1 } from "@prisma/adapter-d1";
 // stay side-effect free.
 
 let cached: PrismaClient | undefined;
+let warnedLocalFallback = false;
 
 function createDb(): PrismaClient {
   try {
@@ -28,8 +29,12 @@ function createDb(): PrismaClient {
       return new PrismaClient({ adapter: new PrismaD1(d1 as Parameters<typeof PrismaD1>[0]) });
     }
     console.warn("[db] Cloudflare context present but no DB binding. env keys:", env ? Object.keys(env).join(",") : "none");
-  } catch (err) {
-    console.warn("[db] getCloudflareContext failed:", err instanceof Error ? err.message : String(err));
+  } catch {
+    // Expected in local dev — warn once instead of on every request.
+    if (!warnedLocalFallback) {
+      warnedLocalFallback = true;
+      console.warn("[db] running on the local SQLite client (no Cloudflare context)");
+    }
   }
   return new PrismaClient({
     log: process.env.NODE_ENV === "development" ? ["query"] : [],

@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { ArrowRight, PackageSearch, SearchX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SearchBox } from "@/components/site/search-box";
 import { EquipmentCard } from "@/components/site/equipment-card";
+import { PaginationControls } from "@/components/site/pagination-controls";
+import { PageSizeSelect } from "@/components/site/page-size-select";
 import { SECTORS, showSampleListings } from "@/lib/site";
-import { listEquipment, searchEquipment } from "@/lib/equipment";
+import { listEquipmentPaged } from "@/lib/equipment";
+import { buildPageHref, pageWindow, parsePagination, totalPages } from "@/lib/pagination";
+import { breadcrumbJsonLd, itemListJsonLd, jsonLdScript } from "@/lib/seo";
 
 // Always render on request: the database (D1 in production) must not be
 // queried during the Cloudflare Workers build.
@@ -21,14 +26,33 @@ export const metadata: Metadata = {
 export default async function EquipmentPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string }>;
+  searchParams: Promise<{ q?: string; page?: string; size?: string }>;
 }) {
-  const { q } = await searchParams;
-  const query = (q ?? "").trim();
-  const items = query ? await searchEquipment(query) : await listEquipment();
+  const sp = await searchParams;
+  const query = (sp.q ?? "").trim();
+  const { page, size } = parsePagination(sp);
+
+  const { skip, take } = pageWindow(page, size);
+  const { items, total } = await listEquipmentPaged({ query, skip, take });
+
+  // Out-of-range page (stale link after listings were removed): go to the
+  // last real page rather than showing an empty catalog.
+  const last = totalPages(total, size);
+  if (total > 0 && page > last) {
+    const target = buildPageHref("/equipment", { q: query || undefined, size: String(size) }, { page: String(last) });
+    redirect(target);
+  }
+
+  const from = total === 0 ? 0 : skip + 1;
+  const to = Math.min(skip + take, total);
+  const currentParams = { q: query || undefined, size: String(size) };
+  const hrefFor = (p: number) => buildPageHref("/equipment", currentParams, { page: String(p) });
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
+      <script {...jsonLdScript(breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Equipment", path: "/equipment" }]))} />
+      <script {...jsonLdScript(itemListJsonLd(items, page))} />
+
       <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li>
@@ -47,7 +71,7 @@ export default async function EquipmentPage({
         <div>
           <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">Equipment catalog</h1>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            {items.length > 0
+            {total > 0
               ? "Condition, quantity, location, and the last availability check are stated on every listing. Anything without a price is offered by quote."
               : "The catalog is being built. In the meantime, tell us what you need — most equipment we sell is sourced on request before it is ever listed."}
           </p>
@@ -67,12 +91,12 @@ export default async function EquipmentPage({
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="max-w-xl">
               <h2 id="request-model-heading" className="font-semibold">
-                {items.length > 0
+                {total > 0
                   ? "Not the exact configuration you need?"
                   : "No listing matches — that's normal."}
               </h2>
               <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                {items.length > 0
+                {total > 0
                   ? "Tell us the exact model, configuration, or part number and we will source it and confirm availability with the asset owner."
                   : "Most of what we sell is sourced on request, before it reaches any catalog. Send the model or part number and we will start looking."}
               </p>
@@ -87,16 +111,29 @@ export default async function EquipmentPage({
         </section>
       )}
 
-      {items.length > 0 ? (
+      {total > 0 ? (
         <>
-          {query && (
-            <p className="mt-8 text-sm text-muted-foreground" role="status">
-              {items.length} {items.length === 1 ? "listing" : "listings"} matching{" "}
-              <span className="font-medium text-foreground">&ldquo;{query}&rdquo;</span>
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
+            <p className="text-sm text-muted-foreground" role="status">
+              {query ? (
+                <>
+                  {total} {total === 1 ? "listing" : "listings"} matching{" "}
+                  <span className="font-medium text-foreground">&ldquo;{query}&rdquo;</span>
+                </>
+              ) : (
+                <>{total} {total === 1 ? "listing" : "listings"} in the catalog</>
+              )}
+              {last > 1 && (
+                <span className="text-muted-foreground/80">
+                  {" "}· Showing {from}–{to} · Page {page} of {last}
+                </span>
+              )}
             </p>
-          )}
+            <PageSizeSelect value={size} />
+          </div>
+
           {showSampleListings() && !query && (
-            <p className="mt-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm text-amber-900">
+            <p className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm text-amber-900">
               Preview note: listings marked <strong>Demo</strong> are sample records that show
               how equipment pages work — they are not live inventory. Request any item and we
               will confirm what is actually available.
@@ -107,6 +144,8 @@ export default async function EquipmentPage({
               <EquipmentCard key={item.id} item={item} />
             ))}
           </div>
+
+          <PaginationControls page={page} totalPages={last} hrefFor={hrefFor} className="mt-10 justify-center" />
         </>
       ) : (
         <div className="mt-10 rounded-xl border border-dashed border-border bg-card p-10 text-center">

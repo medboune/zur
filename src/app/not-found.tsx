@@ -3,6 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 
+export const metadata = {
+  title: "Page not found",
+  robots: { index: false, follow: false },
+};
+
 export default function NotFound() {
   return (
     <div className="flex min-h-screen flex-col bg-background">

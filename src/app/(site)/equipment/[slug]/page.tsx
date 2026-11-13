@@ -9,10 +9,19 @@ import { ConditionBadge } from "@/components/site/condition-badge";
 import { VerifiedDate } from "@/components/site/equipment-card";
 import { SITE, getSector } from "@/lib/site";
 import { getEquipmentBySlug, parseSpecs } from "@/lib/equipment";
+import {
+  breadcrumbJsonLd,
+  equipmentSeoDescription,
+  equipmentSeoTitle,
+  jsonLdScript,
+  productJsonLd,
+} from "@/lib/seo";
 
 // Always render on request: the database (D1 in production) must not be
 // queried during the Cloudflare Workers build.
 export const dynamic = "force-dynamic";
+
+type EquipmentItem = NonNullable<Awaited<ReturnType<typeof getEquipmentBySlug>>>;
 
 export async function generateMetadata({
   params,
@@ -22,11 +31,24 @@ export async function generateMetadata({
   const { slug } = await params;
   const item = await getEquipmentBySlug(slug);
   if (!item) return {};
-  const title = `${item.manufacturer} ${item.model} — ${item.category}`;
+  const title = equipmentSeoTitle(item);
+  const description = equipmentSeoDescription(item);
   return {
     title,
-    description: item.description.slice(0, 155),
+    description,
     alternates: { canonical: `/equipment/${item.slug}` },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      ...(item.image ? { images: [{ url: item.image, alt: `${item.manufacturer} ${item.model}` }] } : {}),
+    },
+    twitter: {
+      card: item.image ? "summary_large_image" : "summary",
+      title,
+      description,
+      ...(item.image ? { images: [item.image] } : {}),
+    },
   };
 }
 
@@ -63,8 +85,17 @@ export default async function EquipmentDetailPage({
     `${item.manufacturer} ${item.model}`
   )}&note=${encodeURIComponent("Please send the test report and full configuration details.")}`;
 
+  const breadcrumbEntries = [
+    { name: "Home", path: "/" },
+    { name: "Equipment", path: "/equipment" },
+    ...(sector ? [{ name: sector.name, path: `/sectors/${sector.slug}` }] : []),
+    { name: `${item.manufacturer} ${item.model}`, path: `/equipment/${item.slug}` },
+  ];
+
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:py-14">
+      <script {...jsonLdScript(productJsonLd(item))} />
+      <script {...jsonLdScript(breadcrumbJsonLd(breadcrumbEntries))} />
       <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li>

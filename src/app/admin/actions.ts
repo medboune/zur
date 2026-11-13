@@ -3,17 +3,118 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
-import { isAdminAuthenticated } from "@/lib/auth";
-import { REQUEST_STATUSES } from "@/lib/site";
+import { getAdminSession, setAdminCookie } from "@/lib/auth";
+import { emailTaken, usernameTaken } from "@/lib/admin-users";
+import { hashPassword, isValidEmail, isValidUsername, passwordIssues, verifyPassword } from "@/lib/password";
+import { REQUEST_STATUSES, conditionLabel } from "@/lib/site";
 import { buildSearchKey } from "@/lib/equipment";
 
 export type ActionResult = { ok: boolean; error?: string };
 
 async function requireAdmin(): Promise<string | null> {
-  if (!(await isAdminAuthenticated())) {
+  if (!(await getAdminSession())) {
     return "Your session expired — sign in again.";
   }
   return null;
+}
+
+/* ── Account settings ─────────────────────────────────────────────────── */
+
+async function currentAdminUser() {
+  const session = await getAdminSession();
+  if (!session) redirect("/admin/login");
+  const user = await db.adminUser.findUnique({ where: { id: session.id } });
+  if (!user) redirect("/admin/login");
+  return user;
+}
+
+export async function updateAdminUsername(
+  _prev: ActionResult | null,
+  formData: FormData
+): Promise<ActionResult> {
+  const authError = await requireAdmin();
+  if (authError) return { ok: false, error: authError };
+
+  const user = await currentAdminUser();
+  const username = String(formData.get("username") ?? "").trim().toLowerCase();
+
+  if (!isValidUsername(username)) {
+    return {
+      ok: false,
+      error: "Usernames are 3–32 characters: lowercase letters, numbers, dots, dashes, underscores.",
+    };
+  }
+  if (await usernameTaken(username, user.id)) {
+    return { ok: false, error: "That username is already used by another account." };
+  }
+  if (username === user.username) {
+    return { ok: true };
+  }
+
+  await db.adminUser.update({ where: { id: user.id }, data: { username, updatedAt: new Date() } });
+  revalidatePath("/admin/settings");
+  return { ok: true };
+}
+
+export async function updateAdminEmail(
+  _prev: ActionResult | null,
+  formData: FormData
+): Promise<ActionResult> {
+  const authError = await requireAdmin();
+  if (authError) return { ok: false, error: authError };
+
+  const user = await currentAdminUser();
+  const email = String(formData.get("email") ?? "").trim().toLowerCase();
+
+  if (!isValidEmail(email)) {
+    return { ok: false, error: "Enter a valid email address." };
+  }
+  if (await emailTaken(email, user.id)) {
+    return { ok: false, error: "That email is already used by another account." };
+  }
+  if (email === user.email) {
+    return { ok: true };
+  }
+
+  await db.adminUser.update({ where: { id: user.id }, data: { email, updatedAt: new Date() } });
+  revalidatePath("/admin/settings");
+  return { ok: true };
+}
+
+export async function updateAdminPassword(
+  _prev: ActionResult | null,
+  formData: FormData
+): Promise<ActionResult> {
+  const authError = await requireAdmin();
+  if (authError) return { ok: false, error: authError };
+
+  const user = await currentAdminUser();
+  const currentPassword = String(formData.get("currentPassword") ?? "");
+  const newPassword = String(formData.get("newPassword") ?? "");
+  const confirmPassword = String(formData.get("confirmPassword") ?? "");
+
+  if (!(await verifyPassword(currentPassword, user.passwordHash))) {
+    return { ok: false, error: "The current password you entered is incorrect." };
+  }
+  const issues = passwordIssues(newPassword);
+  if (issues.length > 0) return { ok: false, error: issues.join(" ") };
+  if (newPassword !== confirmPassword) {
+    return { ok: false, error: "The new password and the confirmation do not match." };
+  }
+  if (newPassword === currentPassword) {
+    return { ok: false, error: "The new password must be different from the current one." };
+  }
+
+  const passwordHash = await hashPassword(newPassword);
+  await db.adminUser.update({
+    where: { id: user.id },
+    data: { passwordHash, updatedAt: new Date() },
+  });
+  // Rotating the password invalidates every other session; keep this one
+  // signed in by reissuing its cookie with the new password version.
+  await setAdminCookie(user.id, passwordHash);
+  revalidatePath("/admin/settings");
+  return { ok: true };
 }
 
 /* ── Leads ─────────────────────────────────────────────────────────────── */
@@ -192,6 +293,10 @@ export async function saveEquipment(
     isPublished: formData.get("isPublished") === "on",
     isSample: formData.get("isSample") === "on",
     searchKey: buildSearchKey(manufacturer, model, optStr(formData, "partNumber", 160), sector),
+    // SEO overrides — the public page falls back to the generated values
+    // computed in lib/seo.ts when these are empty.
+    seoTitle: optStr(formData, "seoTitle", 120),
+    seoDescription: optStr(formData, "seoDescription", 300),
     updatedAt: new Date(),
   };
 

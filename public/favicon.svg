@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Zuronix favicon: engineered Z monogram + signal dot, on ink -->
+  <defs>
+    <linearGradient id="ink" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#232c38"/>
+      <stop offset="1" stop-color="#161d26"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="64" height="64" rx="14" fill="url(#ink)"/>
+  <!-- Geometric Z: top bar, diagonal, bottom bar -->
+  <path d="M17 15 h30 v7.2 L29.8 41.8 H47 V49 H17 v-7.2 L34.2 22.2 H17 Z" fill="#f7fbf9"/>
+  <!-- Signal dot: the brand's terminal accent -->
+  <rect x="47.5" y="41.5" width="9" height="9" rx="2" fill="#77bfa8"/>
+</svg>

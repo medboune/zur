@@ -83,6 +83,14 @@ export function Footer() {
                   List your equipment
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/faq"
+                  className="text-brand-ink-foreground/70 underline-offset-4 hover:text-brand-ink-foreground hover:underline"
+                >
+                  FAQ
+                </Link>
+              </li>
             </ul>
           </nav>
 

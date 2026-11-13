@@ -209,6 +209,41 @@ export function EquipmentForm({ item }: { item: Equipment | null }) {
         </div>
       </section>
 
+      {/* SEO */}
+      <section className="rounded-xl border border-border bg-card p-6 shadow-sm">
+        <h2 className="font-semibold">Search listing (SEO)</h2>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Optional overrides. When left empty the page title and meta description are
+          generated from the listing fields (manufacturer, model, condition, location).
+        </p>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <Field
+            label="SEO title"
+            hint="Up to ~60 characters. Default: “Manufacturer Model — condition, location” — includes “ | Zuronix” automatically."
+          >
+            <input
+              name="seoTitle"
+              defaultValue={d?.seoTitle ?? ""}
+              maxLength={120}
+              className={inputCls}
+              placeholder="Auto-generated when empty"
+            />
+          </Field>
+          <Field
+            label="SEO meta description"
+            hint="Up to ~160 characters. Default: the description's first sentences."
+          >
+            <input
+              name="seoDescription"
+              defaultValue={d?.seoDescription ?? ""}
+              maxLength={300}
+              className={inputCls}
+              placeholder="Auto-generated when empty"
+            />
+          </Field>
+        </div>
+      </section>
+
       {/* Visibility */}
       <section className="rounded-xl border border-border bg-card p-6 shadow-sm">
         <h2 className="font-semibold">Visibility</h2>

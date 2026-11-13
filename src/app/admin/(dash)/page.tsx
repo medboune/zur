@@ -2,6 +2,9 @@ import Link from "next/link";
 import { FileText, Inbox, Search, ShoppingCart, Tags } from "lucide-react";
 import { db } from "@/lib/db";
 import { REQUEST_STATUS_LABELS, REQUEST_TYPE_LABELS } from "@/lib/site";
+import { PaginationControls } from "@/components/site/pagination-controls";
+import { PageSizeSelect } from "@/components/site/page-size-select";
+import { buildPageHref, pageWindow, parsePagination, totalPages } from "@/lib/pagination";
 
 export const dynamic = "force-dynamic";
 
@@ -22,12 +25,13 @@ const TYPE_TONE: Record<string, string> = {
 export default async function AdminDashboard({
   searchParams,
 }: {
-  searchParams: Promise<{ type?: string; status?: string; q?: string }>;
+  searchParams: Promise<{ type?: string; status?: string; q?: string; page?: string; size?: string }>;
 }) {
   const sp = await searchParams;
   const q = (sp.q ?? "").trim();
   const type = sp.type && ["SOURCING", "SURPLUS_SINGLE", "SURPLUS_LIST"].includes(sp.type) ? sp.type : "";
   const status = sp.status && ["NEW", "IN_REVIEW", "QUOTED", "WON", "CLOSED"].includes(sp.status) ? sp.status : "";
+  const { page, size } = parsePagination(sp);
 
   const where = {
     ...(type ? { type } : {}),
@@ -45,21 +49,35 @@ export default async function AdminDashboard({
       : {}),
   };
 
-  const [leads, total, byType, newCount] = await Promise.all([
-    db.lead.findMany({ where, orderBy: { createdAt: "desc" }, take: 200 }),
+  const { skip, take } = pageWindow(page, size);
+  const [leads, total, filteredTotal, byType, newCount] = await Promise.all([
+    db.lead.findMany({ where, orderBy: { createdAt: "desc" }, skip, take }),
     db.lead.count(),
+    db.lead.count({ where }),
     db.lead.groupBy({ by: ["type"], _count: { _all: true } }),
     db.lead.count({ where: { status: "NEW" } }),
   ]);
 
   const typeCounts = Object.fromEntries(byType.map((t) => [t.type, t._count._all]));
+  const last = totalPages(filteredTotal, size);
+  const from = filteredTotal === 0 ? 0 : skip + 1;
+  const to = Math.min(skip + take, filteredTotal);
+
+  const currentParams = {
+    type: type || undefined,
+    status: status || undefined,
+    q: q || undefined,
+    size: String(size),
+  };
+  const hrefFor = (p: number) => buildPageHref("/admin", currentParams, { page: String(p) });
 
   const buildHref = (patch: Record<string, string>) => {
-    const params = new URLSearchParams();
     const merged = { type, status, q, ...patch };
+    const params = new URLSearchParams();
     if (merged.type) params.set("type", merged.type);
     if (merged.status) params.set("status", merged.status);
     if (merged.q) params.set("q", merged.q);
+    if (String(size) !== "20") params.set("size", String(size));
     const s = params.toString();
     return s ? `/admin?${s}` : "/admin";
   };
@@ -175,7 +193,18 @@ export default async function AdminDashboard({
       </div>
 
       {/* Table */}
-      <div className="mt-5 overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+      <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+        <p className="text-sm text-muted-foreground" role="status">
+          {filteredTotal} request{filteredTotal === 1 ? "" : "s"} match
+          {last > 1 && (
+            <span className="text-muted-foreground/80">
+              {" "}· Showing {from}–{to} · Page {page} of {last}
+            </span>
+          )}
+        </p>
+        <PageSizeSelect value={size} />
+      </div>
+      <div className="mt-3 overflow-hidden rounded-xl border border-border bg-card shadow-sm">
         {leads.length === 0 ? (
           <div className="p-10 text-center">
             <Inbox className="mx-auto size-8 text-muted-foreground/40" aria-hidden="true" />
@@ -250,6 +279,8 @@ export default async function AdminDashboard({
           </table>
         )}
       </div>
+
+      <PaginationControls page={page} totalPages={last} hrefFor={hrefFor} className="mt-6 justify-center" />
     </div>
   );
 }

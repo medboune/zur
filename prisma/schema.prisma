@@ -93,6 +93,25 @@ model Equipment {
   isPublished    Boolean  @default(false)
   isSample       Boolean  @default(false) // demo record for the preview environment
   searchKey      String // normalized manufacturer+model+part number
+  // Optional SEO overrides — auto-generated from the listing fields when empty.
+  seoTitle       String?
+  seoDescription String?
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+
+  @@index([isPublished, lastVerifiedAt])
+  @@index([isPublished, sector, manufacturer])
+  @@index([searchKey])
+}
+
+// Admin console accounts. Seeded lazily from ADMIN_USERNAME/ADMIN_PASSWORD
+// on first sign-in when the table is empty (see src/lib/admin-users.ts).
+// Passwords are stored as PBKDF2-SHA256 hashes — never in plain text.
+model AdminUser {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique // lowercased at the application layer
+  email        String   @unique // lowercased at the application layer
+  passwordHash String // pbkdf2$iterations$saltHex$hashHex
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }

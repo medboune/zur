@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Download, Inbox, LogOut, Package } from "lucide-react";
+import { Download, Inbox, LogOut, Package, Settings } from "lucide-react";
 import { Logo } from "@/components/site/logo";
 
 const TABS = [
   { href: "/admin", label: "Requests", icon: Inbox, exact: true },
   { href: "/admin/equipment", label: "Equipment", icon: Package, exact: false },
+  { href: "/admin/settings", label: "Settings", icon: Settings, exact: true },
 ];
 
 export function AdminNav() {

@@ -7,6 +7,7 @@ import { EquipmentCard } from "@/components/site/equipment-card";
 import { CategoryTicker } from "@/components/site/category-ticker";
 import { SECTORS, SITE, SITE_ADDRESS_ONE_LINE, showSampleListings } from "@/lib/site";
 import { featuredEquipment } from "@/lib/equipment";
+import { jsonLdScript, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
 // Always render on request: the database (D1 in production) must not be
 // queried during the Cloudflare Workers build.
@@ -85,29 +86,10 @@ export default async function HomePage() {
   const featured = await featuredEquipment(6);
   const heroListings = featured.slice(0, 3);
 
-  const organizationJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: SITE.name,
-    description: SITE.description,
-    telephone: SITE.phone,
-    email: SITE.email,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: SITE.address.street,
-      addressLocality: SITE.address.city,
-      addressRegion: SITE.address.state,
-      postalCode: SITE.address.zip,
-      addressCountry: "US",
-    },
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-      />
+      <script {...jsonLdScript(organizationJsonLd())} />
+      <script {...jsonLdScript(websiteJsonLd())} />
 
       {/* ── Hero — dark industrial photo, listings panel ─────────────────── */}
       <section className="relative overflow-hidden bg-brand-ink text-white">

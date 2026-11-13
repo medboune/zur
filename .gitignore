@@ -73,3 +73,5 @@ cloudflare-env.d.ts
 
 
 /scripts/img-search/
+# User uploads (input only, never shipped)
+/upload/

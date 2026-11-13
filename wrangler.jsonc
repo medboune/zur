@@ -1,0 +1,56 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // IMPORTANT: set "name" to your EXISTING Worker's name in the Cloudflare
+  // dashboard (the one your domain is attached to), so `wrangler deploy`
+  // from Workers Builds updates it in place. Also update the
+  // WORKER_SELF_REFERENCE service name below to the same value.
+  "name": "zuronix",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "zuronix"
+    }
+  ],
+  "d1_databases": [
+    {
+      // Requests + equipment catalog. Create it once:
+      //   npx wrangler d1 create zuronix-db
+      // then paste the printed database_id below.
+      "binding": "DB",
+      "database_name": "zuronix-db",
+      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+    }
+  ],
+  "r2_buckets": [
+    {
+      // Private attachment storage (CSV/Excel lists, reports, photos).
+      // Create it once: npx wrangler r2 bucket create zuronix-uploads
+      "binding": "BUCKET",
+      "bucket_name": "zuronix-uploads"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  },
+  // Non-secret runtime configuration. Secrets (ADMIN_PASSWORD,
+  // ADMIN_SESSION_SECRET, RESEND_API_KEY) are set with:
+  //   npx wrangler secret put <NAME>
+  "vars": {
+    // Launch in request-driven mode: no listings until real stock is approved.
+    "SHOW_SAMPLE_LISTINGS": "false",
+    "NOTIFY_EMAIL_TO": "Zuronix Team <info@zuronix.com>",
+    "NOTIFY_EMAIL_FROM": "Zuronix Website <onboarding@resend.dev>",
+    "ACK_EMAIL_FROM": "Zuronix <info@zuronix.com>",
+    "AUTO_ACK_EMAIL_ENABLED": "false",
+    // Adjust if your domain differs.
+    "APP_URL": "https://zuronix.com",
+    "NEXT_PUBLIC_SITE_URL": "https://zuronix.com"
+  }
+}

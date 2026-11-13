@@ -1,0 +1,89 @@
+// Zuronix — requests (sourcing + surplus) and equipment catalog
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// One table for all intake forms. `type` separates buyer requests
+// from surplus submissions so the team can triage them in one screen.
+// SQLite has no native enums in Prisma, so vocabularies are strings
+// validated at the application layer (src/lib/form-schemas.ts).
+model Lead {
+  id             Int      @id @default(autoincrement())
+  reference      String   @unique // REQ-0001 (sourcing) / SUR-0001 (surplus)
+  type           String // SOURCING | SURPLUS_SINGLE | SURPLUS_LIST
+  status         String   @default("NEW") // NEW | IN_REVIEW | QUOTED | WON | CLOSED
+  company        String
+  contactName    String
+  email          String
+  phone          String?
+
+  // Sourcing request
+  equipment      String? // free-text requirement
+  manufacturer   String?
+  model          String?
+  quantity       Int?
+  configuration  String?
+  deliveryLocation String?
+  neededBy       String?
+  budget         String?
+  notes          String?
+  relatedRef     String? // equipment listing reference, if the request came from a listing
+
+  // Surplus — single item
+  condition      String?
+  itemLocation   String?
+  year           String?
+  askingPrice    String?
+
+  // Surplus — list
+  listSummary    String?
+  pastedList     String?
+
+  // Attachment (stored on disk, outside /public)
+  attachmentName String?
+  attachmentType String?
+  attachmentSize Int?
+  attachmentPath String?
+
+  submissionToken String   @unique // idempotency key from the client
+  adminNotes     String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Equipment {
+  id             Int      @id @default(autoincrement())
+  slug           String   @unique
+  reference      String   @unique // EQ-0001
+  manufacturer   String
+  model          String
+  partNumber     String?
+  sector         String // SEMICONDUCTOR | DATACENTER | INDUSTRIAL
+  category       String // e.g. "Dicing & grinding"
+  description    String
+  conditionKey   String // NEW | USED_TESTED | USED_UNTESTED | REFURBISHED | AS_IS | FOR_PARTS
+  conditionNote  String? // source attribution for the condition claim
+  quantity       Int      @default(1)
+  location       String
+  lastVerifiedAt DateTime? // last real availability confirmation
+  priceType      String   @default("QUOTE") // QUOTE | UNIT | LOT
+  price          String? // numeric string
+  currency       String?
+  includesShipping Boolean @default(false)
+  testSummary    String? // what was tested, by whom
+  specs          String // JSON array [{label, value}]
+  image          String?
+  imageCaption   String? // e.g. "Representative photo — not the actual asset"
+  isPublished    Boolean  @default(false)
+  isSample       Boolean  @default(false) // demo record for the preview environment
+  searchKey      String // normalized manufacturer+model+part number
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}

@@ -4,7 +4,7 @@
   // dashboard (the one your domain is attached to), so `wrangler deploy`
   // from Workers Builds updates it in place. Also update the
   // WORKER_SELF_REFERENCE service name below to the same value.
-  "name": "zuronix",
+  "name": "zur",
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-10-01",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
@@ -15,7 +15,7 @@
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "zuronix"
+      "service": "zur"
     }
   ],
   "d1_databases": [

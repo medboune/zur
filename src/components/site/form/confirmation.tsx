@@ -61,7 +61,7 @@ export function Confirmation({
 
       <p className="mt-5 max-w-xl leading-relaxed text-muted-foreground">
         {kind === "sourcing"
-          ? "We're on it. Our team reviews your requirement, confirms specs and availability with the asset owner, and follows up by email with next steps or an offer."
+          ? "We're on it. Our team verifies specs and availability and replies by email with a quote or next steps — usually within one business day."
           : "Thank you. Our team reviews what you sent, then contacts you to confirm availability, condition, and what may be marketed. Nothing is published without your approval."}
       </p>
 
@@ -96,7 +96,7 @@ export function Confirmation({
         </Button>
         <Button asChild variant="ghost">
           <Link href={kind === "sourcing" ? "/sell" : "/request-equipment"}>
-            {kind === "sourcing" ? "List your equipment" : "Request equipment"}
+            {kind === "sourcing" ? "Sell surplus equipment" : "Request a quote"}
           </Link>
         </Button>
       </div>

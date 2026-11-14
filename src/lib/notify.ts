@@ -203,8 +203,9 @@ export function composeCustomerAcknowledgment(lead: Lead): { subject: string; te
     `Track its status any time: ${(process.env.APP_URL || "https://zuronix.com").replace(/\/$/, "")}/track\n\n` +
     `What happens next:\n` +
     `- A team member reviews your request, usually within one business day.\n` +
-    `- We confirm specifications, availability, and condition with the asset owner or our supply network.\n` +
-    `- You receive a clear, itemized offer or a status update.\n\n` +
+    `- We verify specifications, availability and condition.\n` +
+    `- You receive a firm, itemized quote from Zuronix — or a status update if we need more time.\n` +
+    `- Security note: we confirm payment details by phone and never change bank details by email.\n\n` +
     `Need it sooner? Reply to this email or call us at ${SITE.phone}.\n\n` +
     `Best regards,\n` +
     `The Zuronix Team\n` +

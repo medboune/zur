@@ -17,35 +17,40 @@ import { breadcrumbJsonLd, itemListJsonLd, jsonLdScript } from "@/lib/seo";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Equipment Catalog — Request a Quote",
+  title: "Equipment Inventory — GPUs, Servers, Semiconductor & Industrial Equipment",
   description:
-    "Browse sourced semiconductor, data center, and industrial equipment. Every listing states condition, quantity, location, and when availability was last verified. No price listed means the offer comes by quote.",
+    "Browse Zuronix inventory: NVIDIA GPUs, servers, networking and memory, wafer probers, ATE and dicing saws, CNC machines, robots and power equipment. Condition, quantity, location and the last availability check on every listing.",
   alternates: { canonical: "/equipment" },
 };
 
 export default async function EquipmentPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; page?: string; size?: string }>;
+  searchParams: Promise<{ q?: string; cat?: string; page?: string; size?: string }>;
 }) {
   const sp = await searchParams;
   const query = (sp.q ?? "").trim();
+  const cat = (sp.cat ?? "").trim().slice(0, 80);
+  const categories = SECTORS.flatMap((s) => s.supply);
+  const activeCategory = cat
+    ? categories.find((c) => new URL(c.href, "https://zuronix.com").searchParams.get("cat") === cat)
+    : undefined;
   const { page, size } = parsePagination(sp);
 
   const { skip, take } = pageWindow(page, size);
-  const { items, total } = await listEquipmentPaged({ query, skip, take });
+  const { items, total } = await listEquipmentPaged({ query, category: cat, skip, take });
 
   // Out-of-range page (stale link after listings were removed): go to the
   // last real page rather than showing an empty catalog.
   const last = totalPages(total, size);
   if (total > 0 && page > last) {
-    const target = buildPageHref("/equipment", { q: query || undefined, size: String(size) }, { page: String(last) });
+    const target = buildPageHref("/equipment", { q: query || undefined, cat: cat || undefined, size: String(size) }, { page: String(last) });
     redirect(target);
   }
 
   const from = total === 0 ? 0 : skip + 1;
   const to = Math.min(skip + take, total);
-  const currentParams = { q: query || undefined, size: String(size) };
+  const currentParams = { q: query || undefined, cat: cat || undefined, size: String(size) };
   const hrefFor = (p: number) => buildPageHref("/equipment", currentParams, { page: String(p) });
 
   return (
@@ -69,11 +74,13 @@ export default async function EquipmentPage({
 
       <div className="mt-4 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">Equipment catalog</h1>
+          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+            {activeCategory ? activeCategory.label : "Equipment inventory"}
+          </h1>
           <p className="mt-3 max-w-2xl text-muted-foreground">
             {total > 0
-              ? "Condition, quantity, location, and the last availability check are stated on every listing. Anything without a price is offered by quote."
-              : "The catalog is being built. In the meantime, tell us what you need — most equipment we sell is sourced on request before it is ever listed."}
+              ? "Every listing states condition, quantity, location and the date availability was last confirmed. Anything without a price is quoted within one business day."
+              : "Nothing listed here right now — tell us what you need. Much of what we supply is sourced to order before it is ever listed."}
           </p>
         </div>
       </div>
@@ -81,6 +88,38 @@ export default async function EquipmentPage({
       <div className="mt-6 max-w-2xl">
         <SearchBox defaultValue={query} />
       </div>
+
+      {/* Category shortcuts — swipe row on phones */}
+      <nav aria-label="Categories" className="no-scrollbar -mx-4 mt-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+        <ul className="flex w-max gap-2 sm:w-auto sm:flex-wrap">
+          <li>
+            <Link
+              href={query ? `/equipment?q=${encodeURIComponent(query)}` : "/equipment"}
+              className={`inline-flex h-8 items-center rounded-full border px-3 text-xs font-medium transition-colors ${
+                !cat ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-foreground/80 hover:border-primary/50"
+              }`}
+            >
+              All
+            </Link>
+          </li>
+          {categories.map((c) => {
+            const active = activeCategory?.href === c.href;
+            return (
+              <li key={c.href}>
+                <Link
+                  href={c.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`inline-flex h-8 items-center whitespace-nowrap rounded-full border px-3 text-xs font-medium transition-colors ${
+                    active ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-foreground/80 hover:border-primary/50"
+                  }`}
+                >
+                  {c.label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
 
       {/* Sourcing fallback: the most important conversion path */}
       {query && (
@@ -97,8 +136,8 @@ export default async function EquipmentPage({
               </h2>
               <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                 {total > 0
-                  ? "Tell us the exact model, configuration, or part number and we will source it and confirm availability with the asset owner."
-                  : "Most of what we sell is sourced on request, before it reaches any catalog. Send the model or part number and we will start looking."}
+                  ? "Tell us the exact model, configuration or part number — we source it, verify it and quote it within one business day."
+                  : "Much of what we supply is sourced to order, before it reaches any catalog. Send the model or part number and we will start sourcing."}
               </p>
             </div>
             <Button asChild className="shrink-0">
@@ -121,7 +160,7 @@ export default async function EquipmentPage({
                   <span className="font-medium text-foreground">&ldquo;{query}&rdquo;</span>
                 </>
               ) : (
-                <>{total} {total === 1 ? "listing" : "listings"} in the catalog</>
+                <>{activeCategory ? activeCategory.label : "Available inventory"}</>
               )}
               {last > 1 && (
                 <span className="text-muted-foreground/80">
@@ -149,8 +188,8 @@ export default async function EquipmentPage({
                 Nothing in the catalog matches &ldquo;{query}&rdquo; yet
               </h2>
               <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
-                We source on request every day. Send the model or part number — we will
-                confirm specs and availability with the asset owner and reply with an offer.
+                We source to order every day. Send the model or part number — we verify
+                specs and availability and reply with a quote within one business day.
               </p>
               <Button asChild className="mt-6">
                 <Link href={`/request-equipment?model=${encodeURIComponent(query)}`}>
@@ -162,14 +201,16 @@ export default async function EquipmentPage({
           ) : (
             <>
               <PackageSearch className="mx-auto size-10 text-muted-foreground/50" aria-hidden="true" />
-              <h2 className="mt-4 text-lg font-semibold">No equipment published yet</h2>
+              <h2 className="mt-4 text-lg font-semibold">
+                {cat ? "Nothing listed in this category right now" : "No equipment listed right now"}
+              </h2>
               <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
-                We publish equipment once the owner approves the listing. Until then, the
-                fastest way to equipment is a sourcing request.
+                Inventory moves quickly and much of what we supply is sourced to order. Send
+                the model or part number and we will quote it within one business day.
               </p>
               <Button asChild className="mt-6">
                 <Link href="/request-equipment">
-                  Request equipment
+                  Request a quote
                   <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>
               </Button>

@@ -6,25 +6,30 @@ import { SITE } from "@/lib/site";
 import { faqJsonLd, jsonLdScript } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions — Sourcing & Selling Equipment",
+  title: "FAQ — Buying and Selling Equipment with Zuronix",
   description:
-    "How Zuronix sources and sells semiconductor, data center, and industrial equipment: quotes, condition verification, shipping, payment terms, and how to list your idle equipment.",
+    "How buying from Zuronix works: quotes, condition grades, photos and test results, warranty cover, payment by wire, worldwide shipping and export — and how to sell surplus equipment.",
   alternates: { canonical: "/faq" },
 };
 
 const FAQ_GROUPS: { heading: string; faqs: { question: string; answer: string }[] }[] = [
   {
-    heading: "Buying & sourcing",
+    heading: "Buying from Zuronix",
     faqs: [
       {
-        question: "How do I request equipment?",
+        question: "Is Zuronix a supplier or a broker?",
         answer:
-          "Send the manufacturer, model or part number, quantity, and your timeline through the request form, by email, or by phone. No account is needed. We reply with what we can source, when it can ship, and at what price.",
+          "A supplier. When you buy, you buy from Zuronix: the quote, the contract and the invoice are ours, and so is the responsibility for delivering what was quoted. We do not introduce you to a third party and leave you to deal with them. Equipment comes from our available inventory or is sourced to order through our supply network.",
       },
       {
-        question: "How fast do you respond to a sourcing request?",
+        question: "How do I get a quote?",
         answer:
-          "Most requests get a first answer within one business day, Pacific Time. If the exact model is in our network we confirm configuration and availability with the owner before quoting; if it is not, we say so and propose the closest workable alternative.",
+          "Send the manufacturer, model or part number, quantity and your timeline through the quote form, by email or by phone — or press Make offer on any listing. No account is needed. You can also send a bill of materials with several lines.",
+      },
+      {
+        question: "How fast do you reply?",
+        answer:
+          "Most requests get a firm quote or a clear answer within one business day, Pacific Time. If we cannot supply the exact model, we say so and propose the closest workable alternative.",
       },
       {
         question: "How do I check the status of my request?",
@@ -34,17 +39,27 @@ const FAQ_GROUPS: { heading: string; faqs: { question: string; answer: string }[
       {
         question: "Is the equipment's condition verified?",
         answer:
-          "Yes. Every listing and quote states the condition grade (new, used-tested, used-untested, refurbished, as-is, or for parts), what was actually tested and by whom, and the date availability was last confirmed with the owner. Ask for the test report on any tested item.",
+          "Yes. Every listing and quote states the condition grade (new, used-tested, used-untested, refurbished, as-is, or for parts), what was actually tested, and the date availability was last confirmed. Before you pay, we share photos and serial numbers of the unit you are buying, and test results wherever a test applies.",
+      },
+      {
+        question: "Is there a warranty?",
+        answer:
+          "Every quote states the warranty or dead-on-arrival cover that applies to that unit, in writing, before you commit. Cover depends on the condition grade — as-is and for-parts items are sold without an operational warranty.",
       },
       {
         question: "What does a quote include?",
         answer:
-          "Price and currency, unit or lot pricing, condition and test summary, physical location, lead time, and shipping options. Nothing is charged online — payment follows the documents agreed for the deal.",
+          "Price and currency, unit or lot pricing, condition grade and test summary, warranty cover, lead time and shipping options. Quotes are firm for the validity period stated on them. Nothing is charged online.",
+      },
+      {
+        question: "How do I pay, and is it safe?",
+        answer:
+          "By bank wire to Zuronix's US business account, against our invoice. Before your first payment we confirm the bank details with you by phone. We never change bank details by email — if you ever receive such a message, call us before sending anything.",
       },
       {
         question: "Do you ship internationally?",
         answer:
-          "Yes, we arrange freight worldwide from the equipment's stated location, including crating and export paperwork when required. The listing's location is the ship-from point.",
+          "Yes. We arrange packing, crating and freight worldwide, and prepare the export paperwork. As a US exporter we screen every order against US export restrictions, so we may ask who the end user is and where the equipment will be installed.",
       },
       {
         question: "Can I inspect equipment before buying?",
@@ -54,22 +69,22 @@ const FAQ_GROUPS: { heading: string; faqs: { question: string; answer: string }[
     ],
   },
   {
-    heading: "Selling & listing equipment",
+    heading: "Selling surplus equipment",
     faqs: [
       {
-        question: "How do I list my equipment for sale?",
+        question: "How do I sell surplus equipment to Zuronix?",
         answer:
-          "Send a single unit through the short form, or upload a CSV/Excel inventory list. Our sourcing desk reviews it with you, agrees what can be marketed, and handles the rest — buyers, questions, and logistics.",
+          "Send a single unit through the short form, or upload a CSV/Excel inventory list. We review it with you, agree the terms in writing, and handle the rest — buyers, payment and logistics.",
       },
       {
         question: "Is my inventory kept confidential?",
         answer:
-          "Yes. Your file reaches our sourcing desk only. Serial numbers and original asset lists are never published, and nothing goes live until you approve it in writing.",
+          "Yes. Your file goes to our team only. Serial numbers and original asset lists are never published, and nothing is offered to buyers until you approve it in writing.",
       },
       {
-        question: "What does it cost to list equipment?",
+        question: "What does it cost to sell through Zuronix?",
         answer:
-          "Listing and marketing are free to the seller. Zuronix earns per the agreed terms when the equipment sells — owner proceeds are settled according to collected payments and the approved agreement.",
+          "Nothing up front. Zuronix earns when the equipment sells, under the terms agreed with you in writing, and you are paid as that agreement sets out.",
       },
       {
         question: "What equipment do you accept?",
@@ -83,7 +98,12 @@ const FAQ_GROUPS: { heading: string; faqs: { question: string; answer: string }[
     faqs: [
       {
         question: "Who is Zuronix?",
-        answer: `${SITE.name} is an industrial equipment sourcing and sales company based in Vancouver, Washington, USA. We connect buyers of semiconductor, data center, and industrial equipment with verified sources, and help owners sell idle equipment.`,
+        answer: `${SITE.name} is a US supplier of data center hardware, semiconductor equipment and industrial machinery, based in Vancouver, Washington. We supply GPUs, servers, networking, wafer test and probe tools, CNC machines, robots and power equipment — from available inventory or sourced to order — and help companies sell the surplus equipment they no longer need.`,
+      },
+      {
+        question: "Are you an authorized reseller of the brands you sell?",
+        answer:
+          "Zuronix is an independent supplier. We are not affiliated with, or an authorized reseller of, the manufacturers whose equipment we supply unless a listing says otherwise. Each quote states the condition grade and the warranty cover Zuronix provides.",
       },
       {
         question: "How can I contact Zuronix?",
@@ -158,7 +178,7 @@ export default function FaqPage() {
         </div>
         <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
           <Button asChild>
-            <Link href="/request-equipment">Request equipment</Link>
+            <Link href="/request-equipment">Request a quote</Link>
           </Button>
           <Button asChild variant="outline">
             <Link href="/contact">Contact us</Link>

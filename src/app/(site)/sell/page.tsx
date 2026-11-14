@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { SECTORS } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "List Your Equipment — One Item or a Full Inventory",
+  title: "Sell Surplus Equipment — One Unit or a Full Inventory",
   description:
-    "List semiconductor, data center, or industrial equipment for sale. Submit a single item or upload a whole CSV/Excel inventory list — no account, no per-item listings. Nothing is published without your approval.",
+    "Sell surplus data center, semiconductor or industrial equipment through Zuronix. Send a single unit or a whole CSV/Excel inventory list — no account, no per-item listings. Nothing is published without your approval.",
   alternates: { canonical: "/sell" },
 };
 
@@ -30,18 +30,18 @@ export default async function SellPage({
           </li>
           <li aria-hidden="true">/</li>
           <li aria-current="page" className="text-foreground/80">
-            List equipment
+            Sell surplus
           </li>
         </ol>
       </nav>
 
       <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-        List your equipment
+        Sell surplus equipment
       </h1>
       <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-        One machine or a full site list — send it once. Our team reviews it with you,
-        confirms condition and availability, and agrees in writing what can be marketed and
-        how.{" "}
+        Decommissioning a cluster, closing a line, or clearing idle machines? Send one unit
+        or a full site list. We review it with you, agree the terms in writing, and handle
+        buyers, payment and logistics.{" "}
         {activeSector
           ? `Mention your ${activeSector.shortName.toLowerCase()} equipment in either path.`
           : "Pick whichever path fits what you have."}

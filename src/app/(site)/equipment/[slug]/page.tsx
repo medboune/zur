@@ -2,12 +2,26 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ArrowRight, ClipboardCheck, FileText, Mail, MapPin, Phone, ShieldQuestion } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  Camera,
+  ClipboardCheck,
+  FileText,
+  Landmark,
+  Mail,
+  MapPin,
+  Phone,
+  Receipt,
+  ShieldCheck,
+  ShieldQuestion,
+  Truck,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ConditionBadge } from "@/components/site/condition-badge";
 import { VerifiedDate } from "@/components/site/equipment-card";
-import { SITE, getSector } from "@/lib/site";
+import { BUYER_ASSURANCES, SITE, getSector } from "@/lib/site";
 import { getEquipmentBySlug, parseSpecs } from "@/lib/equipment";
 import {
   breadcrumbJsonLd,
@@ -190,7 +204,7 @@ export default async function EquipmentDetailPage({
                 </h3>
                 <p className="mt-2 text-sm text-muted-foreground">
                   <ConditionBadge conditionKey={item.conditionKey} className="mb-2" />
-                  {item.conditionNote ?? "Condition confirmed with the asset owner."}
+                  {item.conditionNote ?? "Condition verified by Zuronix before quoting. Ask for photos of this unit."}
                 </p>
               </div>
               <div className="rounded-xl border border-border bg-card p-5">
@@ -229,8 +243,8 @@ export default async function EquipmentDetailPage({
                 ))}
               </dl>
               <p className="mt-2 text-xs text-muted-foreground">
-                Specifications confirmed with the asset owner. Ask for the full configuration
-                sheet before you commit.
+                Specifications verified by Zuronix. Ask for the full configuration sheet and
+                serial numbers before you commit.
               </p>
             </section>
           )}
@@ -300,8 +314,8 @@ export default async function EquipmentDetailPage({
               </Button>
             )}
             <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-              Quotes confirm specs, condition and availability with the asset owner before
-              pricing. Nothing is charged online.
+              Your quote is a firm offer from Zuronix with condition, warranty cover and
+              shipping stated. Nothing is charged online.
             </p>
           </div>
 
@@ -326,8 +340,34 @@ export default async function EquipmentDetailPage({
               gets you straight to the file.
             </p>
           </div>
+          <div className="mt-4 rounded-xl border border-border bg-card p-5">
+            <p className="text-sm font-semibold">Buying from Zuronix</p>
+            <ul className="mt-3 space-y-3">
+              {BUYER_ASSURANCES.map((a) => {
+                const Icon = ASSURANCE_ICONS[a.key];
+                return (
+                  <li key={a.key} className="flex gap-2.5">
+                    <Icon className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
+                    <span className="text-sm leading-snug">
+                      <span className="font-medium">{a.title}.</span>{" "}
+                      <span className="text-muted-foreground">{a.short}</span>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </aside>
       </div>
     </div>
   );
 }
+
+const ASSURANCE_ICONS = {
+  seller: Receipt,
+  verified: BadgeCheck,
+  documented: Camera,
+  cover: ShieldCheck,
+  logistics: Truck,
+  payment: Landmark,
+} as const;

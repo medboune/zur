@@ -16,8 +16,8 @@ import { SECTORS } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const NAV = [
-  { href: "/equipment", label: "Equipment" },
-  { href: "/sell", label: "List equipment" },
+  { href: "/equipment", label: "Inventory" },
+  { href: "/sell", label: "Sell surplus" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
@@ -90,7 +90,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <Button asChild size="sm" className="hidden sm:inline-flex">
-            <Link href="/request-equipment">Request equipment</Link>
+            <Link href="/request-equipment">Request a quote</Link>
           </Button>
 
           {/* Mobile menu toggle */}
@@ -141,12 +141,12 @@ export function Header() {
           <div className="mt-4 grid gap-2 px-3">
             <Button asChild>
               <Link href="/request-equipment" onClick={() => setOpen(false)}>
-                Request equipment
+                Request a quote
               </Link>
             </Button>
             <Button asChild variant="outline">
               <Link href="/sell" onClick={() => setOpen(false)}>
-                List your equipment
+                Sell surplus equipment
               </Link>
             </Button>
           </div>

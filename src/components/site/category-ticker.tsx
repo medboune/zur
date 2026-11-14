@@ -26,8 +26,8 @@ const CATEGORIES = [
  * hidden from assistive tech — it is decorative, the sector pages list
  * the same categories accessibly.
  */
-export function CategoryTicker() {
-  const row = [...CATEGORIES, ...CATEGORIES];
+export function CategoryTicker({ items = CATEGORIES }: { items?: string[] } = {}) {
+  const row = [...items, ...items];
   return (
     <div
       className="ticker overflow-hidden border-b border-border bg-card"

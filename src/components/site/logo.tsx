@@ -40,8 +40,8 @@ export function Logo({
               inverted ? "text-white/55" : "text-muted-foreground"
             )}
           >
-            Industrial Sourcing
-            <br />&amp; Sales
+            Technology &amp; Industrial
+            <br />Equipment Supply
           </span>
         </>
       )}

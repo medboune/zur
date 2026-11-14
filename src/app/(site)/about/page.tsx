@@ -1,34 +1,43 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Clock, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, BadgeCheck, Camera, Clock, Landmark, Mail, MapPin, Phone, Receipt, ShieldCheck, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SITE, SITE_ADDRESS_ONE_LINE, SECTORS } from "@/lib/site";
+import { BRAND_DISCLAIMER, BUYER_ASSURANCES, SITE, SITE_ADDRESS_ONE_LINE, SECTORS } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About Zuronix — Sourcing & Sales",
+  title: "About Zuronix — US Supplier of Data Center, Semiconductor & Industrial Equipment",
   description:
-    "Zuronix is an industrial equipment sourcing and sales company based in Vancouver, Washington, serving semiconductor, data center, and industrial equipment buyers and sellers.",
+    "Zuronix is a US supplier of data center hardware, semiconductor equipment and industrial machinery based in Vancouver, Washington: one quote, one contract, one invoice — verified units, shipped worldwide.",
   alternates: { canonical: "/about" },
 };
 
 const WORK_STEPS = [
   {
-    verb: "We search.",
-    body: "Across our network of asset owners, dealers, and decommissioning projects — for the exact configuration you specified, not the nearest match.",
+    verb: "We source.",
+    body: "From our available inventory, or to order through our supply network of data center operators, manufacturers, dealers and decommissioning projects — for the exact configuration you specified, not the nearest match.",
   },
   {
     verb: "We verify.",
-    body: "Specifications, availability, and condition are confirmed with the asset owner. What was tested and what wasn't gets stated in writing.",
+    body: "Model, configuration, condition and availability are checked before we price a unit. What was tested — and what wasn't — is stated in writing.",
   },
   {
-    verb: "We offer.",
-    body: "One quote with price, condition, location, and terms. If something changes before you commit, you hear it from us first.",
+    verb: "We quote.",
+    body: "One firm quote from Zuronix: price, condition grade, warranty cover, lead time and shipping. If anything changes before you commit, you hear it from us first.",
   },
   {
-    verb: "We coordinate.",
-    body: "Inspection, logistics, and the commercial steps — carried out per the agreement approved for each deal, with the parties identified in it.",
+    verb: "We deliver.",
+    body: "Packing, freight and export paperwork are arranged by us, and the same team stays on your order until it arrives.",
   },
 ];
+
+const ASSURANCE_ICONS = {
+  seller: Receipt,
+  verified: BadgeCheck,
+  documented: Camera,
+  cover: ShieldCheck,
+  logistics: Truck,
+  payment: Landmark,
+} as const;
 
 export default function AboutPage() {
   return (
@@ -48,14 +57,15 @@ export default function AboutPage() {
       </nav>
 
       <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-        Equipment sourcing, done on the facts
+        A supplier you can hold accountable
       </h1>
 
       <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
         <p>
-          Zuronix is an industrial equipment sourcing and sales company based in
-          Vancouver, Washington. We work two sides of the same problem: helping companies buy
-          the equipment they need, and helping them sell the equipment they no longer use.
+          Zuronix is a US supplier of data center hardware, semiconductor equipment and
+          industrial machinery, based in Vancouver, Washington. We supply GPUs and servers,
+          networking and memory, wafer test and probe tools, CNC machines, robots and power
+          equipment — new, refurbished and tested.
         </p>
         <p>
           We serve three sectors —{" "}
@@ -67,14 +77,14 @@ export default function AboutPage() {
               {i < SECTORS.length - 1 ? ", " : "."}
             </span>
           ))}{" "}
-          Our clients are procurement managers who know a part number by heart, plant
-          managers with twenty idle machines and no time to list them, and engineers who need
-          to be sure a specific configuration fits their line before it ships.
+          Our customers are procurement teams, AI and IT infrastructure teams, fab and test
+          engineers, and plant managers who need a specific configuration — often one that is
+          end-of-life or on a long factory lead time — delivered with the paperwork right.
         </p>
         <p>
-          We are deliberately not a self-service marketplace. Deals in used equipment live
-          or die on verified facts — so every request we take goes through people who check
-          them.
+          When you buy from Zuronix, you buy from Zuronix: one quote, one contract, one
+          invoice, and one team that stays accountable after delivery. We are not a
+          marketplace and we do not hand you over to a third party.
         </p>
       </div>
 
@@ -99,10 +109,33 @@ export default function AboutPage() {
           ))}
         </ol>
         <p className="mt-6 rounded-lg border border-border bg-secondary/40 px-4 py-3.5 text-sm leading-relaxed text-muted-foreground">
-          Each transaction is governed by its own approved agreement, which identifies the
-          asset owner and the contracting seller, the price, any commission or fee where it
-          applies, and the terms of inspection, delivery, and payment.
+          Every order is documented: our quote and invoice, the condition and test record,
+          and the warranty cover that applies. Payment is by wire to our US business account;
+          we confirm bank details by phone and never change them by email.
         </p>
+      </section>
+
+      <section aria-labelledby="commit-heading" className="mt-12">
+        <h2 id="commit-heading" className="text-2xl font-semibold tracking-tight">
+          What every buyer can count on
+        </h2>
+        <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+          {BUYER_ASSURANCES.map((a) => {
+            const Icon = ASSURANCE_ICONS[a.key];
+            return (
+              <li key={a.key} className="flex min-w-0 gap-3.5 rounded-xl border border-border bg-card p-5 shadow-sm">
+                <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
+                  <Icon className="size-[18px]" aria-hidden="true" />
+                </span>
+                <div className="min-w-0">
+                  <h3 className="font-semibold">{a.title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{a.body}</p>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+        <p className="mt-4 text-xs leading-relaxed text-muted-foreground">{BRAND_DISCLAIMER}</p>
       </section>
 
       <section aria-labelledby="where-heading" className="mt-12">
@@ -144,12 +177,12 @@ export default function AboutPage() {
       <div className="mt-12 flex flex-col gap-3 sm:flex-row">
         <Button asChild size="lg">
           <Link href="/request-equipment">
-            Request equipment
+            Request a quote
             <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
         </Button>
         <Button asChild size="lg" variant="outline">
-          <Link href="/sell">List your equipment</Link>
+          <Link href="/equipment">Browse inventory</Link>
         </Button>
       </div>
     </div>

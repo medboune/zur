@@ -183,8 +183,8 @@ export function RequestForm({ prefill }: { prefill: RequestFormPrefill }) {
       </fieldset>
 
       <PrivacyNote>
-        We review your request, confirm specifications and availability with the asset owner,
-        and reply by email with an offer or next steps. Your contact details stay private and
+        We review your request, verify specifications and availability, and reply by email
+        with a quote or next steps — usually within one business day. Your contact details stay private and
         are used only for this request.
       </PrivacyNote>
 

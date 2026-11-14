@@ -25,19 +25,29 @@ export function equipmentVisibilityFilter(): Prisma.EquipmentWhereInput {
  */
 export async function listEquipmentPaged(opts: {
   query?: string;
+  /** Category filter: one term or several joined by "|" (any may match). */
+  category?: string;
   skip: number;
   take: number;
 }) {
-  // A pasted reference number (e.g. ZX-7K4M9Q from an email) finds its listing.
-  const where = opts.query
-    ? {
-        ...equipmentVisibilityFilter(),
-        OR: [
-          { searchKey: { contains: normalizeSearch(opts.query) } },
-          { reference: normalizeReference(opts.query) },
-        ],
-      }
-    : equipmentVisibilityFilter();
+  const and: Prisma.EquipmentWhereInput[] = [];
+  if (opts.query) {
+    // A pasted reference number (e.g. ZX-7K4M9Q from an email) finds its listing.
+    and.push({
+      OR: [
+        { searchKey: { contains: normalizeSearch(opts.query) } },
+        { category: { contains: opts.query.slice(0, 60) } },
+        { reference: normalizeReference(opts.query) },
+      ],
+    });
+  }
+  const terms = (opts.category ?? "")
+    .split("|")
+    .map((t) => t.trim().slice(0, 40))
+    .filter(Boolean)
+    .slice(0, 4);
+  if (terms.length) and.push({ OR: terms.map((t) => ({ category: { contains: t } })) });
+  const where: Prisma.EquipmentWhereInput = { ...equipmentVisibilityFilter(), ...(and.length ? { AND: and } : {}) };
   const [items, total] = await Promise.all([
     db.equipment.findMany({
       where,

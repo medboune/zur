@@ -1,11 +1,30 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ClipboardList, FileSpreadsheet, Mail, Phone, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  Building2,
+  Camera,
+  Globe,
+  Landmark,
+  Mail,
+  Phone,
+  Receipt,
+  ShieldCheck,
+  Truck,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SearchBox } from "@/components/site/search-box";
 import { EquipmentCard } from "@/components/site/equipment-card";
 import { CategoryTicker } from "@/components/site/category-ticker";
-import { SECTORS, SITE, SITE_ADDRESS_ONE_LINE, showSampleListings } from "@/lib/site";
+import {
+  BRAND_DISCLAIMER,
+  BRANDS,
+  BUYER_ASSURANCES,
+  SECTORS,
+  SITE,
+  SITE_ADDRESS_ONE_LINE,
+} from "@/lib/site";
 import { featuredEquipment } from "@/lib/equipment";
 import { jsonLdScript, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
@@ -13,73 +32,66 @@ import { jsonLdScript, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 // queried during the Cloudflare Workers build.
 export const dynamic = "force-dynamic";
 
-const HERO_NOTES = [
-  "No account needed",
-  "Condition verified with the owner",
-  "CSV / Excel lists accepted",
+const HERO_NOTES = ["Quotes within one business day", "Units verified before quoting", "Ships worldwide"];
+
+const TRUST_POINTS = [
+  { icon: Building2, title: "US supplier", body: `${SITE.address.city}, Washington` },
+  { icon: Receipt, title: "One invoice", body: "Zuronix is the seller" },
+  { icon: BadgeCheck, title: "Verified units", body: "Photos, serials, test results" },
+  { icon: Globe, title: "Worldwide shipping", body: "Freight & export handled" },
 ];
+
+const ASSURANCE_ICONS = {
+  seller: Receipt,
+  verified: BadgeCheck,
+  documented: Camera,
+  cover: ShieldCheck,
+  logistics: Truck,
+  payment: Landmark,
+} as const;
 
 const BUY_STEPS = [
   {
-    title: "Send your requirement",
-    body: "Model or part number, quantity, configuration, and your timeline. Two minutes — a spec sheet helps but is not required.",
+    title: "Tell us what you need",
+    body: "Part number, quantity, configuration and delivery date — or pick a unit from the inventory.",
   },
   {
-    title: "We confirm the facts at the source",
-    body: "Specifications, availability, and condition history are verified with the asset owner before anything is offered to you.",
+    title: "Get a firm quote",
+    body: "Within one business day: price, condition grade, warranty cover, lead time and shipping.",
   },
   {
-    title: "One clear, complete quote",
-    body: "Price and currency, unit or lot, what was tested, location, and lead time — with the confirmation date stated.",
+    title: "Approve the actual unit",
+    body: "Photos, serial numbers and test results of the unit you are buying, before you pay.",
   },
   {
-    title: "Close on approved terms",
-    body: "Inspection, payment, and delivery follow the documents agreed for the deal. The same team stays on it end to end.",
-  },
-];
-
-const SELL_STEPS = [
-  {
-    title: "Send a list or a single unit",
-    body: "Upload a CSV or Excel inventory once, or fill in one short form. No account, no per-item listings to create.",
-  },
-  {
-    title: "We review it with you",
-    body: "Availability, condition, and what may be marketed — agreed together, in writing, before anything goes further.",
-  },
-  {
-    title: "We match it to live demand",
-    body: "Your equipment reaches qualified buyers through our network. Nothing is published without your sign-off.",
-  },
-  {
-    title: "Settle per the agreement",
-    body: "Owner proceeds are settled according to collected payments and the approved agreement. We never float deals.",
+    title: "Pay and receive",
+    body: "Bank wire to Zuronix. We pack, ship and track it to your dock, with the paperwork done.",
   },
 ];
 
 const CONDITION_GRADES = [
   {
-    grade: "Used",
-    body: "In working condition as last operated. Operating history confirmed with the owner before quoting.",
+    grade: "New / unused",
+    body: "Factory-sealed or never deployed. Packaging and labels as described in the quote.",
   },
   {
     grade: "Tested working",
-    body: "Powered up and function-tested before sale. Test report provided where one exists — ask for it.",
+    body: "Powered up and function-tested before sale. The test summary is on the listing — ask for the report.",
   },
   {
     grade: "Refurbished",
-    body: "Restored or repaired to a stated standard. The refurbishment scope is documented in the offer.",
+    body: "Restored or repaired to a stated standard. The refurbishment scope is documented in the quote.",
   },
   {
     grade: "As-is / for parts",
-    body: "Sold in current state with no operational warranty. Known history noted where available.",
+    body: "Sold in its current state with no operational warranty. Known history is noted where available.",
   },
 ];
 
-const SELLER_PRIVACY = [
-  "Your file reaches our sourcing desk only — serial numbers and original asset lists are never public.",
-  "Receiving your file does not create a public listing.",
-  "We confirm availability, details, and your approval before anything is shared with a buyer.",
+const SELLER_POINTS = [
+  "One list or one unit — CSV, Excel or a short form. No account needed.",
+  "Serial numbers and asset lists stay private; nothing is published without your written approval.",
+  "We handle buyers, payment and logistics. You are paid under a written agreement.",
 ];
 
 export default async function HomePage() {
@@ -116,25 +128,20 @@ export default async function HomePage() {
 
         <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-5 pb-12 pt-10 sm:gap-12 sm:px-6 sm:py-16 lg:grid-cols-[1.06fr_0.94fr] lg:items-center lg:py-24">
           <div className="min-w-0">
-            <p className="eyebrow !text-white/60">
-              <span className="sm:hidden">Equipment sourcing &amp; sales</span>
-              <span className="hidden sm:inline">Industrial equipment sourcing &amp; sales</span>
-            </p>
+            <p className="eyebrow !text-[10px] !tracking-[0.12em] !text-white/60 sm:!text-[11px] sm:!tracking-[0.18em]">Data center · Semiconductor · Industrial</p>
             <h1 className="font-display mt-4 text-[2.35rem] font-extrabold leading-[1.04] tracking-tight sm:mt-5 sm:text-5xl lg:text-[3.4rem]">
-              Source equipment.
-              <br />
-              <span className="text-white/90">List yours for sale.</span>
+              Equipment for data centers, fabs and factories.
             </h1>
             <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-white/75 sm:mt-5 sm:text-lg">
-              Semiconductor tools, data center hardware, industrial machinery — send
-              the model you need, or the list you want to sell. We confirm the facts
-              with the owner, then quote.
+              Zuronix supplies GPUs, servers, networking, semiconductor tools and industrial
+              machinery — from available inventory or sourced to your exact part number. One
+              quote, one contract, one invoice from a US supplier.
             </p>
 
             <div className="mt-7 grid grid-cols-1 gap-3 sm:flex sm:flex-row">
               <Button asChild size="lg" className="h-12 text-[15px] sm:h-10">
-                <Link href="/request-equipment">
-                  Request equipment
+                <Link href="/equipment">
+                  Browse inventory
                   <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>
               </Button>
@@ -144,7 +151,7 @@ export default async function HomePage() {
                 variant="outline"
                 className="h-12 border-white/25 bg-white/5 text-[15px] text-white hover:bg-white/10 hover:text-white sm:h-10"
               >
-                <Link href="/sell">List your equipment</Link>
+                <Link href="/request-equipment">Request a quote</Link>
               </Button>
             </div>
 
@@ -163,6 +170,12 @@ export default async function HomePage() {
                 </li>
               ))}
             </ul>
+            <p className="mt-5 text-sm text-white/60">
+              Selling surplus equipment?{" "}
+              <Link href="/sell" className="font-medium text-white underline-offset-4 hover:underline">
+                Sell it through Zuronix →
+              </Link>
+            </p>
           </div>
 
           {/* Live listings panel — equipment for sale, with prices, right in the hero */}
@@ -217,23 +230,39 @@ export default async function HomePage() {
               </ul>
             ) : (
               <p className="py-8 text-center text-sm leading-relaxed text-white/60">
-                We run a request-driven desk — most equipment is matched from owner
-                networks, not listed.
+                Inventory moves fast and much of what we supply is sourced to order.
                 <Link href="/request-equipment" className="mt-3 block font-semibold text-white underline-offset-4 hover:underline">
                   Request any model →
                 </Link>
               </p>
             )}
             <p className="border-t border-white/10 pt-3 font-mono text-[10.5px] uppercase tracking-[0.14em] text-white/40">
-              Condition &amp; availability verified with the owner
+              Availability re-checked and dated on every listing
             </p>
           </aside>
         </div>
       </section>
 
-      <CategoryTicker />
+      {/* ── Trust strip ─────────────────────────────────────────────────── */}
+      <section aria-label="Why buyers work with Zuronix" className="border-b border-border bg-card">
+        <ul className="mx-auto grid w-full max-w-6xl grid-cols-2 gap-x-4 gap-y-5 px-5 py-6 sm:px-6 lg:grid-cols-4 lg:py-7">
+          {TRUST_POINTS.map(({ icon: Icon, title, body }) => (
+            <li key={title} className="flex min-w-0 items-center gap-3">
+              <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
+                <Icon className="size-5" aria-hidden="true" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-sm font-semibold leading-tight">{title}</span>
+                <span className="block text-xs leading-snug text-muted-foreground">{body}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
 
-      {/* ── Current listings — full cards with price + offer ─────────────── */}
+      <CategoryTicker items={BRANDS} />
+
+      {/* ── Inventory — full cards with price + offer ─────────────────────── */}
       {featured.length > 0 && (
         <section aria-labelledby="listings-heading" className="border-b border-border bg-secondary/30">
           <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 sm:py-14 lg:py-18">
@@ -241,17 +270,16 @@ export default async function HomePage() {
               <div>
                 <p className="eyebrow">01 / Available now</p>
                 <h2 id="listings-heading" className="font-display mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
-                  Equipment for sale
+                  Inventory ready to quote
                 </h2>
                 <p className="mt-3 max-w-2xl text-muted-foreground">
-                  Every listing states condition, quantity, location, and the date
-                  availability was last confirmed. See something close? Send an offer —
-                  we confirm the rest with the owner.
+                  Condition, quantity, location and the date availability was last confirmed —
+                  on every listing. Make an offer, or ask for photos and test results first.
                 </p>
               </div>
               <Button asChild variant="outline" className="w-full sm:w-auto">
                 <Link href="/equipment">
-                  View all equipment
+                  View all inventory
                   <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>
               </Button>
@@ -273,22 +301,22 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ── Sectors ───────────────────────────────────────────────────────── */}
-      <section aria-labelledby="sectors-heading" className="border-b border-border">
+      {/* ── What we supply — sectors with category shortcuts ──────────────── */}
+      <section aria-labelledby="supply-heading" className="border-b border-border">
         <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 sm:py-14 lg:py-18">
-          <p className="eyebrow">02 / Where we work</p>
-          <h2 id="sectors-heading" className="font-display mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
-            Three sectors. One standard of work.
+          <p className="eyebrow">02 / What we supply</p>
+          <h2 id="supply-heading" className="font-display mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
+            Three sectors. One accountable supplier.
           </h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            If it is on a fab floor, in a rack, or keeping a plant running — send us
-            the model. We take it from there.
+            From a single GPU to a production line: current and end-of-life equipment,
+            new, refurbished and tested — supplied and invoiced by Zuronix.
           </p>
           <div className="mt-7 grid grid-cols-1 gap-4 sm:mt-8 sm:gap-6 md:grid-cols-3">
             {SECTORS.map((s, i) => (
               <article
                 key={s.slug}
-                className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-md"
+                className="group flex h-full min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-200 hover:border-primary/40 hover:shadow-md"
               >
                 <Link
                   href={`/sectors/${s.slug}`}
@@ -314,129 +342,106 @@ export default async function HomePage() {
                       {s.title}
                     </Link>
                   </h3>
-                  <ul className="mt-3 flex flex-wrap gap-1.5">
-                    {s.types.slice(0, 4).map((t) => (
-                      <li
-                        key={t.name}
-                        className="rounded border border-border bg-secondary/60 px-2 py-0.5 font-mono text-[10.5px] text-muted-foreground"
-                      >
-                        {t.name}
+                  <ul className="mt-3 divide-y divide-border border-y border-border">
+                    {s.supply.map((c) => (
+                      <li key={c.href}>
+                        <Link
+                          href={c.href}
+                          className="flex items-center justify-between gap-3 py-2.5 text-sm text-foreground/85 transition-colors hover:text-primary"
+                        >
+                          {c.label}
+                          <ArrowRight className="size-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />
+                        </Link>
                       </li>
                     ))}
                   </ul>
                   <Link
                     href={`/sectors/${s.slug}`}
-                    className="mt-4 inline-flex items-center gap-1 pt-1 text-sm font-medium text-primary hover:underline"
+                    className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
                   >
-                    Explore {s.shortName.toLowerCase()}
+                    All {s.shortName.toLowerCase()} equipment
                     <ArrowRight className="size-3.5" aria-hidden="true" />
                   </Link>
                 </div>
               </article>
             ))}
           </div>
+          <p className="mt-6 max-w-3xl text-xs leading-relaxed text-muted-foreground">{BRAND_DISCLAIMER}</p>
         </div>
       </section>
 
-      {/* ── How it works ─────────────────────────────────────────────────── */}
-      <section aria-labelledby="how-heading" className="border-b border-border bg-secondary/30">
+      {/* ── Why buy from Zuronix ─────────────────────────────────────────── */}
+      <section aria-labelledby="why-heading" className="border-b border-border bg-secondary/30">
         <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 sm:py-14 lg:py-18">
-          <p className="eyebrow">03 / Process</p>
-          <h2 id="how-heading" className="font-display mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
-            What happens on each side
+          <p className="eyebrow">03 / Why Zuronix</p>
+          <h2 id="why-heading" className="font-display mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
+            Buy used equipment like it&apos;s new procurement
           </h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            No auctions, no instant-pricing games. We verify, we quote, and each deal
-            runs on its own approved documents.
+            The same accountability you expect from a distributor — applied to tested,
+            refurbished and hard-to-find equipment.
           </p>
+          <ul className="mt-7 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+            {BUYER_ASSURANCES.map((a) => {
+              const Icon = ASSURANCE_ICONS[a.key];
+              return (
+                <li key={a.key} className="flex min-w-0 gap-3.5 rounded-xl border border-border bg-card p-4 shadow-sm sm:gap-4 sm:p-5">
+                  <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
+                    <Icon className="size-5" aria-hidden="true" />
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="font-semibold">{a.title}</h3>
+                    <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground sm:text-sm">{a.body}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </section>
 
-          <div className="mt-7 grid grid-cols-1 gap-4 sm:mt-8 sm:gap-6 lg:grid-cols-2">
-            <div className="flex min-w-0 flex-col rounded-xl border border-border bg-card p-5 shadow-sm sm:p-8">
-              <div className="flex items-center gap-3">
-                <span className="grid size-10 place-items-center rounded-lg bg-primary/10 text-primary">
-                  <ClipboardList className="size-5" aria-hidden="true" />
+      {/* ── How buying works ─────────────────────────────────────────────── */}
+      <section aria-labelledby="how-heading" className="border-b border-border">
+        <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 sm:py-14 lg:py-18">
+          <p className="eyebrow">04 / How buying works</p>
+          <h2 id="how-heading" className="font-display mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
+            From part number to delivery in four steps
+          </h2>
+          <ol className="mt-7 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+            {BUY_STEPS.map((step, i) => (
+              <li key={step.title} className="relative min-w-0 rounded-xl border border-border bg-card p-5 shadow-sm">
+                <span className="font-mono text-xs font-semibold text-primary">
+                  {String(i + 1).padStart(2, "0")}
                 </span>
-                <div>
-                  <h3 className="text-lg font-semibold">Buying equipment</h3>
-                  <p className="text-sm text-muted-foreground">For procurement teams &amp; engineers</p>
-                </div>
-              </div>
-              <ol className="mt-6 space-y-4">
-                {BUY_STEPS.map((step, i) => (
-                  <li key={step.title} className="flex gap-3.5">
-                    <span
-                      aria-hidden="true"
-                      className="mt-0.5 grid size-6 shrink-0 place-items-center rounded border border-primary/30 bg-primary/5 font-mono text-[11px] font-semibold text-primary"
-                    >
-                      B{i + 1}
-                    </span>
-                    <div>
-                      <p className="font-medium">{step.title}</p>
-                      <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-              <div className="mt-7">
-                <Button asChild className="w-full sm:w-auto">
-                  <Link href="/request-equipment">
-                    Start a request
-                    <ArrowRight className="size-4" aria-hidden="true" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-
-            <div className="flex min-w-0 flex-col rounded-xl border border-border bg-card p-5 shadow-sm sm:p-8">
-              <div className="flex items-center gap-3">
-                <span className="grid size-10 place-items-center rounded-lg bg-foreground/5 text-foreground">
-                  <FileSpreadsheet className="size-5" aria-hidden="true" />
-                </span>
-                <div>
-                  <h3 className="text-lg font-semibold">Selling equipment</h3>
-                  <p className="text-sm text-muted-foreground">For asset &amp; plant managers</p>
-                </div>
-              </div>
-              <ol className="mt-6 space-y-4">
-                {SELL_STEPS.map((step, i) => (
-                  <li key={step.title} className="flex gap-3.5">
-                    <span
-                      aria-hidden="true"
-                      className="mt-0.5 grid size-6 shrink-0 place-items-center rounded border border-border bg-secondary font-mono text-[11px] font-semibold text-muted-foreground"
-                    >
-                      S{i + 1}
-                    </span>
-                    <div>
-                      <p className="font-medium">{step.title}</p>
-                      <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-              <div className="mt-7">
-                <Button asChild variant="outline" className="w-full sm:w-auto">
-                  <Link href="/sell">
-                    Start selling
-                    <ArrowRight className="size-4" aria-hidden="true" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
+                <h3 className="mt-2 font-semibold">{step.title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-7 grid grid-cols-1 gap-3 sm:flex">
+            <Button asChild size="lg" className="h-12 sm:h-10">
+              <Link href="/request-equipment">
+                Request a quote
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="h-12 sm:h-10">
+              <Link href="/track">Track an existing request</Link>
+            </Button>
           </div>
         </div>
       </section>
 
       {/* ── Condition standards ──────────────────────────────────────────── */}
-      <section aria-labelledby="condition-heading" className="border-b border-border">
+      <section aria-labelledby="condition-heading" className="border-b border-border bg-secondary/30">
         <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 sm:py-14 lg:py-18">
-          <p className="eyebrow">04 / Transparency</p>
+          <p className="eyebrow">05 / Condition grades</p>
           <h2 id="condition-heading" className="font-display mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
-            How we state condition
+            Condition stated plainly
           </h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            One letter in a model number or a different spindle size can change whether
-            a machine fits your line. That is why our condition language is standardized
-            and sourced.
+            One letter in a model number or a different spindle size can decide whether a
+            unit fits your line. Every listing and quote uses the same grades.
           </p>
           <div className="mt-7 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-5 lg:grid-cols-4">
             {CONDITION_GRADES.map((g) => (
@@ -445,7 +450,7 @@ export default async function HomePage() {
                 className="min-w-0 rounded-xl border border-border border-t-2 border-t-primary bg-card p-4 shadow-sm sm:p-5"
               >
                 <p className="font-mono text-[9.5px] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:text-[10px] sm:tracking-[0.18em]">
-                  Standard grade
+                  Grade
                 </p>
                 <h3 className="mt-2 font-semibold">{g.grade}</h3>
                 <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground sm:text-sm">{g.body}</p>
@@ -453,45 +458,39 @@ export default async function HomePage() {
             ))}
           </div>
           <p className="mt-6 max-w-3xl rounded-r-lg border-l-2 border-primary bg-primary/5 py-3 pl-4 text-sm leading-relaxed text-muted-foreground">
-            Condition statements come from the asset owner. We verify them while preparing
-            your quote, and every offer records what was confirmed — and on what date.
+            We verify condition while preparing your quote, and every quote records what was
+            confirmed, how, and on what date — together with the warranty cover that applies.
           </p>
         </div>
       </section>
 
-      {/* ── For-sellers band — dark, warehouse ──────────────────────────── */}
+      {/* ── For sellers — dark, warehouse ────────────────────────────────── */}
       <section aria-labelledby="sell-heading" className="relative overflow-hidden bg-brand-ink text-white">
         <div className="absolute inset-0">
-          <Image
-            src="/images/surplus-bg.jpg"
-            alt=""
-            fill
-            sizes="100vw"
-            className="object-cover opacity-25"
-          />
+          <Image src="/images/surplus-bg.jpg" alt="" fill sizes="100vw" className="object-cover opacity-25" />
           <div className="absolute inset-0 bg-gradient-to-b from-brand-ink via-brand-ink/70 to-brand-ink" aria-hidden="true" />
         </div>
 
         <div className="relative mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 sm:py-16 lg:py-20">
-          <p className="eyebrow !text-white/60">05 / For sellers</p>
+          <p className="eyebrow !text-white/60">06 / Selling surplus</p>
           <h2 id="sell-heading" className="font-display mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
-            Turn idle assets into qualified offers
+            Decommissioning? Turn idle equipment into cash.
           </h2>
           <p className="mt-3 max-w-2xl text-white/70">
-            Twenty machines in a spreadsheet? One tester in a corner of the lab?
-            Both take about two minutes to hand over.
+            Retired GPU servers, idle machines, end-of-line tools. Send one list — our buyers
+            are already looking for the same equipment you want to move.
           </p>
 
           <div className="mt-7 grid grid-cols-1 gap-4 sm:mt-8 sm:gap-6 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="rounded-xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm sm:p-7">
               <h3 className="flex items-center gap-2 font-semibold">
-                <ShieldCheck className="size-5 text-primary" aria-hidden="true" />
-                Your data stays private until you say otherwise
+                <ShieldCheck className="size-5 text-emerald-300" aria-hidden="true" />
+                How selling works
               </h3>
               <ul className="mt-4 space-y-3">
-                {SELLER_PRIVACY.map((point) => (
+                {SELLER_POINTS.map((point) => (
                   <li key={point} className="flex gap-3 text-sm leading-relaxed text-white/75">
-                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-emerald-300" aria-hidden="true" />
                     {point}
                   </li>
                 ))}
@@ -503,10 +502,10 @@ export default async function HomePage() {
                 href="/sell/single"
                 className="group flex flex-col rounded-xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm transition-colors hover:border-primary/60 hover:bg-white/10"
               >
-                <span className="font-semibold">Sell a single asset</span>
+                <span className="font-semibold">Sell a single unit</span>
                 <span className="mt-2 text-sm leading-relaxed text-white/65">
-                  Manufacturer, model, quantity, condition, location. Photos and
-                  inspection reports welcome.
+                  Manufacturer, model, quantity, condition, location. Photos and inspection
+                  reports welcome.
                 </span>
                 <span className="mt-4 font-mono text-xs uppercase tracking-wider">
                   <span className="font-semibold text-white underline-offset-4 group-hover:underline">Open the form</span>{" "}
@@ -519,8 +518,8 @@ export default async function HomePage() {
               >
                 <span className="font-semibold">Upload an inventory list</span>
                 <span className="mt-2 text-sm leading-relaxed text-white/65">
-                  One CSV or Excel file, any common layout. We parse it, confirm the
-                  row count with you, and take it from there.
+                  One CSV or Excel file, any common layout. We confirm the row count with you
+                  and take it from there.
                 </span>
                 <span className="mt-4 font-mono text-xs uppercase tracking-wider">
                   <span className="font-semibold text-white underline-offset-4 group-hover:underline">Upload CSV / Excel</span>{" "}
@@ -537,19 +536,19 @@ export default async function HomePage() {
         <div className="mx-auto flex w-full max-w-6xl flex-col items-start gap-8 px-5 py-12 sm:px-6 sm:py-14 lg:flex-row lg:items-center lg:justify-between lg:py-18">
           <div>
             <h2 id="cta-heading" className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
-              Tell us what you need.
+              Need it this quarter? Get a quote today.
             </h2>
             <p className="mt-3 max-w-xl text-muted-foreground">
-              Send a requirement or an inventory list today — we will confirm the next
-              step with you by email. Prefer to talk it through first? Call or write.
+              Send a part number, a bill of materials or a single model. A real person
+              replies within one business day, Pacific Time.
             </p>
           </div>
           <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
             <Button asChild size="lg" className="h-12 sm:h-10">
-              <Link href="/request-equipment">Request equipment</Link>
+              <Link href="/request-equipment">Request a quote</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="h-12 sm:h-10">
-              <Link href="/sell">List your equipment</Link>
+              <Link href="/equipment">Browse inventory</Link>
             </Button>
           </div>
           <ul className="w-full space-y-1.5 text-sm text-muted-foreground lg:w-auto">

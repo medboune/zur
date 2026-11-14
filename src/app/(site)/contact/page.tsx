@@ -42,12 +42,12 @@ export default function ContactPage() {
         <div className="rounded-xl border border-primary/30 bg-primary/5 p-6">
           <h2 className="font-semibold">Buying equipment</h2>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-            Send the model or part number, quantity, and your timeline. We confirm specs and
-            availability with the asset owner and reply with an offer.
+            Send the model or part number, quantity and your timeline. We verify specs and
+            availability and reply with a firm quote within one business day.
           </p>
           <Button asChild className="mt-4">
             <Link href="/request-equipment">
-              Request equipment
+              Request a quote
               <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </Button>
@@ -60,7 +60,7 @@ export default function ContactPage() {
           </p>
           <Button asChild variant="outline" className="mt-4">
             <Link href="/sell">
-              List your equipment
+              Sell surplus equipment
               <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </Button>

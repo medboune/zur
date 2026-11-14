@@ -57,14 +57,26 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button asChild>
                 <Link href="/request-equipment">
-                  Request {sector.shortName.toLowerCase()} equipment
+                  Request a quote
                   <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>
               </Button>
               <Button asChild variant="outline">
-                <Link href={`/sell?sector=${sector.slug}`}>List your {sector.shortName.toLowerCase()} equipment</Link>
+                <Link href={sector.supply[0]?.href ?? "/equipment"}>Browse {sector.shortName.toLowerCase()} inventory</Link>
               </Button>
             </div>
+            <ul className="mt-5 flex flex-wrap gap-2" aria-label={`${sector.shortName} categories`}>
+              {sector.supply.map((c) => (
+                <li key={c.href}>
+                  <Link
+                    href={c.href}
+                    className="inline-flex h-8 items-center rounded-full border border-border bg-card px-3 text-xs font-medium text-foreground/80 transition-colors hover:border-primary/50 hover:text-foreground"
+                  >
+                    {c.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
             <div className="relative aspect-[16/10] w-full">
@@ -84,11 +96,11 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
       <section aria-labelledby="types-heading" className="border-b border-border">
         <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
           <h2 id="types-heading" className="text-2xl font-semibold tracking-tight">
-            Equipment we source and sell
+            What we supply
           </h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            Common categories in this sector. If your requirement sits between categories,
-            describe it in the request — we work from your specification, not our menu.
+            Typical categories and manufacturers. If your requirement sits between categories,
+            describe it in the request — we quote from your specification, not our menu.
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {sector.types.map((t) => (
@@ -127,11 +139,11 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
       <section className="bg-brand-ink text-brand-ink-foreground">
         <div className="mx-auto flex w-full max-w-6xl flex-col items-start justify-between gap-6 px-4 py-12 sm:px-6 lg:flex-row lg:items-center">
           <h2 className="max-w-xl text-xl font-semibold tracking-tight sm:text-2xl">
-            Send us a {sector.shortName.toLowerCase()} requirement — or an inventory list to review.
+            Need {sector.shortName.toLowerCase()} equipment? Get a firm quote within one business day.
           </h2>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg">
-              <Link href="/request-equipment">Request equipment</Link>
+              <Link href="/request-equipment">Request a quote</Link>
             </Button>
             <Button
               asChild
@@ -139,7 +151,7 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
               variant="outline"
               className="border-white/25 bg-transparent text-brand-ink-foreground hover:bg-white/10 hover:text-white"
             >
-              <Link href={`/sell?sector=${sector.slug}`}>List equipment</Link>
+              <Link href={`/sell?sector=${sector.slug}`}>Sell surplus</Link>
             </Button>
           </div>
         </div>

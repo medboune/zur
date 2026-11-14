@@ -22,7 +22,7 @@ export default function SellSinglePage() {
           <li aria-hidden="true">/</li>
           <li>
             <Link href="/sell" className="hover:text-foreground hover:underline">
-              List equipment
+              Sell surplus
             </Link>
           </li>
           <li aria-hidden="true">/</li>

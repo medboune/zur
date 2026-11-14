@@ -13,12 +13,12 @@ const STEPS = [
   {
     key: "IN_REVIEW",
     label: "Under review",
-    detail: "We're confirming specifications, availability and condition with the asset owner or our network.",
+    detail: "We're verifying specifications, availability and condition, and preparing your quote.",
   },
   {
     key: "QUOTED",
-    label: "Offer sent",
-    detail: "We've emailed you an offer. Check your inbox (and spam folder) and reply to accept or ask questions.",
+    label: "Quote sent",
+    detail: "We've emailed you a quote. Check your inbox (and spam folder) and reply to accept or ask questions.",
   },
   { key: "WON", label: "Completed", detail: "This deal is complete. Thank you for working with Zuronix." },
 ];

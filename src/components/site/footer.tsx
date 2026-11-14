@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Clock, Mail, MapPin, MessageSquare, Phone } from "lucide-react";
 import { Logo } from "@/components/site/logo";
-import { SECTORS, SITE, SITE_ADDRESS_ONE_LINE } from "@/lib/site";
+import { BRAND_DISCLAIMER, SECTORS, SITE, SITE_ADDRESS_ONE_LINE } from "@/lib/site";
 
 export function Footer() {
   return (
@@ -11,8 +11,9 @@ export function Footer() {
           <div className="md:col-span-5">
             <Logo inverted withTagline />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-brand-ink-foreground/70">
-              {SITE.tagline}. We help manufacturers and IT teams source the equipment they
-              need — and find buyers for the equipment they no longer use.
+              {SITE.tagline}. GPUs, servers, networking, semiconductor tools and industrial
+              machinery — supplied, invoiced and shipped by a US company, from inventory or
+              sourced to order.
             </p>
             <ul className="mt-6 space-y-2.5 text-sm">
               <li className="flex items-start gap-2.5">
@@ -81,7 +82,7 @@ export function Footer() {
                   href="/equipment"
                   className="text-brand-ink-foreground/70 underline-offset-4 hover:text-brand-ink-foreground hover:underline"
                 >
-                  Equipment catalog
+                  Equipment inventory
                 </Link>
               </li>
               <li>
@@ -89,7 +90,7 @@ export function Footer() {
                   href="/request-equipment"
                   className="text-brand-ink-foreground/70 underline-offset-4 hover:text-brand-ink-foreground hover:underline"
                 >
-                  Request equipment
+                  Request a quote
                 </Link>
               </li>
               <li>
@@ -97,7 +98,7 @@ export function Footer() {
                   href="/sell"
                   className="text-brand-ink-foreground/70 underline-offset-4 hover:text-brand-ink-foreground hover:underline"
                 >
-                  List your equipment
+                  Sell surplus equipment
                 </Link>
               </li>
               <li>
@@ -150,6 +151,7 @@ export function Footer() {
             {SITE.address.city}, {SITE.address.state} · {SITE.address.country}
           </p>
         </div>
+        <p className="mt-3 max-w-3xl text-[11px] leading-relaxed text-brand-ink-foreground/40">{BRAND_DISCLAIMER}</p>
       </div>
     </footer>
   );

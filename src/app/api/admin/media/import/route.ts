@@ -2,14 +2,23 @@ import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { isAdminAuthenticated } from "@/lib/auth";
-import { commonsCaption, fetchRemoteImage, importCommonsImage, saveListingImage } from "@/lib/media";
+import {
+  commonsCaption,
+  fetchRemoteImage,
+  importCommonsImage,
+  resolveCommonsFile,
+  saveListingImage,
+} from "@/lib/media";
 
 // Admin-only bulk photo import. Body:
 //   { "items": [ { "reference": "EQ-0002", "commons": "File:X.jpg", "note": "…" },
-//                { "slug": "…", "url": "https://…/photo.jpg", "caption": "…" } ],
+//                { "slug": "…", "url": "https://…/photo.jpg", "caption": "…" },
+//                { "reference": "EQ-0010", "commons": "File:Y.jpg", "dataBase64": "…" } ],
 //     "dryRun": false }
 // "commons" items are licence-checked against the Commons API and get an
-// attribution caption automatically. Each item is processed independently.
+// attribution caption automatically. "dataBase64" (with "commons") stores an
+// adapted copy of that Commons photo — e.g. padded to 4:3 — while the licence
+// and credit still come from Commons. Each item is processed independently.
 export const dynamic = "force-dynamic";
 
 type Item = {
@@ -19,6 +28,7 @@ type Item = {
   url?: string;
   caption?: string;
   note?: string;
+  dataBase64?: string;
 };
 
 export async function POST(req: NextRequest) {
@@ -56,7 +66,18 @@ export async function POST(req: NextRequest) {
       let path: string;
       let caption: string | null = item.caption?.trim() || null;
       let source: string;
-      if (item.commons) {
+      if (item.commons && item.dataBase64) {
+        const file = await resolveCommonsFile(item.commons);
+        if (body.dryRun) {
+          results.push({ ref: label, ok: true, dryRun: true, license: file.license });
+          continue;
+        }
+        const bin = atob(item.dataBase64.replace(/^data:[^,]*,/, ""));
+        const bytes = Uint8Array.from(bin, (c) => c.charCodeAt(0));
+        path = await saveListingImage(bytes, listing.slug);
+        caption = caption ?? commonsCaption(file, item.note);
+        source = file.pageUrl;
+      } else if (item.commons) {
         if (body.dryRun) {
           results.push({ ref: label, ok: true, dryRun: true });
           continue;

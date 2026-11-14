@@ -21,6 +21,9 @@ const nextConfig: NextConfig = {
   // host anyway, so they are normally no-ops).
   experimental: {
     serverActions: {
+      // Listing photo uploads go through the saveEquipment action (8 MB cap
+      // enforced in lib/media.ts; the extra headroom covers the other fields).
+      bodySizeLimit: "10mb",
       allowedOrigins: [
         "*.space-z.ai",
         "zuronix.com",

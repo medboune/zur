@@ -182,7 +182,7 @@ export function EquipmentForm({ item }: { item: Equipment | null }) {
       <section className="rounded-xl border border-border bg-card p-6 shadow-sm">
         <h2 className="font-semibold">Image &amp; specifications</h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <Field label="Image" hint="Pick a bundled photo or type any /images/… path already uploaded to the site.">
+          <Field label="Image path" hint="Set automatically when you upload or import below. You can also pick a bundled /images/… photo.">
             <input
               name="image"
               list="image-choices"
@@ -199,6 +199,27 @@ export function EquipmentForm({ item }: { item: Equipment | null }) {
           <Field label="Image caption" hint="Shown under the photo — say if it is representative, not the actual asset.">
             <input name="imageCaption" defaultValue={d?.imageCaption ?? ""} className={inputCls} />
           </Field>
+          <Field label="Upload a photo" hint="JPEG, PNG or WebP, up to 8 MB. Stored in Cloudflare R2 and replaces the image path above.">
+            <input
+              name="imageFile"
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              className={`${inputCls} file:mr-3 file:rounded file:border-0 file:bg-muted file:px-3 file:py-1 file:text-sm`}
+            />
+          </Field>
+          <Field
+            label="…or import from a link"
+            hint="A direct https image link, or a Wikimedia Commons file page — Commons photos are licence-checked and the photographer credit is added to the caption."
+          >
+            <input name="imageUrl" type="url" className={inputCls} placeholder="https://commons.wikimedia.org/wiki/File:…" />
+          </Field>
+          {d?.image && (
+            <div className="sm:col-span-2 flex items-center gap-3">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={d.image} alt="" className="h-20 w-28 rounded-md border border-border object-cover" />
+              <span className="text-xs text-muted-foreground break-all">{d.image}</span>
+            </div>
+          )}
           <Field
             label="Specifications"
             className="sm:col-span-2"

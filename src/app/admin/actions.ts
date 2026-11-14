@@ -8,6 +8,15 @@ import { emailTaken, usernameTaken } from "@/lib/admin-users";
 import { hashPassword, isValidEmail, isValidUsername, passwordIssues, verifyPassword } from "@/lib/password";
 import { REQUEST_STATUSES, conditionLabel } from "@/lib/site";
 import { buildSearchKey } from "@/lib/equipment";
+import {
+  MAX_IMAGE_BYTES,
+  commonsCaption,
+  commonsTitleFrom,
+  fetchRemoteImage,
+  importCommonsImage,
+  isAllowedImagePath,
+  saveListingImage,
+} from "@/lib/media";
 
 export type ActionResult = { ok: boolean; error?: string };
 
@@ -265,9 +274,34 @@ export async function saveEquipment(
     lastVerifiedAt = d;
   }
 
-  const image = optStr(formData, "image", 300);
-  if (image && !/^\/images\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/i.test(image)) {
-    return { ok: false, error: "Image must be a site path like /images/sample-vmc.jpg." };
+  // ── Image: uploaded file > import URL / Commons link > typed site path ──
+  let image = optStr(formData, "image", 300);
+  let imageCaption = optStr(formData, "imageCaption", 300);
+  const nameHint = `${manufacturer} ${model}`;
+  const upload = formData.get("imageFile");
+  const importUrl = str(formData, "imageUrl");
+  try {
+    if (upload && typeof upload === "object" && "arrayBuffer" in upload && upload.size > 0) {
+      if (upload.size > MAX_IMAGE_BYTES) return { ok: false, error: "Images must be 8 MB or smaller." };
+      image = await saveListingImage(new Uint8Array(await upload.arrayBuffer()), nameHint);
+    } else if (importUrl) {
+      if (commonsTitleFrom(importUrl) && /commons(\.m)?\.wikimedia\.org|^file:/i.test(importUrl)) {
+        const out = await importCommonsImage(importUrl, nameHint);
+        image = out.path;
+        // Commons photos must carry attribution — replace the caption unless
+        // the admin already wrote one that credits the photographer.
+        if (!imageCaption || !/wikimedia|photo:/i.test(imageCaption)) {
+          imageCaption = commonsCaption(out.file, imageCaption);
+        }
+      } else {
+        image = await saveListingImage(await fetchRemoteImage(importUrl), nameHint);
+      }
+    }
+  } catch (err) {
+    return { ok: false, error: err instanceof Error ? err.message : "Image upload failed." };
+  }
+  if (image && !isAllowedImagePath(image)) {
+    return { ok: false, error: "Image must be a site path like /images/sample-vmc.jpg or an uploaded /media/… photo." };
   }
 
   const data = {
@@ -289,7 +323,7 @@ export async function saveEquipment(
     testSummary: optStr(formData, "testSummary", 2000),
     specs: parseSpecsInput(str(formData, "specs")),
     image,
-    imageCaption: optStr(formData, "imageCaption", 300),
+    imageCaption,
     isPublished: formData.get("isPublished") === "on",
     isSample: formData.get("isSample") === "on",
     searchKey: buildSearchKey(manufacturer, model, optStr(formData, "partNumber", 160), sector),

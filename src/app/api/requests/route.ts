@@ -4,6 +4,7 @@ import { createLeadWithReference, saveAttachment, SubmissionError, LeadType } fr
 import { notifyTeamOfNewLead, sendCustomerAcknowledgment } from "@/lib/notify";
 import { sourcingSchema, surplusSingleSchema, surplusListSchema, surplusListBaseSchema } from "@/lib/form-schemas";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
+import { requestReference } from "@/lib/reference";
 
 const TYPES: LeadType[] = ["SOURCING", "SURPLUS_SINGLE", "SURPLUS_LIST"];
 
@@ -49,7 +50,7 @@ export async function POST(req: NextRequest) {
     const honeypot = String(values.website ?? "").trim();
     if (honeypot) {
       console.warn("[api/requests] honeypot tripped — silently accepting");
-      return NextResponse.json({ ok: true, reference: "REQ-0000", duplicate: true });
+      return NextResponse.json({ ok: true, reference: requestReference(type), duplicate: false });
     }
 
     // Authoritative server-side validation, independent of the client.
@@ -107,7 +108,7 @@ export async function POST(req: NextRequest) {
       neededBy: clean(data.neededBy) ?? null,
       budget: clean(data.budget) ?? null,
       notes: clean(data.notes) ?? null,
-      // Cross-reference to a listing (EQ-0001) — strictly validated:
+      // Cross-reference to a listing (ZX-7K4M9Q) — strictly validated:
       // free-form strings never reach the admin console unvetted.
       relatedRef: (() => {
         const raw = String((values as Record<string, unknown>).relatedRef ?? "").trim();

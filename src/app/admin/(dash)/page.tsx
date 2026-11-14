@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FileText, Inbox, Search, ShoppingCart, Tags } from "lucide-react";
 import { db } from "@/lib/db";
 import { REQUEST_STATUS_LABELS, REQUEST_TYPE_LABELS } from "@/lib/site";
+import { legacyReferenceId, normalizeReference } from "@/lib/reference";
 import { PaginationControls } from "@/components/site/pagination-controls";
 import { PageSizeSelect } from "@/components/site/page-size-select";
 import { buildPageHref, pageWindow, parsePagination, totalPages } from "@/lib/pagination";
@@ -39,7 +40,8 @@ export default async function AdminDashboard({
     ...(q
       ? {
           OR: [
-            { reference: { contains: q.toUpperCase() } },
+            { reference: { contains: normalizeReference(q) } },
+            ...(legacyReferenceId(q) ? [{ id: legacyReferenceId(q)! }] : []),
             { company: { contains: q } },
             { email: { contains: q } },
             { model: { contains: q } },

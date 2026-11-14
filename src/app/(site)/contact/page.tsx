@@ -31,7 +31,11 @@ export default function ContactPage() {
       <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">Contact us</h1>
       <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
         The fastest way to reach the team is a request — it creates a tracked thread with a
-        reference number, and the right person picks it up the same day.
+        reference number, and the right person picks it up the same day. Already sent one?{" "}
+        <Link href="/track" className="link-quiet font-medium">
+          Track its status
+        </Link>
+        .
       </p>
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2">

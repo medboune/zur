@@ -11,9 +11,9 @@ import {
 } from "@/lib/media";
 
 // Admin-only bulk photo import. Body:
-//   { "items": [ { "reference": "EQ-0002", "commons": "File:X.jpg", "note": "…" },
+//   { "items": [ { "reference": "ZX-7K4M9Q", "commons": "File:X.jpg", "note": "…" },
 //                { "slug": "…", "url": "https://…/photo.jpg", "caption": "…" },
-//                { "reference": "EQ-0010", "commons": "File:Y.jpg", "dataBase64": "…" } ],
+//                { "reference": "ZX-P2W8CB", "commons": "File:Y.jpg", "dataBase64": "…" } ],
 //     "dryRun": false }
 // "commons" items are licence-checked against the Commons API and get an
 // attribution caption automatically. "dataBase64" (with "commons") stores an

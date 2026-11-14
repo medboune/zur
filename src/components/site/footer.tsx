@@ -102,6 +102,14 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  href="/track"
+                  className="text-brand-ink-foreground/70 underline-offset-4 hover:text-brand-ink-foreground hover:underline"
+                >
+                  Track a request
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/faq"
                   className="text-brand-ink-foreground/70 underline-offset-4 hover:text-brand-ink-foreground hover:underline"
                 >

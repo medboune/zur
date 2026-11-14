@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Check, Copy, Mail, Phone } from "lucide-react";
+import { Check, Copy, Mail, Phone, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
 import type { SubmissionResult } from "@/components/site/form/use-lead-submission";
@@ -66,6 +66,14 @@ export function Confirmation({
       </p>
 
       <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
+        <li className="flex items-center gap-2">
+          <Search className="size-4 shrink-0 text-muted-foreground/60" aria-hidden="true" />
+          Check progress any time on{" "}
+          <Link href="/track" className="link-quiet font-medium">
+            the tracking page
+          </Link>
+          <span>with this number and your email</span>
+        </li>
         <li className="flex items-center gap-2">
           <Mail className="size-4 shrink-0 text-muted-foreground/60" aria-hidden="true" />
           Follow up any time:{" "}

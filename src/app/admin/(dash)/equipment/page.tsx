@@ -8,6 +8,7 @@ import { PaginationControls } from "@/components/site/pagination-controls";
 import { PageSizeSelect } from "@/components/site/page-size-select";
 import { CONDITIONS } from "@/lib/site";
 import { buildSearchKey } from "@/lib/equipment";
+import { legacyReferenceId, normalizeReference } from "@/lib/reference";
 import { buildPageHref, pageWindow, parsePagination, totalPages } from "@/lib/pagination";
 import type { Prisma } from "@prisma/client";
 
@@ -43,7 +44,15 @@ export default async function AdminEquipmentPage({
     ...(status === "PUBLISHED" ? { isPublished: true } : {}),
     ...(status === "HIDDEN" ? { isPublished: false } : {}),
     ...(status === "DEMO" ? { isSample: true } : {}),
-    ...(q ? { searchKey: { contains: buildSearchKey(q) } } : {}),
+    ...(q
+      ? {
+          OR: [
+            { searchKey: { contains: buildSearchKey(q) } },
+            { reference: { contains: normalizeReference(q) } },
+            ...(legacyReferenceId(q) ? [{ id: legacyReferenceId(q)! }] : []),
+          ],
+        }
+      : {}),
   };
 
   const { skip, take } = pageWindow(page, size);

@@ -8,6 +8,7 @@ import { emailTaken, usernameTaken } from "@/lib/admin-users";
 import { hashPassword, isValidEmail, isValidUsername, passwordIssues, verifyPassword } from "@/lib/password";
 import { REQUEST_STATUSES, conditionLabel } from "@/lib/site";
 import { buildSearchKey } from "@/lib/equipment";
+import { isLegacyReference, listingReference } from "@/lib/reference";
 import {
   MAX_IMAGE_BYTES,
   commonsCaption,
@@ -339,11 +340,19 @@ export async function saveEquipment(
   const existingBySlug = await db.equipment.findFirst({ where: { slug: baseSlug } });
   const slug = existingBySlug && existingBySlug.id !== id ? `${baseSlug}-${Date.now().toString(36)}` : baseSlug;
 
-  // ── Reference: EQ-#### sequence ──
+  // ── Reference: random public stock number (lib/reference.ts) ──
+  // New listings — and any listing still on the old sequential EQ-####
+  // format — get a fresh one; existing ZX- references never change.
   let reference = str(formData, "reference");
-  if (!reference) {
-    const last = await db.equipment.findFirst({ orderBy: { id: "desc" }, select: { id: true } });
-    reference = `EQ-${String((last?.id ?? 0) + 1).padStart(4, "0")}`;
+  if (!reference || isLegacyReference(reference)) {
+    reference = "";
+    for (let attempt = 0; attempt < 5 && !reference; attempt++) {
+      const candidate = listingReference();
+      if (!(await db.equipment.findFirst({ where: { reference: candidate }, select: { id: true } }))) {
+        reference = candidate;
+      }
+    }
+    if (!reference) return { ok: false, error: "Could not allocate a reference number — try saving again." };
   }
   const refClash = await db.equipment.findFirst({ where: { reference } });
   if (refClash && refClash.id !== id) {

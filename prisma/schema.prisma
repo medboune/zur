@@ -16,7 +16,7 @@ datasource db {
 // validated at the application layer (src/lib/form-schemas.ts).
 model Lead {
   id             Int      @id @default(autoincrement())
-  reference      String   @unique // REQ-0001 (sourcing) / SUR-0001 (surplus)
+  reference      String   @unique // ZQ-261113-7K4MQ (sourcing) / ZS-… (surplus) — see src/lib/reference.ts
   type           String // SOURCING | SURPLUS_SINGLE | SURPLUS_LIST
   status         String   @default("NEW") // NEW | IN_REVIEW | QUOTED | WON | CLOSED
   company        String
@@ -70,7 +70,7 @@ model RateLimit {
 model Equipment {
   id             Int      @id @default(autoincrement())
   slug           String   @unique
-  reference      String   @unique // EQ-0001
+  reference      String   @unique // ZX-7K4M9Q — random public stock number, see src/lib/reference.ts
   manufacturer   String
   model          String
   partNumber     String?

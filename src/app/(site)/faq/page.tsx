@@ -27,6 +27,11 @@ const FAQ_GROUPS: { heading: string; faqs: { question: string; answer: string }[
           "Most requests get a first answer within one business day, Pacific Time. If the exact model is in our network we confirm configuration and availability with the owner before quoting; if it is not, we say so and propose the closest workable alternative.",
       },
       {
+        question: "How do I check the status of my request?",
+        answer:
+          "Every request gets a reference number on screen and by email. Enter it with the email you used on the Track a request page (zuronix.com/track) to see whether it is received, under review, or has an offer — no account needed.",
+      },
+      {
         question: "Is the equipment's condition verified?",
         answer:
           "Yes. Every listing and quote states the condition grade (new, used-tested, used-untested, refurbished, as-is, or for parts), what was actually tested and by whom, and the date availability was last confirmed with the owner. Ask for the test report on any tested item.",

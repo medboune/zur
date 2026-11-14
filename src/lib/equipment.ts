@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import { showSampleListings } from "@/lib/site";
 import type { Prisma } from "@prisma/client";
+import { normalizeReference } from "@/lib/reference";
 
 // Normalization makes search tolerant to spaces, dashes, casing and
 // punctuation: "dfd 6361", "DFD-6361" and "DFD6361" all match.
@@ -27,8 +28,15 @@ export async function listEquipmentPaged(opts: {
   skip: number;
   take: number;
 }) {
+  // A pasted reference number (e.g. ZX-7K4M9Q from an email) finds its listing.
   const where = opts.query
-    ? { ...equipmentVisibilityFilter(), searchKey: { contains: normalizeSearch(opts.query) } }
+    ? {
+        ...equipmentVisibilityFilter(),
+        OR: [
+          { searchKey: { contains: normalizeSearch(opts.query) } },
+          { reference: normalizeReference(opts.query) },
+        ],
+      }
     : equipmentVisibilityFilter();
   const [items, total] = await Promise.all([
     db.equipment.findMany({

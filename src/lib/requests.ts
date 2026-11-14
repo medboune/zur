@@ -2,6 +2,7 @@ import { db } from "@/lib/db";
 import { fileExtension, ALLOWED_EXTENSIONS, MAX_UPLOAD_BYTES } from "@/lib/form-schemas";
 import { putAttachment } from "@/lib/storage";
 import { randomUUID } from "crypto";
+import { requestReference } from "@/lib/reference";
 import type { Lead, Prisma } from "@prisma/client";
 
 // Attachments are stored through the storage abstraction (R2 in production,
@@ -48,10 +49,6 @@ export class SubmissionError extends Error {
     this.status = status;
     this.field = field;
   }
-}
-
-function referencePrefix(type: LeadType): string {
-  return type === "SOURCING" ? "REQ" : "SUR";
 }
 
 export async function saveAttachment(
@@ -104,21 +101,23 @@ export async function createLeadWithReference(
   const existing = await db.lead.findUnique({ where: { submissionToken: token } });
   if (existing) return { reference: existing.reference, duplicate: true, lead: existing };
 
-  const created = await db.lead.create({
-    data: {
-      ...data,
-      type,
-      submissionToken: token,
-      reference: `TMP-${randomUUID().slice(0, 12)}`,
-    },
-  });
-
-  const reference = `${referencePrefix(type)}-${String(created.id).padStart(4, "0")}`;
-  try {
-    const updated = await db.lead.update({ where: { id: created.id }, data: { reference } });
-    return { reference, duplicate: false, lead: updated };
-  } catch {
-    // Extremely unlikely; the row still exists and is recoverable by token.
-    return { reference: created.reference, duplicate: false, lead: created };
+  // The public reference is random (see lib/reference.ts), so it is chosen
+  // before the insert; the unique index catches the rare collision.
+  let lastError: unknown = null;
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const reference = requestReference(type);
+    try {
+      const lead = await db.lead.create({
+        data: { ...data, type, submissionToken: token, reference },
+      });
+      return { reference, duplicate: false, lead };
+    } catch (err) {
+      lastError = err;
+      // A concurrent retry with the same token won the race → idempotent replay.
+      const raced = await db.lead.findUnique({ where: { submissionToken: token } });
+      if (raced) return { reference: raced.reference, duplicate: true, lead: raced };
+    }
   }
+  throw lastError instanceof Error ? lastError : new Error("Could not allocate a reference number.");
 }
+

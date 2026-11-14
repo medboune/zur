@@ -199,7 +199,8 @@ export function composeCustomerAcknowledgment(lead: Lead): { subject: string; te
     `Hello ${lead.contactName},\n\n` +
     `Thank you for contacting Zuronix. We received your ${phrase} and it is now with our team.\n\n` +
     `Your reference number: ${lead.reference}\n` +
-    `Please keep this number for any follow-up — it lets us find your request immediately.\n\n` +
+    `Please keep this number for any follow-up — it lets us find your request immediately.\n` +
+    `Track its status any time: ${(process.env.APP_URL || "https://zuronix.com").replace(/\/$/, "")}/track\n\n` +
     `What happens next:\n` +
     `- A team member reviews your request, usually within one business day.\n` +
     `- We confirm specifications, availability, and condition with the asset owner or our supply network.\n` +

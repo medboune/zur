@@ -9,15 +9,17 @@ export const SITE = {
     "Zuronix sources semiconductor, data center, and industrial equipment for buyers, and helps companies list and sell idle equipment and assets. Based in Vancouver, Washington.",
   phone: "+1 360 822 0923",
   phoneHref: "+13608220923",
+  smsHref: "+13608220923",
+  // Business hours shown in the footer, contact page, and FAQ.
+  hours: "Mon–Fri 7am–7pm · Sat 9am–6pm (Pacific Time)",
   email: "info@zuronix.com",
   address: {
-    street: "4400 NE 77th Ave # 331",
+    street: "4400 NE 77th Ave",
     city: "Vancouver",
     state: "WA",
     zip: "98662-6829",
     country: "USA",
   },
-  registration: "Registered in Washington State, USA",
 } as const;
 
 export const SITE_ADDRESS_ONE_LINE = `${SITE.address.street}, ${SITE.address.city}, ${SITE.address.state} ${SITE.address.zip}`;

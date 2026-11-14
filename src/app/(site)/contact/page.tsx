@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, Mail, MapPin, MessageSquare, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE, SITE_ADDRESS_ONE_LINE } from "@/lib/site";
 
@@ -67,10 +67,10 @@ export default function ContactPage() {
         <h2 id="direct-heading" className="text-xl font-semibold">
           Or reach us directly
         </h2>
-        <ul className="mt-4 grid gap-4 sm:grid-cols-3">
+        <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <li className="rounded-xl border border-border bg-card p-5 shadow-sm">
             <p className="flex items-center gap-2 text-sm font-semibold">
-              <Phone className="size-4 text-primary" aria-hidden="true" /> Phone
+              <Phone className="size-4 text-primary" aria-hidden="true" /> Call
             </p>
             <a
               href={`tel:${SITE.phoneHref}`}
@@ -78,7 +78,19 @@ export default function ContactPage() {
             >
               {SITE.phone}
             </a>
-            <p className="mt-1 text-xs text-muted-foreground">Mon–Fri, Pacific Time</p>
+            <p className="mt-1 text-xs text-muted-foreground">{SITE.hours}</p>
+          </li>
+          <li className="rounded-xl border border-border bg-card p-5 shadow-sm">
+            <p className="flex items-center gap-2 text-sm font-semibold">
+              <MessageSquare className="size-4 text-primary" aria-hidden="true" /> Text
+            </p>
+            <a
+              href={`sms:${SITE.smsHref}`}
+              className="text-part mt-2 block text-sm hover:text-primary"
+            >
+              {SITE.phone}
+            </a>
+            <p className="mt-1 text-xs text-muted-foreground">Great for photos and quick questions</p>
           </li>
           <li className="rounded-xl border border-border bg-card p-5 shadow-sm">
             <p className="flex items-center gap-2 text-sm font-semibold">
@@ -101,7 +113,7 @@ export default function ContactPage() {
       </section>
 
       <p className="mt-10 text-xs leading-relaxed text-muted-foreground">
-        {SITE.legalName} is registered in Washington State, USA.
+        {SITE.legalName} · {SITE.tagline} · {SITE.hours}.
       </p>
     </div>
   );

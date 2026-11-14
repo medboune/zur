@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE, SITE_ADDRESS_ONE_LINE, SECTORS } from "@/lib/site";
 
@@ -111,11 +111,10 @@ export default function AboutPage() {
         </h2>
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
           <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
-            <h3 className="font-semibold">Registered</h3>
+            <h3 className="font-semibold">Headquarters</h3>
             <p className="mt-2 flex items-start gap-2 text-sm leading-relaxed text-muted-foreground">
               <MapPin className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
-              {SITE.legalName} is registered in Washington State, USA. Offices:{" "}
-              {SITE_ADDRESS_ONE_LINE}.
+              {SITE.legalName} — {SITE_ADDRESS_ONE_LINE}, USA.
             </p>
           </div>
           <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
@@ -126,6 +125,10 @@ export default function AboutPage() {
                   <Phone className="size-4 text-primary" aria-hidden="true" />
                   <span className="text-part">{SITE.phone}</span>
                 </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Clock className="size-4 text-primary" aria-hidden="true" />
+                {SITE.hours}
               </li>
               <li>
                 <a href={`mailto:${SITE.email}`} className="inline-flex items-center gap-2 hover:text-foreground">

@@ -78,11 +78,11 @@ const FAQ_GROUPS: { heading: string; faqs: { question: string; answer: string }[
     faqs: [
       {
         question: "Who is Zuronix?",
-        answer: `${SITE.name} is an industrial equipment sourcing and sales company based in Vancouver, Washington, USA — ${SITE.registration}. We connect buyers of semiconductor, data center, and industrial equipment with verified sources, and help owners sell idle equipment.`,
+        answer: `${SITE.name} is an industrial equipment sourcing and sales company based in Vancouver, Washington, USA. We connect buyers of semiconductor, data center, and industrial equipment with verified sources, and help owners sell idle equipment.`,
       },
       {
         question: "How can I contact Zuronix?",
-        answer: `Call ${SITE.phone} or email ${SITE.email}, Monday to Friday, Pacific Time. The office address is ${SITE.address.street}, ${SITE.address.city}, ${SITE.address.state} ${SITE.address.zip}, USA.`,
+        answer: `Call or text ${SITE.phone}, or email ${SITE.email} — ${SITE.hours}. The office address is ${SITE.address.street}, ${SITE.address.city}, ${SITE.address.state} ${SITE.address.zip}, USA.`,
       },
     ],
   },

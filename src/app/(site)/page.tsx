@@ -255,13 +255,6 @@ export default async function HomePage() {
                 </Link>
               </Button>
             </div>
-            {showSampleListings() && (
-              <p className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm text-amber-900">
-                Preview note: listings marked <strong>Demo</strong> illustrate our equipment
-                page format. They are sample records, not live inventory — request any of them
-                and we will confirm what is actually available.
-              </p>
-            )}
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {featured.map((item) => (
                 <EquipmentCard key={item.id} item={item} />

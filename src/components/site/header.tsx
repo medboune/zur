@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { ChevronDown, Menu, Phone, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Logo } from "@/components/site/logo";
-import { SECTORS, SITE } from "@/lib/site";
+import { SECTORS } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -89,13 +89,6 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={`tel:${SITE.phoneHref}`}
-            className="hidden items-center gap-1.5 rounded-md px-2 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground md:inline-flex"
-          >
-            <Phone className="size-4" aria-hidden="true" />
-            <span className="text-part">{SITE.phone}</span>
-          </a>
           <Button asChild size="sm" className="hidden sm:inline-flex">
             <Link href="/request-equipment">Request equipment</Link>
           </Button>

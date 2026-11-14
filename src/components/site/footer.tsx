@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, MessageSquare, Phone } from "lucide-react";
 import { Logo } from "@/components/site/logo";
 import { SECTORS, SITE, SITE_ADDRESS_ONE_LINE } from "@/lib/site";
 
@@ -25,8 +25,25 @@ export function Footer() {
                   className="inline-flex items-center gap-2.5 text-brand-ink-foreground/80 underline-offset-4 hover:text-brand-ink-foreground hover:underline"
                 >
                   <Phone className="size-4 shrink-0 text-brand-ink-foreground/50" aria-hidden="true" />
-                  <span className="text-part">{SITE.phone}</span>
+                  <span>
+                    Call <span className="text-part">{SITE.phone}</span>
+                  </span>
                 </a>
+              </li>
+              <li>
+                <a
+                  href={`sms:${SITE.smsHref}`}
+                  className="inline-flex items-center gap-2.5 text-brand-ink-foreground/80 underline-offset-4 hover:text-brand-ink-foreground hover:underline"
+                >
+                  <MessageSquare className="size-4 shrink-0 text-brand-ink-foreground/50" aria-hidden="true" />
+                  <span>
+                    Text <span className="text-part">{SITE.phone}</span>
+                  </span>
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Clock className="mt-0.5 size-4 shrink-0 text-brand-ink-foreground/50" aria-hidden="true" />
+                <span className="text-brand-ink-foreground/80">{SITE.hours}</span>
               </li>
               <li>
                 <a
@@ -119,7 +136,7 @@ export function Footer() {
 
         <div className="mt-10 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-brand-ink-foreground/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} {SITE.legalName}. {SITE.registration}.
+            © {new Date().getFullYear()} {SITE.legalName}. All rights reserved.
           </p>
           <p>
             {SITE.address.city}, {SITE.address.state} · {SITE.address.country}

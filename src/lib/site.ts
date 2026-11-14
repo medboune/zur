@@ -226,6 +226,14 @@ export const BRAND_GROUPS: { field: string; brands: string[] }[] = [
 
 export const BRANDS = BRAND_GROUPS.flatMap((g) => g.brands);
 
+// The short, widely recognized set shown in the homepage strip.
+export const FEATURED_BRANDS = [
+  "NVIDIA", "Dell", "HPE", "Cisco", "Intel", "AMD", "Samsung", "Micron", "Supermicro", "Lenovo",
+  "Applied Materials", "Lam Research", "KLA", "Tokyo Electron", "Advantest", "Teradyne",
+  "FANUC", "Siemens", "ABB", "Haas", "DMG MORI", "TRUMPF", "Caterpillar", "Schneider Electric",
+  "Keysight",
+];
+
 export const BRAND_DISCLAIMER =
   "Brand names are trademarks of their owners. Zuronix is an independent supplier and is not affiliated with, or an authorized reseller of, these manufacturers unless stated on a listing.";
 

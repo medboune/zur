@@ -114,24 +114,25 @@ export default async function HomePage() {
           <div className="bg-grid-light absolute inset-0" aria-hidden="true" />
         </div>
 
-        <div className="relative mx-auto grid w-full max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.06fr_0.94fr] lg:items-center lg:py-24">
-          <div>
+        <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-5 pb-12 pt-10 sm:gap-12 sm:px-6 sm:py-16 lg:grid-cols-[1.06fr_0.94fr] lg:items-center lg:py-24">
+          <div className="min-w-0">
             <p className="eyebrow !text-white/60">
-              Industrial equipment sourcing &amp; sales
+              <span className="sm:hidden">Equipment sourcing &amp; sales</span>
+              <span className="hidden sm:inline">Industrial equipment sourcing &amp; sales</span>
             </p>
-            <h1 className="font-display mt-5 text-4xl font-extrabold leading-[1.05] sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="font-display mt-4 text-[2.35rem] font-extrabold leading-[1.04] tracking-tight sm:mt-5 sm:text-5xl lg:text-[3.4rem]">
               Source equipment.
               <br />
               <span className="text-white/90">List yours for sale.</span>
             </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/75">
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-white/75 sm:mt-5 sm:text-lg">
               Semiconductor tools, data center hardware, industrial machinery — send
               the model you need, or the list you want to sell. We confirm the facts
               with the owner, then quote.
             </p>
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg" className="text-[15px]">
+            <div className="mt-7 grid grid-cols-1 gap-3 sm:flex sm:flex-row">
+              <Button asChild size="lg" className="h-12 text-[15px] sm:h-10">
                 <Link href="/request-equipment">
                   Request equipment
                   <ArrowRight className="size-4" aria-hidden="true" />
@@ -141,21 +142,21 @@ export default async function HomePage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-white/25 bg-white/5 text-[15px] text-white hover:bg-white/10 hover:text-white"
+                className="h-12 border-white/25 bg-white/5 text-[15px] text-white hover:bg-white/10 hover:text-white sm:h-10"
               >
                 <Link href="/sell">List your equipment</Link>
               </Button>
             </div>
 
-            <div className="mt-8 max-w-xl">
+            <div className="mt-6 max-w-xl sm:mt-8">
               <SearchBox />
             </div>
 
-            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+            <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 sm:mt-6 sm:gap-x-6">
               {HERO_NOTES.map((note) => (
                 <li
                   key={note}
-                  className="flex items-center gap-2 font-mono text-xs tracking-wide text-white/75"
+                  className="flex items-center gap-2 font-mono text-[11px] tracking-wide text-white/75 sm:text-xs"
                 >
                   <span className="size-1 rounded-full bg-primary" aria-hidden="true" />
                   {note}
@@ -167,7 +168,7 @@ export default async function HomePage() {
           {/* Live listings panel — equipment for sale, with prices, right in the hero */}
           <aside
             aria-labelledby="hero-listings-heading"
-            className="rounded-xl border border-white/15 bg-brand-ink/70 p-5 shadow-2xl backdrop-blur-md sm:p-6"
+            className="min-w-0 rounded-xl border border-white/15 bg-brand-ink/70 p-4 shadow-2xl backdrop-blur-md sm:p-6"
           >
             <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-4">
               <h2 id="hero-listings-heading" className="text-sm font-semibold tracking-tight">
@@ -235,7 +236,7 @@ export default async function HomePage() {
       {/* ── Current listings — full cards with price + offer ─────────────── */}
       {featured.length > 0 && (
         <section aria-labelledby="listings-heading" className="border-b border-border bg-secondary/30">
-          <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 lg:py-18">
+          <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 sm:py-14 lg:py-18">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
                 <p className="eyebrow">01 / Available now</p>
@@ -248,25 +249,33 @@ export default async function HomePage() {
                   we confirm the rest with the owner.
                 </p>
               </div>
-              <Button asChild variant="outline">
+              <Button asChild variant="outline" className="w-full sm:w-auto">
                 <Link href="/equipment">
                   View all equipment
                   <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>
               </Button>
             </div>
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div
+              className="no-scrollbar -mx-5 mt-7 flex snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto px-5 pb-1 sm:mx-0 sm:mt-8 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3"
+              aria-label="Featured equipment"
+            >
               {featured.map((item) => (
-                <EquipmentCard key={item.id} item={item} />
+                <div key={item.id} className="w-[80%] max-w-[320px] shrink-0 snap-start sm:w-auto sm:max-w-none">
+                  <EquipmentCard item={item} />
+                </div>
               ))}
             </div>
+            <p className="mt-3 flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider text-muted-foreground sm:hidden" aria-hidden="true">
+              Swipe for more <ArrowRight className="size-3" />
+            </p>
           </div>
         </section>
       )}
 
       {/* ── Sectors ───────────────────────────────────────────────────────── */}
       <section aria-labelledby="sectors-heading" className="border-b border-border">
-        <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 lg:py-18">
+        <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 sm:py-14 lg:py-18">
           <p className="eyebrow">02 / Where we work</p>
           <h2 id="sectors-heading" className="font-display mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
             Three sectors. One standard of work.
@@ -275,7 +284,7 @@ export default async function HomePage() {
             If it is on a fab floor, in a rack, or keeping a plant running — send us
             the model. We take it from there.
           </p>
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
+          <div className="mt-7 grid grid-cols-1 gap-4 sm:mt-8 sm:gap-6 md:grid-cols-3">
             {SECTORS.map((s, i) => (
               <article
                 key={s.slug}
@@ -283,7 +292,7 @@ export default async function HomePage() {
               >
                 <Link
                   href={`/sectors/${s.slug}`}
-                  className="relative block aspect-[16/10] overflow-hidden border-b border-border"
+                  className="relative block aspect-[2/1] overflow-hidden border-b border-border md:aspect-[16/10]"
                 >
                   <Image
                     src={s.image}
@@ -331,7 +340,7 @@ export default async function HomePage() {
 
       {/* ── How it works ─────────────────────────────────────────────────── */}
       <section aria-labelledby="how-heading" className="border-b border-border bg-secondary/30">
-        <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 lg:py-18">
+        <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 sm:py-14 lg:py-18">
           <p className="eyebrow">03 / Process</p>
           <h2 id="how-heading" className="font-display mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
             What happens on each side
@@ -341,8 +350,8 @@ export default async function HomePage() {
             runs on its own approved documents.
           </p>
 
-          <div className="mt-8 grid gap-6 lg:grid-cols-2">
-            <div className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-sm sm:p-8">
+          <div className="mt-7 grid grid-cols-1 gap-4 sm:mt-8 sm:gap-6 lg:grid-cols-2">
+            <div className="flex min-w-0 flex-col rounded-xl border border-border bg-card p-5 shadow-sm sm:p-8">
               <div className="flex items-center gap-3">
                 <span className="grid size-10 place-items-center rounded-lg bg-primary/10 text-primary">
                   <ClipboardList className="size-5" aria-hidden="true" />
@@ -378,7 +387,7 @@ export default async function HomePage() {
               </div>
             </div>
 
-            <div className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-sm sm:p-8">
+            <div className="flex min-w-0 flex-col rounded-xl border border-border bg-card p-5 shadow-sm sm:p-8">
               <div className="flex items-center gap-3">
                 <span className="grid size-10 place-items-center rounded-lg bg-foreground/5 text-foreground">
                   <FileSpreadsheet className="size-5" aria-hidden="true" />
@@ -419,7 +428,7 @@ export default async function HomePage() {
 
       {/* ── Condition standards ──────────────────────────────────────────── */}
       <section aria-labelledby="condition-heading" className="border-b border-border">
-        <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 lg:py-18">
+        <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 sm:py-14 lg:py-18">
           <p className="eyebrow">04 / Transparency</p>
           <h2 id="condition-heading" className="font-display mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
             How we state condition
@@ -429,17 +438,17 @@ export default async function HomePage() {
             a machine fits your line. That is why our condition language is standardized
             and sourced.
           </p>
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-7 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-5 lg:grid-cols-4">
             {CONDITION_GRADES.map((g) => (
               <div
                 key={g.grade}
-                className="rounded-xl border border-border border-t-2 border-t-primary bg-card p-5 shadow-sm"
+                className="min-w-0 rounded-xl border border-border border-t-2 border-t-primary bg-card p-4 shadow-sm sm:p-5"
               >
-                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                <p className="font-mono text-[9.5px] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:text-[10px] sm:tracking-[0.18em]">
                   Standard grade
                 </p>
                 <h3 className="mt-2 font-semibold">{g.grade}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{g.body}</p>
+                <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground sm:text-sm">{g.body}</p>
               </div>
             ))}
           </div>
@@ -463,7 +472,7 @@ export default async function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-brand-ink via-brand-ink/70 to-brand-ink" aria-hidden="true" />
         </div>
 
-        <div className="relative mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+        <div className="relative mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 sm:py-16 lg:py-20">
           <p className="eyebrow !text-white/60">05 / For sellers</p>
           <h2 id="sell-heading" className="font-display mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
             Turn idle assets into qualified offers
@@ -473,7 +482,7 @@ export default async function HomePage() {
             Both take about two minutes to hand over.
           </p>
 
-          <div className="mt-8 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="mt-7 grid grid-cols-1 gap-4 sm:mt-8 sm:gap-6 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="rounded-xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm sm:p-7">
               <h3 className="flex items-center gap-2 font-semibold">
                 <ShieldCheck className="size-5 text-primary" aria-hidden="true" />
@@ -525,7 +534,7 @@ export default async function HomePage() {
 
       {/* ── Closing CTA ─────────────────────────────────────────────────── */}
       <section aria-labelledby="cta-heading" className="bg-secondary/30">
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-start gap-8 px-4 py-14 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:py-18">
+        <div className="mx-auto flex w-full max-w-6xl flex-col items-start gap-8 px-5 py-12 sm:px-6 sm:py-14 lg:flex-row lg:items-center lg:justify-between lg:py-18">
           <div>
             <h2 id="cta-heading" className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
               Tell us what you need.
@@ -536,10 +545,10 @@ export default async function HomePage() {
             </p>
           </div>
           <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-            <Button asChild size="lg">
+            <Button asChild size="lg" className="h-12 sm:h-10">
               <Link href="/request-equipment">Request equipment</Link>
             </Button>
-            <Button asChild size="lg" variant="outline">
+            <Button asChild size="lg" variant="outline" className="h-12 sm:h-10">
               <Link href="/sell">List your equipment</Link>
             </Button>
           </div>

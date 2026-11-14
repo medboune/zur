@@ -186,3 +186,12 @@
     .ticker-track { animation: none; }
   }
 }
+
+/* Horizontal swipe rows (featured listings on phones): no visible scrollbar. */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -35,7 +35,7 @@ export function EquipmentCard({ item }: { item: Equipment }) {
   )}`;
 
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md">
+    <article className="group relative flex h-full min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md">
       <Link
         href={`/equipment/${item.slug}`}
         className="relative block aspect-[4/3] w-full overflow-hidden bg-muted"
@@ -79,11 +79,15 @@ export function EquipmentCard({ item }: { item: Equipment }) {
             <span className="text-part font-medium">{item.model}</span>
           </Link>
         </h3>
-        <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
+        <p className="flex min-w-0 items-center gap-1.5 text-sm text-muted-foreground">
           <MapPin className="size-3.5 shrink-0" aria-hidden="true" />
-          {item.location}
-          <span aria-hidden="true">·</span>
-          <span>{item.quantity > 1 ? `${item.quantity} units` : "1 unit"}</span>
+          <span className="truncate" title={item.location}>
+            {item.location}
+          </span>
+          <span aria-hidden="true" className="shrink-0">
+            ·
+          </span>
+          <span className="shrink-0">{item.quantity > 1 ? `${item.quantity} units` : "1 unit"}</span>
         </p>
         <VerifiedDate date={item.lastVerifiedAt} />
         <div className="mt-auto flex items-center justify-between gap-2 border-t border-border pt-3">

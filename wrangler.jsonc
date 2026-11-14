@@ -25,7 +25,7 @@
       // then paste the printed database_id below.
       "binding": "DB",
       "database_name": "zuronix-db",
-      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+      "database_id": "b38b39b7-c0a3-4e6b-b65f-142ac2cf1f33"
     }
   ],
   "r2_buckets": [

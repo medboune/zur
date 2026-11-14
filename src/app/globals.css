@@ -179,6 +179,12 @@
     mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
   }
+  .ticker-slow {
+    animation-duration: 140s;
+  }
+  .ticker-reverse {
+    animation-direction: reverse;
+  }
   @keyframes ticker {
     to { transform: translateX(-50%); }
   }

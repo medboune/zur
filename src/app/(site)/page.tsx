@@ -16,10 +16,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { SearchBox } from "@/components/site/search-box";
 import { EquipmentCard } from "@/components/site/equipment-card";
-import { CategoryTicker } from "@/components/site/category-ticker";
+import { BrandMarquee } from "@/components/site/brand-marquee";
 import {
-  BRAND_DISCLAIMER,
-  BRANDS,
   BUYER_ASSURANCES,
   SECTORS,
   SITE,
@@ -260,7 +258,7 @@ export default async function HomePage() {
         </ul>
       </section>
 
-      <CategoryTicker items={BRANDS} />
+      <BrandMarquee />
 
       {/* ── Inventory — full cards with price + offer ─────────────────────── */}
       {featured.length > 0 && (
@@ -366,7 +364,6 @@ export default async function HomePage() {
               </article>
             ))}
           </div>
-          <p className="mt-6 max-w-3xl text-xs leading-relaxed text-muted-foreground">{BRAND_DISCLAIMER}</p>
         </div>
       </section>
 

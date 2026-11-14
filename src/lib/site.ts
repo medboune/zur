@@ -181,30 +181,50 @@ export const BUYER_ASSURANCES = [
   },
 ] as const;
 
-// Manufacturers whose equipment we supply (text only — no logos).
-export const BRANDS = [
-  "NVIDIA",
-  "Dell",
-  "HPE",
-  "Supermicro",
-  "Cisco",
-  "Samsung",
-  "Micron",
-  "Intel",
-  "Advantest",
-  "Teradyne",
-  "KLA",
-  "DISCO",
-  "Tokyo Electron",
-  "Kulicke & Soffa",
-  "FANUC",
-  "Haas",
-  "DMG MORI",
-  "TRUMPF",
-  "Universal Robots",
-  "Caterpillar",
-  "Atlas Copco",
+// Manufacturers whose equipment we supply, by field (text only — no logos:
+// we are an independent supplier, not a partner or authorized reseller).
+export const BRAND_GROUPS: { field: string; brands: string[] }[] = [
+  {
+    field: "AI & data center",
+    brands: [
+      "NVIDIA", "AMD", "Intel", "Dell", "HPE", "Lenovo", "Supermicro", "Cisco", "Arista",
+      "Juniper", "Broadcom", "Samsung", "SK hynix", "Micron", "Kioxia", "Seagate",
+      "Western Digital", "NetApp", "Pure Storage",
+    ],
+  },
+  {
+    field: "Semiconductor",
+    brands: [
+      "Applied Materials", "Lam Research", "Tokyo Electron", "KLA", "Advantest", "Teradyne",
+      "Cohu", "DISCO", "Accretech", "Kulicke & Soffa", "ASMPT", "Besi", "Hitachi High-Tech",
+      "Onto Innovation", "Camtek", "FormFactor",
+    ],
+  },
+  {
+    field: "Machine tools",
+    brands: ["Haas", "DMG MORI", "Mazak", "Okuma", "Makino", "Doosan", "TRUMPF", "Amada", "Bystronic"],
+  },
+  {
+    field: "Robotics & automation",
+    brands: [
+      "FANUC", "Yaskawa", "ABB", "KUKA", "Universal Robots", "Siemens", "Rockwell Automation",
+      "Mitsubishi Electric", "Keyence",
+    ],
+  },
+  {
+    field: "Power & plant",
+    brands: [
+      "Caterpillar", "Cummins", "Kohler", "Generac", "Eaton", "Schneider Electric", "Vertiv",
+      "Atlas Copco", "Ingersoll Rand",
+    ],
+  },
+  {
+    field: "Test & measurement",
+    brands: ["Keysight", "Tektronix", "Rohde & Schwarz", "Zeiss", "Mitutoyo", "Hexagon"],
+  },
 ];
+
+export const BRANDS = BRAND_GROUPS.flatMap((g) => g.brands);
 
 export const BRAND_DISCLAIMER =
   "Brand names are trademarks of their owners. Zuronix is an independent supplier and is not affiliated with, or an authorized reseller of, these manufacturers unless stated on a listing.";

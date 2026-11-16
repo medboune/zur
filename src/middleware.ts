@@ -22,7 +22,35 @@ const SECURITY_HEADERS: Record<string, string> = {
   "Strict-Transport-Security": "max-age=15552000",
 };
 
-export function middleware(_request: NextRequest) {
+/** Scheme the visitor actually used, as reported by Cloudflare's edge. */
+function visitorScheme(request: NextRequest): string | null {
+  const forwarded = request.headers.get("x-forwarded-proto");
+  if (forwarded) return forwarded.split(",")[0].trim().toLowerCase();
+  const visitor = request.headers.get("cf-visitor");
+  if (visitor) {
+    try {
+      return String(JSON.parse(visitor).scheme || "").toLowerCase() || null;
+    } catch {
+      return null;
+    }
+  }
+  return null;
+}
+
+export function middleware(request: NextRequest) {
+  // Plain-HTTP visits to the production domain go to HTTPS. Only the public
+  // hostnames are matched, so local development and internal requests are
+  // unaffected.
+  const host = (request.headers.get("host") || "").split(":")[0].toLowerCase();
+  if (visitorScheme(request) === "http" && (host === "zuronix.com" || host.endsWith(".zuronix.com"))) {
+    const url = request.nextUrl.clone();
+    url.protocol = "https:";
+    url.host = host;
+    url.port = "";
+    const status = request.method === "GET" || request.method === "HEAD" ? 301 : 308;
+    return NextResponse.redirect(url, status);
+  }
+
   const response = NextResponse.next();
   for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
     response.headers.set(key, value);
